@@ -289,3 +289,7 @@ h3.popup-heading {
 .toplevel_page_hypeanimations_panel #wpfooter {
     position: static;
 }
+
+.dropzone .dz-preview .dz-details .dz-filename:not(:hover) {
+    margin-top: 30px;
+}
