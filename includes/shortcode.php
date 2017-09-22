@@ -34,7 +34,7 @@ function hypeanimations_anim($args){
 			$height = str_replace(":", "", $style_explode_height[0]);
 			$temp = ($width != "" ? 'width="'.$width.'"' : '').' '.($width != "" ? 'height="'.$height.'"' : '');
 		}
-		if ($results->container=='div') { $output.='<div '.($results->containerclass!='' ? 'class="'.$results->containerclass.'"' : '').'>'; }
+		if ($results->container=='div') { $output.='<div'.($results->containerclass!='' ? ' class="'.$results->containerclass.'"' : '').'>'; }
 		if ($results->container=='iframe' && file_exists($upload_dir['basedir'].'/hypeanimations/'.$actid.'/index.html')) { $output.='<iframe style="border:none;" frameborder="0" '.$temp.' '.($results->containerclass!='' ? 'class="'.$results->containerclass.'"' : '').' src="'.site_url().'/wp-content/uploads/hypeanimations/'.$actid.'/index.html">'; }elseif ($results->container=='iframe') { $output.='<iframe '.$temp.' '.($results->containerclass!='' ? 'class="'.$results->containerclass.'"' : '').' src="'.site_url().'?just_hypeanimations='.$actid.'">'; }
 		if ($results->container!='iframe') { $output.=$code; }
 		if ($results->container=='div') { $output.='</div>'; }
