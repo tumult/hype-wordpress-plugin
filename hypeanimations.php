@@ -1,11 +1,14 @@
 <?php
 /*
 Plugin Name: Hype Animations
+Version: 1.6
 Description: Insert your Hype animations
-Author: <a href="http://tumult.com" target="_blank">Tumult</a>
+Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
+Author URI: <a href="http://tumult.com" target="_blank">Tumult</a>
 Text Domain: hype-animations
 Domain Path: /languages
-Version: 1.6
+License: GPL2
+License URL: https://www.gnu.org/licenses/gpl-2.0.html
 */
 #---------------------------------------------------------------------------#
 add_action( 'plugins_loaded', 'hypeanimations_init_lang' );
