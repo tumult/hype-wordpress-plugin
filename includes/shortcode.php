@@ -13,6 +13,7 @@ function hypeanimations_anim($args){
 		$width = "";
 		$height = "";
 		$type = "";
+		$results->containerclass = sanitize_html_class( $results->containerclass );
 		$code = str_replace("https://", "//", html_entity_decode($results->code));
 		$code = str_replace("http://", "//", html_entity_decode($results->code));
 		list($before, $after) = explode('x', $results->slug, 2);

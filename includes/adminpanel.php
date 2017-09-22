@@ -334,13 +334,12 @@ function hypeanimations_panel() {
 			echo '<tr><td>'.$results->nom.'</td><td><pre>[hypeanimations_anim id="'.$results->id.'"]</pre></td><td>'.__( 'Add a container around the animation' , 'hype-animations' ).' : <select class="hypeanimations_container" name="container">
 <option value="div" '.($results->container=='div' ? 'selected' : '').'>&lt;div&gt;</option>
 <option value="iframe" '.($results->container=='iframe' ? 'selected' : '').'>&lt;iframe&gt;</option>
-</select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"><div '.($results->container=='none' ? 'style="display:none;"' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).' : <input type="text" name="class" placeholder="Myclass1 Myclass2" value="'.$results->containerclass.'"></div></td><td>'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('d/m/Y',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td><a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
+</select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"><div '.($results->container=='none' ? 'style="display:none;"' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).' : <input type="text" name="class" placeholder="Myclass" value="'.$results->containerclass.'"></div></td><td>'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('d/m/Y',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td><a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
 		}
 	echo '</tbody>
 	</table>
-	
 
-	
+
 	<script>
 	jQuery(document).ready(function(jQuery){
 		jQuery(document).on("click", ".animcopy", function(){
