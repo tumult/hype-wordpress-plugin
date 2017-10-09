@@ -1,18 +1,16 @@
 ﻿=== Hype Animations ===
 Author URI: http://www.tumult.com
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
-Contributors: freeben, tumultinc
+Contributors: tumultinc
 Tags: Hype,Animations
 Requires at least: 4.7
 Tested up to: 4.8.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Description: Easily embed your Hype animations into your Wordpress website.
+Description: Easily embed your Hype animations using a shortcode into posts and pages.
 
 == Description ==
-
-This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.org/plugins/hype-animations/) and extends functionality. 
 
 * **English** : This plugins allows you to upload your Tumult Hype animations to your Wordpress site to easily embed them using shortcodes on posts and pages. You can also copy the embed code to use your Wordpress site as a Tumult Hype animation host. 
 
@@ -20,15 +18,19 @@ This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.o
 
 For more help, please visit this page: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 
+This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.org/plugins/hype-animations/) and extends functionality. 
+
 == Installation ==
 
-* **English** :
+**English** 
+
 1. Download hypeanimations.zip from the "download" link on the web page where you're viewing this.
 2. Decompress the file contents.
 3. Upload the hypeanimations folder to your WordPress plugins directory (/wp-content/plugins/).
 4. Activate the Hype Animations plugin from the WordPress plugin page.
 
-* **Français** :
+**Français** 
+
 1. Téléchargez hypeanimations.zip sur le lien de téléchargement sur cette même page.
 2. Décompressez l'archive téléchargée.
 3. Mettez en ligne le dossier hypeanimations dans votre dossier de plugins (/wp-content/plugins/).
@@ -45,7 +47,7 @@ For more help, please visit this page: https://forums.tumult.com/t/hype-animatio
 
 = 1.6 =
 * Copy Embed Code from the Animation List
-* Embeds are now protocol-agnostic (uses // instead of http://)
+* Embeds are now protocol-agnostic for better SSL support (uses // instead of http://)
 * Updated to work with WP 4.8.1
 * Maximum file size shown in upload modal
 * Improved Translations
