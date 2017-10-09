@@ -1,4 +1,4 @@
-﻿=== Hype Animations ===
+﻿=== Tumult Hype Animations ===
 Author URI: http://www.tumult.com
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Contributors: tumultinc

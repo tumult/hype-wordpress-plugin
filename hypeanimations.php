@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Hype Animations
+Plugin Name: Tumult Hype Animations
 Version: 1.6
-Description: Insert your Hype animations
+Description: Insert your Tumult Hype animations
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Author URI: <a href="http://tumult.com" target="_blank">Tumult</a>
 Text Domain: hype-animations
