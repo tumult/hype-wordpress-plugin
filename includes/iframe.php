@@ -1,13 +1,13 @@
-<?
+<?php
 add_action('wp_loaded','check_hypeanimation_iframe',1);
 function check_hypeanimation_iframe(){
 	global $wpdb;
-	global $table_name;
+	global $hypeanimations_table_name;
 	$queryURL = parse_url( html_entity_decode( esc_url( add_query_arg( $arr_params ) ) ) );
 	parse_str( $queryURL['query'], $getVar );
 	$just_hypeanimations = $getVar['just_hypeanimations'];
 	if ($just_hypeanimations>0) {
-		$animcode = $wpdb->get_var("SELECT code FROM ".$table_name." WHERE id='".ceil($just_hypeanimations)."' LIMIT 1");
+		$animcode = $wpdb->get_var("SELECT code FROM ".$hypeanimations_table_name." WHERE id='".ceil($just_hypeanimations)."' LIMIT 1");
 		$animcode = str_replace("https://", "//", html_entity_decode($animcode));
 		$animcode = str_replace("http://", "//", html_entity_decode($animcode));
 		echo '
@@ -37,4 +37,3 @@ function check_hypeanimation_iframe(){
 		exit();
 	}
 }
-?>

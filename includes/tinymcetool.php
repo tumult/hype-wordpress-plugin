@@ -1,4 +1,4 @@
-<?
+<?php
 
 add_action( 'media_buttons_context', 'add_hypeanimations_shortcode_button', 1 );
 function add_hypeanimations_shortcode_button($output) {
@@ -7,9 +7,9 @@ function add_hypeanimations_shortcode_button($output) {
 }	
 add_action( "admin_footer", 'add_hypeanimations_shortcode_button_footer' );
 function add_hypeanimations_shortcode_button_footer() { 
-	global $table_name;
+	global $hypeanimations_table_name;
 	global $wpdb;
-	$verifaumoinsun = $wpdb->get_var("SELECT id FROM ".$table_name." LIMIT 1");
+	$verifaumoinsun = $wpdb->get_var("SELECT id FROM ".$hypeanimations_table_name." LIMIT 1");
 	$output='
 	
 	<div id="oModal2" class="oModal">
@@ -30,7 +30,7 @@ function add_hypeanimations_shortcode_button_footer() {
 				if ($verifaumoinsun>0) {
 					$output.='
 					<select id="hypeanimationchoosen">';
-					$sql = "SELECT id,nom FROM ".$table_name." ORDER BY id DESC";
+					$sql = "SELECT id,nom FROM ".$hypeanimations_table_name." ORDER BY id DESC";
 					$result = $wpdb->get_results($sql);
 					foreach( $result as $results ) {
 						$output.='<option value="'.$results->id.'">'.$results->nom.'</a>';
