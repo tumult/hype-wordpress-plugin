@@ -1,13 +1,13 @@
-<?
+<?php
 add_action( 'plugins_loaded', 'hypeanimations_init' );
 function hypeanimations_init() {
 	global $wpdb;
 	global $hypeanimations_db_version;
-	global $table_name;
+	global $hypeanimations_table_name;
 	$installed_ver = get_option( "hypeanimations_db_version" );
 	if ( $installed_ver < 1.3 ) {
 		$charset_collate = $wpdb->get_charset_collate();
-		$sql = "CREATE TABLE $table_name (
+		$sql = "CREATE TABLE $hypeanimations_table_name (
 			id int(9) NOT NULL AUTO_INCREMENT,
 			nom varchar(150) DEFAULT '' NOT NULL,
 			slug varchar(150) DEFAULT '' NOT NULL,
@@ -21,7 +21,7 @@ function hypeanimations_init() {
 		dbDelta( $sql );
 		if ($installed_ver=='') { add_option( 'hypeanimations_db_version', $hypeanimations_db_version ); }
 		else { update_option( "hypeanimations_db_version", $hypeanimations_db_version ); }
-		$update = $wpdb -> query("UPDATE ".$table_name." SET container='none'");
+		$update = $wpdb -> query("UPDATE ".$hypeanimations_table_name." SET container='none'");
 	}
 	$upload_dir = wp_upload_dir();
 	if (!file_exists($upload_dir['basedir'].'/hypeanimations/')) {
@@ -34,9 +34,9 @@ function hypeanimations_init() {
 function hypeanimations_install() {
 	global $wpdb;
 	global $hypeanimations_db_version;
-	global $table_name;
+	global $hypeanimations_table_name;
 	$charset_collate = $wpdb->get_charset_collate();
-	$sql = "CREATE TABLE $table_name (
+	$sql = "CREATE TABLE $hypeanimations_table_name (
 		id int(9) NOT NULL AUTO_INCREMENT,
 		nom varchar(150) DEFAULT '' NOT NULL,
 		slug varchar(150) DEFAULT '' NOT NULL,
@@ -51,4 +51,3 @@ function hypeanimations_install() {
 	add_option( 'hypeanimations_db_version', $hypeanimations_db_version );
 }
 register_activation_hook(__FILE__,'hypeanimations_install');
-?>

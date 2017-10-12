@@ -1,13 +1,13 @@
-<?
+<?php
 add_shortcode( 'hypeanimations_anim', 'hypeanimations_anim');
 function hypeanimations_anim($args){
 	global $wpdb;
-	global $table_name;
+	global $hypeanimations_table_name;
 	$actid=$args['id'];
 	$upload_dir = wp_upload_dir();
 	$uploadfinaldir = $upload_dir['baseurl'].'/hypeanimations/';
 	$output='';
-	$sql = "SELECT code,slug,container,containerclass FROM ".$table_name." WHERE id='".$actid."' LIMIT 1";
+	$sql = "SELECT code,slug,container,containerclass FROM ".$hypeanimations_table_name." WHERE id='".$actid."' LIMIT 1";
 	$result = $wpdb->get_results($sql);
 	foreach( $result as $results ) {
 		$width = "";
@@ -43,4 +43,3 @@ function hypeanimations_anim($args){
 	}
 	return $output;
 }
-?>
