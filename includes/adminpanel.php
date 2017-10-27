@@ -25,7 +25,7 @@ function hypeanimations_panel_upload() {
 			for ($i=0;isset($files[$i]);$i++) {
 				if (preg_match('~.html~',$files[$i])) {
 					$actfile=explode('.html',$files[$i]);
-					$maxid = $wpdb->get_var("SELECT id FROM ".$hypeanimations_table_name." ORDER BY id DESC LIMIT 1");
+					$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM ".$hypeanimations_table_name." ORDER BY id DESC LIMIT 1",''));
 					if ($maxid>0) {
 						$maxid=$maxid+1;
 					}
@@ -71,7 +71,7 @@ function hypeanimations_panel_upload() {
 					} else {
 						//echo 'error';
 					}
-					$update = $wpdb -> query("UPDATE ".$hypeanimations_table_name." SET code='".addslashes(htmlentities($agarder1))."' WHERE id='".$lastid."' LIMIT 1");
+					$update = $wpdb -> query($wpdb->prepare("UPDATE ".$hypeanimations_table_name." SET code='".addslashes(htmlentities($agarder1))."' WHERE id=%d",$lastid));
 
 					// //copy index.html
 					copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$lastid.'/'.$actfile[0].'.html');
@@ -101,7 +101,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 	<div id="oModal1" class="oModal">
 		<div>	
 			<header>
-				<a href="#fermer"  class="droitefermer">X</a>
+				<a href="#fermer" id="closeDroper"  class="droitefermer">X</a>
 				<h2>'.__( 'Upload new animation' , 'hype-animations' ).'</h2>
 			</header>
 			<section>
@@ -136,8 +136,8 @@ function hypeanimations_panel() {
 	<a href="#oModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
 	if ($_GET['delete']>0) {
-		$animtitle = $wpdb->get_var("SELECT nom FROM ".$hypeanimations_table_name." WHERE id='".ceil($_GET['delete'])."' LIMIT 1");
-		$delete = $wpdb -> query("DELETE FROM ".$hypeanimations_table_name." WHERE id='".ceil($_GET['delete'])."' LIMIT 1");
+		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM ".$hypeanimations_table_name." WHERE id=%d", ceil($_GET['delete'])));
+		$delete = $wpdb -> query($wpdb->prepare("DELETE FROM ".$hypeanimations_table_name." WHERE id=%d", ceil($_GET['delete'])));
 		hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
 		if ($animtitle!='') {
 			echo '<p>&nbsp;</p><p><span style="padding:10px;color:#FFF;background:#cc0000;">'.$animtitle.' has been deleted.</style></p>';
@@ -225,7 +225,12 @@ function hypeanimations_panel() {
 		}
 		//print_r($_FILES);
 	}*/
-	if (isset($_FILES['updatefile']) && $_POST['dataid']>0) {
+	if (isset($_FILES['updatefile']) && sanitize_text_field($_POST['dataid']>0)) {
+		if(strpos(basename($_FILES['updatefile']['name']), " ") !== false)
+		{
+		   echo "<script>alert('You seem to have a space in your animation name. Please remove the space and regenerate the animation.');location.reload();</script>";
+		   die;
+		}
 		$actdataid=ceil($_POST['dataid']);
 		$uploaddir = $anims_dir.'tmp/';
 		$uploadfinaldir = $anims_dir;
@@ -245,14 +250,21 @@ function hypeanimations_panel() {
 			for ($i=0;isset($files[$i]);$i++) {
 				if (preg_match('~.html~',$files[$i])) {
 					$actfile=explode('.html',$files[$i]);
-					$maxid = $wpdb->get_var("SELECT id FROM ".$hypeanimations_table_name." ORDER BY id DESC LIMIT 1");
+					$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM ".$hypeanimations_table_name." ORDER BY id DESC LIMIT 1",''));
 					if ($maxid>0) {
 						$maxid=$maxid+1;
 					}
 					else { 
 						$maxid=1;
 					}
-					$update_name = $wpdb -> query("UPDATE ".$hypeanimations_table_name." SET nom='".$new_name."' WHERE id='".$actdataid."' LIMIT 1");
+
+					$data_updt = array(
+						'nom' => $new_name
+					);
+
+
+
+					$update_name = $wpdb->query( $wpdb->prepare( "UPDATE $hypeanimations_table_name SET `nom` = '".$new_name."' WHERE `id` = %d", $actdataid ) );
 
 					if (file_exists($uploadfinaldir.$actdataid.'/')) {
 						hyperrmdir($uploadfinaldir.$actdataid.'/');
@@ -294,7 +306,7 @@ function hypeanimations_panel() {
 					} else {
 						//echo 'error';
 					}
-					$update = $wpdb -> query("UPDATE ".$hypeanimations_table_name." SET code='".addslashes(htmlentities($agarder1))."',updated='".time()."' WHERE id='".$actdataid."' LIMIT 1");
+					$update = $wpdb -> query($wpdb->prepare("UPDATE ".$hypeanimations_table_name." SET code='".addslashes(htmlentities($agarder1))."',updated='".time()."' WHERE `id` = %d", $actdataid));
 					//copy index.html
 					copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$actdataid.'/'.$actfile[0].'.html');
 
@@ -329,12 +341,12 @@ function hypeanimations_panel() {
 		</thead>
 		<tbody>';
 		$sql = "SELECT id,nom,slug,updated,container,containerclass FROM ".$hypeanimations_table_name." ORDER BY id DESC";
-		$result = $wpdb->get_results($sql);
+		$result = $wpdb->get_results($wpdb->prepare($sql,''));
 		foreach( $result as $results ) {
 			echo '<tr><td>'.$results->nom.'</td><td><pre>[hypeanimations_anim id="'.$results->id.'"]</pre></td><td>'.__( 'Add a container around the animation' , 'hype-animations' ).' : <select class="hypeanimations_container" name="container">
 <option value="div" '.($results->container=='div' ? 'selected' : '').'>&lt;div&gt;</option>
 <option value="iframe" '.($results->container=='iframe' ? 'selected' : '').'>&lt;iframe&gt;</option>
-</select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"><div '.($results->container=='none' ? 'style="display:none;"' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).' : <input type="text" name="class" placeholder="Myclass" value="'.$results->containerclass.'"></div></td><td>'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('d/m/Y',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td><a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
+</select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"><div '.($results->container=='none' ? 'style="display:none;"' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).' : <input type="text" name="class" placeholder="Myclass" value="'.$results->containerclass.'"></div></td><td>'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('m/d/Y',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td><a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
 		}
 	echo '</tbody>
 	</table>
@@ -411,6 +423,7 @@ function hypeanimations_panel() {
 		});
 		jQuery("#hypeanimations").DataTable({
             responsive: true,
+            "order": [[ 0, "desc" ]],
 			"columns": [
 				null,
 				{ "width": "300px" },
@@ -443,11 +456,12 @@ function hypeanimations_updatecontainer(){
 	global $wpdb;
 	global $hypeanimations_table_name;
     $response = array();
-    if(!empty($_POST['dataid']) && !empty($_POST['container'])){
-		$post_dataid=$_POST['dataid'];
-		$post_container=$_POST['container'];
-		$post_containerclass=$_POST['containerclass'];
-		$update = $wpdb -> query("UPDATE ".$hypeanimations_table_name." SET container='".$post_container."',containerclass='".$post_containerclass."' WHERE id='".$post_dataid."' LIMIT 1");
+    if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
+		$post_dataid = sanitize_text_field( $_POST['dataid'] );
+		$post_container = sanitize_text_field($_POST['container']);
+		$post_containerclass = sanitize_text_field($_POST['containerclass']);
+		$wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container='$post_container', containerclass='$post_containerclass' WHERE id=%d", $post_dataid));
+
 		$response['response'] = "ok";
     }
 	else { $response['response'] = "error"; }
@@ -460,11 +474,11 @@ function hypeanimations_getanimid(){
 	global $wpdb;
 	global $hypeanimations_table_name;
     $response = array();
-    if(!empty($_POST['dataid']) && !empty($_POST['container'])){
-		$post_dataid=$_POST['dataid'];
-		$post_container=$_POST['container'];
-		$post_containerclass=$_POST['containerclass'];
-		$update = $wpdb -> query("UPDATE ".$hypeanimations_table_name." SET container='".$post_container."',containerclass='".$post_containerclass."' WHERE id='".$post_dataid."' LIMIT 1");
+    if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
+		$post_dataid=sanitize_text_field($_POST['dataid']);
+		$post_container=sanitize_text_field($_POST['container']);
+		$post_containerclass=sanitize_text_field($_POST['containerclass']);
+		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container='$post_container', containerclass='$post_containerclass' WHERE id=%d", $post_dataid));
 		$response['response'] = "ok";
     }
 	else { $response['response'] = "error"; }
@@ -477,13 +491,15 @@ function hypeanimations_getcontent(){
 	global $wpdb;
 	global $hypeanimations_table_name;
     $response = array();
-    if(!empty($_POST['dataid'])){
-		$post_dataid=$_POST['dataid'];
-		$animcode = $wpdb->get_var("SELECT code FROM ".$hypeanimations_table_name." WHERE id='".$post_dataid."' LIMIT 1");
+    if(!empty(sanitize_text_field($_POST['dataid']))){
+		$post_dataid= sanitize_text_field($_POST['dataid']);
+		$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM ".$hypeanimations_table_name." WHERE id=%d", $post_dataid." LIMIT 1"));
+
+		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container='$post_container', containerclass='$post_containerclass' WHERE id=%d", $post_dataid));
+
 		$animcode = str_replace("https://", "//", html_entity_decode($animcode));
 		$animcode = str_replace("http://", "//", html_entity_decode($animcode));
     }
 	echo html_entity_decode($animcode);
     exit();
 }
-

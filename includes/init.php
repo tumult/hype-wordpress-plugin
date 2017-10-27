@@ -21,7 +21,7 @@ function hypeanimations_init() {
 		dbDelta( $sql );
 		if ($installed_ver=='') { add_option( 'hypeanimations_db_version', $hypeanimations_db_version ); }
 		else { update_option( "hypeanimations_db_version", $hypeanimations_db_version ); }
-		$update = $wpdb -> query("UPDATE ".$hypeanimations_table_name." SET container='none'");
+		$update = $wpdb -> query($wpdb->prepare("UPDATE ".$hypeanimations_table_name." SET container='none'",''));
 	}
 	$upload_dir = wp_upload_dir();
 	if (!file_exists($upload_dir['basedir'].'/hypeanimations/')) {
