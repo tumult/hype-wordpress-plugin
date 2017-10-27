@@ -127,12 +127,12 @@ function hypeanimations_panel() {
 	global $hypeanimations_table_name;
 	$upload_dir = wp_upload_dir();
 	$anims_dir=$upload_dir['basedir'].'/hypeanimations/';
-	echo '<br><h1>Hype Animations (version '.$version.')</h1>
+	echo '<br><h1>Tumult Hype Animations (version '.$version.')</h1>
 	<p>&nbsp;</p>
 	</div>
 	<h2>'.__( 'Add new animation' , 'hype-animations' ).'</h2>
 	<div class="hypeanimbloc">
-	'.__( 'Upload a .OAM file exported by Tumult Hype and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
+	'.__( 'Upload a .OAM file exported by <a href="http://tumult.com/hype">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
 	<a href="#oModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
 	if ($_GET['delete']>0) {
@@ -343,10 +343,10 @@ function hypeanimations_panel() {
 		$sql = "SELECT id,nom,slug,updated,container,containerclass FROM ".$hypeanimations_table_name." ORDER BY id DESC";
 		$result = $wpdb->get_results($wpdb->prepare($sql,''));
 		foreach( $result as $results ) {
-			echo '<tr><td>'.$results->nom.'</td><td><pre>[hypeanimations_anim id="'.$results->id.'"]</pre></td><td>'.__( 'Add a container around the animation' , 'hype-animations' ).' : <select class="hypeanimations_container" name="container">
+			echo '<tr><td>'.$results->nom.'</td><td><pre>[hypeanimations_anim id="'.$results->id.'"]</pre></td><td>'.__( 'Add a container around the animation' , 'hype-animations' ).': <select class="hypeanimations_container" name="container">
 <option value="div" '.($results->container=='div' ? 'selected' : '').'>&lt;div&gt;</option>
 <option value="iframe" '.($results->container=='iframe' ? 'selected' : '').'>&lt;iframe&gt;</option>
-</select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"><div '.($results->container=='none' ? 'style="display:none;"' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).' : <input type="text" name="class" placeholder="Myclass" value="'.$results->containerclass.'"></div></td><td>'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('m/d/Y',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td><a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
+</select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"><div '.($results->container=='none' ? 'style="display:none;"' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).' : <input type="text" name="class" placeholder="Myclass" value="'.$results->containerclass.'"></div></td><td>'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('m/d/Y',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
 		}
 	echo '</tbody>
 	</table>

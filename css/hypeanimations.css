@@ -1,5 +1,5 @@
-table.dataTable tbody td { border-left:1px solid #000;border-bottom:1px solid #000;text-align:center; }
-table.dataTable tbody td:last-child { border-right:1px solid #000; }
+table.dataTable tbody td { border-left:1px solid #ccc;border-bottom:1px solid #ccc;text-align:center; }
+table.dataTable tbody td:last-child { border-right:1px solid #ccc; }
 table.dataTable tbody tr:last-child td { border-bottom:0px; }
 table.dataTable { width:98% !important; }
 
@@ -24,6 +24,7 @@ table.dataTable { width:98% !important; }
 
 .animdelete {
   color: #CC383D;
+  transform: scale(0.666);
 }
 .animdelete:hover{
   color: #661D20;
@@ -42,7 +43,7 @@ table.dataTable { width:98% !important; }
 
 pre { padding:10px;background:#eee;border:1px solid #eee; }
 pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:bold;}
-.hypeanimbloc { display:inline-block;padding:10px;background:#FFF;border:1px solid #000;color:#000; }
+.hypeanimbloc { display:inline-block;width:430px;padding:10px;margin-left:10px;background:#fafafa;border:1px solid #ccc; }
 .eraabout { float:right; padding-right:20px; }
 .eraabout h2 { text-align:right; }
 .eralink { color:#07bee5; }
@@ -90,18 +91,6 @@ pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:b
 .animupdate:hover { color:#0099cc;background:#fff; }
 pre { padding:10px;background:#eee;border:1px solid #eee; }
 pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:bold;}
-.hypeanimbloc { display:inline-block;padding:10px;background:#FFF;border:1px solid #000;color:#000; }
-.eraabout { display:none;float:right; padding-right:20px; }
-.eraabout h2 { text-align:right; }
-.eralink { color:#0099cc; }
-.eralogo {
-  position:absolute;
-  top:10px;
-  right:20px;
-  width:100px;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-}
 .hypeanimupdated {
   margin-left:5px;
   color:#009933;
