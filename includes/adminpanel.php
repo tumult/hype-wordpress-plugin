@@ -132,7 +132,7 @@ function hypeanimations_panel() {
 	</div>
 	<h2>'.__( 'Add new animation' , 'hype-animations' ).'</h2>
 	<div class="hypeanimbloc">
-	'.__( 'Upload a .OAM file exported by <a href="http://tumult.com/hype">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
+	'.__( 'Upload a .OAM file exported by <a href="http://tumult.com/hype?utm_source=wpplugin">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
 	<a href="#oModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
 	if ($_GET['delete']>0) {
@@ -405,7 +405,7 @@ function hypeanimations_panel() {
 				if (resp=="ok") {
 					if (jQuery(".hypeanimupdated[data-id="+actdataid+"]").length ) { }
 					else {
-						actbutton.after(\'<div class="hypeanimupdated" data-id="\'+actdataid+\'">'.__( 'Updated !' , 'hype-animations' ).'</div>\');
+						actbutton.after(\'<div class="hypeanimupdated" data-id="\'+actdataid+\'">'.__( 'Updated!' , 'hype-animations' ).'</div>\');
 						setTimeout(function(){
 							jQuery(".hypeanimupdated[data-id="+actdataid+"]").remove();
 						}, 3000);
@@ -433,11 +433,11 @@ function hypeanimations_panel() {
 			],
 			language: {
 				processing:     "'.__( 'Processing...' , 'hype-animations' ).'",
-				search:         "'.__( 'Search :' , 'hype-animations' ).'",
+				search:         "'.__( 'Search:' , 'hype-animations' ).'",
 				lengthMenu:    "'.__( 'Show' , 'hype-animations' ).' _MENU_ '.__( 'animations' , 'hype-animations' ).'",
 				info:           "'.__( 'Showing' , 'hype-animations' ).' _START_ '.__( 'to' , 'hype-animations' ).' _END_ '.__( 'of' , 'hype-animations' ).' _TOTAL_ '.__( 'animations' , 'hype-animations' ).'",
 				infoEmpty:      "'.__( 'No animations found.' , 'hype-animations' ).'",
-				loadingRecords: "'.__( 'Loading ...' , 'hype-animations' ).'",
+				loadingRecords: "'.__( 'Loading...' , 'hype-animations' ).'",
 				zeroRecords:    "'.__( 'No animation has been found' , 'hype-animations' ).'",
 				emptyTable:     "'.__( 'No animation has been added' , 'hype-animations' ).'",
 				paginate: {

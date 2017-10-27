@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2017-10-27 14:18-0400\n"
-"PO-Revision-Date: 2017-10-27 14:19-0400\n"
+"POT-Creation-Date: 2017-10-27 15:05-0400\n"
+"PO-Revision-Date: 2017-10-27 15:06-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -30,20 +30,17 @@ msgid "Add new animation"
 msgstr "Ajouter une nouvelle animation"
 
 #: includes/adminpanel.php:135
-#, fuzzy
-#| msgid ""
-#| "Upload a .OAM file exported by Tumult Hype and it will generate a "
-#| "shortcode you can insert anywhere. <a href=\"https://forums.tumult.com/t/"
-#| "hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgid ""
-"Upload a .OAM file exported by Tumult Hype and a shortcode will be generated "
+"Upload a .OAM file exported by <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
 "which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
 "t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"Téléchargez un fichier .OAM exporté par Tumult Hype et un shortcode sera "
-"généré que vous pourrez insérer où vous voulez sur votre site. <a href="
-"\"https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
-"target=\"_blank\">Besoin d'aide?</a>"
+"Téléchargez un fichier .OAM exporté par <a href=“http://tumult.com/hype?"
+"utm_source=wpplugin”>Tumult Hype</a> et un shortcode sera généré que vous "
+"pourrez insérer où vous voulez sur votre site. <a href=\"https://forums."
+"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank"
+"\">Besoin d'aide?</a>"
 
 #: includes/adminpanel.php:331
 msgid "Manage animations"
@@ -71,14 +68,14 @@ msgstr "Aucune donnée"
 
 #: includes/adminpanel.php:349
 msgid "Copy Code"
-msgstr ""
+msgstr "Copy Code"
 
 #: includes/adminpanel.php:349
 msgid "Delete"
 msgstr "Supprimer"
 
 #: includes/adminpanel.php:408
-msgid "Updated !"
+msgid "Updated!"
 msgstr "Mise à jour!"
 
 #: includes/adminpanel.php:415
@@ -94,7 +91,9 @@ msgid "Processing..."
 msgstr "Traitement en cours..."
 
 #: includes/adminpanel.php:436
-msgid "Search :"
+#, fuzzy
+#| msgid "Search :"
+msgid "Search:"
 msgstr "Chercher:"
 
 #: includes/adminpanel.php:437
@@ -122,7 +121,7 @@ msgid "No animations found."
 msgstr "Aucun animation n'a été trouvée."
 
 #: includes/adminpanel.php:440
-msgid "Loading ..."
+msgid "Loading..."
 msgstr "Chargement en cours…"
 
 #: includes/adminpanel.php:441
@@ -177,7 +176,7 @@ msgstr "Tumult Hype Animations"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
-msgstr ""
+msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 
 #. Description of the plugin/theme
 msgid "Insert your Tumult Hype animations"
