@@ -1,8 +1,6 @@
 <?php
 function hypeanimations_menu() {
     add_menu_page('Hype Animations', 'Hype Animations', 1, 'hypeanimations_panel','hypeanimations_panel', 'dashicons-format-video');
-	//add_menu_page('Hype Animations', 'Hype Animations', 'manage_options', 'hypeanimations_panel', 'hypeanimations_panel', 'dashicons-format-video');
-    //add_submenu_page('hypeanimations_panel', __( 'Upload new animation' , 'hype-animations' ), 'Custom', 'manage_options', __FILE__.'/custom', 'clivern_render_custom_page');
 }
 add_action("admin_menu", "hypeanimations_menu");
 
