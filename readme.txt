@@ -12,7 +12,7 @@ Description: Easily embed your Hype animations using a shortcode into posts and 
 
 == Description ==
 
-This plugins allows you to upload your Tumult Hype animations to your Wordpress site to easily embed them using shortcodes on posts and pages. You can also copy the embed code to use your Wordpress site as a Tumult Hype animation host. 
+This plugin allows you to upload your Tumult Hype animations to your Wordpress site to easily embed them using shortcodes on posts and pages. You can also copy the embed code to use your Wordpress site as a Tumult Hype animation host. 
 
 **Français** Ce plugin vous permet de télécharger un fichier OAM à partir d'un Hype Tumult et d'intégrer facilement votre animation dans une publication ou une page en utilisant un code court. Insérez facilement vos animations Hype sur votre site Wordpress. Vous pouvez également copier facilement le code intégré pour utiliser votre site Wordpress en tant qu'homme d'animation Tumult Hype. 
 
