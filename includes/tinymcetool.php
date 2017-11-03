@@ -1,5 +1,4 @@
 <?php
-
 add_action( 'media_buttons_context', 'add_hypeanimations_shortcode_button', 1 );
 function add_hypeanimations_shortcode_button($output) {
 	$output .= '<a href="#oModal2" class="button" id="add_hypeanimations_shortcode_button" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-format-video"></i> Hype Animations</a>';
@@ -9,7 +8,7 @@ add_action( "admin_footer", 'add_hypeanimations_shortcode_button_footer' );
 function add_hypeanimations_shortcode_button_footer() { 
 	global $hypeanimations_table_name;
 	global $wpdb;
-	$verifaumoinsun = $wpdb->get_var("SELECT id FROM ".$hypeanimations_table_name." LIMIT 1");
+	$verifaumoinsun = $wpdb->get_var($wpdb->prepare("SELECT id FROM ".$hypeanimations_table_name." LIMIT 1",''));
 	$output='
 	
 	<div id="oModal2" class="oModal">
@@ -31,7 +30,7 @@ function add_hypeanimations_shortcode_button_footer() {
 					$output.='
 					<select id="hypeanimationchoosen">';
 					$sql = "SELECT id,nom FROM ".$hypeanimations_table_name." ORDER BY id DESC";
-					$result = $wpdb->get_results($sql);
+					$result = $wpdb->get_results($wpdb->prepare($sql,''));
 					foreach( $result as $results ) {
 						$output.='<option value="'.$results->id.'">'.$results->nom.'</a>';
 					}
@@ -58,13 +57,19 @@ function add_hypeanimations_shortcode_button_footer() {
 			maxFiles: 1,
 			acceptedFiles: ".oam",
 			dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. ini_get("upload_max_filesize") .')' , 'hype-animations' ).'",
+			accept: function(file, done) {
+				if (hasWhiteSpace(file.name)) {
+					done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
+				}
+				else { done(); }
+			},
 			success: function(file,resp) {
 				jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\">'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).': <b>[hypeanimations_anim id=\""+resp+"\"]</b></div>");
-			},
-			complete: function(file) {
 				jQuery(".dropzone2").css("display","block");
 				jQuery(".dropzone").remove();
 			}
+			// complete: function(file) {
+			// }
 		});
 		jQuery("#hypeanimdropzone2").dropzone({
 			url: "admin.php?page=hypeanimations_panel",
@@ -73,6 +78,12 @@ function add_hypeanimations_shortcode_button_footer() {
 			maxFiles: 1,
 			acceptedFiles: ".oam",
 			dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. ini_get("upload_max_filesize") .')' , 'hype-animations' ).'",
+			accept: function(file, done) {
+				if (hasWhiteSpace(file.name)) {
+					done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
+				}
+				else { done(); }
+			},
 			success: function(file,resp) {
 				wp.media.editor.insert("[hypeanimations_anim id=\""+resp+"\"]");
 				this.removeFile(file);
@@ -87,6 +98,9 @@ function add_hypeanimations_shortcode_button_footer() {
 			document.location.hash = "";
 		});
 	});
+	function hasWhiteSpace(s) {
+	  return s.indexOf(" ") >= 0;
+	}
 	</script>
 	';
 	echo $output;

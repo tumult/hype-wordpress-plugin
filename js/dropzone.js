@@ -336,6 +336,10 @@
           _results = [];
           for (_i = 0, _len = _ref.length; _i < _len; _i++) {
             node = _ref[_i];
+            var errorClasses = document.querySelectorAll('.dropzone .dz-preview.dz-error .dz-error-message'); 
+            for(var i = 0; i < errorClasses.length; i++) {
+              errorClasses[i].style.display="block";
+            }
             _results.push(node.textContent = message);
           }
           return _results;
