@@ -43,4 +43,4 @@ function hypeanimations_anim($args){
 		if ($results->container=='iframe') { $output.='</iframe>'; }
 	}
 	return $output;
-	}
+}
