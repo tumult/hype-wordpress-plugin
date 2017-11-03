@@ -25,14 +25,14 @@ function hypeanimations_panel_upload() {
 			for ($i=0;isset($files[$i]);$i++) {
 				if (preg_match('~.html~',$files[$i])) {
 					$actfile=explode('.html',$files[$i]);
-					$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM ".$hypeanimations_table_name." ORDER BY id DESC LIMIT 1",''));
+					$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d ORDER BY id DESC LIMIT 1", 0));
 					if ($maxid>0) {
 						$maxid=$maxid+1;
 					}
 					else { 
 						$maxid=1;
 					}
-					$insert = $wpdb -> query($wpdb->prepare("INSERT ".$hypeanimations_table_name." SET id='',nom='".$new_name."',slug=%s,code=%s,updated=%s,container=%s",str_replace(' ','',strtolower($new_name)), time(), 'div'));
+					$insert = $wpdb -> query($wpdb->prepare("INSERT $hypeanimations_table_name SET id='',nom=%s,slug=%s,code=%s,updated=%s,container=%s",$new_name, str_replace(' ','',strtolower($new_name)), '', time(), 'div'));
 					$lastid = $wpdb->insert_id;
 
 					@mkdir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/', 0755, true);
@@ -71,7 +71,7 @@ function hypeanimations_panel_upload() {
 					} else {
 						//echo 'error';
 					}
-					$update = $wpdb -> query($wpdb->prepare("UPDATE ".$hypeanimations_table_name." SET code=%s WHERE id=%d",addslashes(htmlentities($agarder1)), $lastid));
+					$update = $wpdb -> query($wpdb->prepare("UPDATE $hypeanimations_table_name SET code=%s WHERE id=%d",addslashes(htmlentities($agarder1)), $lastid));
 
 					// //copy index.html
 					copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$lastid.'/'.$actfile[0].'.html');
@@ -137,8 +137,8 @@ function hypeanimations_panel() {
 	</div>';
 	$delete = isset($_GET['delete']) ? $_GET['delete'] : 0;
 	if ($delete>0) {
-		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM ".$hypeanimations_table_name." WHERE id=%d", ceil($_GET['delete'])));
-		$delete = $wpdb -> query($wpdb->prepare("DELETE FROM ".$hypeanimations_table_name." WHERE id=%d", ceil($_GET['delete'])));
+		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
+		$delete = $wpdb -> query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
 		hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
 		if ($animtitle!='') {
 			echo '<p>&nbsp;</p><p><span style="padding:10px;color:#FFF;background:#cc0000;">'.$animtitle.' has been deleted.</style></p>';
@@ -171,7 +171,7 @@ function hypeanimations_panel() {
 			for ($i=0;isset($files[$i]);$i++) {
 				if (preg_match('~.html~',$files[$i])) {
 					$actfile=explode('.html',$files[$i]);
-					$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM ".$hypeanimations_table_name." ORDER BY id DESC LIMIT 1",''));
+					$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d ORDER BY id DESC LIMIT 1", 0));
 					if ($maxid>0) {
 						$maxid=$maxid+1;
 					}
@@ -227,7 +227,7 @@ function hypeanimations_panel() {
 					} else {
 						//echo 'error';
 					}
-					$update = $wpdb -> query($wpdb->prepare("UPDATE ".$hypeanimations_table_name." SET code=%s,updated=%s WHERE `id` = %d",addslashes(htmlentities($agarder1)), time(), $actdataid));
+					$update = $wpdb -> query($wpdb->prepare("UPDATE $hypeanimations_table_name SET code=%s,updated=%s WHERE `id` = %d",addslashes(htmlentities($agarder1)), time(), $actdataid));
 					//copy index.html
 					copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$actdataid.'/'.$actfile[0].'.html');
 
@@ -416,7 +416,7 @@ function hypeanimations_getcontent(){
     $response = array();
     if(!empty(sanitize_text_field($_POST['dataid']))){
 		$post_dataid= sanitize_text_field($_POST['dataid']);
-		$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM ".$hypeanimations_table_name." WHERE id=%d LIMIT 1", $post_dataid));
+		$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
 
 		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d", $post_container, $post_containerclass, $post_dataid));
 

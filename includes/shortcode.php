@@ -8,7 +8,7 @@ function hypeanimations_anim($args){
 	$uploadfinaldir = $upload_dir['baseurl'].'/hypeanimations/';
 	$output='';	
 
-	$result = $wpdb->get_results($wpdb->prepare("SELECT code,slug,container,containerclass FROM ".$hypeanimations_table_name." WHERE id=%d",$actid));
+	$result = $wpdb->get_results($wpdb->prepare("SELECT code,slug,container,containerclass FROM $hypeanimations_table_name WHERE id=%d",$actid));
 	
 	foreach( $result as $results ) {
 		$width = "";
