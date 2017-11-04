@@ -9,7 +9,7 @@ function hypeanimations_panel_upload() {
 	if (isset($_FILES['file'])) {
 		$uploaddir = $anims_dir.'tmp/';
 		$uploadfinaldir = $anims_dir;
-		$uploadfile = $uploaddir . basename($_FILES['file']['name']);
+		$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['file']['name']));
 		if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
 			WP_Filesystem();
 			$unzipfile = unzip_file( $uploadfile, $uploaddir);
@@ -19,7 +19,7 @@ function hypeanimations_panel_upload() {
 			if (file_exists($uploaddir.'/config.xml')) {
 				unlink($uploaddir.'/config.xml');
 			}
-			$new_name = str_replace('.oam', '', basename($_FILES['file']['name']));
+			$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
 			rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
 			$files = scandir($uploaddir.'Assets/');
 			for ($i=0;isset($files[$i]);$i++) {
@@ -135,7 +135,7 @@ function hypeanimations_panel() {
 	'.__( 'Upload a .OAM file exported by <a href="http://tumult.com/hype?utm_source=wpplugin">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
 	<a href="#oModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
-	$delete = isset($_GET['delete']) ? $_GET['delete'] : 0;
+	$delete = isset($_GET['delete']) ? ceil($_GET['delete']) : 0;
 	if ($delete>0) {
 		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
 		$delete = $wpdb -> query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
@@ -147,7 +147,7 @@ function hypeanimations_panel() {
 
 	$hypeupdated = 0;
 	if (isset($_FILES['updatefile']) && sanitize_text_field($_POST['dataid']>0)) {
-		if(strpos(basename($_FILES['updatefile']['name']), " ") !== false)
+		if(strpos(basename(sanitize_text_field($_FILES['updatefile']['name'])), " ") !== false)
 		{
 		   echo "<script>alert('You seem to have a space in your animation name. Please remove the space and regenerate the animation.');location.reload();</script>";
 		   die;
@@ -155,7 +155,7 @@ function hypeanimations_panel() {
 		$actdataid=ceil($_POST['dataid']);
 		$uploaddir = $anims_dir.'tmp/';
 		$uploadfinaldir = $anims_dir;
-		$uploadfile = $uploaddir . basename($_FILES['updatefile']['name']);
+		$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['updatefile']['name']));
 		if (move_uploaded_file($_FILES['updatefile']['tmp_name'], $uploadfile)) {
 			WP_Filesystem();
 			$unzipfile = unzip_file( $uploadfile, $uploaddir);
@@ -165,7 +165,7 @@ function hypeanimations_panel() {
 			if (file_exists($uploaddir.'/config.xml')) {
 				unlink($uploaddir.'/config.xml');
 			}
-			$new_name = str_replace('.oam', '', basename(($_FILES['updatefile']['name'])));
+			$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
 			rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
 			$files = scandir($uploaddir.'Assets/');
 			for ($i=0;isset($files[$i]);$i++) {
