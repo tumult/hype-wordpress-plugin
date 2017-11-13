@@ -261,8 +261,6 @@ function hypeanimations_panel() {
 			</tr>
 		</thead>
 		<tbody>';
-		//echo "<h1>Tikendra</h1>";exit();
-		// $sql = ;
 		$result = $wpdb->get_results($wpdb->prepare("SELECT id,nom,slug,updated,container,containerclass FROM $hypeanimations_table_name Where id > %d ORDER BY id DESC", 0));
 		foreach( $result as $results ) {
 			echo '<tr><td>'.$results->nom.'</td><td><pre>[hypeanimations_anim id="'.$results->id.'"]</pre></td><td>'.__( 'Add a container around the animation' , 'hype-animations' ).': <select class="hypeanimations_container" name="container">
