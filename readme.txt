@@ -2,9 +2,9 @@
 Author URI: http://www.tumult.com
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Contributors: tumultinc
-Tags: Hype,Animations
+Tags: Hype,Animation
 Requires at least: 4.7
-Tested up to: 4.8.1
+Tested up to: 4.8.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
