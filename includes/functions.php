@@ -11,17 +11,6 @@ function hypeanimations_menu() {
 }
 add_action("admin_menu", "hypeanimations_menu");
 
-
- function clivern_render_custom_page(){
-   ?>
-   <div class='wrap'>
-    <h2></h2>
-   </div>
-   <?php
- }
-
-
-
 function hyperrmdir($dir) {
 	if (is_dir($dir)) {
 		$objects = scandir($dir);
