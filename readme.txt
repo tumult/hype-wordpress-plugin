@@ -1,7 +1,7 @@
 ﻿=== Tumult Hype Animations ===
 Author URI: http://www.tumult.com
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
-Contributors: tumultinc
+Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 4.7
 Requires PHP: 5.4
