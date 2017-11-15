@@ -1,11 +1,11 @@
 <?php
 function hypeanimations_menu() {
     add_menu_page(
-      'Hype Animations', 
-      'Hype Animations', 
-      'manage_options', 
+      'Hype Animations',
+      'Hype Animations',
+      'manage_options',
       'hypeanimations_panel',
-      'hypeanimations_panel', 
+      'hypeanimations_panel',
       'dashicons-format-video'
     );
 }

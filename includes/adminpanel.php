@@ -1,6 +1,6 @@
 <?php
 add_action( "admin_init", 'hypeanimations_panel_upload' );
-function hypeanimations_panel_upload() {	
+function hypeanimations_panel_upload() {
 	global $wpdb;
 	global $version;
 	global $hypeanimations_table_name;
@@ -29,14 +29,14 @@ function hypeanimations_panel_upload() {
 					if ($maxid>0) {
 						$maxid=$maxid+1;
 					}
-					else { 
+					else {
 						$maxid=1;
 					}
 					$insert = $wpdb -> query($wpdb->prepare("INSERT $hypeanimations_table_name SET id='',nom=%s,slug=%s,code=%s,updated=%s,container=%s",$new_name, str_replace(' ','',strtolower($new_name)), '', time(), 'div'));
 					$lastid = $wpdb->insert_id;
 
 					@mkdir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/', 0755, true);
-					
+
 					$jsfiles = scandir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/');
 					for ($j=0;isset($jsfiles[$j]);$j++) {
 						if($jsfiles[$j] != '.' && $jsfiles[$j] != '..'){
@@ -84,7 +84,7 @@ function hypeanimations_panel_upload() {
 					}
 				}
 			}
-		} 
+		}
 		else {
 			echo "Erreur";
 		}
@@ -94,12 +94,12 @@ function hypeanimations_panel_upload() {
 	}
 }
 add_action( "admin_footer", 'add_hypeanimations_shortcode_newbutton_footer' );
-function add_hypeanimations_shortcode_newbutton_footer() { 
+function add_hypeanimations_shortcode_newbutton_footer() {
 	global $hypeanimations_table_name;
 	global $wpdb;
-	$output='	
+	$output='
 	<div id="oModal1" class="oModal">
-		<div>	
+		<div>
 			<header>
 				<a href="#fermer" id="closeDroper"  class="droitefermer">X</a>
 				<h2>'.__( 'Upload new animation' , 'hype-animations' ).'</h2>
@@ -110,7 +110,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 			</section>
 		</div>
 	</div>
-	
+
 
 
 	<script>
@@ -121,7 +121,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 	';
 	echo $output;
 }
-function hypeanimations_panel() {	
+function hypeanimations_panel() {
 	global $wpdb;
 	global $version;
 	global $hypeanimations_table_name;
@@ -175,7 +175,7 @@ function hypeanimations_panel() {
 					if ($maxid>0) {
 						$maxid=$maxid+1;
 					}
-					else { 
+					else {
 						$maxid=1;
 					}
 
@@ -192,7 +192,7 @@ function hypeanimations_panel() {
 					}
 
 					@mkdir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/', 0755, true);
-					
+
 					$jsfiles = scandir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/');
 					for ($j=0;isset($jsfiles[$j]);$j++) {
 						if($jsfiles[$j] != '.' && $jsfiles[$j] != '..'){
@@ -241,7 +241,7 @@ function hypeanimations_panel() {
 					$hypeupdatetd_title=$new_name;
 				}
 			}
-		} 
+		}
 		else {
 			echo "Erreur";
 		}
@@ -275,7 +275,7 @@ function hypeanimations_panel() {
 	<script>
 	jQuery(document).ready(function(jQuery){
 		jQuery(document).on("click", ".animcopy", function(){
-			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%\' readonly></textarea><span class=\'close-popup\'>x</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>"); 
+			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%\' readonly></textarea><span class=\'close-popup\'>x</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>");
 
 			jQuery.ajax({
 				type: "POST",
@@ -283,7 +283,7 @@ function hypeanimations_panel() {
 				data: {
 					"action": "hypeanimations_getcontent",
 					"dataid": jQuery(this).attr("id")
-				}					
+				}
 			}).done(function( content ) {
 				jQuery(".copydata").text(content);
 			});
@@ -294,7 +294,7 @@ function hypeanimations_panel() {
 		    jQuery(".copied").show().delay(3000).fadeOut();
 		});
 		jQuery(document).on("click", ".close-popup", function(){
-			jQuery(this).parents(".popup-wrap").remove(); 
+			jQuery(this).parents(".popup-wrap").remove();
 		});
 
 		jQuery(".hypeanimations_container").change(function(){
@@ -319,7 +319,7 @@ function hypeanimations_panel() {
 					"dataid": actdataid,
 					"container": actcontainer,
 					"containerclass": actcontainerclass
-				}					
+				}
 			}).done(function( msg ) {
 				resp=msg.response;
 				if (resp=="ok") {

@@ -6,10 +6,10 @@ function hypeanimations_anim($args){
 	$actid = intval($args['id']);
 	$upload_dir = wp_upload_dir();
 	$uploadfinaldir = $upload_dir['baseurl'].'/hypeanimations/';
-	$output='';	
+	$output='';
 
 	$result = $wpdb->get_results($wpdb->prepare("SELECT code,slug,container,containerclass FROM $hypeanimations_table_name WHERE id=%d",$actid));
-	
+
 	foreach( $result as $results ) {
 		$width = "";
 		$height = "";
@@ -37,14 +37,14 @@ function hypeanimations_anim($args){
 			$temp = ($width != "" ? 'width="'.$width.'"' : '').' '.($width != "" ? 'height="'.$height.'"' : '');
 		}
 		if ($results->container=='div') { $output.='<div'.($results->containerclass!='' ? ' class="'.$results->containerclass.'"' : '').'>'; }
-		if ($results->container=='iframe' && file_exists(esc_url_raw($upload_dir['basedir'].'/hypeanimations/'.$actid.'/index.html'))){ 
+		if ($results->container=='iframe' && file_exists(esc_url_raw($upload_dir['basedir'].'/hypeanimations/'.$actid.'/index.html'))){
 			$_src = esc_url_raw(wp_upload_dir()['baseurl']."/hypeanimations/".$actid."/index.html");
-			$output.='<iframe style="border:none;" frameborder="0" '.$temp.' '.($results->containerclass!='' ? 'class="'.$results->containerclass.'"' : '').' 
-			src="'.$_src.'">'; 
-			}elseif ($results->container=='iframe') 
-			{ 
-				$output.='<iframe '.$temp.' '.($results->containerclass!='' ? 'class="'.$results->containerclass.'"' : '').' 
-				src="'.esc_url_raw(site_url()).'?just_hypeanimations='.$actid.'">'; 
+			$output.='<iframe style="border:none;" frameborder="0" '.$temp.' '.($results->containerclass!='' ? 'class="'.$results->containerclass.'"' : '').'
+			src="'.$_src.'">';
+			}elseif ($results->container=='iframe')
+			{
+				$output.='<iframe '.$temp.' '.($results->containerclass!='' ? 'class="'.$results->containerclass.'"' : '').'
+				src="'.esc_url_raw(site_url()).'?just_hypeanimations='.$actid.'">';
 			}
 		if ($results->container!='iframe') { $output.=$code; }
 		if ($results->container=='div') { $output.='</div>'; }
