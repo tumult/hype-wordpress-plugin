@@ -1,96 +1,98 @@
 <?php
-add_action( "admin_init", 'hypeanimations_panel_upload' );
+add_action( "admin_menu", 'hypeanimations_panel_upload' );
 function hypeanimations_panel_upload() {
 	global $wpdb;
 	global $version;
 	global $hypeanimations_table_name;
 	$upload_dir = wp_upload_dir();
 	$anims_dir=$upload_dir['basedir'].'/hypeanimations/';
-	if (isset($_FILES['file'])) {
-		$uploaddir = $anims_dir.'tmp/';
-		$uploadfinaldir = $anims_dir;
-		$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['file']['name']));
-		if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-			WP_Filesystem();
-			$unzipfile = unzip_file( $uploadfile, $uploaddir);
-			if (file_exists($uploadfile)) {
-				unlink($uploadfile);
-			}
-			if (file_exists($uploaddir.'/config.xml')) {
-				unlink($uploaddir.'/config.xml');
-			}
-			$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
-			rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
-			$files = scandir($uploaddir.'Assets/');
-			for ($i=0;isset($files[$i]);$i++) {
-				if (preg_match('~.html~',$files[$i])) {
-					$actfile=explode('.html',$files[$i]);
-					$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d ORDER BY id DESC LIMIT 1", 0));
-					if ($maxid>0) {
-						$maxid=$maxid+1;
-					}
-					else {
-						$maxid=1;
-					}
-					$insert = $wpdb -> query($wpdb->prepare("INSERT $hypeanimations_table_name SET id='',nom=%s,slug=%s,code=%s,updated=%s,container=%s",$new_name, str_replace(' ','',strtolower($new_name)), '', time(), 'div'));
-					$lastid = $wpdb->insert_id;
+	if(is_user_logged_in()){
+		if (isset($_FILES['file'])) {
+			$uploaddir = $anims_dir.'tmp/';
+			$uploadfinaldir = $anims_dir;
+			$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['file']['name']));
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+				WP_Filesystem();
+				$unzipfile = unzip_file( $uploadfile, $uploaddir);
+				if (file_exists($uploadfile)) {
+					unlink($uploadfile);
+				}
+				if (file_exists($uploaddir.'/config.xml')) {
+					unlink($uploaddir.'/config.xml');
+				}
+				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
+				rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
+				$files = scandir($uploaddir.'Assets/');
+				for ($i=0;isset($files[$i]);$i++) {
+					if (preg_match('~.html~',$files[$i])) {
+						$actfile=explode('.html',$files[$i]);
+						$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d ORDER BY id DESC LIMIT 1", 0));
+						if ($maxid>0) {
+							$maxid=$maxid+1;
+						}
+						else {
+							$maxid=1;
+						}
+						$insert = $wpdb -> query($wpdb->prepare("INSERT $hypeanimations_table_name SET id='',nom=%s,slug=%s,code=%s,updated=%s,container=%s",$new_name, str_replace(' ','',strtolower($new_name)), '', time(), 'div'));
+						$lastid = $wpdb->insert_id;
 
-					@mkdir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/', 0755, true);
+						@mkdir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/', 0755, true);
 
-					$jsfiles = scandir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/');
-					for ($j=0;isset($jsfiles[$j]);$j++) {
-						if($jsfiles[$j] != '.' && $jsfiles[$j] != '..'){
-							if(!is_dir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j])){
-								copy($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j], $uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/'.$jsfiles[$j]);
-								unlink($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j]);
+						$jsfiles = scandir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/');
+						for ($j=0;isset($jsfiles[$j]);$j++) {
+							if($jsfiles[$j] != '.' && $jsfiles[$j] != '..'){
+								if(!is_dir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j])){
+									copy($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j], $uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/'.$jsfiles[$j]);
+									unlink($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j]);
+								}
 							}
 						}
-					}
-					if (file_exists($uploaddir.'Assets/'.$actfile[0].'.hyperesources/')) {
-						rename($uploaddir.'Assets/'.$actfile[0].'.hyperesources/', $uploadfinaldir.$lastid.'/');
-					}
-					$agarder1='';
-					$recordlines=0;
-					$handle = fopen($uploaddir.'Assets/'.$actfile[0].'.html', "r");
-					if ($handle) {
-						while (($line = fgets($handle)) !== false) {
-							$line=str_replace($new_name.'.hyperesources',$upload_dir['baseurl'].'/hypeanimations/'.$lastid.'/'.$new_name.'.hyperesources',$line);
-							if (preg_match('~<div id="~',$line)) {
-								$recordlines=1;
-							}
-							if ($recordlines==1) {
-								$agarder1.=$line;
-							}
-							if (preg_match('~div>~',$line)) {
-								$recordlines=0;
-							}
-							//echo htmlentities($line);
+						if (file_exists($uploaddir.'Assets/'.$actfile[0].'.hyperesources/')) {
+							rename($uploaddir.'Assets/'.$actfile[0].'.hyperesources/', $uploadfinaldir.$lastid.'/');
 						}
+						$agarder1='';
+						$recordlines=0;
+						$handle = fopen($uploaddir.'Assets/'.$actfile[0].'.html', "r");
+						if ($handle) {
+							while (($line = fgets($handle)) !== false) {
+								$line=str_replace($new_name.'.hyperesources',$upload_dir['baseurl'].'/hypeanimations/'.$lastid.'/'.$new_name.'.hyperesources',$line);
+								if (preg_match('~<div id="~',$line)) {
+									$recordlines=1;
+								}
+								if ($recordlines==1) {
+									$agarder1.=$line;
+								}
+								if (preg_match('~div>~',$line)) {
+									$recordlines=0;
+								}
+								//echo htmlentities($line);
+							}
 
-						fclose($handle);
-					} else {
-						//echo 'error';
-					}
-					$update = $wpdb -> query($wpdb->prepare("UPDATE $hypeanimations_table_name SET code=%s WHERE id=%d",addslashes(htmlentities($agarder1)), $lastid));
+							fclose($handle);
+						} else {
+							//echo 'error';
+						}
+						$update = $wpdb -> query($wpdb->prepare("UPDATE $hypeanimations_table_name SET code=%s WHERE id=%d",addslashes(htmlentities($agarder1)), $lastid));
 
-					// //copy index.html
-					copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$lastid.'/'.$actfile[0].'.html');
+						// //copy index.html
+						copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$lastid.'/'.$actfile[0].'.html');
 
-					if (file_exists($uploaddir.'Assets/'.$actfile[0].'.html')) {
-						unlink($uploaddir.'Assets/'.$actfile[0].'.html');
-					}
-					if (file_exists($uploaddir.'Assets/')) {
-						hyperrmdir($uploaddir.'Assets/');
+						if (file_exists($uploaddir.'Assets/'.$actfile[0].'.html')) {
+							unlink($uploaddir.'Assets/'.$actfile[0].'.html');
+						}
+						if (file_exists($uploaddir.'Assets/')) {
+							hyperrmdir($uploaddir.'Assets/');
+						}
 					}
 				}
 			}
+			else {
+				echo "Erreur";
+			}
+			//print_r($_FILES);
+			echo $lastid;
+			exit();
 		}
-		else {
-			echo "Erreur";
-		}
-		//print_r($_FILES);
-		echo $lastid;
-		exit();
 	}
 }
 add_action( "admin_footer", 'add_hypeanimations_shortcode_newbutton_footer' );
