@@ -45,6 +45,12 @@ You may also use the Hype Animations button on the post and page editor.
 
 * **Français** : Ouvrez la section Hype Animations dans le tableau de bord Admin et téléchargez votre animation exportée au format .OAM (ne pas exporter avec des espaces ou des caractères étrangers dans votre nom d'exportation). Dans Tumult Hype, choisissez Fichier > Exporter en HTML5 > OAM. Le plugin va traiter votre fichier et générer un shortcode. Ensuite, insérez le shortcode. Vous pouvez également utiliser le bouton Hype Animations sur la page d'édition de post.
 
+== Upgrade Notice ==
+
+= 1.7 =
+Fixes a security issue. 
+
+
 == Changelog ==
 
 = 1.7 =
