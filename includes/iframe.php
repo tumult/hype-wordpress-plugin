@@ -9,7 +9,7 @@ function check_hypeanimation_iframe(){
 	if(isset($queryURL['query'])){
 	  parse_str( $queryURL['query'], $getVar );
 	  $just_hypeanimations = isset($getVar['just_hypeanimations']) ? $getVar['just_hypeanimations'] : 0;
-	
+
 		if ($just_hypeanimations>0) {
 			$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM ".$hypeanimations_table_name." WHERE id=%d LIMIT 1",ceil($just_hypeanimations)));
 

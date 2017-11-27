@@ -3,16 +3,16 @@ add_action( 'media_buttons_context', 'add_hypeanimations_shortcode_button', 1 );
 function add_hypeanimations_shortcode_button($output) {
 	$output .= '<a href="#oModal2" class="button" id="add_hypeanimations_shortcode_button" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-format-video"></i> Hype Animations</a>';
 	return $output;
-}	
+}
 add_action( "admin_footer", 'add_hypeanimations_shortcode_button_footer' );
-function add_hypeanimations_shortcode_button_footer() { 
+function add_hypeanimations_shortcode_button_footer() {
 	global $hypeanimations_table_name;
 	global $wpdb;
 	$verifaumoinsun = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d LIMIT 1", 0));
 	$output='
-	
+
 	<div id="oModal2" class="oModal">
-		<div>	
+		<div>
 			<header>
 				<a href="#fermer" class="droitefermer">X</a>
 				';
@@ -90,7 +90,7 @@ function add_hypeanimations_shortcode_button_footer() {
 				document.location.hash = "";
 			}
 		});
-		
+
 		jQuery("#choosehypeanimation").click(function(e) {
 			e.preventDefault();
 			dataid=jQuery("#hypeanimationchoosen").val();
