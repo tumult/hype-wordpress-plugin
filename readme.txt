@@ -47,6 +47,9 @@ You may also use the Hype Animations button on the post and page editor.
 
 == Changelog ==
 
+= 1.7 =
+* Increased security for file uploads. 
+
 = 1.6 =
 * Copy Embed Code from the Animation List
 * Embeds are now protocol-agnostic for better SSL support (uses // instead of http://)
