@@ -39,8 +39,10 @@ function add_hypeanimations_shortcode_button_footer() {
 					<h2>'.__( 'Or upload a new one' , 'hype-animations' ).' :</h2>
 					<p>&nbsp;</p>';
 				}
+				$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam' );
 				$output.='
 				<form action="" class="dropzone" id="hypeanimdropzone2" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+				'.$nonce_files.'
 				</form>
 			</section>
 		</div>
