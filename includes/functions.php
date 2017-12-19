@@ -3,7 +3,7 @@ function hypeanimations_menu() {
     add_menu_page(
       'Hype Animations',
       'Hype Animations',
-      'manage_options',
+      'publish_posts',
       'hypeanimations_panel',
       'hypeanimations_panel',
       'dashicons-format-video'
