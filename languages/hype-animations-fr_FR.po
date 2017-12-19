@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2017-11-27 14:13-0500\n"
-"PO-Revision-Date: 2017-11-27 14:13-0500\n"
+"POT-Creation-Date: 2017-12-19 14:19-0500\n"
+"PO-Revision-Date: 2017-12-19 14:19-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -20,16 +20,16 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:107 includes/adminpanel.php:138
+#: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
 msgstr "Ajouter une animation"
 
-#: includes/adminpanel.php:135
+#: includes/adminpanel.php:142
 msgid "Add new animation"
 msgstr "Ajouter une nouvelle animation"
 
-#: includes/adminpanel.php:137
+#: includes/adminpanel.php:144
 msgid ""
 "Upload a .OAM file exported by <a href=\"http://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -42,109 +42,109 @@ msgstr ""
 "tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank"
 "\">Besoin d'aide?</a>"
 
-#: includes/adminpanel.php:254
+#: includes/adminpanel.php:268
 msgid "Manage animations"
 msgstr "Gérer les animations"
 
-#: includes/adminpanel.php:261
+#: includes/adminpanel.php:275
 msgid "Last file update"
 msgstr "Mise à jour fichier"
 
-#: includes/adminpanel.php:268
+#: includes/adminpanel.php:282
 msgid "Add a container around the animation"
 msgstr "Ajouter un conteneur autour de l'animation"
 
-#: includes/adminpanel.php:271
+#: includes/adminpanel.php:285
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: includes/adminpanel.php:271
+#: includes/adminpanel.php:285
 msgid "Container CSS class"
 msgstr "Classes CSS du conteneur"
 
-#: includes/adminpanel.php:271
+#: includes/adminpanel.php:285
 msgid "No data"
 msgstr "Aucune donnée"
 
-#: includes/adminpanel.php:271
+#: includes/adminpanel.php:285
 msgid "Copy Code"
 msgstr "Copy Code"
 
-#: includes/adminpanel.php:271
+#: includes/adminpanel.php:285
 msgid "Delete"
 msgstr "Supprimer"
 
-#: includes/adminpanel.php:330
+#: includes/adminpanel.php:344
 msgid "Updated!"
 msgstr "Mise à jour!"
 
-#: includes/adminpanel.php:337
+#: includes/adminpanel.php:351
 msgid "Error, please try again !"
 msgstr "Erreur, veuillez réessayer!"
 
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:358
 msgid "Update file"
 msgstr "Mettre à jour le fichier"
 
-#: includes/adminpanel.php:357
+#: includes/adminpanel.php:371
 msgid "Processing..."
 msgstr "Traitement en cours..."
 
-#: includes/adminpanel.php:358
+#: includes/adminpanel.php:372
 #, fuzzy
 #| msgid "Search :"
 msgid "Search:"
 msgstr "Chercher:"
 
-#: includes/adminpanel.php:359
+#: includes/adminpanel.php:373
 msgid "Show"
 msgstr "Afficher"
 
-#: includes/adminpanel.php:359 includes/adminpanel.php:360
+#: includes/adminpanel.php:373 includes/adminpanel.php:374
 msgid "animations"
 msgstr "animations"
 
-#: includes/adminpanel.php:360
+#: includes/adminpanel.php:374
 msgid "Showing"
 msgstr "Afficher"
 
-#: includes/adminpanel.php:360
+#: includes/adminpanel.php:374
 msgid "to"
 msgstr "à"
 
-#: includes/adminpanel.php:360
+#: includes/adminpanel.php:374
 msgid "of"
 msgstr "de"
 
-#: includes/adminpanel.php:361
+#: includes/adminpanel.php:375
 msgid "No animations found."
 msgstr "Aucun animation n'a été trouvée."
 
-#: includes/adminpanel.php:362
+#: includes/adminpanel.php:376
 msgid "Loading..."
 msgstr "Chargement en cours…"
 
-#: includes/adminpanel.php:363
+#: includes/adminpanel.php:377
 msgid "No animation has been found"
 msgstr "Aucun animation n'a été trouvée"
 
-#: includes/adminpanel.php:364
+#: includes/adminpanel.php:378
 msgid "No animation has been added"
 msgstr "Aucun animation n'a été ajoutée"
 
-#: includes/adminpanel.php:366
+#: includes/adminpanel.php:380
 msgid "First"
 msgstr "Premier"
 
-#: includes/adminpanel.php:367
+#: includes/adminpanel.php:381
 msgid "Previous"
 msgstr "Précédent"
 
-#: includes/adminpanel.php:368
+#: includes/adminpanel.php:382
 msgid "Next"
 msgstr "Suivant"
 
-#: includes/adminpanel.php:369
+#: includes/adminpanel.php:383
 msgid "Last"
 msgstr "Dernier"
 
@@ -160,11 +160,11 @@ msgstr "Insérer"
 msgid "Or upload a new one"
 msgstr "Ou ajoutez en une nouvelle"
 
-#: includes/tinymcetool.php:59 includes/tinymcetool.php:80
+#: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr "Déposez le fichier .OAM ou cliquez ici pour ajouter votre animation "
 
-#: includes/tinymcetool.php:67
+#: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr ""
 "Vous pouvez maintenant insérer ce shortcode où vous souhaitez insérer "
