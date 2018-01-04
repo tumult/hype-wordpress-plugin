@@ -53,6 +53,9 @@ Fixes a security issue.
 
 == Changelog ==
 
+= 1.7.1 =
+* Include missing jQuery UI images.
+
 = 1.7 =
 * Increased security for file uploads. 
 
