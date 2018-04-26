@@ -1,25 +1,25 @@
 ﻿=== Tumult Hype Animations ===
-Author URI: http://www.tumult.com
+Author URI: https://www.tumult.com
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 4.7
 Requires PHP: 5.4
-Tested up to: 4.9.4
+Tested up to: 4.9.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Description: Easily embed your Hype animations using a shortcode into posts and pages.
+Description: Easily embed your Tumult Hype animations using a shortcode into posts and pages.
 
 == Description ==
 
 This plugin allows you to upload your Tumult Hype animations to your Wordpress site to easily embed them using shortcodes on posts and pages. You can also copy the embed code to use your Wordpress site as a Tumult Hype animation host.
 
-**Français** Ce plugin vous permet de télécharger un fichier OAM à partir d'un Hype Tumult et d'intégrer facilement votre animation dans une publication ou une page en utilisant un code court. Insérez facilement vos animations Hype sur votre site Wordpress. Vous pouvez également copier facilement le code intégré pour utiliser votre site Wordpress en tant qu'homme d'animation Tumult Hype.
-
-For detailed information about this plugin, please visit: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
+For detailed information and support for this plugin, please visit: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 
 This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.org/plugins/hype-animations/) and extends functionality.
+
+**Français** Ce plugin vous permet de télécharger un fichier OAM à partir d'un Hype Tumult et d'intégrer facilement votre animation dans une publication ou une page en utilisant un code court. Insérez facilement vos animations Hype sur votre site Wordpress. Vous pouvez également copier facilement le code intégré pour utiliser votre site Wordpress en tant qu'homme d'animation Tumult Hype.
 
 == Installation ==
 
@@ -45,13 +45,11 @@ You may also use the Hype Animations button on the post and page editor.
 
 * **Français** : Ouvrez la section Hype Animations dans le tableau de bord Admin et téléchargez votre animation exportée au format .OAM (ne pas exporter avec des espaces ou des caractères étrangers dans votre nom d'exportation). Dans Tumult Hype, choisissez Fichier > Exporter en HTML5 > OAM. Le plugin va traiter votre fichier et générer un shortcode. Ensuite, insérez le shortcode. Vous pouvez également utiliser le bouton Hype Animations sur la page d'édition de post.
 
-== Upgrade Notice ==
-
-= 1.7 =
-Fixes a security issue. 
-
 
 == Changelog ==
+
+= 1.7.2 =
+* Disallow periods when inserting class names.
 
 = 1.7.1 =
 * Include missing jQuery UI images.
