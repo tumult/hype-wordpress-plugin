@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2018-04-26 09:46-0400\n"
-"PO-Revision-Date: 2018-04-26 09:46-0400\n"
+"POT-Creation-Date: 2018-08-31 10:18-0400\n"
+"PO-Revision-Date: 2018-08-31 10:18-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -179,12 +179,19 @@ msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 
 #. Description of the plugin/theme
-msgid "Insert your Tumult Hype animations"
-msgstr "Insérez vos animations Tumult Hype"
+msgid ""
+"Easily embed your Tumult Hype animations using a shortcode into posts and "
+"pages."
+msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
+#, fuzzy
+#| msgid "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
+msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgstr "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
+
+#~ msgid "Insert your Tumult Hype animations"
+#~ msgstr "Insérez vos animations Tumult Hype"
 
 #~ msgid "About"
 #~ msgstr "À propos d'"

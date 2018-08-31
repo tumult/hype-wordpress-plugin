@@ -49,6 +49,9 @@ You may also use the Hype Animations button on the post and page editor.
 
 == Changelog ==
 
+= 1.7.3 = 
+* Resolves issue where pre formatting overrides other plugins: https://wordpress.org/support/topic/problems-with-prehover-in-wordpress-admin/
+
 = 1.7.2 =
 * Disallow periods when inserting class names.
 
