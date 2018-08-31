@@ -41,8 +41,8 @@ table.dataTable { width:98% !important; }
   -webkit-font-smoothing: antialiased !important;
 }
 
-pre { padding:10px;background:#eee;border:1px solid #eee; }
-pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:bold;}
+#hypeanimations pre { padding:10px;background:#eee;border:1px solid #eee; }
+#hypeanimations pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:bold;}
 .hypeanimbloc { display:inline-block;width:430px;padding:10px;margin-left:10px;background:#fafafa;border:1px solid #ccc; }
 .eraabout { float:right; padding-right:20px; }
 .eraabout h2 { text-align:right; }
@@ -89,8 +89,6 @@ pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:b
 .animdelete:hover { color:#FF0000;background:#fff; }
 .animupdate {background:#0099cc;margin:1px;color:#FFF;padding:5px;border:1px solid #0099cc;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;text-decoration:none; }
 .animupdate:hover { color:#0099cc;background:#fff; }
-pre { padding:10px;background:#eee;border:1px solid #eee; }
-pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:bold;}
 .hypeanimupdated {
   margin-left:5px;
   color:#009933;
@@ -120,8 +118,7 @@ pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:b
   font-weight:bold;
     min-height: 100px !important;
   background:#eee !important;
-}
-    border: 2px dotted rgba(0, 0, 0, 0.3) !important;
+  border: 2px dotted rgba(0, 0, 0, 0.3) !important;
 }
 
 .cf:before,
@@ -134,7 +131,6 @@ pre:hover { background:#FFF;border:1px solid #07bee5;color:#07bee5;font-weight:b
 }
 .droitefermer {
   float:right;
-  font-size:22px;
   text-decoration:none;
   font-weight: bold;
   font-size:1.5em;
