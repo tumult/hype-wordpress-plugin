@@ -5,7 +5,7 @@ Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 4.7
 Requires PHP: 5.4
-Tested up to: 4.9.8
+Tested up to: 5.0.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,11 @@ You may also use the Hype Animations button on the post and page editor.
 
 
 == Changelog ==
+
+
+= 1.7.4 = 
+* Your most recently-updated Tumult Hype animations will appear first in the admin panel list.
+* Fully compatible with Wordpress 5.0.1
 
 = 1.7.3 = 
 * Resolves issue where pre formatting overrides other plugins: https://wordpress.org/support/topic/problems-with-prehover-in-wordpress-admin/
