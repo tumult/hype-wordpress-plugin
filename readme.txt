@@ -4,8 +4,8 @@ Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 4.7
-Requires PHP: 5.4
-Tested up to: 5.1.1
+Requires PHP: 5.6
+Tested up to: 5.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,9 @@ You may also use the Hype Animations button on the post and page editor.
 
 == Changelog ==
 
+= 1.8 = 
+* Improved Shortcode copying font & style
+* Fully supports Wordpress 5.2
 
 = 1.7.4 = 
 * Your most recently-updated Tumult Hype animations will appear first in the admin panel list.

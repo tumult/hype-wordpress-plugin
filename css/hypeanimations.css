@@ -3,6 +3,10 @@ table.dataTable tbody td:last-child { border-right:1px solid #ccc; }
 table.dataTable tbody tr:last-child td { border-bottom:0px; }
 table.dataTable { width:98% !important; }
 
+#hypeanimations .shortcodeval {
+  width: 232px;
+  text-align: center;
+}
 .animupdate, .animdelete, .animcopy {
   border-radius:25px;
   border: #eee solid 2px;
@@ -248,6 +252,7 @@ span.close-popup {
 
 textarea.copydata {
     padding: 20px 20px 0 20px;
+    font-family: 'Courier New', Courier, monospace;
 }
 span.copied {
     display: none;
