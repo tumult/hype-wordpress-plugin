@@ -109,7 +109,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 	<div id="oModal1" class="oModal">
 		<div>
 			<header>
-				<a href="#fermer" id="closeDroper"  class="droitefermer">X</a>
+				<a href="#fermer" alt="close" id="closeDroper" class="droitefermer">&#10005;</a>
 				<h2>'.__( 'Upload new animation' , 'hype-animations' ).'</h2>
 			</header>
 			<section>
@@ -291,7 +291,7 @@ function hypeanimations_panel() {
 	<script>
 	jQuery(document).ready(function(jQuery){
 		jQuery(document).on("click", ".animcopy", function(){
-			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%\' readonly></textarea><span class=\'close-popup\'>x</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>");
+			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%\' readonly></textarea><span class=\'close-popup\'>&#10005;</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>");
 
 			jQuery.ajax({
 				type: "POST",
@@ -348,7 +348,7 @@ function hypeanimations_panel() {
 					}
 				}
 				else {
-					alert("'.__( 'Error, please try again !' , 'hype-animations' ).'");
+					alert("'.__( 'Error, please try again!' , 'hype-animations' ).'");
 				}
 			});
 		});

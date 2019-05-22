@@ -49,6 +49,10 @@ You may also use the Hype Animations button on the post and page editor.
 
 == Changelog ==
 
+= 1.8.1 = 
+* Wordpress 5.2.1 support
+* Ondersteuning vir die Afrikaanse taal. (Afrikaans language support!) Thanks https://profiles.wordpress.org/puvircho/!
+
 = 1.8 = 
 * Improved Shortcode copying font & style
 * Fully supports Wordpress 5.2

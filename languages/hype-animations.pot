@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2017-09-05 14:43-0400\n"
+"POT-Creation-Date: 2019-05-22 16:10-0400\n"
 "PO-Revision-Date: 2016-03-23 04:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,25 +20,9 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:101 includes/adminpanel.php:145
-#: includes/tinymcetool.php:63
+#: includes/adminpanel.php:113 includes/adminpanel.php:145
+#: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr ""
-
-#: includes/adminpanel.php:141
-msgid "About"
-msgstr ""
-
-#: includes/adminpanel.php:141
-msgid "If you have any problem with this plugin, you can"
-msgstr ""
-
-#: includes/adminpanel.php:141
-msgid "contact us"
-msgstr ""
-
-#: includes/adminpanel.php:141
-msgid "We can also create customs plugins and others web services."
 msgstr ""
 
 #: includes/adminpanel.php:142
@@ -47,143 +31,152 @@ msgstr ""
 
 #: includes/adminpanel.php:144
 msgid ""
-"Upload a .OAM file exported by Tumult Hype and it will generate a "
-"shortcode that you will can insert everywhere you want on your website."
+"Upload a .OAM file exported by <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+"which you can insert in posts and pages. <a href=\"https://forums.tumult."
+"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
+"</a>"
 msgstr ""
 
-#: includes/adminpanel.php:325
+#: includes/adminpanel.php:268
 msgid "Manage animations"
 msgstr ""
 
-#: includes/adminpanel.php:332
+#: includes/adminpanel.php:275
 msgid "Last file update"
 msgstr ""
 
-#: includes/adminpanel.php:340
+#: includes/adminpanel.php:282
 msgid "Add a container around the animation"
 msgstr ""
 
-#: includes/adminpanel.php:341
-msgid "No"
-msgstr ""
-
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:285
 msgid "Update"
 msgstr ""
 
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:285
 msgid "Container CSS class"
 msgstr ""
 
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:285
 msgid "No data"
 msgstr ""
 
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:285
+msgid "Copy Code"
+msgstr ""
+
+#: includes/adminpanel.php:285
 msgid "Delete"
 msgstr ""
 
-#: includes/adminpanel.php:378
-msgid "Updated !"
+#: includes/adminpanel.php:344
+msgid "Updated!"
 msgstr ""
 
-#: includes/adminpanel.php:385
-msgid "Error, please try again !"
+#: includes/adminpanel.php:351
+msgid "Error, please try again!"
 msgstr ""
 
-#: includes/adminpanel.php:392
+#: includes/adminpanel.php:358
 msgid "Update file"
 msgstr ""
 
-#: includes/adminpanel.php:404
-msgid "Processing ..."
+#: includes/adminpanel.php:374
+msgid "Processing..."
 msgstr ""
 
-#: includes/adminpanel.php:405
-msgid "Search :"
+#: includes/adminpanel.php:375
+msgid "Search:"
 msgstr ""
 
-#: includes/adminpanel.php:406
+#: includes/adminpanel.php:376
 msgid "Show"
 msgstr ""
 
-#: includes/adminpanel.php:406 includes/adminpanel.php:407
+#: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
 msgstr ""
 
-#: includes/adminpanel.php:407
+#: includes/adminpanel.php:377
 msgid "Showing"
 msgstr ""
 
-#: includes/adminpanel.php:407
+#: includes/adminpanel.php:377
 msgid "to"
 msgstr ""
 
-#: includes/adminpanel.php:407
+#: includes/adminpanel.php:377
 msgid "of"
 msgstr ""
 
-#: includes/adminpanel.php:408
-msgid "Showing animation 0 to 0 of 0 entries"
+#: includes/adminpanel.php:378
+msgid "No animations found."
 msgstr ""
 
-#: includes/adminpanel.php:409
-msgid "Loading ..."
+#: includes/adminpanel.php:379
+msgid "Loading..."
 msgstr ""
 
-#: includes/adminpanel.php:410
+#: includes/adminpanel.php:380
 msgid "No animation has been found"
 msgstr ""
 
-#: includes/adminpanel.php:411
+#: includes/adminpanel.php:381
 msgid "No animation has been added"
 msgstr ""
 
-#: includes/adminpanel.php:413
+#: includes/adminpanel.php:383
 msgid "First"
 msgstr ""
 
-#: includes/adminpanel.php:414
+#: includes/adminpanel.php:384
 msgid "Previous"
 msgstr ""
 
-#: includes/adminpanel.php:415
+#: includes/adminpanel.php:385
 msgid "Next"
 msgstr ""
 
-#: includes/adminpanel.php:416
+#: includes/adminpanel.php:386
 msgid "Last"
 msgstr ""
 
-#: includes/tinymcetool.php:51
+#: includes/tinymcetool.php:20
 msgid "Choose an animation"
 msgstr ""
 
-#: includes/tinymcetool.php:58
+#: includes/tinymcetool.php:37
 msgid "Insert"
 msgstr ""
 
-#: includes/tinymcetool.php:60
+#: includes/tinymcetool.php:39
 msgid "Or upload a new one"
 msgstr ""
 
-#: includes/tinymcetool.php:80 includes/tinymcetool.php:95
-msgid "Drop .OAM file or click here to upload"
+#: includes/tinymcetool.php:61 includes/tinymcetool.php:82
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 
-#: includes/tinymcetool.php:82
+#: includes/tinymcetool.php:69
 msgid ""
-"You can now insert this shortcode where you want to insert the animation"
+"Insert the following shortcode where you want to display the animation"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Hype Animations"
+msgid "Tumult Hype Animations"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Insert your Hype animations"
+msgid ""
+"Easily embed your Tumult Hype animations using a shortcode into posts and "
+"pages."
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "<a href=\"http://www.eralion.com\" target=\"_blank\">ERALION.com</a>"
+#. Author URI of the plugin/theme
+msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgstr ""
