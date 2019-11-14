@@ -66,7 +66,7 @@ function add_hypeanimations_shortcode_button_footer() {
 				else { done(); }
 			},
 			success: function(file,resp) {
-				jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\">'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).': <b>[hypeanimations_anim id=\""+resp+"\"]</b></div>");
+				jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\">'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\""+resp+"\"]</span></div>");
 				jQuery(".dropzone2").css("display","block");
 				jQuery(".dropzone").remove();
 			}

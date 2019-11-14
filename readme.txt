@@ -5,7 +5,7 @@ Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 4.7
 Requires PHP: 5.6
-Tested up to: 5.2
+Tested up to: 5.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,10 @@ You may also use the Hype Animations button on the post and page editor.
 
 
 == Changelog ==
+
+= 1.8.2 = 
+* Compatibility with Wordpress 5.3
+* Shortcode copying improvement
 
 = 1.8.1 = 
 * Wordpress 5.2.1 support

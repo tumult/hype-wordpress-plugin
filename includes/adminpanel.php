@@ -291,7 +291,7 @@ function hypeanimations_panel() {
 	<script>
 	jQuery(document).ready(function(jQuery){
 		jQuery(document).on("click", ".animcopy", function(){
-			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%\' readonly></textarea><span class=\'close-popup\'>&#10005;</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>");
+			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea spellcheck=\'false\' class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%\' readonly></textarea><span class=\'close-popup\'>&#10005;</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>");
 
 			jQuery.ajax({
 				type: "POST",
