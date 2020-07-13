@@ -1,15 +1,14 @@
 msgid ""
 msgstr ""
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2020-07-13 14:29-0400\n"
-"PO-Revision-Date: 2020-07-13 21:25+0000\n"
+"POT-Creation-Date: 2019-05-22 16:10-0400\n"
+"PO-Revision-Date: 2020-07-13 21:27+0000\n"
 "Last-Translator: \n"
-"Language-Team: French (France)\n"
-"Language: fr_FR\n"
+"Language-Team: Spanish (Mexico)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
@@ -20,16 +19,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Report-Msgid-Bugs-To: \n"
+"Language: es_MX\n"
 "X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "Ajouter une animation"
+msgstr "Cargar nueva animación"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
-msgstr "Ajouter une nouvelle animation"
+msgstr "Añadir nueva animación"
 
 #: includes/adminpanel.php:144
 msgid ""
@@ -39,141 +39,139 @@ msgid ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
 "</a>"
 msgstr ""
-"Téléchargez un fichier .OAM exporté par <a href=“http://tumult.com/hype?"
-"utm_source=wpplugin”>Tumult Hype</a> et un shortcode sera généré que vous "
-"pourrez insérer où vous voulez sur votre site. <a href=\"https://forums."
+"Cargue un archivo .OAM archivo exportado por <a href=\"http://tumult."
+"com/hype?utm_source=wpplugin\">Tumult Hype</a> y se generará un shortcode "
+"que se puede insertar en publicaciones y páginas. <a href=\"https://forums."
 "tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">"
-"Besoin d'aide?</a>"
+"¿Necesitas ayuda?</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
-msgstr "Gérer les animations"
+msgstr "Administrar animaciones"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "Mise à jour fichier"
+msgstr "Ultima actualización de archivos"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation"
-msgstr "Ajouter un conteneur autour de l'animation"
+msgstr "Agregue un contenedor alrededor de la animación"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "Mettre à jour"
+msgstr "actualizar"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
-msgstr "Classes CSS du conteneur"
+msgstr "Clase CSS de contenedor"
 
 #: includes/adminpanel.php:285
 msgid "No data"
-msgstr "Aucune donnée"
+msgstr "Sin datos"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
-msgstr "Copy Code"
+msgstr "Código de copia"
 
 #: includes/adminpanel.php:285
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Eliminar"
 
 #: includes/adminpanel.php:344
 msgid "Updated!"
-msgstr "Mise à jour!"
+msgstr "¡Actualizado!"
 
 #: includes/adminpanel.php:351
 msgid "Error, please try again!"
-msgstr "Erreur, veuillez réessayer!"
+msgstr "Error, por favor inténtelo de nuevo!"
 
 #: includes/adminpanel.php:358
 msgid "Update file"
-msgstr "Mettre à jour le fichier"
+msgstr "Actualizar archivo"
 
 #: includes/adminpanel.php:374
 msgid "Processing..."
-msgstr "Traitement en cours..."
+msgstr "Tratamiento..."
 
 #: includes/adminpanel.php:375
 msgid "Search:"
-msgstr "Chercher:"
+msgstr "Búsqueda:"
 
 #: includes/adminpanel.php:376
 msgid "Show"
-msgstr "Afficher"
+msgstr "Mostrar"
 
 #: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
-msgstr "animations"
+msgstr "Animaciones"
 
 #: includes/adminpanel.php:377
 msgid "Showing"
-msgstr "Afficher"
+msgstr "Mostrando"
 
 #: includes/adminpanel.php:377
 msgid "to"
-msgstr "à"
+msgstr "Para"
 
 #: includes/adminpanel.php:377
 msgid "of"
-msgstr "de"
+msgstr "De"
 
 #: includes/adminpanel.php:378
 msgid "No animations found."
-msgstr "Aucun animation n'a été trouvée."
+msgstr "No se han encontrado animaciones."
 
 #: includes/adminpanel.php:379
 msgid "Loading..."
-msgstr "Chargement en cours…"
+msgstr "Carga..."
 
 #: includes/adminpanel.php:380
 msgid "No animation has been found"
-msgstr "Aucun animation n'a été trouvée"
+msgstr "No se ha encontrado ninguna animación"
 
 #: includes/adminpanel.php:381
 msgid "No animation has been added"
-msgstr "Aucun animation n'a été ajoutée"
+msgstr "No se ha añadido ninguna animación"
 
 #: includes/adminpanel.php:383
 msgid "First"
-msgstr "Premier"
+msgstr "Primero"
 
 #: includes/adminpanel.php:384
 msgid "Previous"
-msgstr "Précédent"
+msgstr "Anterior"
 
 #: includes/adminpanel.php:385
 msgid "Next"
-msgstr "Suivant"
+msgstr "próximo"
 
 #: includes/adminpanel.php:386
 msgid "Last"
-msgstr "Dernier"
+msgstr "Última"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
-msgstr "Choisissez une animation"
+msgstr "Elija una animación"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "Insérer"
+msgstr "insertar"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
-msgstr "Ou ajoutez en une nouvelle"
+msgstr "O subir uno nuevo"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "Déposez le fichier .OAM ou cliquez ici pour ajouter votre animation "
+msgstr "Soltar. OAM o haga clic aquí para cargar<br> (Tamaño máximo de carga "
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr ""
-"Vous pouvez maintenant insérer ce shortcode où vous souhaitez insérer "
-"l'animation"
+msgstr "Inserte el siguiente shortcode donde desee mostrar la animación"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hype Animations"
+msgstr "Tusmult Hype Animations"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -184,7 +182,9 @@ msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
+"Inserta fácilmente tus animaciones tumult Hype usando un shortcode en "
+"publicaciones y páginas."
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumulto</a>"

@@ -79,7 +79,7 @@ function add_hypeanimations_shortcode_button_footer() {
 			uploadMultiple: false,
 			maxFiles: 1,
 			acceptedFiles: ".oam",
-			dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. ini_get("upload_max_filesize") .')' , 'hype-animations' ).'",
+			dictDefaultMessage: "'.__( 'Drop an .OAM file or click here to upload<br>(Maximum upload size '. ini_get("upload_max_filesize") .')' , 'hype-animations' ).'",
 			accept: function(file, done) {
 				if (hasWhiteSpace(file.name)) {
 					done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");

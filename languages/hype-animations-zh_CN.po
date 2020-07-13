@@ -1,179 +1,175 @@
 msgid ""
 msgstr ""
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2020-07-13 14:29-0400\n"
-"PO-Revision-Date: 2020-07-13 21:25+0000\n"
+"POT-Creation-Date: 2019-05-22 16:10-0400\n"
+"PO-Revision-Date: 2020-07-13 17:33-0400\n"
 "Last-Translator: \n"
-"Language-Team: French (France)\n"
-"Language: fr_FR\n"
+"Language-Team: Chinese (China)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Loco https://localise.biz/\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: zh_CN\n"
+"X-Loco-Version: 2.4.0; wp-5.4.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
-"Report-Msgid-Bugs-To: \n"
-"X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "Ajouter une animation"
+msgstr "上传新动画"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
-msgstr "Ajouter une nouvelle animation"
+msgstr "添加新动画"
 
 #: includes/adminpanel.php:144
 msgid ""
 "Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
-"which you can insert in posts and pages. <a href=\"https://forums.tumult."
-"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
-"</a>"
+"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
+"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"Téléchargez un fichier .OAM exporté par <a href=“http://tumult.com/hype?"
-"utm_source=wpplugin”>Tumult Hype</a> et un shortcode sera généré que vous "
-"pourrez insérer où vous voulez sur votre site. <a href=\"https://forums."
-"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">"
-"Besoin d'aide?</a>"
+"上传 .将生成由<a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult "
+"Hype 导出的</a>OAM 文件和短代码，您可以在帖子和页面中插入该文件。<a href="
+"\"https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
+"target=\"_blank\">需要帮助？</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
-msgstr "Gérer les animations"
+msgstr "管理动画"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "Mise à jour fichier"
+msgstr "上次文件更新"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation"
-msgstr "Ajouter un conteneur autour de l'animation"
+msgstr "在动画周围添加容器"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "Mettre à jour"
+msgstr "更新"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
-msgstr "Classes CSS du conteneur"
+msgstr "容器 CSS 类"
 
 #: includes/adminpanel.php:285
 msgid "No data"
-msgstr "Aucune donnée"
+msgstr "无数据"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
-msgstr "Copy Code"
+msgstr "复制代码"
 
 #: includes/adminpanel.php:285
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "删除"
 
 #: includes/adminpanel.php:344
 msgid "Updated!"
-msgstr "Mise à jour!"
+msgstr "更新！"
 
 #: includes/adminpanel.php:351
 msgid "Error, please try again!"
-msgstr "Erreur, veuillez réessayer!"
+msgstr "错误，请重试！"
 
 #: includes/adminpanel.php:358
 msgid "Update file"
-msgstr "Mettre à jour le fichier"
+msgstr "更新文件"
 
 #: includes/adminpanel.php:374
 msgid "Processing..."
-msgstr "Traitement en cours..."
+msgstr "处理。。。"
 
 #: includes/adminpanel.php:375
 msgid "Search:"
-msgstr "Chercher:"
+msgstr "搜索："
 
 #: includes/adminpanel.php:376
 msgid "Show"
-msgstr "Afficher"
+msgstr "显示"
 
 #: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
-msgstr "animations"
+msgstr "动画"
 
 #: includes/adminpanel.php:377
 msgid "Showing"
-msgstr "Afficher"
+msgstr "显示"
 
 #: includes/adminpanel.php:377
 msgid "to"
-msgstr "à"
+msgstr "自"
 
 #: includes/adminpanel.php:377
 msgid "of"
-msgstr "de"
+msgstr "的"
 
 #: includes/adminpanel.php:378
 msgid "No animations found."
-msgstr "Aucun animation n'a été trouvée."
+msgstr "未找到动画。"
 
 #: includes/adminpanel.php:379
 msgid "Loading..."
-msgstr "Chargement en cours…"
+msgstr "加载。。。"
 
 #: includes/adminpanel.php:380
 msgid "No animation has been found"
-msgstr "Aucun animation n'a été trouvée"
+msgstr "未找到动画"
 
 #: includes/adminpanel.php:381
 msgid "No animation has been added"
-msgstr "Aucun animation n'a été ajoutée"
+msgstr "未添加动画"
 
 #: includes/adminpanel.php:383
 msgid "First"
-msgstr "Premier"
+msgstr "第一"
 
 #: includes/adminpanel.php:384
 msgid "Previous"
-msgstr "Précédent"
+msgstr "以前"
 
 #: includes/adminpanel.php:385
 msgid "Next"
-msgstr "Suivant"
+msgstr "下一个"
 
 #: includes/adminpanel.php:386
 msgid "Last"
-msgstr "Dernier"
+msgstr "最后"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
-msgstr "Choisissez une animation"
+msgstr "选择动画"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "Insérer"
+msgstr "插入"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
-msgstr "Ou ajoutez en une nouvelle"
+msgstr "或上传新的"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "Déposez le fichier .OAM ou cliquez ici pour ajouter votre animation "
+msgstr "下降。OAM 文件或单击此处上传<br>（最大上传大小）"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr ""
-"Vous pouvez maintenant insérer ce shortcode où vous souhaitez insérer "
-"l'animation"
+msgstr "在要显示动画的地方插入以下短代码"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hype Animations"
+msgstr "肿瘤炒作动画"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -183,8 +179,8 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
-msgstr ""
+msgstr "使用短代码轻松地将 Tumult Hype 动画嵌入帖子和页面。"
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">骚动</a>"

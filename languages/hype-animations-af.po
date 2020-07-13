@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2019-05-22 16:20-0400\n"
-"PO-Revision-Date: 2019-11-14 10:23-0500\n"
+"POT-Creation-Date: 2019-05-22 16:10-0400\n"
+"PO-Revision-Date: 2020-07-13 21:25+0000\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: af_ZA\n"
+"Language-Team: Afrikaans\n"
+"Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -19,6 +19,8 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+"Report-Msgid-Bugs-To: \n"
+"X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
@@ -31,15 +33,17 @@ msgstr "Voeg nuwe animasie toe"
 
 #: includes/adminpanel.php:144
 msgid ""
-"Upload a .OAM file exported by <a href=\"http://tumult.com/hype?"
+"Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
-"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
-"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
+"which you can insert in posts and pages. <a href=\"https://forums.tumult."
+"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
+"</a>"
 msgstr ""
-"Laai ’n .OAM-lêer deur <a href=\"http://tumult.com/hype?utm_source=wpplugin"
-"\">Tumult Hype</a> uitgestuur op en ’n kortkode wat u in plasings en blaaie "
-"kan invoeg, sal geskep word. <a href=\"https://forums.tumult.com/t/hype-"
-"animations-wordpress-plugin/11074\" target=\"_blank\">Kort hulp?</a>"
+"Laai ’n .OAM-lêer deur <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> uitgestuur op en ’n kortkode wat u in "
+"plasings en blaaie kan invoeg, sal geskep word. <a href=\"https://forums."
+"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Kort "
+"hulp?</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
@@ -74,14 +78,10 @@ msgid "Delete"
 msgstr "Skrap"
 
 #: includes/adminpanel.php:344
-#, fuzzy
-#| msgid "Updated!"
 msgid "Updated!"
 msgstr "Bygewerk!"
 
 #: includes/adminpanel.php:351
-#, fuzzy
-#| msgid "Error, please try again !"
 msgid "Error, please try again!"
 msgstr "Fout, probeer asb. weer!"
 
@@ -90,14 +90,10 @@ msgid "Update file"
 msgstr "Werk lêer by"
 
 #: includes/adminpanel.php:374
-#, fuzzy
-#| msgid "Processing..."
 msgid "Processing..."
 msgstr "Verwerk tans…"
 
 #: includes/adminpanel.php:375
-#, fuzzy
-#| msgid "Search:"
 msgid "Search:"
 msgstr "Soek:"
 
@@ -126,8 +122,6 @@ msgid "No animations found."
 msgstr "Geen animasies gevind."
 
 #: includes/adminpanel.php:379
-#, fuzzy
-#| msgid "Loading..."
 msgid "Loading..."
 msgstr "Laai tans…"
 
@@ -173,15 +167,10 @@ msgstr ""
 "Drop. OAM lêer of klik hier om op te laai<br> (Maksimum upload grootte "
 
 #: includes/tinymcetool.php:69
-#, fuzzy
-#| msgid ""
-#| "Insert the following shortcode where you want to display the animation"
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Voeg die volgende kortkode waar u die animasie wil laat vertoon in"
 
 #. Plugin Name of the plugin/theme
-#, fuzzy
-#| msgid "Tumult Hype Animations"
 msgid "Tumult Hype Animations"
 msgstr "Tumult Hype-animasies"
 
@@ -194,14 +183,8 @@ msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
+"Sit u Tumult Hype-animasies maklik met 'n kortkode in poste en bladsye in."
 
 #. Author URI of the plugin/theme
-#, fuzzy
-#| msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgstr "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
-
-#, fuzzy
-#~| msgid "Tumult Hype Animations"
-#~ msgid "Insert your Hype animations"
-#~ msgstr "Tumult Hype-animasies"

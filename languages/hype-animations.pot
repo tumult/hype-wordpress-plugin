@@ -31,7 +31,7 @@ msgstr ""
 
 #: includes/adminpanel.php:144
 msgid ""
-"Upload a .OAM file exported by <a href=\"http://tumult.com/hype?"
+"Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
 "which you can insert in posts and pages. <a href=\"https://forums.tumult."
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"

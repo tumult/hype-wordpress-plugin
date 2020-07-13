@@ -1,15 +1,14 @@
 msgid ""
 msgstr ""
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2020-07-13 14:29-0400\n"
-"PO-Revision-Date: 2020-07-13 21:25+0000\n"
+"POT-Creation-Date: 2019-05-22 16:10-0400\n"
+"PO-Revision-Date: 2020-07-13 21:18+0000\n"
 "Last-Translator: \n"
-"Language-Team: French (France)\n"
-"Language: fr_FR\n"
+"Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
@@ -20,16 +19,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Report-Msgid-Bugs-To: \n"
+"Language: ja\n"
 "X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "Ajouter une animation"
+msgstr "新しいアニメーションのアップロード"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
-msgstr "Ajouter une nouvelle animation"
+msgstr "新しいアニメーションを追加する"
 
 #: includes/adminpanel.php:144
 msgid ""
@@ -39,141 +39,138 @@ msgid ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
 "</a>"
 msgstr ""
-"Téléchargez un fichier .OAM exporté par <a href=“http://tumult.com/hype?"
-"utm_source=wpplugin”>Tumult Hype</a> et un shortcode sera généré que vous "
-"pourrez insérer où vous voulez sur votre site. <a href=\"https://forums."
-"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">"
-"Besoin d'aide?</a>"
+"をアップロードします。<a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult "
+"Hype</a>によってエクスポートされたOAMファイルとショートコードが生成され、投稿やページに挿入できます。<a href=\"https:"
+"//forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
+"target=\"_blank\">ヘルプが必要ですか?</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
-msgstr "Gérer les animations"
+msgstr "アニメーションの管理"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "Mise à jour fichier"
+msgstr "ファイルの最終更新"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation"
-msgstr "Ajouter un conteneur autour de l'animation"
+msgstr "アニメーションの周囲にコンテナを追加する"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "Mettre à jour"
+msgstr "更新"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
-msgstr "Classes CSS du conteneur"
+msgstr "コンテナ CSS クラス"
 
 #: includes/adminpanel.php:285
 msgid "No data"
-msgstr "Aucune donnée"
+msgstr "データなし"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
-msgstr "Copy Code"
+msgstr "コードのコピー"
 
 #: includes/adminpanel.php:285
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "削除"
 
 #: includes/adminpanel.php:344
 msgid "Updated!"
-msgstr "Mise à jour!"
+msgstr "更新！"
 
 #: includes/adminpanel.php:351
 msgid "Error, please try again!"
-msgstr "Erreur, veuillez réessayer!"
+msgstr "エラーが発生しました。"
 
 #: includes/adminpanel.php:358
 msgid "Update file"
-msgstr "Mettre à jour le fichier"
+msgstr "ファイルの更新"
 
 #: includes/adminpanel.php:374
 msgid "Processing..."
-msgstr "Traitement en cours..."
+msgstr "処理。。。"
 
 #: includes/adminpanel.php:375
 msgid "Search:"
-msgstr "Chercher:"
+msgstr "検索："
 
 #: includes/adminpanel.php:376
 msgid "Show"
-msgstr "Afficher"
+msgstr "表示"
 
 #: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
-msgstr "animations"
+msgstr "アニメーション"
 
 #: includes/adminpanel.php:377
 msgid "Showing"
-msgstr "Afficher"
+msgstr "表示"
 
 #: includes/adminpanel.php:377
 msgid "to"
-msgstr "à"
+msgstr "宛先"
 
 #: includes/adminpanel.php:377
 msgid "of"
-msgstr "de"
+msgstr "の"
 
 #: includes/adminpanel.php:378
 msgid "No animations found."
-msgstr "Aucun animation n'a été trouvée."
+msgstr "アニメーションが見つかりません。"
 
 #: includes/adminpanel.php:379
 msgid "Loading..."
-msgstr "Chargement en cours…"
+msgstr "読み込み。。。"
 
 #: includes/adminpanel.php:380
 msgid "No animation has been found"
-msgstr "Aucun animation n'a été trouvée"
+msgstr "アニメーションが見つかりません"
 
 #: includes/adminpanel.php:381
 msgid "No animation has been added"
-msgstr "Aucun animation n'a été ajoutée"
+msgstr "アニメーションが追加されていません"
 
 #: includes/adminpanel.php:383
 msgid "First"
-msgstr "Premier"
+msgstr "まずは"
 
 #: includes/adminpanel.php:384
 msgid "Previous"
-msgstr "Précédent"
+msgstr "先の"
 
 #: includes/adminpanel.php:385
 msgid "Next"
-msgstr "Suivant"
+msgstr "次に"
 
 #: includes/adminpanel.php:386
 msgid "Last"
-msgstr "Dernier"
+msgstr "前の"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
-msgstr "Choisissez une animation"
+msgstr "アニメーションを選択する"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "Insérer"
+msgstr "挿入"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
-msgstr "Ou ajoutez en une nouvelle"
+msgstr "または新しいものをアップロードする"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "Déposez le fichier .OAM ou cliquez ici pour ajouter votre animation "
+msgstr "ドロップ。OAMファイルまたはアップロードするにはここをクリックしてください<br>(最大アップロードサイズ"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr ""
-"Vous pouvez maintenant insérer ce shortcode où vous souhaitez insérer "
-"l'animation"
+msgstr "アニメーションを表示する場所に次のショートコードを挿入します。"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hype Animations"
+msgstr "騒動の誇大宣伝アニメーション"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -183,8 +180,8 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
-msgstr ""
+msgstr "ショートコードを使用して、投稿やページに簡単にTumult Hypeアニメーションを埋め込むことができます。"
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">騒ぎ</a>"

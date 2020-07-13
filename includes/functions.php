@@ -24,13 +24,13 @@ function hyperrmdir($dir) {
 	}
 }
 function hypeanimations_admin_style() {
-    wp_register_style('hypeanimations_admin_css', plugins_url( '../css/hypeanimations.css', __FILE__ ), false, '1.8' );
+    wp_register_style('hypeanimations_admin_css', plugins_url( '../css/hypeanimations.css', __FILE__ ), false, '1.9' );
     wp_enqueue_style('hypeanimations_admin_css');
-    wp_register_style('dataTables_admin_css', plugins_url( '../css/jquery.dataTables.min.css', __FILE__ ), false, '1.0.0' );
+    wp_register_style('dataTables_admin_css', plugins_url( '../css/jquery.dataTables.min.css', __FILE__ ), false, '1.0.1' );
     wp_enqueue_style('dataTables_admin_css');
-    wp_register_style('custom.modified,jquery-ui_admin_css', plugins_url( '../css/jquery-ui.css', __FILE__ ), false, '1.0.0' );
+    wp_register_style('custom.modified,jquery-ui_admin_css', plugins_url( '../css/jquery-ui.css', __FILE__ ), false, '1.0.1' );
     wp_enqueue_style('custom.modified,jquery-ui_admin_css');
-    wp_register_style('custom.modified,dropzone_css', plugins_url( '../css/dropzone.css', __FILE__ ), false, '1.0.0' );
+    wp_register_style('custom.modified,dropzone_css', plugins_url( '../css/dropzone.css', __FILE__ ), false, '1.0.1' );
     wp_enqueue_style('custom.modified,dropzone_css');
 	wp_enqueue_script( 'jquery_datatable_hype', plugins_url( '../js/jquery.dataTables.min.js', __FILE__ ) );
 	wp_enqueue_script( 'dropzone_hype', plugins_url( '../js/dropzone.js', __FILE__ ) );

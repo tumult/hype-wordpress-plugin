@@ -1,14 +1,18 @@
-table.dataTable tbody td { border-left:1px solid #ccc;border-bottom:1px solid #ccc;text-align:center; }
+/* table.dataTable tbody td { border-left:1px solid #ccc;border-bottom:1px solid #ccc;text-align:center; }*/
+
 table.dataTable tbody td:last-child { border-right:1px solid #ccc; }
 table.dataTable tbody tr:last-child td { border-bottom:0px; }
-table.dataTable { width:98% !important; }
+table.dataTable { width:98% !important; }  
 
+.dataTables_filter {
+  margin-right:15px;
+}
 #hypeanimations .shortcodeval {
   width: 232px;
   text-align: center;
 }
 .animupdate, .animdelete, .animcopy {
-  border-radius:25px;
+  border-radius: 5px;
   border: #eee solid 2px;
   color: #eee;
   display:inline-block;
@@ -26,6 +30,20 @@ table.dataTable { width:98% !important; }
   line-height: 1.1em;
 }
 
+.animcopy:hover, .animcopy:hover {
+  color: #661D20;
+}
+
+.animcopy {
+  background: #009976;
+  margin: 1px;
+  color: #FFF;
+  padding: 5px;
+  border: 1px solid #009976;
+  text-decoration: none;
+}
+.animcopy:hover { color:#009976;background:#fff; }
+
 .animdelete {
   color: #CC383D;
   transform: scale(0.666);
@@ -34,9 +52,7 @@ table.dataTable { width:98% !important; }
   color: #661D20;
 }
 
-.animcopy:hover, .animcopy:hover {
-  color: #661D20;
-}
+
 
 .animupdate:hover {
   background-color: #eee;
@@ -83,21 +99,25 @@ table.dataTable { width:98% !important; }
 	text-align: center;
 	font-weight:bold;
 }*/
-.dropzone,.dropzone2 {
+.dropzone, .dropzone2 {
 	text-align: center;
 	font-weight:bold;
     min-height: 100px !important;
 	background:#eee !important;
 }
-.animdelete { background:#FF0000;margin:1px;color:#FFF;padding:5px;border:1px solid #FF0000;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;text-decoration:none; }
-.animdelete:hover { color:#FF0000;background:#fff; }
-.animupdate {background:#0099cc;margin:1px;color:#FFF;padding:5px;border:1px solid #0099cc;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;text-decoration:none; }
+.animdelete { margin:1px;color:#FF0000;padding:5px; text-decoration:none; }
+.animdelete:hover { color:#fff;background:#FF0000; }
+.animupdate {background:#0099cc;margin:1px;color:#FFF;padding:5px;border:1px solid #0099cc; text-decoration:none; }
 .animupdate:hover { color:#0099cc;background:#fff; }
 .hypeanimupdated {
   margin-left:5px;
   color:#009933;
   font-weight:bold;
   display:inline-block;
+}
+
+.containinput {
+  
 }
 
 #add_hypeanimations_shortcode_button i::before {
@@ -200,19 +220,6 @@ table.dataTable { width:98% !important; }
 .oModal > div section,.oModal > div > header, .oModal > div > footer {
   padding:15px;
 }
-
-.animcopy {
-    background: #009976;
-    margin: 1px;
-    color: #FFF;
-    padding: 5px;
-    border: 1px solid #009976;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-    text-decoration: none;
-}
-.animcopy:hover { color:#009976;background:#fff; }
 
 .popup-wrap {
     position: fixed;
