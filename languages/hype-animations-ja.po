@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Hype Animations\n"
 "POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-13 21:18+0000\n"
+"PO-Revision-Date: 2020-07-13 23:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
@@ -170,7 +170,7 @@ msgstr "アニメーションを表示する場所に次のショートコード
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "騒動の誇大宣伝アニメーション"
+msgstr "Tumult Hype Animations"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -184,4 +184,4 @@ msgstr "ショートコードを使用して、投稿やページに簡単にTum
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"https://tumult.com\" target=\"_blank\">騒ぎ</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
