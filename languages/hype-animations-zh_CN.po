@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Hype Animations\n"
 "POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-13 23:28+0000\n"
+"PO-Revision-Date: 2020-07-14 14:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: Chinese (China)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "上传新动画"
+msgstr "上载新动画"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
@@ -39,9 +39,9 @@ msgid ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
 "</a>"
 msgstr ""
-"上传 .将生成由<a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult Hype "
-"导出的</a>OAM 文件和短代码，您可以在帖子和页面中插入该文件。<a href=\"https://forums.tumult.com/t/hype-"
-"animations-wordpress-plugin/11074\" target=\"_blank\">需要帮助？</a>"
+"上载由<a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult Hype</a>导出的."
+"OAM文件，将生成一个简码，您可以将其插入帖子和页面中。 <a href=\"https://forums.tumult.com/t/hype-"
+"animations-wordpress-plugin/11074\" target=\"_blank\">需要帮忙？</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
@@ -49,23 +49,23 @@ msgstr "管理动画"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "上次文件更新"
+msgstr "最后文件更新"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation"
-msgstr "在动画周围添加容器"
+msgstr "在动画周围添加一个容器"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "更新"
+msgstr "更新资料"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
-msgstr "容器 CSS 类"
+msgstr "容器CSS类"
 
 #: includes/adminpanel.php:285
 msgid "No data"
-msgstr "无数据"
+msgstr "没有数据"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
@@ -85,11 +85,11 @@ msgstr "错误，请重试！"
 
 #: includes/adminpanel.php:358
 msgid "Update file"
-msgstr "更新文件"
+msgstr "更新档案"
 
 #: includes/adminpanel.php:374
 msgid "Processing..."
-msgstr "处理。。。"
+msgstr "处理中..."
 
 #: includes/adminpanel.php:375
 msgid "Search:"
@@ -97,7 +97,7 @@ msgstr "搜索："
 
 #: includes/adminpanel.php:376
 msgid "Show"
-msgstr "显示"
+msgstr "表演"
 
 #: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
@@ -105,11 +105,11 @@ msgstr "动画"
 
 #: includes/adminpanel.php:377
 msgid "Showing"
-msgstr "显示"
+msgstr "显示中"
 
 #: includes/adminpanel.php:377
 msgid "to"
-msgstr "自"
+msgstr "至"
 
 #: includes/adminpanel.php:377
 msgid "of"
@@ -117,19 +117,19 @@ msgstr "的"
 
 #: includes/adminpanel.php:378
 msgid "No animations found."
-msgstr "未找到动画。"
+msgstr "找不到动画。"
 
 #: includes/adminpanel.php:379
 msgid "Loading..."
-msgstr "加载。。。"
+msgstr "载入中..."
 
 #: includes/adminpanel.php:380
 msgid "No animation has been found"
-msgstr "未找到动画"
+msgstr "找不到动画"
 
 #: includes/adminpanel.php:381
 msgid "No animation has been added"
-msgstr "未添加动画"
+msgstr "没有添加动画"
 
 #: includes/adminpanel.php:383
 msgid "First"
@@ -145,7 +145,7 @@ msgstr "下一个"
 
 #: includes/adminpanel.php:386
 msgid "Last"
-msgstr "最后"
+msgstr "持续"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
@@ -153,19 +153,19 @@ msgstr "选择动画"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "插入"
+msgstr "插"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
-msgstr "或上传新的"
+msgstr "或上传一个新的"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "下降。OAM 文件或单击此处上传<br>（最大上传大小）"
+msgstr "删除.OAM文件或单击此处上传<br>（最大上传大小"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr "在要显示动画的地方插入以下短代码"
+msgstr "在要显示动画的位置插入以下短代码"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
@@ -179,8 +179,8 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
-msgstr "使用短代码轻松地将 Tumult Hype 动画嵌入帖子和页面。"
+msgstr "使用简码将您的Tumult Hype动画轻松嵌入到帖子和页面中。"
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">骚动</a>"

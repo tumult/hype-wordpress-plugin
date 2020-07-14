@@ -1,11 +1,12 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
 "Project-Id-Version: Hype Animations\n"
 "POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-14 14:53+0000\n"
+"PO-Revision-Date: 2020-07-14 14:55+0000\n"
 "Last-Translator: \n"
-"Language-Team: Japanese\n"
+"Language-Team: Russian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,17 +20,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Report-Msgid-Bugs-To: \n"
-"Language: ja\n"
+"Language: ru_RU\n"
 "X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "新しいアニメーションをアップロード"
+msgstr "Загрузить новую анимацию"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
-msgstr "新しいアニメーションを追加"
+msgstr "Добавить новую анимацию"
 
 #: includes/adminpanel.php:144
 msgid ""
@@ -39,138 +40,141 @@ msgid ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
 "</a>"
 msgstr ""
-" <a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult Hype</a>"
-"によってエクスポートされた.OAMファイルをアップロードすると、投稿やページに挿入できるショートコードが生成されます。 <a href=\"https:"
-"//forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
-"target=\"_blank\">助けが必要？</a>"
+"Загрузите файл .OAM, экспортированный <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype,</a> и будет создан шорткод, который вы "
+"можете вставить в сообщения и страницы. <a href=\"https://forums.tumult."
+"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Нужна "
+"помощь?</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
-msgstr "アニメーションを管理する"
+msgstr "Управление анимацией"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "最終ファイル更新"
+msgstr "Последнее обновление файла"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation"
-msgstr "アニメーションの周りにコンテナを追加します"
+msgstr "Добавить контейнер вокруг анимации"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "更新"
+msgstr "Обновить"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
-msgstr "コンテナCSSクラス"
+msgstr "Контейнерный класс CSS"
 
 #: includes/adminpanel.php:285
 msgid "No data"
-msgstr "データなし"
+msgstr "Нет данных"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
-msgstr "コードをコピー"
+msgstr "Скопировать код"
 
 #: includes/adminpanel.php:285
 msgid "Delete"
-msgstr "削除する"
+msgstr "Удалить"
 
 #: includes/adminpanel.php:344
 msgid "Updated!"
-msgstr "更新しました！"
+msgstr "Обновлено!"
 
 #: includes/adminpanel.php:351
 msgid "Error, please try again!"
-msgstr "エラー、もう一度やり直してください！"
+msgstr "Ошибка, пожалуйста, попробуйте еще раз!"
 
 #: includes/adminpanel.php:358
 msgid "Update file"
-msgstr "ファイルを更新"
+msgstr "Обновить файл"
 
 #: includes/adminpanel.php:374
 msgid "Processing..."
-msgstr "処理..."
+msgstr "Обработка ..."
 
 #: includes/adminpanel.php:375
 msgid "Search:"
-msgstr "探す："
+msgstr "Поиск:"
 
 #: includes/adminpanel.php:376
 msgid "Show"
-msgstr "公演"
+msgstr "Шоу"
 
 #: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
-msgstr "アニメーション"
+msgstr "анимации"
 
 #: includes/adminpanel.php:377
 msgid "Showing"
-msgstr "表示中"
+msgstr "показ"
 
 #: includes/adminpanel.php:377
 msgid "to"
-msgstr "に"
+msgstr "в"
 
 #: includes/adminpanel.php:377
 msgid "of"
-msgstr "の"
+msgstr "из"
 
 #: includes/adminpanel.php:378
 msgid "No animations found."
-msgstr "アニメーションは見つかりませんでした。"
+msgstr "Не найдено ни одной анимации."
 
 #: includes/adminpanel.php:379
 msgid "Loading..."
-msgstr "読み込んでいます..."
+msgstr "Loading ..."
 
 #: includes/adminpanel.php:380
 msgid "No animation has been found"
-msgstr "アニメーションは見つかりませんでした"
+msgstr "Анимация не найдена"
 
 #: includes/adminpanel.php:381
 msgid "No animation has been added"
-msgstr "アニメーションは追加されていません"
+msgstr "Анимация не была добавлена"
 
 #: includes/adminpanel.php:383
 msgid "First"
-msgstr "最初"
+msgstr "Первый"
 
 #: includes/adminpanel.php:384
 msgid "Previous"
-msgstr "前"
+msgstr "предыдущий"
 
 #: includes/adminpanel.php:385
 msgid "Next"
-msgstr "次"
+msgstr "следующий"
 
 #: includes/adminpanel.php:386
 msgid "Last"
-msgstr "最終"
+msgstr "Последний"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
-msgstr "アニメーションを選択"
+msgstr "Выберите анимацию"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "インサート"
+msgstr "Вставить"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
-msgstr "または新しいものをアップロード"
+msgstr "Или загрузите новый"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ".OAMファイルをドロップするか、ここをクリックしてアップロードします<br>（最大アップロードサイズ"
+msgstr ""
+"Удалите файл .OAM или нажмите здесь, чтобы загрузить <br> (максимальный "
+"размер загрузки)"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr "アニメーションを表示する場所に次のショートコードを挿入します"
+msgstr "Вставьте следующий шорткод, где вы хотите отобразить анимацию"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hypeアニメーション"
+msgstr "Tumult Hype Анимации"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -180,7 +184,8 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
-msgstr "ショートコードを使用してTumult Hypeアニメーションを投稿やページに簡単に埋め込むことができます。"
+msgstr ""
+"Легко вставляйте анимацию Tumult Hype с помощью шорткода в посты и страницы."
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"

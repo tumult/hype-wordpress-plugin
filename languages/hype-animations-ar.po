@@ -1,12 +1,12 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10 >= 2 && n%10<=4 "
-"&&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100 >= 3 "
+"&& n%100<=10 ? 3 : n%100 >= 11 && n%100<=99 ? 4 : 5;\n"
 "Project-Id-Version: Hype Animations\n"
 "POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-13 21:29+0000\n"
+"PO-Revision-Date: 2020-07-14 14:51+0000\n"
 "Last-Translator: \n"
-"Language-Team: Polish\n"
+"Language-Team: Arabic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,17 +20,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Report-Msgid-Bugs-To: \n"
-"Language: pl_PL\n"
+"Language: ar\n"
 "X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "Prześlij nową animację"
+msgstr "قم بتحميل رسوم متحركة جديدة"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
-msgstr "Dodawanie nowej animacji"
+msgstr "أضف رسوم متحركة جديدة"
 
 #: includes/adminpanel.php:144
 msgid ""
@@ -40,141 +40,138 @@ msgid ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
 "</a>"
 msgstr ""
-"Prześlij plik . Plik OAM eksportowany przez <a href=\"http://tumult.com/hype?"
-"utm_source=wpplugin\">Tumult Hype</a> i shortcode zostaną wygenerowane, "
-"które można wstawić w postach i stron. <a href=\"https://forums.tumult."
-"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">"
-"Potrzebujesz pomocy?</a>"
+"تحميل ملف .OAM التي تصدرها <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">الإضطرابات الدعاية</a> وسيتم إنشاء الرمز القصير التي "
+"يمكنك إدراجها في وظائف وصفحات. <a href=\"https://forums.tumult.com/t/hype-"
+"animations-wordpress-plugin/11074\" target=\"_blank\">تحتاج مساعدة؟</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
-msgstr "Zarządzanie animacjami"
+msgstr "إدارة الرسوم المتحركة"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "Ostatnia aktualizacja pliku"
+msgstr "آخر تحديث للملف"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation"
-msgstr "Dodawanie kontenera wokół animacji"
+msgstr "أضف حاوية حول الرسوم المتحركة"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "Aktualizacji"
+msgstr "تحديث"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
-msgstr "Klasa CONTAINER CSS"
+msgstr "فئة CSS للحاوية"
 
 #: includes/adminpanel.php:285
 msgid "No data"
-msgstr "Brak danych"
+msgstr "لايوجد بيانات"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
-msgstr "Kopiuj kod"
+msgstr "رمز النسخ"
 
 #: includes/adminpanel.php:285
 msgid "Delete"
-msgstr "Usunąć"
+msgstr "حذف"
 
 #: includes/adminpanel.php:344
 msgid "Updated!"
-msgstr "Aktualizacja!"
+msgstr "محدث!"
 
 #: includes/adminpanel.php:351
 msgid "Error, please try again!"
-msgstr "Błąd, spróbuj ponownie!"
+msgstr "خطأ ، يرجى المحاولة مرة أخرى!"
 
 #: includes/adminpanel.php:358
 msgid "Update file"
-msgstr "Aktualizuj plik"
+msgstr "ملف التحديث"
 
 #: includes/adminpanel.php:374
 msgid "Processing..."
-msgstr "Przetwarzania..."
+msgstr "معالجة..."
 
 #: includes/adminpanel.php:375
 msgid "Search:"
-msgstr "Szukaj:"
+msgstr "بحث:"
 
 #: includes/adminpanel.php:376
 msgid "Show"
-msgstr "Pokaż"
+msgstr "تبين"
 
 #: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
-msgstr "Animacje"
+msgstr "الرسوم المتحركة"
 
 #: includes/adminpanel.php:377
 msgid "Showing"
-msgstr "Wyświetlono"
+msgstr "عرض"
 
 #: includes/adminpanel.php:377
 msgid "to"
-msgstr "do"
+msgstr "إلى"
 
 #: includes/adminpanel.php:377
 msgid "of"
-msgstr "z o.o."
+msgstr "من"
 
 #: includes/adminpanel.php:378
 msgid "No animations found."
-msgstr "Nie znaleziono animacji."
+msgstr "لم يتم العثور على رسوم متحركة."
 
 #: includes/adminpanel.php:379
 msgid "Loading..."
-msgstr "Ładowania..."
+msgstr "جار التحميل..."
 
 #: includes/adminpanel.php:380
 msgid "No animation has been found"
-msgstr "Nie znaleziono animacji"
+msgstr "لم يتم العثور على رسوم متحركة"
 
 #: includes/adminpanel.php:381
 msgid "No animation has been added"
-msgstr "Nie dodano animacji"
+msgstr "لم تتم إضافة رسوم متحركة"
 
 #: includes/adminpanel.php:383
 msgid "First"
-msgstr "Pierwszym"
+msgstr "أول"
 
 #: includes/adminpanel.php:384
 msgid "Previous"
-msgstr "Poprzednich"
+msgstr "السابق"
 
 #: includes/adminpanel.php:385
 msgid "Next"
-msgstr "Następnego"
+msgstr "التالى"
 
 #: includes/adminpanel.php:386
 msgid "Last"
-msgstr "Ostatnio"
+msgstr "الاخير"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
-msgstr "Wybieranie animacji"
+msgstr "اختر صورة متحركة"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "Wstawić"
+msgstr "إدراج"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
-msgstr "Lub prześlij nowy"
+msgstr "أو تحميل واحد جديد"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ""
-"Upuść. OAM lub kliknij tutaj, aby przesłać<br>(Maksymalny rozmiar wysyłania "
+msgstr "أفلت ملف OAM. أو انقر هنا للتحميل <br> (أقصى حجم للتحميل"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr ""
-"Wstaw poniższy krótki kod w miejscu, w którym chcesz wyświetlić animację"
+msgstr "أدخل الرمز القصير التالي حيث تريد عرض الرسم المتحرك"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hype Animacje"
+msgstr "Tumult Hype Animations"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -185,9 +182,9 @@ msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
-"Łatwo osadzać animacje Tumult Hype za pomocą shortcode do postów i stron."
+"يمكنك بسهولة تضمين رسوم متحركة Tumult Hype باستخدام رمز قصير في المنشورات "
+"والصفحات."
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr ""
-"<a href=\"https://tumult.com\" target=\"_blank\">Okręg wyborczy Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"

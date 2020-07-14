@@ -3,9 +3,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Hype Animations\n"
 "POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-14 14:53+0000\n"
+"PO-Revision-Date: 2020-07-14 14:49+0000\n"
 "Last-Translator: \n"
-"Language-Team: Japanese\n"
+"Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,17 +19,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Report-Msgid-Bugs-To: \n"
-"Language: ja\n"
+"Language: id_ID\n"
 "X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "新しいアニメーションをアップロード"
+msgstr "Unggah animasi baru"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
-msgstr "新しいアニメーションを追加"
+msgstr "Tambahkan animasi baru"
 
 #: includes/adminpanel.php:144
 msgid ""
@@ -39,138 +39,141 @@ msgid ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
 "</a>"
 msgstr ""
-" <a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult Hype</a>"
-"によってエクスポートされた.OAMファイルをアップロードすると、投稿やページに挿入できるショートコードが生成されます。 <a href=\"https:"
+"Unggah file .OAM yang diekspor oleh <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> dan sebuah kode pendek akan dibuat "
+"yang dapat Anda masukkan ke dalam tulisan dan halaman. <a href=\"https:"
 "//forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
-"target=\"_blank\">助けが必要？</a>"
+"target=\"_blank\">Butuh bantuan?</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
-msgstr "アニメーションを管理する"
+msgstr "Kelola animasi"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "最終ファイル更新"
+msgstr "Pembaruan file terakhir"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation"
-msgstr "アニメーションの周りにコンテナを追加します"
+msgstr "Tambahkan wadah di sekitar animasi"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "更新"
+msgstr "Memperbarui"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
-msgstr "コンテナCSSクラス"
+msgstr "Kelas kontainer CSS"
 
 #: includes/adminpanel.php:285
 msgid "No data"
-msgstr "データなし"
+msgstr "Tidak ada data"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
-msgstr "コードをコピー"
+msgstr "Salin Kode"
 
 #: includes/adminpanel.php:285
 msgid "Delete"
-msgstr "削除する"
+msgstr "Menghapus"
 
 #: includes/adminpanel.php:344
 msgid "Updated!"
-msgstr "更新しました！"
+msgstr "Diperbarui!"
 
 #: includes/adminpanel.php:351
 msgid "Error, please try again!"
-msgstr "エラー、もう一度やり直してください！"
+msgstr "Galat, silakan coba lagi!"
 
 #: includes/adminpanel.php:358
 msgid "Update file"
-msgstr "ファイルを更新"
+msgstr "Perbarui file"
 
 #: includes/adminpanel.php:374
 msgid "Processing..."
-msgstr "処理..."
+msgstr "Pengolahan..."
 
 #: includes/adminpanel.php:375
 msgid "Search:"
-msgstr "探す："
+msgstr "Cari:"
 
 #: includes/adminpanel.php:376
 msgid "Show"
-msgstr "公演"
+msgstr "Menunjukkan"
 
 #: includes/adminpanel.php:376 includes/adminpanel.php:377
 msgid "animations"
-msgstr "アニメーション"
+msgstr "animasi"
 
 #: includes/adminpanel.php:377
 msgid "Showing"
-msgstr "表示中"
+msgstr "Menunjukkan"
 
 #: includes/adminpanel.php:377
 msgid "to"
-msgstr "に"
+msgstr "untuk"
 
 #: includes/adminpanel.php:377
 msgid "of"
-msgstr "の"
+msgstr "dari"
 
 #: includes/adminpanel.php:378
 msgid "No animations found."
-msgstr "アニメーションは見つかりませんでした。"
+msgstr "Tidak ada animasi yang ditemukan."
 
 #: includes/adminpanel.php:379
 msgid "Loading..."
-msgstr "読み込んでいます..."
+msgstr "Memuat..."
 
 #: includes/adminpanel.php:380
 msgid "No animation has been found"
-msgstr "アニメーションは見つかりませんでした"
+msgstr "Tidak ada animasi yang ditemukan"
 
 #: includes/adminpanel.php:381
 msgid "No animation has been added"
-msgstr "アニメーションは追加されていません"
+msgstr "Tidak ada animasi yang ditambahkan"
 
 #: includes/adminpanel.php:383
 msgid "First"
-msgstr "最初"
+msgstr "Pertama"
 
 #: includes/adminpanel.php:384
 msgid "Previous"
-msgstr "前"
+msgstr "Sebelumnya"
 
 #: includes/adminpanel.php:385
 msgid "Next"
-msgstr "次"
+msgstr "Lanjut"
 
 #: includes/adminpanel.php:386
 msgid "Last"
-msgstr "最終"
+msgstr "Terakhir"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
-msgstr "アニメーションを選択"
+msgstr "Pilih animasi"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "インサート"
+msgstr "Memasukkan"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
-msgstr "または新しいものをアップロード"
+msgstr "Atau unggah yang baru"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ".OAMファイルをドロップするか、ここをクリックしてアップロードします<br>（最大アップロードサイズ"
+msgstr ""
+"Lepaskan file .OAM atau klik di sini untuk mengunggah Situs (Ukuran unggahan "
+"maksimum"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr "アニメーションを表示する場所に次のショートコードを挿入します"
+msgstr "Masukkan kode pendek berikut di mana Anda ingin menampilkan animasi"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hypeアニメーション"
+msgstr "Tumult Hype Animations"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -180,8 +183,10 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
-msgstr "ショートコードを使用してTumult Hypeアニメーションを投稿やページに簡単に埋め込むことができます。"
+msgstr ""
+"Sematkan animasi Tumult Hype Anda dengan mudah menggunakan kode pendek ke "
+"dalam posting dan halaman."
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Keributan</a>"
