@@ -1,26 +1,26 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-13 21:30+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-14 12:07-0400\n"
+"PO-Revision-Date: 2020-07-14 12:07-0400\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
+"Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Loco-Version: 2.4.0; wp-5.4.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
-"Report-Msgid-Bugs-To: \n"
-"Language: ko_KR\n"
-"X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
@@ -32,17 +32,24 @@ msgid "Add new animation"
 msgstr "새 애니메이션 추가"
 
 #: includes/adminpanel.php:144
+#, fuzzy
+#| msgid ""
+#| "Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
+#| "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+#| "which you can insert in posts and pages. <a href=\"https://forums.tumult."
+#| "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need "
+#| "help?</a>"
 msgid ""
-"Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
+"Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
-"which you can insert in posts and pages. <a href=\"https://forums.tumult."
-"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
-"</a>"
+"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
+"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"를 업로드합니다. <a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult 과대 "
-"광고에</a> 의해 내보낸 OAM 파일과 게시물과 페이지에 삽입 할 수있는 단축 코드가 생성됩니다. <a href=\"https:"
-"//forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
-"target=\"_blank\">도움이 필요하십니까?</a>"
+"를 업로드합니다. <a href=\"http://tumult.com/hype?utm_source=wpplugin"
+"\">Tumult 과대 광고에</a> 의해 내보낸 OAM 파일과 게시물과 페이지에 삽입 할 수"
+"있는 단축 코드가 생성됩니다. <a href=\"https://forums.tumult.com/t/hype-"
+"animations-wordpress-plugin/11074\" target=\"_blank\">도움이 필요하십니까?</"
+"a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
@@ -53,98 +60,100 @@ msgid "Last file update"
 msgstr "마지막 파일 업데이트"
 
 #: includes/adminpanel.php:282
-msgid "Add a container around the animation"
+#, fuzzy
+#| msgid "Add a container around the animation"
+msgid "Add a container around the animation:"
 msgstr "애니메이션 주위에 컨테이너 추가"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Update"
 msgstr "업데이트"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Container CSS class"
 msgstr "컨테이너 CSS 클래스"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "No data"
 msgstr "데이터 없음"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Copy Code"
 msgstr "복사 코드"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Delete"
 msgstr "삭제"
 
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:343
 msgid "Updated!"
 msgstr "업데이트!"
 
-#: includes/adminpanel.php:351
+#: includes/adminpanel.php:350
 msgid "Error, please try again!"
 msgstr "오류, 다시 시도하십시오!"
 
-#: includes/adminpanel.php:358
+#: includes/adminpanel.php:357
 msgid "Update file"
 msgstr "업데이트 파일"
 
-#: includes/adminpanel.php:374
+#: includes/adminpanel.php:373
 msgid "Processing..."
 msgstr "처리..."
 
-#: includes/adminpanel.php:375
+#: includes/adminpanel.php:374
 msgid "Search:"
 msgstr "검색:"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:375
 msgid "Show"
 msgstr "표시"
 
-#: includes/adminpanel.php:376 includes/adminpanel.php:377
+#: includes/adminpanel.php:375 includes/adminpanel.php:376
 msgid "animations"
 msgstr "애니메이션"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "Showing"
 msgstr "페이지"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "to"
 msgstr "받는 사람"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "of"
 msgstr "의"
 
-#: includes/adminpanel.php:378
+#: includes/adminpanel.php:377
 msgid "No animations found."
 msgstr "애니메이션을 찾을 수 없습니다."
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:378
 msgid "Loading..."
 msgstr "로드..."
 
-#: includes/adminpanel.php:380
+#: includes/adminpanel.php:379
 msgid "No animation has been found"
 msgstr "애니메이션이 발견되지 않았습니다."
 
-#: includes/adminpanel.php:381
+#: includes/adminpanel.php:380
 msgid "No animation has been added"
 msgstr "애니메이션이 추가되지 않았습니다."
 
-#: includes/adminpanel.php:383
+#: includes/adminpanel.php:382
 msgid "First"
 msgstr "첫 번째"
 
-#: includes/adminpanel.php:384
+#: includes/adminpanel.php:383
 msgid "Previous"
 msgstr "이전"
 
-#: includes/adminpanel.php:385
+#: includes/adminpanel.php:384
 msgid "Next"
 msgstr "다음"
 
-#: includes/adminpanel.php:386
+#: includes/adminpanel.php:385
 msgid "Last"
 msgstr "마지막"
 
@@ -160,13 +169,21 @@ msgstr "삽입"
 msgid "Or upload a new one"
 msgstr "또는 새 업로드"
 
-#: includes/tinymcetool.php:61 includes/tinymcetool.php:82
+#: includes/tinymcetool.php:61
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "드롭. OAM 파일 또는 업로드하려면 여기를 클릭하십시오<br>(최대 업로드 크기 "
+msgstr ""
+"드롭. OAM 파일 또는 업로드하려면 여기를 클릭하십시오<br>(최대 업로드 크기 "
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "애니메이션을 표시하려는 다음 단축코드를 삽입합니다."
+
+#: includes/tinymcetool.php:82
+#, fuzzy
+#| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
+msgstr ""
+"드롭. OAM 파일 또는 업로드하려면 여기를 클릭하십시오<br>(최대 업로드 크기 "
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
@@ -180,8 +197,10 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
-msgstr "단축코드를 사용하여 게시물과 페이지에 투무 과대 광고 애니메이션을 쉽게 포함할 수 있습니다."
+msgstr ""
+"단축코드를 사용하여 게시물과 페이지에 투무 과대 광고 애니메이션을 쉽게 포함"
+"할 수 있습니다."
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"https://tumult.com\" target=\"_blank\">격동</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"

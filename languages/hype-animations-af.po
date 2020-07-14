@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-13 21:25+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-14 12:09-0400\n"
+"PO-Revision-Date: 2020-07-14 12:09-0400\n"
 "Last-Translator: \n"
 "Language-Team: Afrikaans\n"
 "Language: af\n"
@@ -10,17 +11,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Loco https://localise.biz/\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Loco-Version: 2.4.0; wp-5.4.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
-"Report-Msgid-Bugs-To: \n"
-"X-Loco-Version: 2.4.0; wp-5.4.2"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
@@ -32,18 +32,23 @@ msgid "Add new animation"
 msgstr "Voeg nuwe animasie toe"
 
 #: includes/adminpanel.php:144
+#, fuzzy
+#| msgid ""
+#| "Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
+#| "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+#| "which you can insert in posts and pages. <a href=\"https://forums.tumult."
+#| "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need "
+#| "help?</a>"
 msgid ""
-"Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
+"Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
-"which you can insert in posts and pages. <a href=\"https://forums.tumult."
-"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
-"</a>"
+"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
+"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"Laai ’n .OAM-lêer deur <a href=\"http://tumult.com/hype?"
-"utm_source=wpplugin\">Tumult Hype</a> uitgestuur op en ’n kortkode wat u in "
-"plasings en blaaie kan invoeg, sal geskep word. <a href=\"https://forums."
-"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Kort "
-"hulp?</a>"
+"Laai ’n .OAM-lêer deur <a href=\"http://tumult.com/hype?utm_source=wpplugin"
+"\">Tumult Hype</a> uitgestuur op en ’n kortkode wat u in plasings en blaaie "
+"kan invoeg, sal geskep word. <a href=\"https://forums.tumult.com/t/hype-"
+"animations-wordpress-plugin/11074\" target=\"_blank\">Kort hulp?</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
@@ -54,98 +59,100 @@ msgid "Last file update"
 msgstr "Laaste lêerbywerking"
 
 #: includes/adminpanel.php:282
-msgid "Add a container around the animation"
+#, fuzzy
+#| msgid "Add a container around the animation"
+msgid "Add a container around the animation:"
 msgstr "Voeg ’n houer om die animasie toe"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Update"
 msgstr "Werk by"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Container CSS class"
 msgstr "Houer-CSS-klas"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "No data"
 msgstr "Geen data"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Copy Code"
 msgstr "Kopieer Kode"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Delete"
 msgstr "Skrap"
 
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:343
 msgid "Updated!"
 msgstr "Bygewerk!"
 
-#: includes/adminpanel.php:351
+#: includes/adminpanel.php:350
 msgid "Error, please try again!"
 msgstr "Fout, probeer asb. weer!"
 
-#: includes/adminpanel.php:358
+#: includes/adminpanel.php:357
 msgid "Update file"
 msgstr "Werk lêer by"
 
-#: includes/adminpanel.php:374
+#: includes/adminpanel.php:373
 msgid "Processing..."
 msgstr "Verwerk tans…"
 
-#: includes/adminpanel.php:375
+#: includes/adminpanel.php:374
 msgid "Search:"
 msgstr "Soek:"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:375
 msgid "Show"
 msgstr "Toon"
 
-#: includes/adminpanel.php:376 includes/adminpanel.php:377
+#: includes/adminpanel.php:375 includes/adminpanel.php:376
 msgid "animations"
 msgstr "animasies"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "Showing"
 msgstr "Toon tans"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "to"
 msgstr "aan"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "of"
 msgstr "van"
 
-#: includes/adminpanel.php:378
+#: includes/adminpanel.php:377
 msgid "No animations found."
 msgstr "Geen animasies gevind."
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:378
 msgid "Loading..."
 msgstr "Laai tans…"
 
-#: includes/adminpanel.php:380
+#: includes/adminpanel.php:379
 msgid "No animation has been found"
 msgstr "Geen animasie is gevind"
 
-#: includes/adminpanel.php:381
+#: includes/adminpanel.php:380
 msgid "No animation has been added"
 msgstr "Geen animasie is toegevoeg"
 
-#: includes/adminpanel.php:383
+#: includes/adminpanel.php:382
 msgid "First"
 msgstr "Eerste"
 
-#: includes/adminpanel.php:384
+#: includes/adminpanel.php:383
 msgid "Previous"
 msgstr "Vorige"
 
-#: includes/adminpanel.php:385
+#: includes/adminpanel.php:384
 msgid "Next"
 msgstr "Volgende"
 
-#: includes/adminpanel.php:386
+#: includes/adminpanel.php:385
 msgid "Last"
 msgstr "Laaste"
 
@@ -161,7 +168,7 @@ msgstr "Voeg in"
 msgid "Or upload a new one"
 msgstr "Of laai ’n nuwe een op"
 
-#: includes/tinymcetool.php:61 includes/tinymcetool.php:82
+#: includes/tinymcetool.php:61
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "Drop. OAM lêer of klik hier om op te laai<br> (Maksimum upload grootte "
@@ -170,9 +177,16 @@ msgstr ""
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Voeg die volgende kortkode waar u die animasie wil laat vertoon in"
 
+#: includes/tinymcetool.php:82
+#, fuzzy
+#| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
+msgstr ""
+"Drop. OAM lêer of klik hier om op te laai<br> (Maksimum upload grootte "
+
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hype-animasies"
+msgstr "Tumult Hype Animations"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"

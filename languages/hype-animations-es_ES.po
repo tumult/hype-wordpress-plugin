@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2020-07-13 16:29-0400\n"
-"PO-Revision-Date: 2020-07-13 16:29-0400\n"
+"POT-Creation-Date: 2020-07-14 12:08-0400\n"
+"PO-Revision-Date: 2020-07-14 12:08-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -30,8 +30,15 @@ msgid "Add new animation"
 msgstr "Añadir nueva animación"
 
 #: includes/adminpanel.php:144
+#, fuzzy
+#| msgid ""
+#| "Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
+#| "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+#| "which you can insert in posts and pages. <a href=\"https://forums.tumult."
+#| "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need "
+#| "help?</a>"
 msgid ""
-"Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
+"Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
 "which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
 "t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
@@ -51,98 +58,100 @@ msgid "Last file update"
 msgstr "Última actualización del archivo"
 
 #: includes/adminpanel.php:282
-msgid "Add a container around the animation"
+#, fuzzy
+#| msgid "Add a container around the animation"
+msgid "Add a container around the animation:"
 msgstr "Añadir un contenedor alrededor de la animación"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Update"
 msgstr "Actualizar"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Container CSS class"
 msgstr "Clase CSS de contenedores"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "No data"
 msgstr "Sin datos"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Copy Code"
 msgstr "Código copia"
 
-#: includes/adminpanel.php:285
+#: includes/adminpanel.php:284
 msgid "Delete"
 msgstr "Eliminar"
 
-#: includes/adminpanel.php:344
+#: includes/adminpanel.php:343
 msgid "Updated!"
 msgstr "¡Actualizado!"
 
-#: includes/adminpanel.php:351
+#: includes/adminpanel.php:350
 msgid "Error, please try again!"
 msgstr "Error, por favor intente de nuevo!"
 
-#: includes/adminpanel.php:358
+#: includes/adminpanel.php:357
 msgid "Update file"
 msgstr "Actualizar archivo"
 
-#: includes/adminpanel.php:374
+#: includes/adminpanel.php:373
 msgid "Processing..."
 msgstr "Procesando..."
 
-#: includes/adminpanel.php:375
+#: includes/adminpanel.php:374
 msgid "Search:"
 msgstr "Buscar:"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:375
 msgid "Show"
 msgstr "Mostrar"
 
-#: includes/adminpanel.php:376 includes/adminpanel.php:377
+#: includes/adminpanel.php:375 includes/adminpanel.php:376
 msgid "animations"
 msgstr "animaciones"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "Showing"
 msgstr "Demostración"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "to"
 msgstr "a"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:376
 msgid "of"
 msgstr "de"
 
-#: includes/adminpanel.php:378
+#: includes/adminpanel.php:377
 msgid "No animations found."
 msgstr "No se encontraron animaciones."
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:378
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: includes/adminpanel.php:380
+#: includes/adminpanel.php:379
 msgid "No animation has been found"
 msgstr "No se encontraron animaciones"
 
-#: includes/adminpanel.php:381
+#: includes/adminpanel.php:380
 msgid "No animation has been added"
 msgstr "Sin animación se ha añadido"
 
-#: includes/adminpanel.php:383
+#: includes/adminpanel.php:382
 msgid "First"
 msgstr "Primero"
 
-#: includes/adminpanel.php:384
+#: includes/adminpanel.php:383
 msgid "Previous"
 msgstr "Anterior"
 
-#: includes/adminpanel.php:385
+#: includes/adminpanel.php:384
 msgid "Next"
 msgstr "Próximo"
 
-#: includes/adminpanel.php:386
+#: includes/adminpanel.php:385
 msgid "Last"
 msgstr "Último"
 

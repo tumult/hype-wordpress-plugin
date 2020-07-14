@@ -3,24 +3,24 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: Hype Animations\n"
 "POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-14 14:53+0000\n"
+"PO-Revision-Date: 2020-07-14 12:07-0400\n"
 "Last-Translator: \n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "Report-Msgid-Bugs-To: \n"
 "Language: ja\n"
-"X-Loco-Version: 2.4.0; wp-5.4.2"
+"X-Loco-Version: 2.4.0; wp-5.4.2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
@@ -39,10 +39,10 @@ msgid ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?"
 "</a>"
 msgstr ""
-" <a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult Hype</a>"
-"によってエクスポートされた.OAMファイルをアップロードすると、投稿やページに挿入できるショートコードが生成されます。 <a href=\"https:"
-"//forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
-"target=\"_blank\">助けが必要？</a>"
+" <a href=\"http://tumult.com/hype?utm_source=wpplugin\">Tumult Hype</a>に"
+"よってエクスポートされた.OAMファイルをアップロードすると、投稿やページに挿入"
+"できるショートコードが生成されます。 <a href=\"https://forums.tumult.com/t/"
+"hype-animations-wordpress-plugin/11074\" target=\"_blank\">助けが必要？</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
@@ -162,7 +162,9 @@ msgstr "または新しいものをアップロード"
 
 #: includes/tinymcetool.php:61 includes/tinymcetool.php:82
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ".OAMファイルをドロップするか、ここをクリックしてアップロードします<br>（最大アップロードサイズ"
+msgstr ""
+".OAMファイルをドロップするか、ここをクリックしてアップロードします<br>（最大"
+"アップロードサイズ"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
@@ -170,7 +172,7 @@ msgstr "アニメーションを表示する場所に次のショートコード
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hypeアニメーション"
+msgstr "Tumult Hype Animations"
 
 #. Plugin URI of the plugin/theme
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
@@ -180,7 +182,9 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
-msgstr "ショートコードを使用してTumult Hypeアニメーションを投稿やページに簡単に埋め込むことができます。"
+msgstr ""
+"ショートコードを使用してTumult Hypeアニメーションを投稿やページに簡単に埋め"
+"込むことができます。"
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
