@@ -1,0 +1,191 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Project-Id-Version: Hype Animations\n"
+"POT-Creation-Date: 2019-05-22 16:10-0400\n"
+"PO-Revision-Date: 2020-07-24 13:37+0200\n"
+"Last-Translator: \n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: hypeanimations.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: de_DE\n"
+"X-Loco-Version: 2.4.0; wp-5.4.2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/adminpanel.php:113 includes/adminpanel.php:145
+#: includes/tinymcetool.php:23
+msgid "Upload new animation"
+msgstr "Neue Animation hochladen"
+
+#: includes/adminpanel.php:142
+msgid "Add new animation"
+msgstr "Neue Animation hinzufügen"
+
+#: includes/adminpanel.php:144
+msgid ""
+"Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
+"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
+msgstr ""
+"Laden Sie eine durch <a href=„http://tumult.com/hype?"
+"utm_source=wpplugin“>Tumult Hype</a> exportierte OAM-Datei hoch. Eine "
+"minimierte Kodierung wird generiert, die Sie in Beiträge und Seiten einfügen "
+"können. <a href=\"https://forums.tumult.com/t/hype-animations-wordpress-"
+"plugin/11074\" target=\"_blank\">Benötigen Sie Hilfe?</a>"
+
+#: includes/adminpanel.php:268
+msgid "Manage animations"
+msgstr "Verwalten von Animationen"
+
+#: includes/adminpanel.php:275
+msgid "Last file update"
+msgstr "Letzte Dateiaktualisierung"
+
+#: includes/adminpanel.php:282
+msgid "Add a container around the animation"
+msgstr "Hinzufügen eines Containers um die Animation"
+
+#: includes/adminpanel.php:285
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: includes/adminpanel.php:285
+msgid "Container CSS class"
+msgstr "Container CSS-Klasse"
+
+#: includes/adminpanel.php:285
+msgid "No data"
+msgstr "Keine Daten"
+
+#: includes/adminpanel.php:285
+msgid "Copy Code"
+msgstr "Code kopieren"
+
+#: includes/adminpanel.php:285
+msgid "Delete"
+msgstr "Löschen"
+
+#: includes/adminpanel.php:344
+msgid "Updated!"
+msgstr "Aktualisiert!"
+
+#: includes/adminpanel.php:351
+msgid "Error, please try again!"
+msgstr "Fehler, bitte versuchen Sie es erneut!"
+
+#: includes/adminpanel.php:358
+msgid "Update file"
+msgstr "Aktualisierungsdatei"
+
+#: includes/adminpanel.php:374
+msgid "Processing..."
+msgstr "Verarbeitung..."
+
+#: includes/adminpanel.php:375
+msgid "Search:"
+msgstr "Suche:"
+
+#: includes/adminpanel.php:376
+msgid "Show"
+msgstr "Zeigen"
+
+#: includes/adminpanel.php:376 includes/adminpanel.php:377
+msgid "animations"
+msgstr "Animationen"
+
+#: includes/adminpanel.php:377
+msgid "Showing"
+msgstr "Zeigen"
+
+#: includes/adminpanel.php:377
+msgid "to"
+msgstr "An"
+
+#: includes/adminpanel.php:377
+msgid "of"
+msgstr "von"
+
+#: includes/adminpanel.php:378
+msgid "No animations found."
+msgstr "Es wurden keine Animationen gefunden."
+
+#: includes/adminpanel.php:379
+msgid "Loading..."
+msgstr "Laden..."
+
+#: includes/adminpanel.php:380
+msgid "No animation has been found"
+msgstr "Es wurde keine Animation gefunden"
+
+#: includes/adminpanel.php:381
+msgid "No animation has been added"
+msgstr "Es wurde keine Animation hinzugefügt"
+
+#: includes/adminpanel.php:383
+msgid "First"
+msgstr "Ersten"
+
+#: includes/adminpanel.php:384
+msgid "Previous"
+msgstr "Vorherigen"
+
+#: includes/adminpanel.php:385
+msgid "Next"
+msgstr "Nächster"
+
+#: includes/adminpanel.php:386
+msgid "Last"
+msgstr "Letzte"
+
+#: includes/tinymcetool.php:20
+msgid "Choose an animation"
+msgstr "Wählen Sie eine Animation"
+
+#: includes/tinymcetool.php:37
+msgid "Insert"
+msgstr "Einfügen"
+
+#: includes/tinymcetool.php:39
+msgid "Or upload a new one"
+msgstr "Oder laden Sie eine neue hoch"
+
+#: includes/tinymcetool.php:61 includes/tinymcetool.php:82
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+msgstr "Drop. OAM-Datei oder klicken Sie hier, um <br>(Maximale Upload-Größe) "
+
+#: includes/tinymcetool.php:69
+msgid "Insert the following shortcode where you want to display the animation"
+msgstr ""
+"Fügen Sie den folgenden Shortcode an der Stelle ein, an der sie die "
+"Animation anzeigen möchten"
+
+#. Plugin Name of the plugin/theme
+msgid "Tumult Hype Animations"
+msgstr "Tumult Hype Animations"
+
+#. Plugin URI of the plugin/theme
+msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+
+#. Description of the plugin/theme
+msgid ""
+"Easily embed your Tumult Hype animations using a shortcode into posts and "
+"pages."
+msgstr ""
+"Betten Sie Ihre Tumult Hype-Animationen ganz einfach mit einem minimierte "
+"Kodierung in Beiträge und Seiten ein."
+
+#. Author URI of the plugin/theme
+msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
