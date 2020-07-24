@@ -3,13 +3,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "Project-Id-Version: Hype Animations\n"
 "POT-Creation-Date: 2019-05-22 16:10-0400\n"
-"PO-Revision-Date: 2020-07-14 12:08-0400\n"
+"PO-Revision-Date: 2020-07-24 13:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "Neue Animation hochladen"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
-msgstr "Hinzufügen neuer Animationen"
+msgstr "Neue Animation hinzufügen"
 
 #: includes/adminpanel.php:144
 msgid ""
@@ -38,11 +38,11 @@ msgid ""
 "which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
 "t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"Laden Sie eine hoch. OAM-Datei exportiert von <a href=\"http://tumult.com/"
-"hype?utm_source=wpplugin\">Tumult Hype</a> und ein Shortcode wird generiert, "
-"die Sie in Beiträge und Seiten einfügen können. <a href=\"https://forums."
-"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank"
-"\">Benötigen Sie Hilfe?</a>"
+"Laden Sie eine durch <a href=„http://tumult.com/hype?"
+"utm_source=wpplugin“>Tumult Hype</a> exportierte OAM-Datei hoch. Eine "
+"minimierte Kodierung wird generiert, die Sie in Beiträge und Seiten einfügen "
+"können. <a href=\"https://forums.tumult.com/t/hype-animations-wordpress-"
+"plugin/11074\" target=\"_blank\">Benötigen Sie Hilfe?</a>"
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
@@ -58,7 +58,7 @@ msgstr "Hinzufügen eines Containers um die Animation"
 
 #: includes/adminpanel.php:285
 msgid "Update"
-msgstr "Update"
+msgstr "Aktualisieren"
 
 #: includes/adminpanel.php:285
 msgid "Container CSS class"
@@ -70,7 +70,7 @@ msgstr "Keine Daten"
 
 #: includes/adminpanel.php:285
 msgid "Copy Code"
-msgstr "Kopiercode"
+msgstr "Code kopieren"
 
 #: includes/adminpanel.php:285
 msgid "Delete"
@@ -78,7 +78,7 @@ msgstr "Löschen"
 
 #: includes/adminpanel.php:344
 msgid "Updated!"
-msgstr "Aktualisierte!"
+msgstr "Aktualisiert!"
 
 #: includes/adminpanel.php:351
 msgid "Error, please try again!"
@@ -183,8 +183,8 @@ msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
-"Betten Sie Ihre Tumult Hype-Animationen ganz einfach mit einem Shortcode in "
-"Beiträge und Seiten ein."
+"Betten Sie Ihre Tumult Hype-Animationen ganz einfach mit einem minimierte "
+"Kodierung in Beiträge und Seiten ein."
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
