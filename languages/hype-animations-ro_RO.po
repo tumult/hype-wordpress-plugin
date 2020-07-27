@@ -1,0 +1,196 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hype Animations\n"
+"POT-Creation-Date: 2020-07-27 11:36-0400\n"
+"PO-Revision-Date: 2020-07-27 11:36-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
+"%100<=19) ? 1 : 2);\n"
+"X-Generator: Poedit 2.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: hypeanimations.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: includes/adminpanel.php:113 includes/adminpanel.php:145
+#: includes/tinymcetool.php:23
+msgid "Upload new animation"
+msgstr "Încarcă o animație nouă"
+
+#: includes/adminpanel.php:142
+msgid "Add new animation"
+msgstr "Adăugare o animație nouă"
+
+#: includes/adminpanel.php:144
+msgid ""
+"Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
+"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
+msgstr ""
+"Încărcați un . OAM fișier exportat de <a href=\"https://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> și un shortcode vor fi generat, pe "
+"care ulterior îl puteți insera în articole și pagini. <a href=\"https://"
+"forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank"
+"\">Ai nevoie de ajutor?</a>"
+
+#: includes/adminpanel.php:268
+msgid "Manage animations"
+msgstr "Gestionează animațiile"
+
+#: includes/adminpanel.php:275
+msgid "Last file update"
+msgstr "Ultima actualizare a fișierului"
+
+#: includes/adminpanel.php:282
+msgid "Add a container around the animation:"
+msgstr "Adăugați un container în jurul animației:"
+
+#: includes/adminpanel.php:284
+msgid "Update"
+msgstr "Actualizează"
+
+#: includes/adminpanel.php:284
+msgid "Container CSS class"
+msgstr "Container Clasă  CSS"
+
+#: includes/adminpanel.php:284
+msgid "No data"
+msgstr "Nu există date"
+
+#: includes/adminpanel.php:284
+msgid "Copy Code"
+msgstr "Copiază Cod"
+
+#: includes/adminpanel.php:284
+msgid "Delete"
+msgstr "Șterge"
+
+#: includes/adminpanel.php:343
+msgid "Updated!"
+msgstr "Actualizat!"
+
+#: includes/adminpanel.php:350
+msgid "Error, please try again!"
+msgstr "Eroare, te rugăm să încerci din nou!"
+
+#: includes/adminpanel.php:357
+msgid "Update file"
+msgstr "Actualizează fișierul"
+
+#: includes/adminpanel.php:373
+msgid "Processing..."
+msgstr "Se procesează…"
+
+#: includes/adminpanel.php:374
+msgid "Search:"
+msgstr "Caută:"
+
+#: includes/adminpanel.php:375
+msgid "Show"
+msgstr "Arată"
+
+#: includes/adminpanel.php:375 includes/adminpanel.php:376
+msgid "animations"
+msgstr "animații"
+
+#: includes/adminpanel.php:376
+msgid "Showing"
+msgstr "Arată"
+
+#: includes/adminpanel.php:376
+msgid "to"
+msgstr "la"
+
+#: includes/adminpanel.php:376
+msgid "of"
+msgstr "din"
+
+#: includes/adminpanel.php:377
+msgid "No animations found."
+msgstr "Nu a fost găsită nicio animație."
+
+#: includes/adminpanel.php:378
+msgid "Loading..."
+msgstr "Se încarcă…"
+
+#: includes/adminpanel.php:379
+msgid "No animation has been found"
+msgstr "Nu a fost găsită nicio animație"
+
+#: includes/adminpanel.php:380
+msgid "No animation has been added"
+msgstr "Nu a fost adăugată nicio animație"
+
+#: includes/adminpanel.php:382
+msgid "First"
+msgstr "Primele"
+
+#: includes/adminpanel.php:383
+msgid "Previous"
+msgstr "Anterior"
+
+#: includes/adminpanel.php:384
+msgid "Next"
+msgstr "Următor"
+
+#: includes/adminpanel.php:385
+msgid "Last"
+msgstr "Ultimele"
+
+#: includes/tinymcetool.php:20
+msgid "Choose an animation"
+msgstr "Alege o animație"
+
+#: includes/tinymcetool.php:37
+msgid "Insert"
+msgstr "Introdu"
+
+#: includes/tinymcetool.php:39
+msgid "Or upload a new one"
+msgstr "Sau încarcă una nouă"
+
+#: includes/tinymcetool.php:61
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+msgstr ""
+"Trage un fișier .OAM aici sau încarcă unul nou<br>(Dimensiunea maximă a "
+"fișierului "
+
+#: includes/tinymcetool.php:69
+msgid "Insert the following shortcode where you want to display the animation"
+msgstr "Introduceți următorul shortcode unde doriți să afișați animația"
+
+#: includes/tinymcetool.php:82
+msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
+msgstr ""
+"Trage un fișier .OAM aici sau încarcă unul nou<br>(Dimensiunea maximă a "
+"fișierului "
+
+#. Plugin Name of the plugin/theme
+msgid "Tumult Hype Animations"
+msgstr "Animații Tumult Hype"
+
+#. Plugin URI of the plugin/theme
+msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+
+#. Description of the plugin/theme
+msgid ""
+"Easily embed your Tumult Hype animations using a shortcode into posts and "
+"pages."
+msgstr ""
+"Încorporați cu ușurință animațiile dvs. Tumult Hype folosind un shortcode în "
+"postări și pagini."
+
+#. Author URI of the plugin/theme
+msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=“https://tumult.com” target=“_blank”>Tumult</a>"
