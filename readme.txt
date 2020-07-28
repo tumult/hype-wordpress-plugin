@@ -28,15 +28,12 @@ This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.o
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
 You may also use the Hype Animations button on the post and page editor.
- 
-
-* **Français** : Ouvrez la section Hype Animations dans le tableau de bord Admin et téléchargez votre animation exportée au format .OAM (ne pas exporter avec des espaces ou des caractères étrangers dans votre nom d'exportation). Dans Tumult Hype, choisissez Fichier > Exporter en HTML5 > OAM. Le plugin va traiter votre fichier et générer un shortcode. Ensuite, insérez le shortcode. Vous pouvez également utiliser le bouton Hype Animations sur la page d'édition de post.
 
 
 == Changelog ==
 
-= 1.9 = 
-* Translate into Spanish (Mexico, Spain), Chinese, German, Japanese, Italian and Polish
+= 1.9.0 = 
+* Translate into Spanish (Mexico, Spain), Chinese, Portuguese, Arabic, German & Dutch (Thanks Bendora), Japanese, Italian, Romanian (Thanks ionutilie)
 * Update Table sorting + styling
 
 = 1.8.2 = 
