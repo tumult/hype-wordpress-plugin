@@ -136,7 +136,7 @@ function hypeanimations_panel() {
 	global $hypeanimations_table_name;
 	$upload_dir = wp_upload_dir();
 	$anims_dir=$upload_dir['basedir'].'/hypeanimations/';
-	echo '<br><h1>Tumult Hype Animations (version '.$version.')</h1>
+	echo '<br><h1>Tumult Hype Animations (v'.$version.')</h1>
 	<p>&nbsp;</p>
 	</div>
 	<h2>'.__( 'Add new animation' , 'hype-animations' ).'</h2>
@@ -281,7 +281,7 @@ function hypeanimations_panel() {
 		foreach( $result as $results ) {
 			echo '<tr><td>'.$results->nom.'</td><td><input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;'.$results->id.'&quot;]"></input></td><td><div class="optionleft">'.__( 'Add a container around the animation:' , 'hype-animations' ).'</div><div class="optionright"> <select class="hypeanimations_container" name="container">
 <option value="div" '.($results->container=='div' ? 'selected' : '').'>&lt;div&gt;</option>
-<option value="iframe" '.($results->container=='iframe' ? 'selected' : '').'>&lt;iframe&gt;</option> </select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"></div> <div class="optionleft containinput" '.($results->container=='none' ? 'style="display:none;" ' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).':</div> <div class="optionright"><input style="width: 100px;" onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="'.$results->containerclass.'"></div></td> <td style="font-size: 80%;">'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('Y/m/d',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
+<option value="iframe" '.($results->container=='iframe' ? 'selected' : '').'>&lt;iframe&gt;</option> </select> <input type="button" value="'.__( 'Update' , 'hype-animations' ).'" class="updatecontainer" data-id="'.$results->id.'"><div '.($results->container=='none' ? 'style="display:none;"' : '').'>'.__( 'Container CSS class' , 'hype-animations' ).': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="'.$results->containerclass.'"></div></td><td>'.($results->updated==0 ? '<em>'.__( 'No data' , 'hype-animations' ).'</em>' : date('Y/m/d',$results->updated).'<br>'.date('H:i:s',$results->updated)).'</td><td> <a href="javascript:void(0)" id="'.$results->id.'" class="animcopy">'.__( 'Copy Code' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&update='.$results->id.'" class="animupdate" data-id="'.$results->id.'">'.__( 'Update' , 'hype-animations' ).'</a> <a href="admin.php?page=hypeanimations_panel&delete='.$results->id.'" class="animdelete">'.__( 'Delete' , 'hype-animations' ).'</a></td></tr>';
 		}
 	echo '</tbody>
 	</table>

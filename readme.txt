@@ -32,6 +32,9 @@ You may also use the Hype Animations button on the post and page editor.
 
 == Changelog ==
 
+= 1.9.1 =
+* Fixes issue with CSS classes not saving
+
 = 1.9.0 = 
 * Translate into Spanish (Mexico, Spain), Chinese, Portuguese, Arabic, German & Dutch (Thanks Bendora), Japanese, Italian, Romanian (Thanks ionutilie)
 * Update Table sorting + styling

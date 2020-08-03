@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-14 12:08-0400\n"
-"PO-Revision-Date: 2020-07-14 12:08-0400\n"
+"POT-Creation-Date: 2020-08-03 16:14-0400\n"
+"PO-Revision-Date: 2020-08-03 16:14-0400\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Mexico)\n"
 "Language: es_MX\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -60,10 +60,8 @@ msgid "Last file update"
 msgstr "Ultima actualización de archivos"
 
 #: includes/adminpanel.php:282
-#, fuzzy
-#| msgid "Add a container around the animation"
 msgid "Add a container around the animation:"
-msgstr "Agregue un contenedor alrededor de la animación"
+msgstr "Agregue un contenedor alrededor de la animación:"
 
 #: includes/adminpanel.php:284
 msgid "Update"
@@ -119,11 +117,11 @@ msgstr "Mostrando"
 
 #: includes/adminpanel.php:376
 msgid "to"
-msgstr "Para"
+msgstr "para"
 
 #: includes/adminpanel.php:376
 msgid "of"
-msgstr "De"
+msgstr "de"
 
 #: includes/adminpanel.php:377
 msgid "No animations found."
@@ -151,7 +149,7 @@ msgstr "Anterior"
 
 #: includes/adminpanel.php:384
 msgid "Next"
-msgstr "próximo"
+msgstr "Próximo"
 
 #: includes/adminpanel.php:385
 msgid "Last"
