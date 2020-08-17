@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-03 16:13-0400\n"
-"PO-Revision-Date: 2020-08-03 16:13-0400\n"
+"PO-Revision-Date: 2020-08-15 12:33+0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 1.8.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: includes/adminpanel.php:113 includes/adminpanel.php:145
 #: includes/tinymcetool.php:23
 msgid "Upload new animation"
-msgstr "上载新动画"
+msgstr "上传新动画"
 
 #: includes/adminpanel.php:142
 msgid "Add new animation"
@@ -38,8 +38,8 @@ msgid ""
 "which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
 "t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"上载由<a href=\"https://tumult.com/hype?utm_source=wpplugin\">Tumult Hype</a>"
-"导出的.OAM文件，将生成一个简码，您可以将其插入帖子和页面中。 <a href="
+"上传由<a href=\"https://tumult.com/hype?utm_source=wpplugin\">Tumult Hype</a>"
+"导出的.OAM文件，将生成一个简码，您可以将其插入文章和页面中。 <a href="
 "\"https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
 "target=\"_blank\">需要帮忙？</a>"
 
@@ -49,17 +49,15 @@ msgstr "管理动画"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
-msgstr "最后文件更新"
+msgstr "最近文件更新"
 
 #: includes/adminpanel.php:282
-#, fuzzy
-#| msgid "Add a container around the animation"
 msgid "Add a container around the animation:"
-msgstr "在动画周围添加一个容器"
+msgstr "给动画添加一个容器"
 
 #: includes/adminpanel.php:284
 msgid "Update"
-msgstr "更新资料"
+msgstr "更新"
 
 #: includes/adminpanel.php:284
 msgid "Container CSS class"
@@ -87,7 +85,7 @@ msgstr "错误，请重试！"
 
 #: includes/adminpanel.php:357
 msgid "Update file"
-msgstr "更新档案"
+msgstr "更新文件"
 
 #: includes/adminpanel.php:373
 msgid "Processing..."
@@ -99,7 +97,7 @@ msgstr "搜索："
 
 #: includes/adminpanel.php:375
 msgid "Show"
-msgstr "表演"
+msgstr "显示"
 
 #: includes/adminpanel.php:375 includes/adminpanel.php:376
 msgid "animations"
@@ -131,23 +129,23 @@ msgstr "找不到动画"
 
 #: includes/adminpanel.php:380
 msgid "No animation has been added"
-msgstr "没有添加动画"
+msgstr "动画未被添加"
 
 #: includes/adminpanel.php:382
 msgid "First"
-msgstr "第一"
+msgstr "首页"
 
 #: includes/adminpanel.php:383
 msgid "Previous"
-msgstr "以前"
+msgstr "上"
 
 #: includes/adminpanel.php:384
 msgid "Next"
-msgstr "下一个"
+msgstr "下"
 
 #: includes/adminpanel.php:385
 msgid "Last"
-msgstr "持续"
+msgstr "末页"
 
 #: includes/tinymcetool.php:20
 msgid "Choose an animation"
@@ -155,7 +153,7 @@ msgstr "选择动画"
 
 #: includes/tinymcetool.php:37
 msgid "Insert"
-msgstr "插"
+msgstr "插入"
 
 #: includes/tinymcetool.php:39
 msgid "Or upload a new one"
@@ -163,17 +161,15 @@ msgstr "或上传一个新的"
 
 #: includes/tinymcetool.php:61
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "删除.OAM文件或单击此处上传<br>（最大上传大小"
+msgstr "拖拽.OAM文件或单击此处上传<br>（最大上传文件大小"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "在要显示动画的位置插入以下短代码"
 
 #: includes/tinymcetool.php:82
-#, fuzzy
-#| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "删除.OAM文件或单击此处上传<br>（最大上传大小"
+msgstr "拖拽.OAM文件或单击此处上传<br>（最大上传文件大小"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
@@ -191,4 +187,4 @@ msgstr "使用简码将您的Tumult Hype动画轻松嵌入到帖子和页面中�
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"https://tumult.com\" target=\"_blank\">骚动</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\"> Tumult </a>"
