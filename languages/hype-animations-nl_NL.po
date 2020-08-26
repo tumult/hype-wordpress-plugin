@@ -46,7 +46,7 @@ msgstr ""
 
 #: includes/adminpanel.php:268
 msgid "Manage animations"
-msgstr "Beheer animaties"
+msgstr "Animaties beheren"
 
 #: includes/adminpanel.php:275
 msgid "Last file update"
@@ -54,7 +54,7 @@ msgstr "Laatste bestandsupdate"
 
 #: includes/adminpanel.php:282
 msgid "Add a container around the animation:"
-msgstr "Voeg een container toe rond de animatie:"
+msgstr "Voeg een container om de animatie toe:"
 
 #: includes/adminpanel.php:284
 msgid "Update"
@@ -142,7 +142,7 @@ msgstr "Vorige"
 
 #: includes/adminpanel.php:384
 msgid "Next"
-msgstr "De volgende"
+msgstr "Volgende"
 
 #: includes/adminpanel.php:385
 msgid "Last"
@@ -163,17 +163,17 @@ msgstr "Of upload een nieuwe"
 #: includes/tinymcetool.php:61
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
-"Zet het .OAM-bestand neer of klik hier om <br> te uploaden (maximale "
+"Sleep het .OAM-bestand hierheen of klik hier om <br> te uploaden (maximale "
 "uploadgrootte"
 
 #: includes/tinymcetool.php:69
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr "Voer de volgende shortcode in waar u de animatie wilt weergeven"
+msgstr "Voer de volgende korte code (shortcode) in waar u uw animatie wilt weergeven"
 
 #: includes/tinymcetool.php:82
 msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
-"Zet een .OAM-bestand neer of klik hier om <br> te uploaden (maximale "
+"Sleep het .OAM-bestand hierheen of klik hier om <br> te uploaden (maximale "
 "uploadgrootte"
 
 #. Plugin Name of the plugin/theme
@@ -189,7 +189,7 @@ msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
-"Sluit uw Tumult Hype-animaties eenvoudig in met een shortcode in berichten "
+"Eenvoudig integreren van uw Tumult Hype-animaties via een korte code (shortcode) in berichten "
 "en pagina's."
 
 #. Author URI of the plugin/theme
