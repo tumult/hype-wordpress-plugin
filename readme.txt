@@ -32,6 +32,9 @@ You may also use the Hype Animations button on the post and page editor.
 
 == Changelog ==
 
+= 1.9.2 = 
+* Disable Classic Editor Animation button
+
 = 1.9.1 =
 * Fixes issue with CSS classes not saving
 
