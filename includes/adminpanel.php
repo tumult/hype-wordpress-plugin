@@ -108,6 +108,55 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 	$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam' );
 	$output='
 	<div id="oModal1" class="oModal">
+	<script>
+	Dropzone.autoDiscover = false;
+	jQuery(document).ready(function(jQuery) {
+			jQuery("#hypeanimdropzone").dropzone({
+					url: "admin.php?page=hypeanimations_panel",
+					method: "post",
+					uploadMultiple: false,
+					maxFiles: 1,
+					acceptedFiles: ".oam",
+					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. ini_get("
+					upload_max_filesize ") .')' , 'hype-animations' ).'",
+					accept: function(file, done) {
+							if (hasWhiteSpace(file.name)) {
+									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
+							} else {
+									done();
+							}
+					},
+					success: function(file, resp) {
+									jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\">'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\"" + resp + "\"]</span></div>");
+									jQuery(".dropzone2").css("display", "block");
+									jQuery(".dropzone").remove();
+							}
+							// complete: function(file) {
+							// }
+			});
+			jQuery("#hypeanimdropzone2").dropzone({
+					url: "admin.php?page=hypeanimations_panel",
+					method: "post",
+					uploadMultiple: false,
+					maxFiles: 1,
+					acceptedFiles: ".oam",
+					dictDefaultMessage: "'.__( 'Drop an .OAM file or click here to upload<br>(Maximum upload size '. ini_get("
+					upload_max_filesize ") .')' , 'hype-animations' ).'",
+					accept: function(file, done) {
+							if (hasWhiteSpace(file.name)) {
+									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
+							} else {
+									done();
+							}
+					},
+					success: function(file, resp) {
+							wp.media.editor.insert("[hypeanimations_anim id=\"" + resp + "\"]");
+							this.removeFile(file);
+							document.location.hash = "";
+					}
+			});
+	});
+	</script>
 		<div>
 			<header>
 				<a href="#fermer" alt="close" id="closeDroper" class="droitefermer">&#10005;</a>
@@ -396,61 +445,16 @@ function hypeanimations_panel() {
 				return false;
 			}    
 		}
-	</script>
-	
-	<script>
-	Dropzone.autoDiscover = false;
-	jQuery(document).ready(function(jQuery){
-		jQuery("#hypeanimdropzone").dropzone({
-			url: "admin.php?page=hypeanimations_panel",
-			method: "post",
-			uploadMultiple: false,
-			maxFiles: 1,
-			acceptedFiles: ".oam",
-			dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. ini_get("upload_max_filesize") .')' , 'hype-animations' ).'",
-			accept: function(file, done) {
-				if (hasWhiteSpace(file.name)) {
-					done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
-				}
-				else { done(); }
-			},
-			success: function(file,resp) {
-				jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\">'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\""+resp+"\"]</span></div>");
-				jQuery(".dropzone2").css("display","block");
-				jQuery(".dropzone").remove();
-			}
-			// complete: function(file) {
-			// }
-		});
-		jQuery("#hypeanimdropzone2").dropzone({
-			url: "admin.php?page=hypeanimations_panel",
-			method: "post",
-			uploadMultiple: false,
-			maxFiles: 1,
-			acceptedFiles: ".oam",
-			dictDefaultMessage: "'.__( 'Drop an .OAM file or click here to upload<br>(Maximum upload size '. ini_get("upload_max_filesize") .')' , 'hype-animations' ).'",
-			accept: function(file, done) {
-				if (hasWhiteSpace(file.name)) {
-					done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
-				}
-				else { done(); }
-			},
-			success: function(file,resp) {
-				wp.media.editor.insert("[hypeanimations_anim id=\""+resp+"\"]");
-				this.removeFile(file);
-				document.location.hash = "";
-			}
-		});
 
-		jQuery("#choosehypeanimation").click(function(e) {
-			e.preventDefault();
-			dataid=jQuery("#hypeanimationchoosen").val();
-			wp.media.editor.insert("[hypeanimations_anim id=\""+dataid+"\"]");
-			document.location.hash = "";
-		});
+	jQuery("#choosehypeanimation").click(function (e) {
+		e.preventDefault();
+		dataid = jQuery("#hypeanimationchoosen").val();
+		wp.media.editor.insert("[hypeanimations_anim id=\"" + dataid + "\"]");
+		document.location.hash = "";
 	});
+	
 	function hasWhiteSpace(s) {
-	  return s.indexOf(" ") >= 0;
+		return s.indexOf(" ") >= 0;
 	}
 	</script>'
 	;

@@ -32,7 +32,7 @@ You may also use the Hype Animations button on the post and page editor.
 
 == Changelog ==
 
-= 1.9.2 = 
+= 1.9.5 = 
 * Disable Classic Editor Animation button
 
 = 1.9.1 =
