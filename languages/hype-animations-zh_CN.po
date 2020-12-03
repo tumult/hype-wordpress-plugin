@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 16:13-0400\n"
-"PO-Revision-Date: 2020-08-15 12:33+0800\n"
+"POT-Creation-Date: 2020-12-03 14:17-0500\n"
+"PO-Revision-Date: 2020-12-03 14:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,16 +22,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:113 includes/adminpanel.php:145
-#: includes/tinymcetool.php:23
+#: includes/adminpanel.php:120
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+msgstr "拖拽.OAM文件或单击此处上传<br>（最大上传文件大小"
+
+#: includes/adminpanel.php:130
+msgid "Insert the following shortcode where you want to display the animation"
+msgstr "在要显示动画的位置插入以下短代码"
+
+#: includes/adminpanel.php:143
+msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
+msgstr "拖拽.OAM文件或单击此处上传<br>（最大上传文件大小"
+
+#: includes/adminpanel.php:163 includes/adminpanel.php:195
 msgid "Upload new animation"
 msgstr "上传新动画"
 
-#: includes/adminpanel.php:142
+#: includes/adminpanel.php:192
 msgid "Add new animation"
 msgstr "添加新动画"
 
-#: includes/adminpanel.php:144
+#: includes/adminpanel.php:194
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -43,133 +54,109 @@ msgstr ""
 "\"https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
 "target=\"_blank\">需要帮忙？</a>"
 
-#: includes/adminpanel.php:268
+#: includes/adminpanel.php:318
 msgid "Manage animations"
 msgstr "管理动画"
 
-#: includes/adminpanel.php:275
+#: includes/adminpanel.php:325
 msgid "Last file update"
 msgstr "最近文件更新"
 
-#: includes/adminpanel.php:282
+#: includes/adminpanel.php:332
 msgid "Add a container around the animation:"
-msgstr "给动画添加一个容器"
+msgstr "给动画添加一个容器:"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:334
 msgid "Update"
 msgstr "更新"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:334
 msgid "Container CSS class"
 msgstr "容器CSS类"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:334
 msgid "No data"
 msgstr "没有数据"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:334
 msgid "Copy Code"
 msgstr "复制代码"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:334
 msgid "Delete"
 msgstr "删除"
 
-#: includes/adminpanel.php:343
+#: includes/adminpanel.php:393
 msgid "Updated!"
 msgstr "更新！"
 
-#: includes/adminpanel.php:350
+#: includes/adminpanel.php:400
 msgid "Error, please try again!"
 msgstr "错误，请重试！"
 
-#: includes/adminpanel.php:357
+#: includes/adminpanel.php:407
 msgid "Update file"
 msgstr "更新文件"
 
-#: includes/adminpanel.php:373
+#: includes/adminpanel.php:423
 msgid "Processing..."
 msgstr "处理中..."
 
-#: includes/adminpanel.php:374
+#: includes/adminpanel.php:424
 msgid "Search:"
 msgstr "搜索："
 
-#: includes/adminpanel.php:375
+#: includes/adminpanel.php:425
 msgid "Show"
 msgstr "显示"
 
-#: includes/adminpanel.php:375 includes/adminpanel.php:376
+#: includes/adminpanel.php:425 includes/adminpanel.php:426
 msgid "animations"
 msgstr "动画"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:426
 msgid "Showing"
 msgstr "显示中"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:426
 msgid "to"
 msgstr "至"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:426
 msgid "of"
 msgstr "的"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:427
 msgid "No animations found."
 msgstr "找不到动画。"
 
-#: includes/adminpanel.php:378
+#: includes/adminpanel.php:428
 msgid "Loading..."
 msgstr "载入中..."
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:429
 msgid "No animation has been found"
 msgstr "找不到动画"
 
-#: includes/adminpanel.php:380
+#: includes/adminpanel.php:430
 msgid "No animation has been added"
 msgstr "动画未被添加"
 
-#: includes/adminpanel.php:382
+#: includes/adminpanel.php:432
 msgid "First"
 msgstr "首页"
 
-#: includes/adminpanel.php:383
+#: includes/adminpanel.php:433
 msgid "Previous"
 msgstr "上"
 
-#: includes/adminpanel.php:384
+#: includes/adminpanel.php:434
 msgid "Next"
 msgstr "下"
 
-#: includes/adminpanel.php:385
+#: includes/adminpanel.php:435
 msgid "Last"
 msgstr "末页"
-
-#: includes/tinymcetool.php:20
-msgid "Choose an animation"
-msgstr "选择动画"
-
-#: includes/tinymcetool.php:37
-msgid "Insert"
-msgstr "插入"
-
-#: includes/tinymcetool.php:39
-msgid "Or upload a new one"
-msgstr "或上传一个新的"
-
-#: includes/tinymcetool.php:61
-msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "拖拽.OAM文件或单击此处上传<br>（最大上传文件大小"
-
-#: includes/tinymcetool.php:69
-msgid "Insert the following shortcode where you want to display the animation"
-msgstr "在要显示动画的位置插入以下短代码"
-
-#: includes/tinymcetool.php:82
-msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "拖拽.OAM文件或单击此处上传<br>（最大上传文件大小"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
@@ -188,3 +175,12 @@ msgstr "使用简码将您的Tumult Hype动画轻松嵌入到帖子和页面中�
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgstr "<a href=\"https://tumult.com\" target=\"_blank\"> Tumult </a>"
+
+#~ msgid "Choose an animation"
+#~ msgstr "选择动画"
+
+#~ msgid "Insert"
+#~ msgstr "插入"
+
+#~ msgid "Or upload a new one"
+#~ msgstr "或上传一个新的"
