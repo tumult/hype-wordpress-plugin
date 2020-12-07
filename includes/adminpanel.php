@@ -117,6 +117,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 					uploadMultiple: false,
 					maxFiles: 1,
 					acceptedFiles: ".oam",
+					timeout: 180000,
 					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. ini_get("
 					upload_max_filesize ") .')' , 'hype-animations' ).'",
 					accept: function(file, done) {
@@ -140,6 +141,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 					uploadMultiple: false,
 					maxFiles: 1,
 					acceptedFiles: ".oam",
+					timeout: 180000,
 					dictDefaultMessage: "'.__( 'Drop an .OAM file or click here to upload<br>(Maximum upload size '. ini_get("
 					upload_max_filesize ") .')' , 'hype-animations' ).'",
 					accept: function(file, done) {
