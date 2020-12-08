@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-08 12:54-0500\n"
-"PO-Revision-Date: 2020-12-08 12:54-0500\n"
+"POT-Creation-Date: 2020-12-03 14:22-0500\n"
+"PO-Revision-Date: 2020-12-03 14:22-0500\n"
 "Last-Translator: \n"
 "Language-Team: French (France)\n"
 "Language: fr_FR\n"
@@ -22,31 +22,31 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:121
+#: includes/adminpanel.php:120
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr "Déposez le fichier .OAM ou cliquez ici pour ajouter votre animation "
 
-#: includes/adminpanel.php:131
+#: includes/adminpanel.php:130
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr ""
 "Vous pouvez maintenant insérer ce shortcode où vous souhaitez insérer "
 "l'animation"
 
-#: includes/adminpanel.php:145
+#: includes/adminpanel.php:143
 #, fuzzy
 #| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
 msgstr "Déposez le fichier .OAM ou cliquez ici pour ajouter votre animation "
 
-#: includes/adminpanel.php:165 includes/adminpanel.php:197
+#: includes/adminpanel.php:163 includes/adminpanel.php:195
 msgid "Upload new animation"
 msgstr "Ajouter une animation"
 
-#: includes/adminpanel.php:194
+#: includes/adminpanel.php:192
 msgid "Add new animation"
 msgstr "Ajouter une nouvelle animation"
 
-#: includes/adminpanel.php:196
+#: includes/adminpanel.php:194
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -59,107 +59,107 @@ msgstr ""
 "tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank"
 "\">Besoin d'aide?</a>"
 
-#: includes/adminpanel.php:320
+#: includes/adminpanel.php:318
 msgid "Manage animations"
 msgstr "Gérer les animations"
 
-#: includes/adminpanel.php:327
+#: includes/adminpanel.php:325
 msgid "Last file update"
 msgstr "Mise à jour fichier"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:332
 msgid "Add a container around the animation:"
 msgstr "Ajouter un conteneur autour de l'animation:"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:334
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:334
 msgid "Container CSS class"
 msgstr "Classes CSS du conteneur"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:334
 msgid "No data"
 msgstr "Aucune donnée"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:334
 msgid "Copy Code"
 msgstr "Copy Code"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:334
 msgid "Delete"
 msgstr "Supprimer"
 
-#: includes/adminpanel.php:395
+#: includes/adminpanel.php:393
 msgid "Updated!"
 msgstr "Mise à jour!"
 
-#: includes/adminpanel.php:402
+#: includes/adminpanel.php:400
 msgid "Error, please try again!"
 msgstr "Erreur, veuillez réessayer!"
 
-#: includes/adminpanel.php:409
+#: includes/adminpanel.php:407
 msgid "Update file"
 msgstr "Mettre à jour le fichier"
 
-#: includes/adminpanel.php:425
+#: includes/adminpanel.php:423
 msgid "Processing..."
 msgstr "Traitement en cours..."
 
-#: includes/adminpanel.php:426
+#: includes/adminpanel.php:424
 msgid "Search:"
 msgstr "Chercher:"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:425
 msgid "Show"
 msgstr "Afficher"
 
-#: includes/adminpanel.php:427 includes/adminpanel.php:428
+#: includes/adminpanel.php:425 includes/adminpanel.php:426
 msgid "animations"
 msgstr "animations"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:426
 msgid "Showing"
 msgstr "Afficher"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:426
 msgid "to"
 msgstr "à"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:426
 msgid "of"
 msgstr "de"
 
-#: includes/adminpanel.php:429
+#: includes/adminpanel.php:427
 msgid "No animations found."
 msgstr "Aucun animation n'a été trouvée."
 
-#: includes/adminpanel.php:430
+#: includes/adminpanel.php:428
 msgid "Loading..."
 msgstr "Chargement en cours…"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:429
 msgid "No animation has been found"
 msgstr "Aucun animation n'a été trouvée"
 
-#: includes/adminpanel.php:432
+#: includes/adminpanel.php:430
 msgid "No animation has been added"
 msgstr "Aucun animation n'a été ajoutée"
 
-#: includes/adminpanel.php:434
+#: includes/adminpanel.php:432
 msgid "First"
 msgstr "Premier"
 
-#: includes/adminpanel.php:435
+#: includes/adminpanel.php:433
 msgid "Previous"
 msgstr "Précédent"
 
-#: includes/adminpanel.php:436
+#: includes/adminpanel.php:434
 msgid "Next"
 msgstr "Suivant"
 
-#: includes/adminpanel.php:437
+#: includes/adminpanel.php:435
 msgid "Last"
 msgstr "Dernier"
 
