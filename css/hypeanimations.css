@@ -19,6 +19,9 @@ table.dataTable {
 table.dataTable tbody tr.even {
     background-color: #f9f9f930;
 }
+#hypeanimations_length, hypeanimations_filter {
+    margin-bottom:5px;
+}
 
 #hypeanimations .shortcodeval {
     width: 232px;
@@ -37,17 +40,25 @@ input.updatecontainer {
 
 .optionleft {
     float: left;
-    width: 60%;
+    width: 50%;
     text-align: right;
     clear: both;
-    margin-right: 5px;
+    margin-right: 1%;
+    vertical-align: top;
 }
 
 .optionright {
     text-align: left;
-    width: 30%;
+    width: 48%;
     float: right;
+    vertical-align: top;
 }
+
+.hypeanimations_container, div.optionright > div > input[type=text]{
+    width:120px;
+}
+
+
 
 .animupdate,
 .animdelete,
@@ -73,6 +84,7 @@ input.updatecontainer {
 .animcopy:hover,
 .animcopy:hover {
     color: #661D20;
+    cursor: pointer;
 }
 
 .animcopy {

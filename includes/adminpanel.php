@@ -356,9 +356,9 @@ function hypeanimations_panel() {
 			});
 		});
 		jQuery(document).on("click", ".copydata", function(){
-		    jQuery(this).select();
-		    document.execCommand("copy");
-		    jQuery(".copied").show().delay(3000).fadeOut();
+			jQuery(this).select();
+			document.execCommand("copy");
+			jQuery(".copied").show().delay(3000).fadeOut();
 		});
 		jQuery(document).on("click", ".close-popup", function(){
 			jQuery(this).parents(".popup-wrap").remove();
@@ -415,10 +415,10 @@ function hypeanimations_panel() {
             responsive: true,
             "order": [[ 3, "desc" ]],
 			"columns": [
-				null,
-				null,
-				{ "width": "260px" },
-				{ "width": "160px" },
+				{"name": "Animation", "orderable": "true"},
+				{"name": "Shortcode", "orderable": "true"},
+				{"name": "Options", "orderable": "false", "width": "260px" },
+				{"name": "Last file Update", "orderable": "true", "width": "160px" },
 				null
 			],
 			language: {
