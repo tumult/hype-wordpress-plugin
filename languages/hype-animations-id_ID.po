@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-03 14:21-0500\n"
-"PO-Revision-Date: 2020-12-03 14:22-0500\n"
+"POT-Creation-Date: 2020-12-08 12:54-0500\n"
+"PO-Revision-Date: 2020-12-08 12:54-0500\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "Language: id_ID\n"
@@ -22,17 +22,17 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:120
+#: includes/adminpanel.php:121
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "Lepaskan file .OAM atau klik di sini untuk mengunggah Situs (Ukuran unggahan "
 "maksimum "
 
-#: includes/adminpanel.php:130
+#: includes/adminpanel.php:131
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Masukkan kode pendek berikut di mana Anda ingin menampilkan animasi"
 
-#: includes/adminpanel.php:143
+#: includes/adminpanel.php:145
 #, fuzzy
 #| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
@@ -40,15 +40,15 @@ msgstr ""
 "Lepaskan file .OAM atau klik di sini untuk mengunggah Situs (Ukuran unggahan "
 "maksimum"
 
-#: includes/adminpanel.php:163 includes/adminpanel.php:195
+#: includes/adminpanel.php:165 includes/adminpanel.php:197
 msgid "Upload new animation"
 msgstr "Unggah animasi baru"
 
-#: includes/adminpanel.php:192
+#: includes/adminpanel.php:194
 msgid "Add new animation"
 msgstr "Tambahkan animasi baru"
 
-#: includes/adminpanel.php:194
+#: includes/adminpanel.php:196
 #, fuzzy
 #| msgid ""
 #| "Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
@@ -68,107 +68,107 @@ msgstr ""
 "forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank"
 "\">Butuh bantuan?</a>"
 
-#: includes/adminpanel.php:318
+#: includes/adminpanel.php:320
 msgid "Manage animations"
 msgstr "Kelola animasi"
 
-#: includes/adminpanel.php:325
+#: includes/adminpanel.php:327
 msgid "Last file update"
 msgstr "Pembaruan file terakhir"
 
-#: includes/adminpanel.php:332
+#: includes/adminpanel.php:334
 msgid "Add a container around the animation:"
 msgstr "Tambahkan wadah di sekitar animasi:"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:336
 msgid "Update"
 msgstr "Memperbarui"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:336
 msgid "Container CSS class"
 msgstr "Kelas kontainer CSS"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:336
 msgid "No data"
 msgstr "Tidak ada data"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:336
 msgid "Copy Code"
 msgstr "Salin Kode"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:336
 msgid "Delete"
 msgstr "Menghapus"
 
-#: includes/adminpanel.php:393
+#: includes/adminpanel.php:395
 msgid "Updated!"
 msgstr "Diperbarui!"
 
-#: includes/adminpanel.php:400
+#: includes/adminpanel.php:402
 msgid "Error, please try again!"
 msgstr "Galat, silakan coba lagi!"
 
-#: includes/adminpanel.php:407
+#: includes/adminpanel.php:409
 msgid "Update file"
 msgstr "Perbarui file"
 
-#: includes/adminpanel.php:423
+#: includes/adminpanel.php:425
 msgid "Processing..."
 msgstr "Pengolahan..."
 
-#: includes/adminpanel.php:424
+#: includes/adminpanel.php:426
 msgid "Search:"
 msgstr "Cari:"
 
-#: includes/adminpanel.php:425
+#: includes/adminpanel.php:427
 msgid "Show"
 msgstr "Menunjukkan"
 
-#: includes/adminpanel.php:425 includes/adminpanel.php:426
+#: includes/adminpanel.php:427 includes/adminpanel.php:428
 msgid "animations"
 msgstr "animasi"
 
-#: includes/adminpanel.php:426
+#: includes/adminpanel.php:428
 msgid "Showing"
 msgstr "Menunjukkan"
 
-#: includes/adminpanel.php:426
+#: includes/adminpanel.php:428
 msgid "to"
 msgstr "untuk"
 
-#: includes/adminpanel.php:426
+#: includes/adminpanel.php:428
 msgid "of"
 msgstr "dari"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:429
 msgid "No animations found."
 msgstr "Tidak ada animasi yang ditemukan."
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:430
 msgid "Loading..."
 msgstr "Memuat..."
 
-#: includes/adminpanel.php:429
+#: includes/adminpanel.php:431
 msgid "No animation has been found"
 msgstr "Tidak ada animasi yang ditemukan"
 
-#: includes/adminpanel.php:430
+#: includes/adminpanel.php:432
 msgid "No animation has been added"
 msgstr "Tidak ada animasi yang ditambahkan"
 
-#: includes/adminpanel.php:432
+#: includes/adminpanel.php:434
 msgid "First"
 msgstr "Pertama"
 
-#: includes/adminpanel.php:433
+#: includes/adminpanel.php:435
 msgid "Previous"
 msgstr "Sebelumnya"
 
-#: includes/adminpanel.php:434
+#: includes/adminpanel.php:436
 msgid "Next"
 msgstr "Lanjut"
 
-#: includes/adminpanel.php:435
+#: includes/adminpanel.php:437
 msgid "Last"
 msgstr "Terakhir"
 
