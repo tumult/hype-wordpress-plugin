@@ -10,7 +10,7 @@ function hypeanimations_panel_upload() {
 	if(is_user_logged_in() && isset($_FILES['file'])){
 		$nonce = $_POST['upload_check_oam'];
 		if ( ! wp_verify_nonce( $_POST['upload_check_oam'], 'protect_content' ) ) {
-		    die( 'Security check' ); 
+			die( 'Security check' ); 
 		} else {
 			if (isset($_FILES['file'])) {
 				$uploaddir = $anims_dir.'tmp/';
@@ -105,6 +105,7 @@ add_action( "admin_footer", 'add_hypeanimations_shortcode_newbutton_footer' );
 function add_hypeanimations_shortcode_newbutton_footer() {
 	global $hypeanimations_table_name;
 	global $wpdb;
+	global $upload_mb;
 	$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam' );
 	$output='
 	<div id="oModal1" class="oModal">
@@ -118,8 +119,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 					maxFiles: 1,
 					acceptedFiles: ".oam",
 					timeout: 180000,
-					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. ini_get("
-					upload_max_filesize ") .')' , 'hype-animations' ).'",
+					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. $upload_mb .')' , 'hype-animations' ).'",
 					accept: function(file, done) {
 							if (hasWhiteSpace(file.name)) {
 									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
@@ -142,8 +142,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 					maxFiles: 1,
 					acceptedFiles: ".oam",
 					timeout: 180000,
-					dictDefaultMessage: "'.__( 'Drop an .OAM file or click here to upload<br>(Maximum upload size '. ini_get("
-					upload_max_filesize ") .')' , 'hype-animations' ).'",
+					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. $upload_mb .')' , 'hype-animations' ).'",
 					accept: function(file, done) {
 							if (hasWhiteSpace(file.name)) {
 									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
