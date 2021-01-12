@@ -19,18 +19,17 @@ For detailed information and support for this plugin, please visit: https://foru
 
 This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.org/plugins/hype-animations/) and extends functionality.
 
-**Français** Ce plugin vous permet de télécharger un fichier OAM à partir d'un Hype Tumult et d'intégrer facilement votre animation dans une publication ou une page en utilisant un code court. Insérez facilement vos animations Hype sur votre site Wordpress. Vous pouvez également copier facilement le code intégré pour utiliser votre site Wordpress en tant qu'homme d'animation Tumult Hype.
-
 == Usage ==
 
 1. In Tumult Hype Professional, Select File > Export as HTML5 > OAM Widget. Note: Do not export with any spaces in your filename or foreign characters.
 2. In the Hype Animations section in the Admin dashboard, click Upload New Animation and select your .oam file.
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
-You may also use the Hype Animations button on the post and page editor.
-
-
 == Changelog ==
+
+= 1.9.5 = 
+* Disable Classic Editor Animation button
+* Design Improvements
 
 = 1.9.1 =
 * Fixes issue with CSS classes not saving

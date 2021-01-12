@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-03 16:13-0400\n"
-"PO-Revision-Date: 2020-08-03 16:13-0400\n"
+"POT-Creation-Date: 2020-12-08 13:50-0500\n"
+"PO-Revision-Date: 2020-12-08 13:50-0500\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt_BR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,16 +22,24 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:113 includes/adminpanel.php:145
-#: includes/tinymcetool.php:23
+#: includes/adminpanel.php:122 includes/adminpanel.php:145
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+msgstr ""
+"Gota. Arquivo OAM ou clique aqui para carregar<br> (tamanho máximo de upload "
+
+#: includes/adminpanel.php:131
+msgid "Insert the following shortcode where you want to display the animation"
+msgstr "Insira o seguinte código curto onde deseja exibir a animação"
+
+#: includes/adminpanel.php:164 includes/adminpanel.php:196
 msgid "Upload new animation"
 msgstr "Carregar nova animação"
 
-#: includes/adminpanel.php:142
+#: includes/adminpanel.php:193
 msgid "Add new animation"
 msgstr "Adicionar nova animação"
 
-#: includes/adminpanel.php:144
+#: includes/adminpanel.php:195
 #, fuzzy
 #| msgid ""
 #| "Upload an .OAM file exported by <a href=\"http://tumult.com/hype?"
@@ -51,139 +59,111 @@ msgstr ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Precisa de "
 "ajuda?</a>"
 
-#: includes/adminpanel.php:268
+#: includes/adminpanel.php:319
 msgid "Manage animations"
 msgstr "Gerenciar animações"
 
-#: includes/adminpanel.php:275
+#: includes/adminpanel.php:326
 msgid "Last file update"
 msgstr "Última atualização de arquivo"
 
-#: includes/adminpanel.php:282
+#: includes/adminpanel.php:333
 #, fuzzy
 #| msgid "Add a container around the animation"
 msgid "Add a container around the animation:"
 msgstr "Adicione um recipiente ao redor da animação"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:335
 msgid "Update"
 msgstr "Atualização"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:335
 msgid "Container CSS class"
 msgstr "Classe CSS de contêiner"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:335
 msgid "No data"
 msgstr "Sem dados"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:335
 msgid "Copy Code"
 msgstr "Código de cópia"
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:335
 msgid "Delete"
 msgstr "Excluir"
 
-#: includes/adminpanel.php:343
+#: includes/adminpanel.php:394
 msgid "Updated!"
 msgstr "Atualizado!"
 
-#: includes/adminpanel.php:350
+#: includes/adminpanel.php:401
 msgid "Error, please try again!"
 msgstr "Erro, por favor, tente de novo!"
 
-#: includes/adminpanel.php:357
+#: includes/adminpanel.php:408
 msgid "Update file"
 msgstr "Atualizar arquivo"
 
-#: includes/adminpanel.php:373
+#: includes/adminpanel.php:424
 msgid "Processing..."
 msgstr "Processamento..."
 
-#: includes/adminpanel.php:374
+#: includes/adminpanel.php:425
 msgid "Search:"
 msgstr "Busca:"
 
-#: includes/adminpanel.php:375
+#: includes/adminpanel.php:426
 msgid "Show"
 msgstr "programa"
 
-#: includes/adminpanel.php:375 includes/adminpanel.php:376
+#: includes/adminpanel.php:426 includes/adminpanel.php:427
 msgid "animations"
 msgstr "Animações"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:427
 msgid "Showing"
 msgstr "Mostrando"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:427
 msgid "to"
 msgstr "Para"
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:427
 msgid "of"
 msgstr "De"
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:428
 msgid "No animations found."
 msgstr "Não foram encontradas animações."
 
-#: includes/adminpanel.php:378
+#: includes/adminpanel.php:429
 msgid "Loading..."
 msgstr "Carregar..."
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:430
 msgid "No animation has been found"
 msgstr "Nenhuma animação foi encontrada"
 
-#: includes/adminpanel.php:380
+#: includes/adminpanel.php:431
 msgid "No animation has been added"
 msgstr "Nenhuma animação foi adicionada"
 
-#: includes/adminpanel.php:382
+#: includes/adminpanel.php:433
 msgid "First"
 msgstr "Primeiro"
 
-#: includes/adminpanel.php:383
+#: includes/adminpanel.php:434
 msgid "Previous"
 msgstr "Anterior"
 
-#: includes/adminpanel.php:384
+#: includes/adminpanel.php:435
 msgid "Next"
 msgstr "Próximo"
 
-#: includes/adminpanel.php:385
+#: includes/adminpanel.php:436
 msgid "Last"
 msgstr "Última"
-
-#: includes/tinymcetool.php:20
-msgid "Choose an animation"
-msgstr "Escolha uma animação"
-
-#: includes/tinymcetool.php:37
-msgid "Insert"
-msgstr "Inserir"
-
-#: includes/tinymcetool.php:39
-msgid "Or upload a new one"
-msgstr "Ou carregar um novo"
-
-#: includes/tinymcetool.php:61
-msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ""
-"Gota. Arquivo OAM ou clique aqui para carregar<br> (tamanho máximo de upload "
-
-#: includes/tinymcetool.php:69
-msgid "Insert the following shortcode where you want to display the animation"
-msgstr "Insira o seguinte código curto onde deseja exibir a animação"
-
-#: includes/tinymcetool.php:82
-#, fuzzy
-#| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ""
-"Gota. Arquivo OAM ou clique aqui para carregar<br> (tamanho máximo de upload "
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
@@ -204,3 +184,19 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+
+#, fuzzy
+#~| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+#~ msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
+#~ msgstr ""
+#~ "Gota. Arquivo OAM ou clique aqui para carregar<br> (tamanho máximo de "
+#~ "upload "
+
+#~ msgid "Choose an animation"
+#~ msgstr "Escolha uma animação"
+
+#~ msgid "Insert"
+#~ msgstr "Inserir"
+
+#~ msgid "Or upload a new one"
+#~ msgstr "Ou carregar um novo"

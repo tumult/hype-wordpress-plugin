@@ -6,10 +6,11 @@ function hypeanimations_panel_upload() {
 	global $hypeanimations_table_name;
 	$upload_dir = wp_upload_dir();
 	$anims_dir=$upload_dir['basedir'].'/hypeanimations/';
+	$verifaumoinsun = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d LIMIT 1", 0));
 	if(is_user_logged_in() && isset($_FILES['file'])){
 		$nonce = $_POST['upload_check_oam'];
 		if ( ! wp_verify_nonce( $_POST['upload_check_oam'], 'protect_content' ) ) {
-		    die( 'Security check' ); 
+			die( 'Security check' ); 
 		} else {
 			if (isset($_FILES['file'])) {
 				$uploaddir = $anims_dir.'tmp/';
@@ -104,9 +105,59 @@ add_action( "admin_footer", 'add_hypeanimations_shortcode_newbutton_footer' );
 function add_hypeanimations_shortcode_newbutton_footer() {
 	global $hypeanimations_table_name;
 	global $wpdb;
+	global $upload_mb;
 	$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam' );
 	$output='
 	<div id="oModal1" class="oModal">
+	<script>
+	Dropzone.autoDiscover = false;
+	jQuery(document).ready(function(jQuery) {
+			jQuery("#hypeanimdropzone").dropzone({
+					url: "admin.php?page=hypeanimations_panel",
+					method: "post",
+					uploadMultiple: false,
+					maxFiles: 1,
+					acceptedFiles: ".oam",
+					timeout: 180000,
+					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. $upload_mb .')' , 'hype-animations' ).'",
+					accept: function(file, done) {
+							if (hasWhiteSpace(file.name)) {
+									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
+							} else {
+									done();
+							}
+					},
+					success: function(file, resp) {
+									jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\">'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\"" + resp + "\"]</span></div>");
+									jQuery(".dropzone2").css("display", "block");
+									jQuery(".dropzone").remove();
+							}
+							// complete: function(file) {
+							// }
+			});
+			jQuery("#hypeanimdropzone2").dropzone({
+					url: "admin.php?page=hypeanimations_panel",
+					method: "post",
+					uploadMultiple: false,
+					maxFiles: 1,
+					acceptedFiles: ".oam",
+					timeout: 180000,
+					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. $upload_mb .')' , 'hype-animations' ).'",
+					accept: function(file, done) {
+							if (hasWhiteSpace(file.name)) {
+									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
+							} else {
+									done();
+							}
+					},
+					success: function(file, resp) {
+							wp.media.editor.insert("[hypeanimations_anim id=\"" + resp + "\"]");
+							this.removeFile(file);
+							document.location.hash = "";
+					}
+			});
+	});
+	</script>
 		<div>
 			<header>
 				<a href="#fermer" alt="close" id="closeDroper" class="droitefermer">&#10005;</a>
@@ -304,9 +355,9 @@ function hypeanimations_panel() {
 			});
 		});
 		jQuery(document).on("click", ".copydata", function(){
-		    jQuery(this).select();
-		    document.execCommand("copy");
-		    jQuery(".copied").show().delay(3000).fadeOut();
+			jQuery(this).select();
+			document.execCommand("copy");
+			jQuery(".copied").show().delay(3000).fadeOut();
 		});
 		jQuery(document).on("click", ".close-popup", function(){
 			jQuery(this).parents(".popup-wrap").remove();
@@ -363,10 +414,10 @@ function hypeanimations_panel() {
             responsive: true,
             "order": [[ 3, "desc" ]],
 			"columns": [
-				null,
-				null,
-				{ "width": "260px" },
-				{ "width": "160px" },
+				{"name": "Animation", "orderable": "true"},
+				{"name": "Shortcode", "orderable": "true"},
+				{"name": "Options", "orderable": "false", "width": "260px" },
+				{"name": "Last file Update", "orderable": "true", "width": "160px" },
 				null
 			],
 			language: {
@@ -395,7 +446,19 @@ function hypeanimations_panel() {
 				return false;
 			}    
 		}
-	</script>';
+
+	jQuery("#choosehypeanimation").click(function (e) {
+		e.preventDefault();
+		dataid = jQuery("#hypeanimationchoosen").val();
+		wp.media.editor.insert("[hypeanimations_anim id=\"" + dataid + "\"]");
+		document.location.hash = "";
+	});
+	
+	function hasWhiteSpace(s) {
+		return s.indexOf(" ") >= 0;
+	}
+	</script>'
+	;
 }
 
 add_action('wp_ajax_hypeanimations_updatecontainer', 'hypeanimations_updatecontainer');
