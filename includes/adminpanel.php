@@ -38,7 +38,7 @@ function hypeanimations_panel_upload() {
 							else {
 								$maxid=1;
 							}
-							$insert = $wpdb -> query($wpdb->prepare("INSERT $hypeanimations_table_name SET id='',nom=%s,slug=%s,code=%s,updated=%s,container=%s",$new_name, str_replace(' ','',strtolower($new_name)), '', time(), 'div'));
+							$insert = $wpdb -> query($wpdb->prepare("INSERT $hypeanimations_table_name SET nom=%s,slug=%s,code=%s,updated=%s,container=%s",$new_name, str_replace(' ','',strtolower($new_name)), '', time(), 'div'));
 							$lastid = $wpdb->insert_id;
 
 							@mkdir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/', 0755, true);
@@ -485,9 +485,9 @@ function hypeanimations_getanimid(){
 	global $hypeanimations_table_name;
     $response = array();
     if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
-		$post_dataid=sanitize_text_field($_POST['dataid']);
-		$post_container=sanitize_text_field($_POST['container']);
-		$post_containerclass=sanitize_text_field($_POST['containerclass']);
+		$post_dataid = sanitize_text_field($_POST['dataid']);
+		$post_container = sanitize_text_field($_POST['container']);
+		$post_containerclass = sanitize_text_field($_POST['containerclass']);
 		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
 		$response['response'] = "ok";
     }
@@ -504,9 +504,7 @@ function hypeanimations_getcontent(){
     if(!empty(sanitize_text_field($_POST['dataid']))){
 		$post_dataid= sanitize_text_field($_POST['dataid']);
 		$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
-
 		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d", $post_container, $post_containerclass, $post_dataid));
-
 		$animcode = str_replace("https://", "//", html_entity_decode($animcode));
 		$animcode = str_replace("http://", "//", html_entity_decode($animcode));
     }
