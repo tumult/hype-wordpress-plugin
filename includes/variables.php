@@ -1,5 +1,5 @@
 <?php
-$version='1.9.5';
+$version='1.9.6';
 $hypeanimations_db_version = $version;
 $hypeanimations_table_name = $wpdb->prefix . 'hypeanimations';
 $max_upload = (int)(ini_get('upload_max_filesize'));

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Tumult Hype Animations
-Version: 1.9.5
+Version: 1.9.6
 Description: Easily embed your Tumult Hype animations using a shortcode into posts and pages. 
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Author URI: <a href="https://tumult.com" target="_blank">Tumult</a>

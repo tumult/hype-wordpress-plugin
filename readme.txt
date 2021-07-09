@@ -27,6 +27,10 @@ This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.o
 
 == Changelog ==
 
+= 1.9.6 = 
+* Compatibility with EasyWP Hosting
+* Improve translations
+
 = 1.9.5 = 
 * Disable Classic Editor Animation button
 * Design Improvements
