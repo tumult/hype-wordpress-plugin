@@ -4,8 +4,8 @@ Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 4.7
-Requires PHP: 5.6
-Tested up to: 6.0
+Requires PHP: 7.4
+Tested up to: 6.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,15 +17,16 @@ This plugin allows you to upload your Tumult Hype animations to your Wordpress s
 
 For detailed information and support for this plugin, please visit: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 
-This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.org/plugins/hype-animations/) and extends functionality.
-
 == Usage ==
 
-1. In Tumult Hype Professional, Select File > Export as HTML5 > OAM Widget. Note: Do not export with any spaces in your filename or foreign characters.
+1. In Tumult Hype Professional, Select File > Export as HTML5 > OAM Widget. Note: Do not export with any spaces in your filename or foreign characters or rename your .oam file after export.
 2. In the Hype Animations section in the Admin dashboard, click Upload New Animation and select your .oam file.
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
 == Changelog ==
+
+= 1.9.7 = 
+* Improve Code Copying Function to avoid debug log errors
 
 = 1.9.6 = 
 * Compatibility with EasyWP Hosting
@@ -77,7 +78,7 @@ This plugin is a fork of Eralion's plugin 'Hype Animations' (https://wordpress.o
 * Maximum server-supported file size shown in upload modal (Adjust this limit by editing php.ini)
 * Improved Translations
 * Removed frames & borders on iframes
-* This plugin was adapted from the work of Eralion: eralion.com.
+* This plugin was adapted from the work of Eralion: eralion.com which was originally posted at (https://wordpress.org/plugins/hype-animations/).
 
 = 1.5 =
 * Changing modal popup.

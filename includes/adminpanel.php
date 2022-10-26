@@ -467,10 +467,10 @@ function hypeanimations_updatecontainer(){
 	global $hypeanimations_table_name;
     $response = array();
     if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
-		$post_dataid = sanitize_text_field( $_POST['dataid'] );
-		$post_container = sanitize_text_field($_POST['container']);
-		$post_containerclass = sanitize_text_field($_POST['containerclass']);
-		$wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
+			$post_dataid = sanitize_text_field( $_POST['dataid'] );
+			$post_container = sanitize_text_field($_POST['container']);
+			$post_containerclass = sanitize_text_field($_POST['containerclass']);
+			$wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
 
 		$response['response'] = "ok";
     }
@@ -497,16 +497,17 @@ function hypeanimations_getanimid(){
     exit();
 }
 add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
+
 function hypeanimations_getcontent(){
 	global $wpdb;
 	global $hypeanimations_table_name;
     $response = array();
     if(!empty(sanitize_text_field($_POST['dataid']))){
-		$post_dataid= sanitize_text_field($_POST['dataid']);
-		$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
-		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d", $post_container, $post_containerclass, $post_dataid));
-		$animcode = str_replace("https://", "//", html_entity_decode($animcode));
-		$animcode = str_replace("http://", "//", html_entity_decode($animcode));
+
+			$post_dataid= sanitize_text_field($_POST['dataid']);
+			$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
+			$animcode = str_replace("https://", "//", html_entity_decode($animcode));
+			$animcode = str_replace("http://", "//", html_entity_decode($animcode));
     }
 	echo html_entity_decode($animcode);
     exit();
