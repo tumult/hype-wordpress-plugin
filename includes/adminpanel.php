@@ -108,59 +108,42 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 	global $upload_mb;
 	$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam' );
 	$output='
-	<div id="oModal1" class="oModal">
-	<script>
-	Dropzone.autoDiscover = false;
-	jQuery(document).ready(function(jQuery) {
-			jQuery("#hypeanimdropzone").dropzone({
-					url: "admin.php?page=hypeanimations_panel",
-					method: "post",
-					uploadMultiple: false,
-					maxFiles: 1,
-					acceptedFiles: ".oam",
-					timeout: 180000,
-					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. $upload_mb .')' , 'hype-animations' ).'",
-					accept: function(file, done) {
-							if (hasWhiteSpace(file.name)) {
-									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
-							} else {
-									done();
-							}
-					},
-					success: function(file, resp) {
-									jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\">'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\"" + resp + "\"]</span></div>");
-									jQuery(".dropzone2").css("display", "block");
-									jQuery(".dropzone").remove();
-							}
-							// complete: function(file) {
-							// }
-			});
-			jQuery("#hypeanimdropzone2").dropzone({
-					url: "admin.php?page=hypeanimations_panel",
-					method: "post",
-					uploadMultiple: false,
-					maxFiles: 1,
-					acceptedFiles: ".oam",
-					timeout: 180000,
-					dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. $upload_mb .')' , 'hype-animations' ).'",
-					accept: function(file, done) {
-							if (hasWhiteSpace(file.name)) {
-									done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
-							} else {
-									done();
-							}
-					},
-					success: function(file, resp) {
-							wp.media.editor.insert("[hypeanimations_anim id=\"" + resp + "\"]");
-							this.removeFile(file);
-							document.location.hash = "";
-					}
-			});
-	});
-	</script>
+	<div id="openModal1" class="openModal">
+
+
+<script>
+// DZ 5.9.3 update
+Dropzone.options.hypeanimdropzone = { // camelized version of the `id`
+	paramName: "file", // The name that will be used to transfer the file
+	maxFilesize: 2, // MB
+	method: "post",
+	url: "admin.php?page=hypeanimations_panel",
+	uploadMultiple: false,
+	maxFiles: 1,
+	acceptedFiles: ".oam",
+	timeout: 180000,
+	dictDefaultMessage: "'.__( 'Drop .OAM file or click here to upload<br>(Maximum upload size '. $upload_mb .')' , 'hype-animations' ).'",
+
+	accept: function(file, done) {
+		if (hasWhiteSpace(file.name)) {
+				done("You seem to have a space in your animation name. Please remove the space and regenerate the animation.");
+		} else {
+				done();
+		}
+},
+success: function(file, resp) {
+				jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\"><br>'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\"" + resp + "\"]</span></div>");
+				jQuery(".dropzone2").css("display", "block");
+				jQuery(".dropzone").remove();
+		}
+		// complete: function(file) {
+		// }
+	};
+ 
+</script>
 		<div>
 			<header>
-				<a href="#fermer" alt="close" id="closeDroper" class="droitefermer">&#10005;</a>
+				<a href="#fermer" alt="close" id="closeDroper" class="closemodal">&#10005;</a>
 				<h2>'.__( 'Upload new animation' , 'hype-animations' ).'</h2>
 			</header>
 			<section>
@@ -174,7 +157,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 
 
 	<script>
-	jQuery(".droitefermer").click(function(e) {
+	jQuery(".closemodal").click(function(e) {
 		window.location.href=window.location.href.substr(0, window.location.href.indexOf("#"));
 	});
 	</script>
@@ -193,7 +176,7 @@ function hypeanimations_panel() {
 	<h2>'.__( 'Add new animation' , 'hype-animations' ).'</h2>
 	<div class="hypeanimbloc">
 	'.__( 'Upload an .OAM file exported by <a href="https://tumult.com/hype?utm_source=wpplugin">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
-	<a href="#oModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
+	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
 	$delete = isset($_GET['delete']) ? ceil($_GET['delete']) : 0;
 	if ($delete>0) {
@@ -248,8 +231,6 @@ function hypeanimations_panel() {
 						$data_updt = array(
 							'nom' => $new_name
 						);
-
-
 
 						$update_name = $wpdb->query( $wpdb->prepare( "UPDATE $hypeanimations_table_name SET `nom` = %s WHERE `id` = %d",$new_name,  $actdataid ) );
 
