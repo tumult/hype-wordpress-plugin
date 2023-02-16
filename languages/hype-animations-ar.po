@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-08 13:52-0500\n"
-"PO-Revision-Date: 2022-10-26 11:10-0400\n"
+"POT-Creation-Date: 2023-02-16 14:21-0500\n"
+"PO-Revision-Date: 2023-02-16 14:21-0500\n"
 "Last-Translator: \n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100 >= 3 "
 "&& n%100<=10 ? 3 : n%100 >= 11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -23,23 +23,23 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:122 includes/adminpanel.php:145
+#: includes/adminpanel.php:125
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr "أفلت ملف OAM. أو انقر هنا للتحميل <br> (أقصى حجم للتحميل"
 
-#: includes/adminpanel.php:131
+#: includes/adminpanel.php:134
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "أدخل الرمز القصير التالي حيث تريد عرض الرسم المتحرك"
 
-#: includes/adminpanel.php:164 includes/adminpanel.php:196
+#: includes/adminpanel.php:146 includes/adminpanel.php:176
 msgid "Upload new animation"
 msgstr "قم بتحميل رسوم متحركة جديدة"
 
-#: includes/adminpanel.php:193
+#: includes/adminpanel.php:173
 msgid "Add new animation"
 msgstr "أضف رسوم متحركة جديدة"
 
-#: includes/adminpanel.php:195
+#: includes/adminpanel.php:175
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -51,107 +51,107 @@ msgstr ""
 "يمكنك إدراجها في وظائف وصفحات. <a href=\"https://forums.tumult.com/t/hype-"
 "animations-wordpress-plugin/11074\" target=\"_blank\">تحتاج مساعدة؟</a>"
 
-#: includes/adminpanel.php:319
+#: includes/adminpanel.php:297
 msgid "Manage animations"
 msgstr "إدارة الرسوم المتحركة"
 
-#: includes/adminpanel.php:326
+#: includes/adminpanel.php:304
 msgid "Last file update"
 msgstr "آخر تحديث للملف"
 
-#: includes/adminpanel.php:333
+#: includes/adminpanel.php:311
 msgid "Add a container around the animation:"
 msgstr "أضف حاوية حول الرسوم المتحركة:"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Update"
 msgstr "تحديث"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Container CSS class"
 msgstr "فئة CSS للحاوية"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "No data"
 msgstr "لايوجد بيانات"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Copy Code"
 msgstr "رمز النسخ"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Delete"
 msgstr "حذف"
 
-#: includes/adminpanel.php:394
+#: includes/adminpanel.php:372
 msgid "Updated!"
 msgstr "محدث!"
 
-#: includes/adminpanel.php:401
+#: includes/adminpanel.php:379
 msgid "Error, please try again!"
 msgstr "خطأ ، يرجى المحاولة مرة أخرى!"
 
-#: includes/adminpanel.php:408
+#: includes/adminpanel.php:386
 msgid "Update file"
 msgstr "ملف التحديث"
 
-#: includes/adminpanel.php:424
+#: includes/adminpanel.php:402
 msgid "Processing..."
 msgstr "معالجة..."
 
-#: includes/adminpanel.php:425
+#: includes/adminpanel.php:403
 msgid "Search:"
 msgstr "بحث:"
 
-#: includes/adminpanel.php:426
+#: includes/adminpanel.php:404
 msgid "Show"
 msgstr "تبين"
 
-#: includes/adminpanel.php:426 includes/adminpanel.php:427
+#: includes/adminpanel.php:404 includes/adminpanel.php:405
 msgid "animations"
 msgstr "الرسوم المتحركة"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:405
 msgid "Showing"
 msgstr "عرض"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:405
 msgid "to"
 msgstr "إلى"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:405
 msgid "of"
 msgstr "من"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:406
 msgid "No animations found."
 msgstr "لم يتم العثور على رسوم متحركة."
 
-#: includes/adminpanel.php:429
+#: includes/adminpanel.php:407
 msgid "Loading..."
 msgstr "جار التحميل..."
 
-#: includes/adminpanel.php:430
+#: includes/adminpanel.php:408
 msgid "No animation has been found"
 msgstr "لم يتم العثور على رسوم متحركة"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:409
 msgid "No animation has been added"
 msgstr "لم تتم إضافة رسوم متحركة"
 
-#: includes/adminpanel.php:433
+#: includes/adminpanel.php:411
 msgid "First"
 msgstr "أول"
 
-#: includes/adminpanel.php:434
+#: includes/adminpanel.php:412
 msgid "Previous"
 msgstr "السابق"
 
-#: includes/adminpanel.php:435
+#: includes/adminpanel.php:413
 msgid "Next"
 msgstr "التالى"
 
-#: includes/adminpanel.php:436
+#: includes/adminpanel.php:414
 msgid "Last"
 msgstr "الاخير"
 
