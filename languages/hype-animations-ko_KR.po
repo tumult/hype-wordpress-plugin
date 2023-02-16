@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-08 13:50-0500\n"
-"PO-Revision-Date: 2022-10-26 11:09-0400\n"
+"POT-Creation-Date: 2023-02-16 14:20-0500\n"
+"PO-Revision-Date: 2023-02-16 14:20-0500\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,137 +22,137 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:122 includes/adminpanel.php:145
+#: includes/adminpanel.php:125
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "드롭. OAM 파일 또는 업로드하려면 여기를 클릭하십시오<br>(최대 업로드 크기 "
 
-#: includes/adminpanel.php:131
+#: includes/adminpanel.php:134
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "애니메이션을 표시하려는 다음 단축코드를 삽입합니다."
 
-#: includes/adminpanel.php:164 includes/adminpanel.php:196
+#: includes/adminpanel.php:146 includes/adminpanel.php:176
 msgid "Upload new animation"
 msgstr "새 애니메이션 업로드"
 
-#: includes/adminpanel.php:193
+#: includes/adminpanel.php:173
 msgid "Add new animation"
 msgstr "새 애니메이션 추가"
 
-#: includes/adminpanel.php:195
+#: includes/adminpanel.php:175
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
 "which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
 "t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"를 업로드합니다. <a href=\"http://tumult.com/hype?utm_source=wpplugin"
-"\">Tumult 과대 광고에</a> 의해 내보낸 OAM 파일과 게시물과 페이지에 삽입 할 수"
-"있는 단축 코드가 생성됩니다. <a href=\"https://forums.tumult.com/t/hype-"
-"animations-wordpress-plugin/11074\" target=\"_blank\">도움이 필요하십니까?</"
-"a>"
+"를 업로드합니다. <a href=\"http://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult 과대 광고에</a> 의해 내보낸 OAM 파일과 게시물과 "
+"페이지에 삽입 할 수있는 단축 코드가 생성됩니다. <a href=\"https://forums."
+"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">도움"
+"이 필요하십니까?</a>"
 
-#: includes/adminpanel.php:319
+#: includes/adminpanel.php:297
 msgid "Manage animations"
 msgstr "애니메이션 관리"
 
-#: includes/adminpanel.php:326
+#: includes/adminpanel.php:304
 msgid "Last file update"
 msgstr "마지막 파일 업데이트"
 
-#: includes/adminpanel.php:333
+#: includes/adminpanel.php:311
 msgid "Add a container around the animation:"
 msgstr "애니메이션 주위에 컨테이너 추가:"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Update"
 msgstr "업데이트"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Container CSS class"
 msgstr "컨테이너 CSS 클래스"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "No data"
 msgstr "데이터 없음"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Copy Code"
 msgstr "복사 코드"
 
-#: includes/adminpanel.php:335
+#: includes/adminpanel.php:313
 msgid "Delete"
 msgstr "삭제"
 
-#: includes/adminpanel.php:394
+#: includes/adminpanel.php:372
 msgid "Updated!"
 msgstr "업데이트!"
 
-#: includes/adminpanel.php:401
+#: includes/adminpanel.php:379
 msgid "Error, please try again!"
 msgstr "오류, 다시 시도하십시오!"
 
-#: includes/adminpanel.php:408
+#: includes/adminpanel.php:386
 msgid "Update file"
 msgstr "업데이트 파일"
 
-#: includes/adminpanel.php:424
+#: includes/adminpanel.php:402
 msgid "Processing..."
 msgstr "처리..."
 
-#: includes/adminpanel.php:425
+#: includes/adminpanel.php:403
 msgid "Search:"
 msgstr "검색:"
 
-#: includes/adminpanel.php:426
+#: includes/adminpanel.php:404
 msgid "Show"
 msgstr "표시"
 
-#: includes/adminpanel.php:426 includes/adminpanel.php:427
+#: includes/adminpanel.php:404 includes/adminpanel.php:405
 msgid "animations"
 msgstr "애니메이션"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:405
 msgid "Showing"
 msgstr "페이지"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:405
 msgid "to"
 msgstr "받는 사람"
 
-#: includes/adminpanel.php:427
+#: includes/adminpanel.php:405
 msgid "of"
 msgstr "의"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:406
 msgid "No animations found."
 msgstr "애니메이션을 찾을 수 없습니다."
 
-#: includes/adminpanel.php:429
+#: includes/adminpanel.php:407
 msgid "Loading..."
 msgstr "로드..."
 
-#: includes/adminpanel.php:430
+#: includes/adminpanel.php:408
 msgid "No animation has been found"
 msgstr "애니메이션이 발견되지 않았습니다."
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:409
 msgid "No animation has been added"
 msgstr "애니메이션이 추가되지 않았습니다."
 
-#: includes/adminpanel.php:433
+#: includes/adminpanel.php:411
 msgid "First"
 msgstr "첫 번째"
 
-#: includes/adminpanel.php:434
+#: includes/adminpanel.php:412
 msgid "Previous"
 msgstr "이전"
 
-#: includes/adminpanel.php:435
+#: includes/adminpanel.php:413
 msgid "Next"
 msgstr "다음"
 
-#: includes/adminpanel.php:436
+#: includes/adminpanel.php:414
 msgid "Last"
 msgstr "마지막"
 
