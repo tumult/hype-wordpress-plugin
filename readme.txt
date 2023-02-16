@@ -25,6 +25,9 @@ For detailed information and support for this plugin, please visit: https://foru
 
 == Changelog ==
 
+= 1.9.8 = 
+* Upgrade to dropzone 5.9.3, remove unused code
+
 = 1.9.7 = 
 * Improve Code Copying Function to avoid debug log errors
 
