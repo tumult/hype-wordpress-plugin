@@ -274,14 +274,14 @@ div.optionright>div>input[type=text] {
     clear: both;
 }
 
-.droitefermer {
+.closemodal {
     float: right;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.5em;
 }
 
-.oModal {
+.openModal {
     position: fixed;
     z-index: 99999;
     top: 0;
@@ -296,19 +296,19 @@ div.optionright>div>input[type=text] {
     pointer-events: none;
 }
 
-.oModal:target {
+.openModal:target {
     opacity: 1;
     pointer-events: auto;
 }
 
-.oModal:target>div {
+.openModal:target>div {
     margin: 10% auto;
     transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -webkit-transition: all 0.4s ease-in-out;
 }
 
-.oModal>div {
+.openModal>div {
     max-width: 600px;
     position: relative;
     margin: 1% auto;
@@ -320,29 +320,29 @@ div.optionright>div>input[type=text] {
     -webkit-transition: all 0.4s ease-in-out;
 }
 
-.oModal>div header,
-.oModal>div footer {
+.openModal>div header,
+.openModal>div footer {
     border-bottom: 1px solid #e7e7e7;
     border-radius: 5px 5px 0 0;
 }
 
-.oModal .footer {
+.openModal .footer {
     border: none;
     border-top: 1px solid #e7e7e7;
     border-radius: 0 0 5px 5px;
 }
 
-.oModal>div h2 {
+.openModal>div h2 {
     margin: 0;
 }
 
-.oModal>div .btn {
+.openModal>div .btn {
     float: right;
 }
 
-.oModal>div section,
-.oModal>div>header,
-.oModal>div>footer {
+.openModal>div section,
+.openModal>div>header,
+.openModal>div>footer {
     padding: 15px;
 }
 
