@@ -19,13 +19,17 @@ function upload_mb() {
 }
 
 function parse_size($size) {
-    $unit = preg_replace('/[^bkmgtpezy]/i', '', $size);
-    $size = preg_replace('/[^0-9\.]/', '', $size);
-    if ($unit) {
-        return round($size * pow(1024, stripos('bkmgtpezy', $unit[0])));
-    } else {
-        return round($size);
+    $unit = strtoupper(substr($size, -1));
+    $size = substr($size, 0, -1);
+    switch ($unit) {
+        case 'G':
+            $size *= 1024;
+        case 'M':
+            $size *= 1024;
+        case 'K':
+            $size *= 1024;
     }
+    return round($size);
 }
 
 function format_size($size) {
