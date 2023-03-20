@@ -295,7 +295,7 @@ function hypeanimations_panel() {
 		}
 		//print_r($_FILES);
 	}
-	echo '<p style="clear:both">&nbsp;</p>
+	echo '<p style="line-height:0px;clear:both">&nbsp;</p>
 	'.($hypeupdated>0 ? '<p><span style="padding:10px;color:#FFF;background:#009933;">'.$hypeupdatetd_title.' has been updated!</style></p><p>&nbsp;</p>' : '').'
 	<h2>'.__( 'Manage animations' , 'hype-animations' ).'</h2>
 	<table cellpadding="0" cellspacing="0" id="hypeanimations">
