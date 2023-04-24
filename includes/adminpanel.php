@@ -278,6 +278,13 @@ function hypeanimations_panel() {
 						//copy index.html
 						copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$actdataid.'/'.$actfile[0].'.html');
 
+						// create the column htmlcode_full if it doesn't exist as a current install might not have it with the field using the sql data type "text"
+						//$wpdb->query("ALTER TABLE $hypeanimations_table_name ADD htmlcode_full TEXT NOT NULL AFTER code");
+
+						// get the full code of the .html file and add it to database under the column "htmlcode_full" 
+						$fullcode = file_get_contents($uploaddir.'Assets/'.$actfile[0].'.html');
+						$update = $wpdb -> query($wpdb->prepare("UPDATE $hypeanimations_table_name SET htmlcode_full=%s WHERE `id` = %d",addslashes(htmlentities($fullcode)), $actdataid));
+
 						if (file_exists($uploaddir.'Assets/'.$actfile[0].'.html')) {
 							unlink($uploaddir.'Assets/'.$actfile[0].'.html');
 						}
@@ -515,4 +522,42 @@ function hypeanimations_getcontent(){
     }
 	echo html_entity_decode($animcode);
     exit();
+}
+
+// get all the code that is between these two comments: <!-- copy these lines to your document head: --> <!-- end copy -->
+
+function capture_content_between_comments($file_path) {
+	$content = file_get_contents($file_path);
+
+	$start_comment = '<!-- copy these lines to your document head: -->';
+	$end_comment = '<!-- end copy -->';
+
+	$start_pos = strpos($content, $start_comment);
+	$end_pos = strpos($content, $end_comment);
+
+	if ($start_pos === false || $end_pos === false) {
+			return false;
+	}
+
+	$start_pos += strlen($start_comment);
+	$length = $end_pos - $start_pos;
+
+	$captured_content = substr($content, $start_pos, $length);
+
+	// Sanitize the captured content using htmlentities
+	$sanitized_content = htmlentities($captured_content, ENT_QUOTES, 'UTF-8');
+
+	return $sanitized_content;
+}
+
+
+function get_hypeanimations_code($id, $nom) {
+	$upload_info = wp_upload_dir();
+	$upload_base_dir = $upload_info['basedir'];
+	$hypeanimations_dir = $upload_base_dir . '/hypeanimations/';
+
+	$html_file_path = $hypeanimations_dir . '/' . $id . '/' . $nom . '.html';
+
+	$code = capture_content_between_comments($html_file_path);
+	return $code;
 }

@@ -30,6 +30,11 @@ function hypeanimations_install() {
 	$sql = "CREATE TABLE $hypeanimations_table_name (id int(9) NOT NULL AUTO_INCREMENT, nom varchar(150) DEFAULT '' NOT NULL, slug varchar(150) DEFAULT '' NOT NULL, code text NOT NULL, updated INT(11) NOT NULL, container ENUM('none','div','iframe') NOT NULL, containerclass VARCHAR(150) NOT NULL, UNIQUE KEY id (id) ) $charset_collate;";
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	dbDelta( $sql );
+
+	// Add the provided SQL query to add a new column for 2.0
+	$sql_add_column = "ALTER TABLE $hypeanimations_table_name ADD htmlcode_full TEXT NOT NULL AFTER code";
+	$wpdb->query($sql_add_column);
+
 	add_option( 'hypeanimations_db_version', $hypeanimations_db_version );
 }
 register_activation_hook(__FILE__,'hypeanimations_install');
