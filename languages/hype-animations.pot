@@ -1,16 +1,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2020-07-14 12:04-0400\n"
+"POT-Creation-Date: 2023-04-24 12:31-0400\n"
 "PO-Revision-Date: 2016-03-23 04:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3.1\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,16 +20,24 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:113 includes/adminpanel.php:145
-#: includes/tinymcetool.php:23
+#: includes/adminpanel.php:125
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
+msgstr ""
+
+#: includes/adminpanel.php:135
+msgid ""
+"Insert the following shortcode where you want to display the animation"
+msgstr ""
+
+#: includes/adminpanel.php:147 includes/adminpanel.php:179
 msgid "Upload new animation"
 msgstr ""
 
-#: includes/adminpanel.php:142
+#: includes/adminpanel.php:176
 msgid "Add new animation"
 msgstr ""
 
-#: includes/adminpanel.php:144
+#: includes/adminpanel.php:178
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -38,133 +46,108 @@ msgid ""
 "</a>"
 msgstr ""
 
-#: includes/adminpanel.php:268
+#: includes/adminpanel.php:300
 msgid "Manage animations"
 msgstr ""
 
-#: includes/adminpanel.php:275
+#: includes/adminpanel.php:307
 msgid "Last file update"
 msgstr ""
 
-#: includes/adminpanel.php:282
+#: includes/adminpanel.php:320
 msgid "Add a container around the animation:"
 msgstr ""
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:326 includes/adminpanel.php:335
 msgid "Update"
 msgstr ""
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:328
 msgid "Container CSS class"
 msgstr ""
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:332
 msgid "No data"
 msgstr ""
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:334
 msgid "Copy Code"
 msgstr ""
 
-#: includes/adminpanel.php:284
+#: includes/adminpanel.php:336
 msgid "Delete"
 msgstr ""
 
-#: includes/adminpanel.php:343
+#: includes/adminpanel.php:398
 msgid "Updated!"
 msgstr ""
 
-#: includes/adminpanel.php:350
+#: includes/adminpanel.php:405
 msgid "Error, please try again!"
 msgstr ""
 
-#: includes/adminpanel.php:357
+#: includes/adminpanel.php:412
 msgid "Update file"
 msgstr ""
 
-#: includes/adminpanel.php:373
+#: includes/adminpanel.php:428
 msgid "Processing..."
 msgstr ""
 
-#: includes/adminpanel.php:374
+#: includes/adminpanel.php:429
 msgid "Search:"
 msgstr ""
 
-#: includes/adminpanel.php:375
+#: includes/adminpanel.php:430
 msgid "Show"
 msgstr ""
 
-#: includes/adminpanel.php:375 includes/adminpanel.php:376
+#: includes/adminpanel.php:430 includes/adminpanel.php:431
 msgid "animations"
 msgstr ""
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:431
 msgid "Showing"
 msgstr ""
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:431
 msgid "to"
 msgstr ""
 
-#: includes/adminpanel.php:376
+#: includes/adminpanel.php:431
 msgid "of"
 msgstr ""
 
-#: includes/adminpanel.php:377
+#: includes/adminpanel.php:432
 msgid "No animations found."
 msgstr ""
 
-#: includes/adminpanel.php:378
+#: includes/adminpanel.php:433
 msgid "Loading..."
 msgstr ""
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:434
 msgid "No animation has been found"
 msgstr ""
 
-#: includes/adminpanel.php:380
+#: includes/adminpanel.php:435
 msgid "No animation has been added"
 msgstr ""
 
-#: includes/adminpanel.php:382
+#: includes/adminpanel.php:437
 msgid "First"
 msgstr ""
 
-#: includes/adminpanel.php:383
+#: includes/adminpanel.php:438
 msgid "Previous"
 msgstr ""
 
-#: includes/adminpanel.php:384
+#: includes/adminpanel.php:439
 msgid "Next"
 msgstr ""
 
-#: includes/adminpanel.php:385
+#: includes/adminpanel.php:440
 msgid "Last"
-msgstr ""
-
-#: includes/tinymcetool.php:20
-msgid "Choose an animation"
-msgstr ""
-
-#: includes/tinymcetool.php:37
-msgid "Insert"
-msgstr ""
-
-#: includes/tinymcetool.php:39
-msgid "Or upload a new one"
-msgstr ""
-
-#: includes/tinymcetool.php:61
-msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ""
-
-#: includes/tinymcetool.php:69
-msgid ""
-"Insert the following shortcode where you want to display the animation"
-msgstr ""
-
-#: includes/tinymcetool.php:82
-msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 
 #. Plugin Name of the plugin/theme

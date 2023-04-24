@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2023-02-16 14:20-0500\n"
-"PO-Revision-Date: 2023-02-16 14:20-0500\n"
+"POT-Creation-Date: 2023-04-24 12:30-0400\n"
+"PO-Revision-Date: 2023-04-24 12:30-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -27,19 +27,19 @@ msgstr ""
 "Trage un fișier .OAM aici sau încarcă unul nou<br>(Dimensiunea maximă a "
 "fișierului "
 
-#: includes/adminpanel.php:134
+#: includes/adminpanel.php:135
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Introduceți următorul shortcode unde doriți să afișați animația"
 
-#: includes/adminpanel.php:146 includes/adminpanel.php:176
+#: includes/adminpanel.php:147 includes/adminpanel.php:179
 msgid "Upload new animation"
 msgstr "Încarcă o animație nouă"
 
-#: includes/adminpanel.php:173
+#: includes/adminpanel.php:176
 msgid "Add new animation"
 msgstr "Adăugare o animație nouă"
 
-#: includes/adminpanel.php:175
+#: includes/adminpanel.php:178
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -52,107 +52,107 @@ msgstr ""
 "forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
 "target=\"_blank\">Ai nevoie de ajutor?</a>"
 
-#: includes/adminpanel.php:297
+#: includes/adminpanel.php:300
 msgid "Manage animations"
 msgstr "Gestionează animațiile"
 
-#: includes/adminpanel.php:304
+#: includes/adminpanel.php:307
 msgid "Last file update"
 msgstr "Ultima actualizare a fișierului"
 
-#: includes/adminpanel.php:311
+#: includes/adminpanel.php:320
 msgid "Add a container around the animation:"
 msgstr "Adăugați un container în jurul animației:"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:326 includes/adminpanel.php:335
 msgid "Update"
 msgstr "Actualizează"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:328
 msgid "Container CSS class"
 msgstr "Container Clasă  CSS"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:332
 msgid "No data"
 msgstr "Nu există date"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:334
 msgid "Copy Code"
 msgstr "Copiază Cod"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:336
 msgid "Delete"
 msgstr "Șterge"
 
-#: includes/adminpanel.php:372
+#: includes/adminpanel.php:398
 msgid "Updated!"
 msgstr "Actualizat!"
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:405
 msgid "Error, please try again!"
 msgstr "Eroare, te rugăm să încerci din nou!"
 
-#: includes/adminpanel.php:386
+#: includes/adminpanel.php:412
 msgid "Update file"
 msgstr "Actualizează fișierul"
 
-#: includes/adminpanel.php:402
+#: includes/adminpanel.php:428
 msgid "Processing..."
 msgstr "Se procesează…"
 
-#: includes/adminpanel.php:403
+#: includes/adminpanel.php:429
 msgid "Search:"
 msgstr "Caută:"
 
-#: includes/adminpanel.php:404
+#: includes/adminpanel.php:430
 msgid "Show"
 msgstr "Arată"
 
-#: includes/adminpanel.php:404 includes/adminpanel.php:405
+#: includes/adminpanel.php:430 includes/adminpanel.php:431
 msgid "animations"
 msgstr "animații"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "Showing"
 msgstr "Arată"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "to"
 msgstr "la"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "of"
 msgstr "din"
 
-#: includes/adminpanel.php:406
+#: includes/adminpanel.php:432
 msgid "No animations found."
 msgstr "Nu a fost găsită nicio animație."
 
-#: includes/adminpanel.php:407
+#: includes/adminpanel.php:433
 msgid "Loading..."
 msgstr "Se încarcă…"
 
-#: includes/adminpanel.php:408
+#: includes/adminpanel.php:434
 msgid "No animation has been found"
 msgstr "Nu a fost găsită nicio animație"
 
-#: includes/adminpanel.php:409
+#: includes/adminpanel.php:435
 msgid "No animation has been added"
 msgstr "Nu a fost adăugată nicio animație"
 
-#: includes/adminpanel.php:411
+#: includes/adminpanel.php:437
 msgid "First"
 msgstr "Primele"
 
-#: includes/adminpanel.php:412
+#: includes/adminpanel.php:438
 msgid "Previous"
 msgstr "Anterior"
 
-#: includes/adminpanel.php:413
+#: includes/adminpanel.php:439
 msgid "Next"
 msgstr "Următor"
 
-#: includes/adminpanel.php:414
+#: includes/adminpanel.php:440
 msgid "Last"
 msgstr "Ultimele"
 
