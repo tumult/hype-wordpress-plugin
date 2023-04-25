@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-16 14:20-0500\n"
-"PO-Revision-Date: 2023-02-16 14:20-0500\n"
+"POT-Creation-Date: 2023-04-24 12:31-0400\n"
+"PO-Revision-Date: 2023-04-24 12:31-0400\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt_BR\n"
@@ -27,19 +27,19 @@ msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "Gota. Arquivo OAM ou clique aqui para carregar<br> (tamanho máximo de upload "
 
-#: includes/adminpanel.php:134
+#: includes/adminpanel.php:135
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Insira o seguinte código curto onde deseja exibir a animação"
 
-#: includes/adminpanel.php:146 includes/adminpanel.php:176
+#: includes/adminpanel.php:147 includes/adminpanel.php:179
 msgid "Upload new animation"
 msgstr "Carregar nova animação"
 
-#: includes/adminpanel.php:173
+#: includes/adminpanel.php:176
 msgid "Add new animation"
 msgstr "Adicionar nova animação"
 
-#: includes/adminpanel.php:175
+#: includes/adminpanel.php:178
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -52,107 +52,107 @@ msgstr ""
 "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Precisa de "
 "ajuda?</a>"
 
-#: includes/adminpanel.php:297
+#: includes/adminpanel.php:300
 msgid "Manage animations"
 msgstr "Gerenciar animações"
 
-#: includes/adminpanel.php:304
+#: includes/adminpanel.php:307
 msgid "Last file update"
 msgstr "Última atualização de arquivo"
 
-#: includes/adminpanel.php:311
+#: includes/adminpanel.php:320
 msgid "Add a container around the animation:"
 msgstr "Adicione um recipiente ao redor da animação"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:326 includes/adminpanel.php:335
 msgid "Update"
 msgstr "Atualização"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:328
 msgid "Container CSS class"
 msgstr "Classe CSS de contêiner"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:332
 msgid "No data"
 msgstr "Sem dados"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:334
 msgid "Copy Code"
 msgstr "Código de cópia"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:336
 msgid "Delete"
 msgstr "Excluir"
 
-#: includes/adminpanel.php:372
+#: includes/adminpanel.php:398
 msgid "Updated!"
 msgstr "Atualizado!"
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:405
 msgid "Error, please try again!"
 msgstr "Erro, por favor, tente de novo!"
 
-#: includes/adminpanel.php:386
+#: includes/adminpanel.php:412
 msgid "Update file"
 msgstr "Atualizar arquivo"
 
-#: includes/adminpanel.php:402
+#: includes/adminpanel.php:428
 msgid "Processing..."
 msgstr "Processamento..."
 
-#: includes/adminpanel.php:403
+#: includes/adminpanel.php:429
 msgid "Search:"
 msgstr "Busca:"
 
-#: includes/adminpanel.php:404
+#: includes/adminpanel.php:430
 msgid "Show"
 msgstr "programa"
 
-#: includes/adminpanel.php:404 includes/adminpanel.php:405
+#: includes/adminpanel.php:430 includes/adminpanel.php:431
 msgid "animations"
 msgstr "Animações"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "Showing"
 msgstr "Mostrando"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "to"
 msgstr "Para"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "of"
 msgstr "De"
 
-#: includes/adminpanel.php:406
+#: includes/adminpanel.php:432
 msgid "No animations found."
 msgstr "Não foram encontradas animações."
 
-#: includes/adminpanel.php:407
+#: includes/adminpanel.php:433
 msgid "Loading..."
 msgstr "Carregar..."
 
-#: includes/adminpanel.php:408
+#: includes/adminpanel.php:434
 msgid "No animation has been found"
 msgstr "Nenhuma animação foi encontrada"
 
-#: includes/adminpanel.php:409
+#: includes/adminpanel.php:435
 msgid "No animation has been added"
 msgstr "Nenhuma animação foi adicionada"
 
-#: includes/adminpanel.php:411
+#: includes/adminpanel.php:437
 msgid "First"
 msgstr "Primeiro"
 
-#: includes/adminpanel.php:412
+#: includes/adminpanel.php:438
 msgid "Previous"
 msgstr "Anterior"
 
-#: includes/adminpanel.php:413
+#: includes/adminpanel.php:439
 msgid "Next"
 msgstr "Próximo"
 
-#: includes/adminpanel.php:414
+#: includes/adminpanel.php:440
 msgid "Last"
 msgstr "Última"
 

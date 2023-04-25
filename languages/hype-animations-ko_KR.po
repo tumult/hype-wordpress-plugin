@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-16 14:20-0500\n"
-"PO-Revision-Date: 2023-02-16 14:20-0500\n"
+"POT-Creation-Date: 2023-04-24 12:31-0400\n"
+"PO-Revision-Date: 2023-04-24 12:31-0400\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -27,19 +27,19 @@ msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "드롭. OAM 파일 또는 업로드하려면 여기를 클릭하십시오<br>(최대 업로드 크기 "
 
-#: includes/adminpanel.php:134
+#: includes/adminpanel.php:135
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "애니메이션을 표시하려는 다음 단축코드를 삽입합니다."
 
-#: includes/adminpanel.php:146 includes/adminpanel.php:176
+#: includes/adminpanel.php:147 includes/adminpanel.php:179
 msgid "Upload new animation"
 msgstr "새 애니메이션 업로드"
 
-#: includes/adminpanel.php:173
+#: includes/adminpanel.php:176
 msgid "Add new animation"
 msgstr "새 애니메이션 추가"
 
-#: includes/adminpanel.php:175
+#: includes/adminpanel.php:178
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -52,107 +52,107 @@ msgstr ""
 "tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">도움"
 "이 필요하십니까?</a>"
 
-#: includes/adminpanel.php:297
+#: includes/adminpanel.php:300
 msgid "Manage animations"
 msgstr "애니메이션 관리"
 
-#: includes/adminpanel.php:304
+#: includes/adminpanel.php:307
 msgid "Last file update"
 msgstr "마지막 파일 업데이트"
 
-#: includes/adminpanel.php:311
+#: includes/adminpanel.php:320
 msgid "Add a container around the animation:"
 msgstr "애니메이션 주위에 컨테이너 추가:"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:326 includes/adminpanel.php:335
 msgid "Update"
 msgstr "업데이트"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:328
 msgid "Container CSS class"
 msgstr "컨테이너 CSS 클래스"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:332
 msgid "No data"
 msgstr "데이터 없음"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:334
 msgid "Copy Code"
 msgstr "복사 코드"
 
-#: includes/adminpanel.php:313
+#: includes/adminpanel.php:336
 msgid "Delete"
 msgstr "삭제"
 
-#: includes/adminpanel.php:372
+#: includes/adminpanel.php:398
 msgid "Updated!"
 msgstr "업데이트!"
 
-#: includes/adminpanel.php:379
+#: includes/adminpanel.php:405
 msgid "Error, please try again!"
 msgstr "오류, 다시 시도하십시오!"
 
-#: includes/adminpanel.php:386
+#: includes/adminpanel.php:412
 msgid "Update file"
 msgstr "업데이트 파일"
 
-#: includes/adminpanel.php:402
+#: includes/adminpanel.php:428
 msgid "Processing..."
 msgstr "처리..."
 
-#: includes/adminpanel.php:403
+#: includes/adminpanel.php:429
 msgid "Search:"
 msgstr "검색:"
 
-#: includes/adminpanel.php:404
+#: includes/adminpanel.php:430
 msgid "Show"
 msgstr "표시"
 
-#: includes/adminpanel.php:404 includes/adminpanel.php:405
+#: includes/adminpanel.php:430 includes/adminpanel.php:431
 msgid "animations"
 msgstr "애니메이션"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "Showing"
 msgstr "페이지"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "to"
 msgstr "받는 사람"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:431
 msgid "of"
 msgstr "의"
 
-#: includes/adminpanel.php:406
+#: includes/adminpanel.php:432
 msgid "No animations found."
 msgstr "애니메이션을 찾을 수 없습니다."
 
-#: includes/adminpanel.php:407
+#: includes/adminpanel.php:433
 msgid "Loading..."
 msgstr "로드..."
 
-#: includes/adminpanel.php:408
+#: includes/adminpanel.php:434
 msgid "No animation has been found"
 msgstr "애니메이션이 발견되지 않았습니다."
 
-#: includes/adminpanel.php:409
+#: includes/adminpanel.php:435
 msgid "No animation has been added"
 msgstr "애니메이션이 추가되지 않았습니다."
 
-#: includes/adminpanel.php:411
+#: includes/adminpanel.php:437
 msgid "First"
 msgstr "첫 번째"
 
-#: includes/adminpanel.php:412
+#: includes/adminpanel.php:438
 msgid "Previous"
 msgstr "이전"
 
-#: includes/adminpanel.php:413
+#: includes/adminpanel.php:439
 msgid "Next"
 msgstr "다음"
 
-#: includes/adminpanel.php:414
+#: includes/adminpanel.php:440
 msgid "Last"
 msgstr "마지막"
 

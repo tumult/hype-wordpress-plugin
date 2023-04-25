@@ -3,9 +3,9 @@ Author URI: https://www.tumult.com
 Plugin URI: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
 Contributors: tumultinc, freeben
 Tags: Hype, Animation
-Requires at least: 4.7
+Requires at least: 5.0
 Requires PHP: 7.4
-Tested up to: 6.1
+Tested up to: 6.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,7 +26,7 @@ For detailed information and support for this plugin, please visit: https://foru
 == Changelog ==
 
 = 1.9.8 = 
-* Upgrade to dropzone 5.9.3, remove unused code
+* Upgrade to dropzone 5.9.3, remove unused code, improve management panel
 
 = 1.9.7 = 
 * Improve Code Copying Function to avoid debug log errors
