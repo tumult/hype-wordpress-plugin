@@ -1,9 +1,15 @@
 <?php
+global $wpdb;
 $version = '1.9.8';
 $hypeanimations_db_version = $version;
 $hypeanimations_table_name = $wpdb->prefix . 'hypeanimations';
 $upload_mb = upload_mb();
 
+/**
+ * Calculate the maximum file upload size
+ *
+ * @return string Formatted size string
+ */
 function upload_mb() {
     $max_upload = parse_size(ini_get('upload_max_filesize'));
     $max_post = parse_size(ini_get('post_max_size'));
@@ -18,20 +24,36 @@ function upload_mb() {
     }
 }
 
+/**
+ * Convert size string to bytes
+ *
+ * @param string $size Size string with a unit like '2M' or '512K'
+ * @return float Size in bytes
+ */
 function parse_size($size) {
-    $unit = strtoupper(substr($size, -1));
-    $size = substr($size, 0, -1);
+    $unit = strtolower(substr($size, -1));
+    $size = (float) substr($size, 0, -1);
     switch ($unit) {
-        case 'G':
+        case 'g':
             $size *= 1024;
-        case 'M':
+        case 'm':
             $size *= 1024;
-        case 'K':
+        case 'k':
             $size *= 1024;
+            break;
+        default:
+            // Invalid unit, assuming size is already in bytes
+            break;
     }
     return round($size);
 }
 
+/**
+ * Format the size value into a human-readable string
+ *
+ * @param float $size Size value in bytes
+ * @return string Formatted size string
+ */
 function format_size($size) {
     if ($size >= 1073741824) {
         return round($size / 1073741824, 2) . 'GB';
@@ -40,6 +62,6 @@ function format_size($size) {
     } elseif ($size >= 1024) {
         return round($size / 1024, 2) . 'KB';
     } else {
-        return $size . 'B';
+        return round($size) . 'B';
     }
 }
