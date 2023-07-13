@@ -15,6 +15,11 @@ function upload_mb() {
     $max_post = parse_size(ini_get('post_max_size'));
     $memory_limit = parse_size(ini_get('memory_limit'));
 
+    // Check for null values and handle gracefully
+    if ($max_upload === null || $max_post === null || $memory_limit === null) {
+        return 'unknown';
+    }
+
     $upload_mb = min($max_upload, $max_post, $memory_limit);
     
     if ($upload_mb < 0) {
@@ -32,7 +37,14 @@ function upload_mb() {
  */
 function parse_size($size) {
     $unit = strtolower(substr($size, -1));
-    $size = (float) substr($size, 0, -1);
+    $size = substr($size, 0, -1);
+
+    // Check if size is a valid number
+    if (!is_numeric($size)) {
+        return null;
+    }
+
+    $size = (float) $size;
     switch ($unit) {
         case 'g':
             $size *= 1024;
