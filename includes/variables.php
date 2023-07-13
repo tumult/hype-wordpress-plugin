@@ -36,29 +36,30 @@ function upload_mb() {
  * @return float Size in bytes
  */
 function parse_size($size) {
-    $unit = strtolower(substr($size, -1));
-    $size = substr($size, 0, -1);
+    $unit = preg_match('/(k|m|g)$/i', $size, $matches) ? strtolower($matches[1]) : '';
+    $size = (float) $size;
 
-    // Check if size is a valid number
     if (!is_numeric($size)) {
-        return null;
+        // Default value of 20MB in bytes
+        return 20 * 1024 * 1024;
     }
 
-    $size = (float) $size;
     switch ($unit) {
         case 'g':
-            $size *= 1024;
+            $size *= 1024 * 1024 * 1024;
+            break;
         case 'm':
-            $size *= 1024;
+            $size *= 1024 * 1024;
+            break;
         case 'k':
             $size *= 1024;
             break;
-        default:
-            // Invalid unit, assuming size is already in bytes
-            break;
     }
-    return round($size);
+
+    return is_numeric($size) ? round($size) : null;
 }
+
+
 
 /**
  * Format the size value into a human-readable string
