@@ -107,9 +107,24 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 	global $wpdb;
 	global $upload_mb;
 	$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam' );
+	// Getting ini configuration for 'upload_max_filesize'
+	$upload_max_filesize = ini_get('upload_max_filesize');
+	//echo 'upload_max_filesize: ' . $upload_max_filesize . "<br/>";
+
+	// Getting ini configuration for 'post_max_size'
+	$post_max_size = ini_get('post_max_size');
+	//echo 'post_max_size: ' . $post_max_size . "<br/>";
+
+	// Getting ini configuration for 'memory_limit'
+	$memory_limit = ini_get('memory_limit');
+	//echo 'memory_limit: ' . $memory_limit . "<br/>";
+
+	$tooltip_content = 'upload_max_filesize: ' . $upload_max_filesize . ' '
+			. 'post_max_size: ' . $post_max_size . ' '
+			. 'memory_limit: ' . $memory_limit;
+
 	$output='
 	<div id="openModal1" class="openModal">
-
 
 <script>
 // DZ 5.9.3 update
@@ -147,7 +162,7 @@ success: function(file, resp) {
 				<h2>'.__( 'Upload new animation' , 'hype-animations' ).'</h2>
 			</header>
 			<section>
-				<form action="" class="dropzone" id="hypeanimdropzone" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+				<form action="" class="dropzone" id="hypeanimdropzone" title="'. $tooltip_content .'" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					'.$nonce_files.'
 				</form>
 			</section>
@@ -338,9 +353,8 @@ function hypeanimations_panel() {
 			</tr>';
 	}
 	
-	echo '</tbody>
-	</table>
-
+	echo '</tbody> 
+	</table> 
 
 	<script>
 	jQuery(document).ready(function(jQuery){
