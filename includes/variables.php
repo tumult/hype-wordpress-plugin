@@ -21,8 +21,11 @@ function upload_mb() {
     }
 
     $upload_mb = min($max_upload, $max_post, $memory_limit);
-    
-    if ($upload_mb < 0) {
+
+    // Check if there is no limit
+    if ($upload_mb === 0 || $upload_mb === PHP_INT_MAX) {
+        return 'unlimited';
+    } elseif ($upload_mb < 0) {
         return 'unknown';
     } else {
         return format_size($upload_mb);
@@ -58,8 +61,6 @@ function parse_size($size) {
 
     return is_numeric($size) ? round($size) : null;
 }
-
-
 
 /**
  * Format the size value into a human-readable string
