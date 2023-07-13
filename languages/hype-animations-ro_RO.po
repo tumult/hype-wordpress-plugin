@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2023-04-24 12:30-0400\n"
-"PO-Revision-Date: 2023-04-24 12:30-0400\n"
+"POT-Creation-Date: 2023-07-13 13:46-0400\n"
+"PO-Revision-Date: 2023-07-13 13:46-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && "
 "n%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -21,25 +21,25 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:125
+#: includes/adminpanel.php:140
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "Trage un fișier .OAM aici sau încarcă unul nou<br>(Dimensiunea maximă a "
 "fișierului "
 
-#: includes/adminpanel.php:135
+#: includes/adminpanel.php:150
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Introduceți următorul shortcode unde doriți să afișați animația"
 
-#: includes/adminpanel.php:147 includes/adminpanel.php:179
+#: includes/adminpanel.php:162 includes/adminpanel.php:194
 msgid "Upload new animation"
 msgstr "Încarcă o animație nouă"
 
-#: includes/adminpanel.php:176
+#: includes/adminpanel.php:191
 msgid "Add new animation"
 msgstr "Adăugare o animație nouă"
 
-#: includes/adminpanel.php:178
+#: includes/adminpanel.php:193
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -52,107 +52,107 @@ msgstr ""
 "forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
 "target=\"_blank\">Ai nevoie de ajutor?</a>"
 
-#: includes/adminpanel.php:300
+#: includes/adminpanel.php:315
 msgid "Manage animations"
 msgstr "Gestionează animațiile"
 
-#: includes/adminpanel.php:307
+#: includes/adminpanel.php:322
 msgid "Last file update"
 msgstr "Ultima actualizare a fișierului"
 
-#: includes/adminpanel.php:320
+#: includes/adminpanel.php:335
 msgid "Add a container around the animation:"
 msgstr "Adăugați un container în jurul animației:"
 
-#: includes/adminpanel.php:326 includes/adminpanel.php:335
+#: includes/adminpanel.php:341 includes/adminpanel.php:350
 msgid "Update"
 msgstr "Actualizează"
 
-#: includes/adminpanel.php:328
+#: includes/adminpanel.php:343
 msgid "Container CSS class"
 msgstr "Container Clasă  CSS"
 
-#: includes/adminpanel.php:332
+#: includes/adminpanel.php:347
 msgid "No data"
 msgstr "Nu există date"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:349
 msgid "Copy Code"
 msgstr "Copiază Cod"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:351
 msgid "Delete"
 msgstr "Șterge"
 
-#: includes/adminpanel.php:398
+#: includes/adminpanel.php:412
 msgid "Updated!"
 msgstr "Actualizat!"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:419
 msgid "Error, please try again!"
 msgstr "Eroare, te rugăm să încerci din nou!"
 
-#: includes/adminpanel.php:412
+#: includes/adminpanel.php:426
 msgid "Update file"
 msgstr "Actualizează fișierul"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:442
 msgid "Processing..."
 msgstr "Se procesează…"
 
-#: includes/adminpanel.php:429
+#: includes/adminpanel.php:443
 msgid "Search:"
 msgstr "Caută:"
 
-#: includes/adminpanel.php:430
+#: includes/adminpanel.php:444
 msgid "Show"
 msgstr "Arată"
 
-#: includes/adminpanel.php:430 includes/adminpanel.php:431
+#: includes/adminpanel.php:444 includes/adminpanel.php:445
 msgid "animations"
 msgstr "animații"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "Showing"
 msgstr "Arată"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "to"
 msgstr "la"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "of"
 msgstr "din"
 
-#: includes/adminpanel.php:432
+#: includes/adminpanel.php:446
 msgid "No animations found."
 msgstr "Nu a fost găsită nicio animație."
 
-#: includes/adminpanel.php:433
+#: includes/adminpanel.php:447
 msgid "Loading..."
 msgstr "Se încarcă…"
 
-#: includes/adminpanel.php:434
+#: includes/adminpanel.php:448
 msgid "No animation has been found"
 msgstr "Nu a fost găsită nicio animație"
 
-#: includes/adminpanel.php:435
+#: includes/adminpanel.php:449
 msgid "No animation has been added"
 msgstr "Nu a fost adăugată nicio animație"
 
-#: includes/adminpanel.php:437
+#: includes/adminpanel.php:451
 msgid "First"
 msgstr "Primele"
 
-#: includes/adminpanel.php:438
+#: includes/adminpanel.php:452
 msgid "Previous"
 msgstr "Anterior"
 
-#: includes/adminpanel.php:439
+#: includes/adminpanel.php:453
 msgid "Next"
 msgstr "Următor"
 
-#: includes/adminpanel.php:440
+#: includes/adminpanel.php:454
 msgid "Last"
 msgstr "Ultimele"
 

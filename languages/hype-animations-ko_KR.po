@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 12:31-0400\n"
-"PO-Revision-Date: 2023-04-24 12:31-0400\n"
+"POT-Creation-Date: 2023-07-13 13:46-0400\n"
+"PO-Revision-Date: 2023-07-13 13:46-0400\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,24 +22,24 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:125
+#: includes/adminpanel.php:140
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "드롭. OAM 파일 또는 업로드하려면 여기를 클릭하십시오<br>(최대 업로드 크기 "
 
-#: includes/adminpanel.php:135
+#: includes/adminpanel.php:150
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "애니메이션을 표시하려는 다음 단축코드를 삽입합니다."
 
-#: includes/adminpanel.php:147 includes/adminpanel.php:179
+#: includes/adminpanel.php:162 includes/adminpanel.php:194
 msgid "Upload new animation"
 msgstr "새 애니메이션 업로드"
 
-#: includes/adminpanel.php:176
+#: includes/adminpanel.php:191
 msgid "Add new animation"
 msgstr "새 애니메이션 추가"
 
-#: includes/adminpanel.php:178
+#: includes/adminpanel.php:193
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -52,107 +52,107 @@ msgstr ""
 "tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">도움"
 "이 필요하십니까?</a>"
 
-#: includes/adminpanel.php:300
+#: includes/adminpanel.php:315
 msgid "Manage animations"
 msgstr "애니메이션 관리"
 
-#: includes/adminpanel.php:307
+#: includes/adminpanel.php:322
 msgid "Last file update"
 msgstr "마지막 파일 업데이트"
 
-#: includes/adminpanel.php:320
+#: includes/adminpanel.php:335
 msgid "Add a container around the animation:"
 msgstr "애니메이션 주위에 컨테이너 추가:"
 
-#: includes/adminpanel.php:326 includes/adminpanel.php:335
+#: includes/adminpanel.php:341 includes/adminpanel.php:350
 msgid "Update"
 msgstr "업데이트"
 
-#: includes/adminpanel.php:328
+#: includes/adminpanel.php:343
 msgid "Container CSS class"
 msgstr "컨테이너 CSS 클래스"
 
-#: includes/adminpanel.php:332
+#: includes/adminpanel.php:347
 msgid "No data"
 msgstr "데이터 없음"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:349
 msgid "Copy Code"
 msgstr "복사 코드"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:351
 msgid "Delete"
 msgstr "삭제"
 
-#: includes/adminpanel.php:398
+#: includes/adminpanel.php:412
 msgid "Updated!"
 msgstr "업데이트!"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:419
 msgid "Error, please try again!"
 msgstr "오류, 다시 시도하십시오!"
 
-#: includes/adminpanel.php:412
+#: includes/adminpanel.php:426
 msgid "Update file"
 msgstr "업데이트 파일"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:442
 msgid "Processing..."
 msgstr "처리..."
 
-#: includes/adminpanel.php:429
+#: includes/adminpanel.php:443
 msgid "Search:"
 msgstr "검색:"
 
-#: includes/adminpanel.php:430
+#: includes/adminpanel.php:444
 msgid "Show"
 msgstr "표시"
 
-#: includes/adminpanel.php:430 includes/adminpanel.php:431
+#: includes/adminpanel.php:444 includes/adminpanel.php:445
 msgid "animations"
 msgstr "애니메이션"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "Showing"
 msgstr "페이지"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "to"
 msgstr "받는 사람"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "of"
 msgstr "의"
 
-#: includes/adminpanel.php:432
+#: includes/adminpanel.php:446
 msgid "No animations found."
 msgstr "애니메이션을 찾을 수 없습니다."
 
-#: includes/adminpanel.php:433
+#: includes/adminpanel.php:447
 msgid "Loading..."
 msgstr "로드..."
 
-#: includes/adminpanel.php:434
+#: includes/adminpanel.php:448
 msgid "No animation has been found"
 msgstr "애니메이션이 발견되지 않았습니다."
 
-#: includes/adminpanel.php:435
+#: includes/adminpanel.php:449
 msgid "No animation has been added"
 msgstr "애니메이션이 추가되지 않았습니다."
 
-#: includes/adminpanel.php:437
+#: includes/adminpanel.php:451
 msgid "First"
 msgstr "첫 번째"
 
-#: includes/adminpanel.php:438
+#: includes/adminpanel.php:452
 msgid "Previous"
 msgstr "이전"
 
-#: includes/adminpanel.php:439
+#: includes/adminpanel.php:453
 msgid "Next"
 msgstr "다음"
 
-#: includes/adminpanel.php:440
+#: includes/adminpanel.php:454
 msgid "Last"
 msgstr "마지막"
 

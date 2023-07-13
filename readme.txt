@@ -25,6 +25,10 @@ For detailed information and support for this plugin, please visit: https://foru
 
 == Changelog ==
 
+= 1.9.9 = 
+* Shows your server's php.ini upload_max_filesize, post_max_size and memory_limit limit in the upload modal
+* Handle exotic values provided by php.ini (e.g. 2M, 2.2G)
+
 = 1.9.8 = 
 * Upgrade to dropzone 5.9.3, remove unused code, improve management panel
 

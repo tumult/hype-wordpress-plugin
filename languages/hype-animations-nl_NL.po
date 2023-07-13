@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 12:31-0400\n"
-"PO-Revision-Date: 2023-04-24 12:31-0400\n"
+"POT-Creation-Date: 2023-07-13 13:46-0400\n"
+"PO-Revision-Date: 2023-07-13 13:46-0400\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,26 +22,26 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:125
+#: includes/adminpanel.php:140
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "Sleep het .OAM-bestand hierheen of klik hier om <br> te uploaden (maximale "
 "uploadgrootte "
 
-#: includes/adminpanel.php:135
+#: includes/adminpanel.php:150
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr ""
 "Voer de volgende korte code (shortcode) in waar u uw animatie wilt weergeven"
 
-#: includes/adminpanel.php:147 includes/adminpanel.php:179
+#: includes/adminpanel.php:162 includes/adminpanel.php:194
 msgid "Upload new animation"
 msgstr "Upload nieuwe animatie"
 
-#: includes/adminpanel.php:176
+#: includes/adminpanel.php:191
 msgid "Add new animation"
 msgstr "Voeg nieuwe animatie toe"
 
-#: includes/adminpanel.php:178
+#: includes/adminpanel.php:193
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -54,107 +54,107 @@ msgstr ""
 "tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Hulp "
 "nodig?</a>"
 
-#: includes/adminpanel.php:300
+#: includes/adminpanel.php:315
 msgid "Manage animations"
 msgstr "Animaties beheren"
 
-#: includes/adminpanel.php:307
+#: includes/adminpanel.php:322
 msgid "Last file update"
 msgstr "Laatste bestandsupdate"
 
-#: includes/adminpanel.php:320
+#: includes/adminpanel.php:335
 msgid "Add a container around the animation:"
 msgstr "Voeg een container om de animatie toe:"
 
-#: includes/adminpanel.php:326 includes/adminpanel.php:335
+#: includes/adminpanel.php:341 includes/adminpanel.php:350
 msgid "Update"
 msgstr "Bijwerken"
 
-#: includes/adminpanel.php:328
+#: includes/adminpanel.php:343
 msgid "Container CSS class"
 msgstr "Container CSS-klasse"
 
-#: includes/adminpanel.php:332
+#: includes/adminpanel.php:347
 msgid "No data"
 msgstr "Geen gegevens"
 
-#: includes/adminpanel.php:334
+#: includes/adminpanel.php:349
 msgid "Copy Code"
 msgstr "Code kopiëren"
 
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:351
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: includes/adminpanel.php:398
+#: includes/adminpanel.php:412
 msgid "Updated!"
 msgstr "Bijgewerkt!"
 
-#: includes/adminpanel.php:405
+#: includes/adminpanel.php:419
 msgid "Error, please try again!"
 msgstr "Fout, probeer het opnieuw!"
 
-#: includes/adminpanel.php:412
+#: includes/adminpanel.php:426
 msgid "Update file"
 msgstr "Bestand bijwerken"
 
-#: includes/adminpanel.php:428
+#: includes/adminpanel.php:442
 msgid "Processing..."
 msgstr "Verwerken..."
 
-#: includes/adminpanel.php:429
+#: includes/adminpanel.php:443
 msgid "Search:"
 msgstr "Zoeken:"
 
-#: includes/adminpanel.php:430
+#: includes/adminpanel.php:444
 msgid "Show"
 msgstr "Laten zien"
 
-#: includes/adminpanel.php:430 includes/adminpanel.php:431
+#: includes/adminpanel.php:444 includes/adminpanel.php:445
 msgid "animations"
 msgstr "animaties"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "Showing"
 msgstr "Weergegeven"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "to"
 msgstr "naar"
 
-#: includes/adminpanel.php:431
+#: includes/adminpanel.php:445
 msgid "of"
 msgstr "van"
 
-#: includes/adminpanel.php:432
+#: includes/adminpanel.php:446
 msgid "No animations found."
 msgstr "Geen animaties gevonden."
 
-#: includes/adminpanel.php:433
+#: includes/adminpanel.php:447
 msgid "Loading..."
 msgstr "Bezig met laden..."
 
-#: includes/adminpanel.php:434
+#: includes/adminpanel.php:448
 msgid "No animation has been found"
 msgstr "Er is geen animatie gevonden"
 
-#: includes/adminpanel.php:435
+#: includes/adminpanel.php:449
 msgid "No animation has been added"
 msgstr "Er is geen animatie toegevoegd"
 
-#: includes/adminpanel.php:437
+#: includes/adminpanel.php:451
 msgid "First"
 msgstr "Eerste"
 
-#: includes/adminpanel.php:438
+#: includes/adminpanel.php:452
 msgid "Previous"
 msgstr "Vorige"
 
-#: includes/adminpanel.php:439
+#: includes/adminpanel.php:453
 msgid "Next"
 msgstr "Volgende"
 
-#: includes/adminpanel.php:440
+#: includes/adminpanel.php:454
 msgid "Last"
 msgstr "Laatste"
 
