@@ -18,6 +18,14 @@ function hypeanimations_panel_upload() {
 				$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['file']['name']));
 				if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
 					WP_Filesystem();
+
+					// Analyze ZIP file before extraction
+					if (check_zip_for_disallowed_files($uploadfile)) {
+						echo "Please delete any PHP files before exporting.";
+						unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
+						exit;
+					}
+
 					$unzipfile = unzip_file( $uploadfile, $uploaddir);
 					if (file_exists($uploadfile)) {
 						unlink($uploadfile);
@@ -27,6 +35,18 @@ function hypeanimations_panel_upload() {
 					}
 					$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
 					rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
+					
+					// Set chmod 644 for all files and files within folders
+					$files = new RecursiveIteratorIterator(
+						new RecursiveDirectoryIterator($uploaddir.'Assets/'),
+						RecursiveIteratorIterator::SELF_FIRST
+					);
+					foreach($files as $file) {
+						if ($file->isFile()) {
+							chmod($file->getRealPath(), 0644);
+						}
+					}
+
 					$files = scandir($uploaddir.'Assets/');
 					for ($i=0;isset($files[$i]);$i++) {
 						if (preg_match('~.html~',$files[$i])) {
@@ -222,6 +242,14 @@ function hypeanimations_panel() {
 			$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['updatefile']['name']));
 			if (move_uploaded_file($_FILES['updatefile']['tmp_name'], $uploadfile)) {
 				WP_Filesystem();
+
+				// Analyze ZIP file before extraction
+				if (check_zip_for_disallowed_files($uploadfile)) {
+					echo "Disallowed file type found in ZIP. Aborting.";
+					unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
+					exit;
+				}
+
 				$unzipfile = unzip_file( $uploadfile, $uploaddir);
 				if (file_exists($uploadfile)) {
 					unlink($uploadfile);
@@ -231,6 +259,18 @@ function hypeanimations_panel() {
 				}
 				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
 				rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
+
+				// Set chmod 644 for all files and files within folders
+				$files = new RecursiveIteratorIterator(
+					new RecursiveDirectoryIterator($uploaddir.'Assets/'),
+					RecursiveIteratorIterator::SELF_FIRST
+				);
+				foreach($files as $file) {
+					if ($file->isFile()) {
+						chmod($file->getRealPath(), 0644);
+					}
+				}
+
 				$files = scandir($uploaddir.'Assets/');
 				for ($i=0;isset($files[$i]);$i++) {
 					if (preg_match('~.html~',$files[$i])) {
@@ -530,3 +570,44 @@ function hypeanimations_getcontent(){
 	echo html_entity_decode($animcode);
     exit();
 }
+
+/**
+ * Recursively analyzes the given ZIP file for PHP files or other disallowed file types.
+ * 
+ * @param string $zipFilePath Path to the ZIP file.
+ * @return bool Returns true if disallowed files are found, false otherwise.
+ */
+function check_zip_for_disallowed_files($zipFilePath) {
+	$zip = new ZipArchive;
+	if ($zip->open($zipFilePath) === TRUE) {
+			for ($i = 0; $i < $zip->numFiles; $i++) {
+					$filename = $zip->getNameIndex($i);
+
+					// Updated regex to match various PHP file extensions and obfuscations
+					$disallowedExtensions = [
+							'php',
+							'php3',
+							'php4',
+							'php5',
+							'php7',
+							'phtml',
+							'inc'
+					];
+
+					foreach ($disallowedExtensions as $extension) {
+							if (preg_match('/\.' . preg_quote($extension) . '(\.|\%00|\%20)*$/i', $filename)) {
+									return true;
+							}
+					}
+
+					// Assuming directories don't need a separate check because they end with '/' and won't match file extensions
+			}
+
+			$zip->close();
+			return false; // No disallowed files found
+	}
+
+	return false; // Return false if zip file couldn't be opened
+}
+
+
