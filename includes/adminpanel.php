@@ -1,106 +1,140 @@
 <?php
 add_action( "admin_menu", 'hypeanimations_panel_upload' );
 function hypeanimations_panel_upload() {
-	global $wpdb;
-	global $version;
-	global $hypeanimations_table_name;
-	$upload_dir = wp_upload_dir();
-	$anims_dir=$upload_dir['basedir'].'/hypeanimations/';
-	$verifaumoinsun = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d LIMIT 1", 0));
-	if(is_user_logged_in() && isset($_FILES['file'])){
-		$nonce = $_POST['upload_check_oam'];
-		if ( ! wp_verify_nonce( $_POST['upload_check_oam'], 'protect_content' ) ) {
-			die( 'Security check' ); 
-		} else {
-			if (isset($_FILES['file'])) {
-				$uploaddir = $anims_dir.'tmp/';
-				$uploadfinaldir = $anims_dir;
-				$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['file']['name']));
-				if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-					WP_Filesystem();
-					$unzipfile = unzip_file( $uploadfile, $uploaddir);
-					if (file_exists($uploadfile)) {
-						unlink($uploadfile);
-					}
-					if (file_exists($uploaddir.'/config.xml')) {
-						unlink($uploaddir.'/config.xml');
-					}
-					$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
-					rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
-					$files = scandir($uploaddir.'Assets/');
-					for ($i=0;isset($files[$i]);$i++) {
-						if (preg_match('~.html~',$files[$i])) {
-							$actfile=explode('.html',$files[$i]);
-							$maxid = $wpdb->get_var($wpdb->prepare("SELECT id FROM $hypeanimations_table_name WHERE id > %d ORDER BY id DESC LIMIT 1", 0));
-							if ($maxid>0) {
-								$maxid=$maxid+1;
-							}
-							else {
-								$maxid=1;
-							}
-							$insert = $wpdb -> query($wpdb->prepare("INSERT $hypeanimations_table_name SET nom=%s,slug=%s,code=%s,updated=%s,container=%s",$new_name, str_replace(' ','',strtolower($new_name)), '', time(), 'div'));
-							$lastid = $wpdb->insert_id;
+    global $wpdb, $hypeanimations_table_name;
+    $upload_dir = wp_upload_dir();
+    $anims_dir = $upload_dir['basedir'] . '/hypeanimations/';
 
-							@mkdir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/', 0755, true);
+    if (is_user_logged_in() && isset($_FILES['file'])) {
+        $nonce = $_POST['upload_check_oam'];
+        if (!wp_verify_nonce($nonce, 'protect_content')) {
+            die('Security check failed');
+        }
 
-							$jsfiles = scandir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/');
-							for ($j=0;isset($jsfiles[$j]);$j++) {
-								if($jsfiles[$j] != '.' && $jsfiles[$j] != '..'){
-									if(!is_dir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j])){
-										copy($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j], $uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/'.$jsfiles[$j]);
-										unlink($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j]);
-									}
-								}
-							}
-							if (file_exists($uploaddir.'Assets/'.$actfile[0].'.hyperesources/')) {
-								rename($uploaddir.'Assets/'.$actfile[0].'.hyperesources/', $uploadfinaldir.$lastid.'/');
-							}
-							$agarder1='';
-							$recordlines=0;
-							$handle = fopen($uploaddir.'Assets/'.$actfile[0].'.html', "r");
-							if ($handle) {
-								while (($line = fgets($handle)) !== false) {
-									$line=str_replace($new_name.'.hyperesources',$upload_dir['baseurl'].'/hypeanimations/'.$lastid.'/'.$new_name.'.hyperesources',$line);
-									if (preg_match('~<div id="~',$line)) {
-										$recordlines=1;
-									}
-									if ($recordlines==1) {
-										$agarder1.=$line;
-									}
-									if (preg_match('~div>~',$line)) {
-										$recordlines=0;
-									}
-									//echo htmlentities($line);
-								}
+        $file = $_FILES['file'];
+        $allowed_file_types = array('oam' => 'application/octet-stream');
 
-								fclose($handle);
-							} else {
-								//echo 'error';
-							}
-							$update = $wpdb -> query($wpdb->prepare("UPDATE $hypeanimations_table_name SET code=%s WHERE id=%d",addslashes(htmlentities($agarder1)), $lastid));
+        $upload_overrides = array(
+            'test_form' => false,
+            'mimes' => $allowed_file_types
+        );
 
-							// //copy index.html
-							copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$lastid.'/'.$actfile[0].'.html');
+        $uploaded_file = wp_handle_upload($file, $upload_overrides);
 
-							if (file_exists($uploaddir.'Assets/'.$actfile[0].'.html')) {
-								unlink($uploaddir.'Assets/'.$actfile[0].'.html');
-							}
-							if (file_exists($uploaddir.'Assets/')) {
-								hyperrmdir($uploaddir.'Assets/');
-							}
-						}
-					}
+        if (isset($uploaded_file['error'])) {
+            echo "Error: " . $uploaded_file['error'];
+            exit;
+        }
+
+        $uploadfile = $uploaded_file['file'];
+        WP_Filesystem();
+        $uploaddir = $anims_dir . 'tmp/';
+        $uploadfinaldir = $anims_dir;
+
+				// Check the zip file for disallowed files
+				$zip_clean = is_zip_clean($uploadfile, apply_filters('tumult_hype_animations_whitelist', array()));
+				if (is_wp_error($zip_clean)) {
+					// show error message displaying the file extension which is not allowed
+					echo $zip_clean->get_error_message();
+					unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
+					exit;
 				}
-				else {
-					echo "Erreur";
-				}
-				//print_r($_FILES);
-				echo $lastid;
-				exit();
-			}
-		}
-	}
+        $unzipfile = unzip_file($uploadfile, $uploaddir);
+        if ($unzipfile) {
+            if (file_exists($uploadfile)) {
+                unlink($uploadfile);
+            }
+            if (file_exists($uploaddir . '/config.xml')) {
+                unlink($uploaddir . '/config.xml');
+            }
+
+            $new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
+            rename($uploaddir . 'Assets/' . $new_name . '.hyperesources', $uploaddir . 'Assets/index.hyperesources');
+
+            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($uploaddir . 'Assets/'), RecursiveIteratorIterator::SELF_FIRST);
+            foreach ($files as $file) {
+                if ($file->isFile()) {
+                    chmod($file->getRealPath(), 0644);
+                }
+            }
+
+            $files = scandir($uploaddir . 'Assets/');
+            foreach ($files as $file) {
+                if (preg_match('~.html~', $file)) {
+                    $actfile = explode('.html', $file);
+                    $maxid = $wpdb->get_var("SELECT MAX(id) FROM $hypeanimations_table_name");
+                    $maxid = $maxid ? $maxid + 1 : 1;
+
+                    $wpdb->insert(
+                        $hypeanimations_table_name,
+                        array(
+                            'nom' => $new_name,
+                            'slug' => str_replace(' ', '', strtolower($new_name)),
+                            'code' => '',
+                            'updated' => time(),
+                            'container' => 'div'
+                        )
+                    );
+                    $lastid = $wpdb->insert_id;
+
+                    if (!is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/')) {
+                        mkdir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/', 0755, true);
+                    }
+
+                    $jsfiles = scandir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/');
+                    foreach ($jsfiles as $jsfile) {
+                        if ($jsfile != '.' && $jsfile != '..' && !is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile)) {
+                            copy($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile, $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/' . $jsfile);
+                            unlink($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile);
+                        }
+                    }
+
+                    rename($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/', $uploadfinaldir . $lastid . '/');
+
+                    $agarder1 = '';
+                    $recordlines = 0;
+                    $handle = fopen($uploaddir . 'Assets/' . $actfile[0] . '.html', "r");
+                    if ($handle) {
+                        while (($line = fgets($handle)) !== false) {
+                            $line = str_replace($new_name . '.hyperesources', $upload_dir['baseurl'] . '/hypeanimations/' . $lastid . '/' . $new_name . '.hyperesources', $line);
+                            if (preg_match('~<div id="~', $line)) {
+                                $recordlines = 1;
+                            }
+                            if ($recordlines == 1) {
+                                $agarder1 .= $line;
+                            }
+                            if (preg_match('~div>~', $line)) {
+                                $recordlines = 0;
+                            }
+                        }
+                        fclose($handle);
+                    }
+
+                    $wpdb->update(
+                        $hypeanimations_table_name,
+                        array('code' => addslashes(htmlentities($agarder1))),
+                        array('id' => $lastid)
+                    );
+
+                    copy($uploaddir . 'Assets/' . $actfile[0] . '.html', $upload_dir['basedir'] . '/hypeanimations/' . $lastid . '/' . $actfile[0] . '.html');
+
+                    if (file_exists($uploaddir . 'Assets/' . $actfile[0] . '.html')) {
+                        unlink($uploaddir . 'Assets/' . $actfile[0] . '.html');
+                    }
+                    if (file_exists($uploaddir . 'Assets/')) {
+                        hyperrmdir($uploaddir . 'Assets/');
+                    }
+                }
+            }
+            echo $lastid;
+            exit();
+        } else {
+            echo "Failed to unzip the file.";
+            exit();
+        }
+    }
 }
+
 add_action( "admin_footer", 'add_hypeanimations_shortcode_newbutton_footer' );
 function add_hypeanimations_shortcode_newbutton_footer() {
 	global $hypeanimations_table_name;
@@ -147,13 +181,13 @@ Dropzone.options.hypeanimdropzone = { // camelized version of the `id`
 		}
 },
 success: function(file, resp) {
-				jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\"><br>'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\"" + resp + "\"]</span></div>");
-				jQuery(".dropzone2").css("display", "block");
-				jQuery(".dropzone").remove();
-		}
-		// complete: function(file) {
-		// }
-	};
+	if (!isNaN(resp)) {
+		var shortcode = "[hypeanimations_anim id=\"" + resp + "\"]";
+		jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\"><br>'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">" + shortcode + "</span></div>");
+		jQuery(".dropzone2").css("display", "block");
+	}
+	jQuery(".dropzone").remove();
+}
  
 </script>
 		<div>
@@ -222,6 +256,16 @@ function hypeanimations_panel() {
 			$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['updatefile']['name']));
 			if (move_uploaded_file($_FILES['updatefile']['tmp_name'], $uploadfile)) {
 				WP_Filesystem();
+
+				// Check the zip file for disallowed files
+				$zip_clean = is_zip_clean($uploadfile, apply_filters('tumult_hype_animations_whitelist', array()));
+				if (is_wp_error($zip_clean)) {
+					// show error message displaying the file extension which is not allowed
+					echo $zip_clean->get_error_message();
+					unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
+					exit;
+				}
+
 				$unzipfile = unzip_file( $uploadfile, $uploaddir);
 				if (file_exists($uploadfile)) {
 					unlink($uploadfile);
@@ -231,6 +275,9 @@ function hypeanimations_panel() {
 				}
 				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
 				rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
+
+				 
+
 				$files = scandir($uploaddir.'Assets/');
 				for ($i=0;isset($files[$i]);$i++) {
 					if (preg_match('~.html~',$files[$i])) {
@@ -514,6 +561,7 @@ function hypeanimations_getanimid(){
     if (isset($response)) { echo json_encode($response); }
     exit();
 }
+
 add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
 
 function hypeanimations_getcontent(){
@@ -529,4 +577,233 @@ function hypeanimations_getcontent(){
     }
 	echo html_entity_decode($animcode);
     exit();
+}
+
+// Define an initial allowed extensions array
+$allowlist_tumult_hype_animations = array(
+	'images' => array(
+		'jpg',
+		'jpeg',
+		'png',
+		'gif',
+		'bmp',
+		'apng',
+		'heic',
+		'heif',
+		'ico',
+		'svg',
+		'svgz',
+		'tif',
+		'tiff',
+		'webp',
+		'webm',
+		'psd',
+		'htc', // for ie compatibility
+		'pie', // for ie compatibility
+	),
+	'audio' => array(
+		'mp3',
+		'wav',
+		'aif',
+		'ogg',
+		'aac',
+		'mid',
+		'midi',
+		'oga',
+		'opus',
+		'weba',
+		'flac',
+		'aiff',
+	),
+	'video' => array(
+		'mp4',
+		'avi',
+		'mov',
+		'3g2',
+		'3gp',
+		'ogv',
+		'mpg',
+		'm4a',
+		'm4v',
+		'm4p',
+		'mpeg',
+		'hevc',
+		'm3u8',
+		'mpkg',
+		'mkv',
+		'wmv',
+		'flv',
+		'wma',
+	),
+	'fonts' => array(
+		'ttf',
+		'otf',
+		'woff',
+		'woff2',
+		'eot',
+		'ttc',
+	),
+	'documents' => array(
+		'doc',
+		'docx',
+		'pdf',
+		'txt',
+		'rtf',
+		'rtx',
+		'csv',
+		'srt',
+		'vtt',
+		'xls',
+		'xlsx',
+		'ods',
+		'odt',
+		'ppt',
+		'pptx',
+		'epub',
+		'odp',
+		'key',
+		'xhtml',
+		'usdz',
+	),
+	'scripts' => array(
+		'js',
+		'map', // source map
+		'mjs',
+		'json',
+		'jsonld',
+	),
+	'stylesheets' => array(
+		'css',
+		'sass',
+		'scss',
+		'less',
+		'stylus',
+	),
+	'other' => array(
+		'html',
+		'htm',
+		'plist', // recoverable Tumult Hype plist file
+		'xml',
+		'yaml',
+		'ics',
+		'vsd',
+		'pps',
+		'ppsx',
+	),
+);
+
+function get_flat_allowlist($allowlist_tumult_hype_animations) {
+	static $flat_allowlist = null;
+	if ($flat_allowlist === null) {
+		// Reduce the multidimensional whitelist array into a flat array
+		$flat_allowlist = array_reduce($allowlist_tumult_hype_animations, 'array_merge', array());
+	}
+	return $flat_allowlist;
+}
+
+// For some reason the function is not working when this isn't called first here. 
+$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
+
+function is_zip_clean($zipFilePath, $allowlist_tumult_hype_animations) {
+	$zip = new ZipArchive;
+	$disallowedExtensions = []; // To store disallowed extensions
+
+	$upload_dir = wp_upload_dir();
+	$random_string = generate_random_string(10); // Generate a random string of length 10
+	$tmp_extract_dir = $upload_dir['basedir'] . '/hypeanimations/tmp/' . $random_string . '/';
+
+	// Ensure temporary extraction directory exists
+	wp_mkdir_p($tmp_extract_dir);
+
+	// Log opening ZIP file
+	error_log("Opening ZIP file: $zipFilePath");
+
+	if ($zip->open($zipFilePath) === TRUE) {
+			// Extract ZIP to temporary directory
+			if ($zip->extractTo($tmp_extract_dir)) {
+					error_log("Extracted ZIP to temporary directory: $tmp_extract_dir");
+			} else {
+					error_log("Failed to extract ZIP to temporary directory: $tmp_extract_dir");
+					$zip->close();
+					return new WP_Error('extraction_failed', "Failed to extract ZIP file.");
+			}
+			$zip->close();
+
+			$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
+
+			// Scan temporary directory
+			$files = new RecursiveIteratorIterator(
+					new RecursiveDirectoryIterator($tmp_extract_dir, RecursiveDirectoryIterator::SKIP_DOTS),
+					RecursiveIteratorIterator::CHILD_FIRST
+			);
+
+			foreach ($files as $fileinfo) {
+				if (!$fileinfo->isDir()) {
+						$filename = $fileinfo->getFilename();
+						// Directly extract the file extension from the filename. wp_check_filetype_and_ext only works on previously-approved files so it's not suitable for this purpose as it loads only approved get_allowed_mime_types() mime types.
+						$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+						
+						// Create log of all files discovered in error log
+						error_log("Discovered file: $filename");
+						// Create log of $extension values too
+						error_log("Discovered extension: $extension");
+						// Check if the file extension is in the whitelist
+						if (!empty($extension) && !in_array($extension, $flat_allowlist)) {
+							if (!in_array($extension, $disallowedExtensions)) {
+									$disallowedExtensions[] = $extension;									
+									error_log(sprintf(
+										__('Disallowed file extension detected: %s in file %s', 'hype-animations'),
+										$extension,
+										$filename
+								));
+							}
+						}
+				}
+			}
+
+			// Clean up: Delete the temporary extracted files
+			delete_temp_files($tmp_extract_dir);
+
+			// Check if there are any disallowed extensions
+			if (!empty($disallowedExtensions)) {
+					$disallowedExtensionsList = implode(', ', $disallowedExtensions);
+					//error_log("Cleaning up due to disallowed extension(s): $disallowedExtensionsList");
+					$requestExemptionLink = sprintf(
+						__(' More info here: %s', 'hype-animations'),
+						'https://forums.tumult.com/t/23637'
+				);				
+					return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestExemptionLink");	
+			}
+
+			error_log("All files in ZIP are allowed. Cleanup complete.");
+			// If all files are allowed, return true
+			return true;
+	}
+
+	// Return an error if the zip file failed to open
+	error_log("Failed to open the zip file: $zipFilePath");
+	return new WP_Error('zip_open_failed', "Failed to open the zip file.");
+}
+
+function delete_temp_files($directory) {
+	$files = new RecursiveIteratorIterator(
+			new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS),
+			RecursiveIteratorIterator::CHILD_FIRST
+	);
+
+	foreach ($files as $fileinfo) {
+			$todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
+			$todo($fileinfo->getRealPath());
+	}
+
+	rmdir($directory);
+}
+function generate_random_string($length = 10) {
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[random_int(0, $charactersLength - 1)];
+	}
+	return $randomString;
 }
