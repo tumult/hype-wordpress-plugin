@@ -181,9 +181,15 @@ Dropzone.options.hypeanimdropzone = { // camelized version of the `id`
 		}
 },
 success: function(file, resp) {
-	jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\"><br>'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\"" + resp + "\"]</span></div>");
-	jQuery(".dropzone2").css("display", "block");
-	jQuery(".dropzone").remove();
+	if(isNaN(parseInt(resp))) { // error string instead of numeric short code
+		jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\"><br>" + resp + "</div>");
+		jQuery(".dropzone2").css("display", "block");
+		jQuery(".dropzone").remove();	
+	} else {
+		jQuery(".dropzone").after("<div class=\"dropzone2\" style=\"display:none\"><br>'.__( 'Insert the following shortcode where you want to display the animation' , 'hype-animations' ).':<br><br> <span style=\"font-family:monospace\">[hypeanimations_anim id=\"" + resp + "\"]</span></div>");
+		jQuery(".dropzone2").css("display", "block");
+		jQuery(".dropzone").remove();	
+	}
 }
 };
 
@@ -767,7 +773,7 @@ function is_zip_clean($zipFilePath, $allowlist_tumult_hype_animations) {
 					$disallowedExtensionsList = implode(', ', $disallowedExtensions);
 					//error_log("Cleaning up due to disallowed extension(s): $disallowedExtensionsList");
 					$requestmoreinfolink = sprintf(
-						__(' More info here: %s', 'hype-animations'),
+						__('<br>'.' More info here: %s', 'hype-animations'),
 						'https://forums.tumult.com/t/23637'
 				);				
 					return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestmoreinfolink");	
