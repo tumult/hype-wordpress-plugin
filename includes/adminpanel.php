@@ -231,16 +231,22 @@ function hypeanimations_panel() {
 	'.__( 'Upload an .OAM file exported by <a href="https://tumult.com/hype?utm_source=wpplugin">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
 	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
+	
 	$delete = isset($_GET['delete']) ? ceil($_GET['delete']) : 0;
-	if ($delete>0) {
-		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
-		$delete = $wpdb -> query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
-		hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
-		if ($animtitle!='') {
-			echo '<p>&nbsp;</p><p><span style="padding:10px;color:#FFF;background:#cc0000;">'.$animtitle.' has been deleted.</style></p>';
-		}
-	}
+	if ($delete > 0) {
+    // Verify the nonce. The nonce is passed as a 'nonce' query parameter.
+    if (isset($_REQUEST['_wpnonce']) && !wp_verify_nonce($_REQUEST['_wpnonce'], 'delete-animation_' . ceil($_GET['delete']))) {
+        wp_die('Security check failed');
+    }
+			
+    $animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
+    $delete = $wpdb->query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
+    hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
 
+		if ($animtitle != '') {
+			echo '<p>&nbsp;</p><p><span style="padding:10px;color:#FFF;background:#cc0000;">' . $animtitle . ' ' . __( 'has been deleted.', 'hype-animations' ) . '</span></p>';
+		}
+}
 	$hypeupdated = 0;
 	if (is_user_logged_in() && isset($_FILES['updatefile']) && sanitize_text_field($_POST['dataid']>0)) {
 
@@ -376,33 +382,38 @@ function hypeanimations_panel() {
 		</thead>
 		<tbody>';
 		$result = $wpdb->get_results($wpdb->prepare("SELECT id,nom,slug,updated,container,containerclass FROM $hypeanimations_table_name Where id > %d ORDER BY updated DESC", 0));
+	
 		foreach ($result as $results) {
+			// Generate a unique nonce for each delete action
+			$delete_nonce = wp_create_nonce('delete-animation_'.$results->id);
+	
 			echo '<tr>
-					<td>' . $results->nom . '</td>
-					<td>
-							<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . $results->id . '&quot;]"></input>
-					</td>
-					<td>
-							<div class="optionleft">' . __( 'Add a container around the animation:', 'hype-animations' ) . '</div>
-							<div class="optionright">
-									<select class="hypeanimations_container" name="container">
-											<option value="div" ' . ($results->container == 'div' ? 'selected' : '') . '>&lt;div&gt;</option>
-											<option value="iframe" ' . ($results->container == 'iframe' ? 'selected' : '') . '>&lt;iframe&gt;</option>
-									</select>
-									<input type="button" value="' . __( 'Update', 'hype-animations' ) . '" class="updatecontainer" data-id="' . $results->id . '">
-									<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
-											' . __( 'Container CSS class', 'hype-animations' ) . ': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="' . $results->containerclass . '">
-									</div>
-							</div>
-					</td>
-					<td>' . ($results->updated == 0 ? '<em>' . __( 'No data', 'hype-animations' ) . '</em>' : date('Y/m/d', $results->updated) . '<br>' . date('H:i:s', $results->updated)) . '</td>
-					<td>
-							<a href="javascript:void(0)" id="' . $results->id . '" class="animcopy">' . __( 'Copy Code', 'hype-animations' ) . '</a>
-							<a href="admin.php?page=hypeanimations_panel&update=' . $results->id . '" class="animupdate" data-id="' . $results->id . '">' . __( 'Update', 'hype-animations' ) . '</a>
-							<a href="admin.php?page=hypeanimations_panel&delete=' . $results->id . '" class="animdelete">' . __( 'Delete', 'hype-animations' ) . '</a>
-					</td>
+							<td>' . $results->nom . '</td>
+							<td>
+											<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . $results->id . '&quot;]"></input>
+							</td>
+							<td>
+											<div class="optionleft">' . __( 'Add a container around the animation:', 'hype-animations' ) . '</div>
+											<div class="optionright">
+															<select class="hypeanimations_container" name="container">
+																			<option value="div" ' . ($results->container == 'div' ? 'selected' : '') . '>&lt;div&gt;</option>
+																			<option value="iframe" ' . ($results->container == 'iframe' ? 'selected' : '') . '>&lt;iframe&gt;</option>
+															</select>
+															<input type="button" value="' . __( 'Update', 'hype-animations' ) . '" class="updatecontainer" data-id="' . $results->id . '">
+															<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
+																			' . __( 'Container CSS class', 'hype-animations' ) . ': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="' . $results->containerclass . '">
+															</div>
+											</div>
+							</td>
+							<td>' . ($results->updated == 0 ? '<em>' . __( 'No data', 'hype-animations' ) . '</em>' : date('Y/m/d', $results->updated) . '<br>' . date('H:i:s', $results->updated)) . '</td>
+							<td>
+									<a href="javascript:void(0)" id="' . $results->id . '" class="animcopy">' . __( 'Copy Code', 'hype-animations' ) . '</a>
+									<a href="admin.php?page=hypeanimations_panel&update=' . $results->id . '" class="animupdate" data-id="' . $results->id . '">' . __( 'Update', 'hype-animations' ) . '</a>
+									<a href="admin.php?page=hypeanimations_panel&delete=' . $results->id . '&_wpnonce=' . $delete_nonce . '" class="animdelete">' . __( 'Delete', 'hype-animations' ) . '</a>
+							</td>
 			</tr>';
 	}
+	
 	
 	echo '</tbody> 
 	</table> 
