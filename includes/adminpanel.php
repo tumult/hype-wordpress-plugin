@@ -464,7 +464,8 @@ function hypeanimations_panel() {
 					"action": "hypeanimations_updatecontainer",
 					"dataid": actdataid,
 					"container": actcontainer,
-					"containerclass": actcontainerclass
+					"containerclass": actcontainerclass,
+					"_wpnonce": "' . esc_js(wp_create_nonce('hypeanimations_updatecontainer')) . '"
 				}
 			}).done(function( msg ) {
 				resp=msg.response;
@@ -491,8 +492,8 @@ function hypeanimations_panel() {
 			this.select();
 		});
 		jQuery("#hypeanimations").DataTable({
-            responsive: true,
-            "order": [[ 3, "desc" ]],
+			responsive: true,
+			"order": [[ 3, "desc" ]],
 			"columns": [
 				{"name": "Animation", "orderable": "true"},
 				{"name": "Shortcode", "orderable": "true"},
@@ -542,32 +543,41 @@ function hypeanimations_panel() {
 }
 
 add_action('wp_ajax_hypeanimations_updatecontainer', 'hypeanimations_updatecontainer');
+
 function hypeanimations_updatecontainer() {
     global $wpdb;
     global $hypeanimations_table_name;
     $response = array();
 
+    // Verify the nonce
+    $nonce = isset($_POST['_wpnonce']) ? sanitize_text_field($_POST['_wpnonce']) : '';
+    if (!wp_verify_nonce($nonce, 'hypeanimations_updatecontainer')) {
+        $response['response'] = 'nonce_verification_failed';
+        wp_send_json($response);
+        exit;
+    }
+
     if (!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))) {
         $post_dataid = sanitize_text_field($_POST['dataid']);
         $post_container = sanitize_text_field($_POST['container']);
-        
-				function sanitize_html_classname($input) {
-					// Strip tags to remove any HTML
-					$input = wp_strip_all_tags($input);
-			
-					// Remove any unwanted characters, allow only a-z, A-Z, 0-9, hyphens, and underscores
-					$sanitized = preg_replace('/[^a-zA-Z0-9_-]/', '', $input);
-			
-					// Ensure the classname does not start with a digit, two hyphens, or a hyphen followed by a digit
-					if (preg_match('/^(\d|-\d|--)/', $sanitized)) {
-							// Prepend a letter (e.g., 'x') to ensure validity if it starts with invalid characters
-							$sanitized = 'x' . $sanitized;
-					}
-			
-					return $sanitized;
-				}
-			
-				$post_containerclass = sanitize_html_classname($_POST['containerclass']);
+
+        function sanitize_html_classname($input) {
+            // Strip tags to remove any HTML
+            $input = wp_strip_all_tags($input);
+
+            // Remove any unwanted characters, allow only a-z, A-Z, 0-9, hyphens, and underscores
+            $sanitized = preg_replace('/[^a-zA-Z0-9_-]/', '', $input);
+
+            // Ensure the classname does not start with a digit, two hyphens, or a hyphen followed by a digit
+            if (preg_match('/^(\d|-\d|--)/', $sanitized)) {
+                // Prepend a letter (e.g., 'x') to ensure validity if it starts with invalid characters
+                $sanitized = 'x' . $sanitized;
+            }
+
+            return $sanitized;
+        }
+
+        $post_containerclass = sanitize_html_classname($_POST['containerclass']);
 
         $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d", $post_container, $post_containerclass, $post_dataid));
 
@@ -576,7 +586,7 @@ function hypeanimations_updatecontainer() {
         $response['response'] = "error";
     }
 
-    header("Content-Type: application/json");
+		header("Content-Type: application/json");
     if (isset($response)) {
         echo json_encode($response);
     }
