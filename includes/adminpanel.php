@@ -231,22 +231,22 @@ function hypeanimations_panel() {
 	'.__( 'Upload an .OAM file exported by <a href="https://tumult.com/hype?utm_source=wpplugin">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
 	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
-
+	
+	// Verify nonce before delete
 	$delete = isset($_GET['delete']) ? ceil($_GET['delete']) : 0;
 	if ($delete > 0) {
-		// Verify the nonce. The nonce is passed as a 'nonce' query parameter.
-		if (isset($_REQUEST['_wpnonce']) && !wp_verify_nonce($_REQUEST['_wpnonce'], 'delete-animation_' . ceil($_GET['delete']))) {
-			wp_die('Security check failed');
-		}
-
-		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
-		$delete = $wpdb->query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
-		hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
+  if ( !wp_verify_nonce($_REQUEST['_wpnonce'], 'delete-animation_' . $delete)) {
+    wp_die('Security check failed'); 
+  }
+			
+    $animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
+    $delete = $wpdb->query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
+    hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
 
 		if ($animtitle != '') {
 			echo '<p>&nbsp;</p><p><span style="padding:10px;color:#FFF;background:#cc0000;">' . $animtitle . ' ' . __( 'has been deleted.', 'hype-animations' ) . '</span></p>';
 		}
-	}
+}
 	$hypeupdated = 0;
 	if (is_user_logged_in() && isset($_FILES['updatefile']) && sanitize_text_field($_POST['dataid']>0)) {
 
