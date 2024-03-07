@@ -231,22 +231,22 @@ function hypeanimations_panel() {
 	'.__( 'Upload an .OAM file exported by <a href="https://tumult.com/hype?utm_source=wpplugin">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074" target="_blank">Need help?</a>' , 'hype-animations' ).'<br><br>
 	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'hype-animations' ).'</a>
 	</div>';
-	
+
 	$delete = isset($_GET['delete']) ? ceil($_GET['delete']) : 0;
 	if ($delete > 0) {
-    // Verify the nonce. The nonce is passed as a 'nonce' query parameter.
-    if (isset($_REQUEST['_wpnonce']) && !wp_verify_nonce($_REQUEST['_wpnonce'], 'delete-animation_' . ceil($_GET['delete']))) {
-        wp_die('Security check failed');
-    }
-			
-    $animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
-    $delete = $wpdb->query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
-    hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
+		// Verify the nonce. The nonce is passed as a 'nonce' query parameter.
+		if (isset($_REQUEST['_wpnonce']) && !wp_verify_nonce($_REQUEST['_wpnonce'], 'delete-animation_' . ceil($_GET['delete']))) {
+			wp_die('Security check failed');
+		}
+
+		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
+		$delete = $wpdb->query($wpdb->prepare("DELETE FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));
+		hyperrmdir($anims_dir.ceil($_GET['delete']).'/');
 
 		if ($animtitle != '') {
 			echo '<p>&nbsp;</p><p><span style="padding:10px;color:#FFF;background:#cc0000;">' . $animtitle . ' ' . __( 'has been deleted.', 'hype-animations' ) . '</span></p>';
 		}
-}
+	}
 	$hypeupdated = 0;
 	if (is_user_logged_in() && isset($_FILES['updatefile']) && sanitize_text_field($_POST['dataid']>0)) {
 
@@ -401,7 +401,7 @@ function hypeanimations_panel() {
 															</select>
 															<input type="button" value="' . __( 'Update', 'hype-animations' ) . '" class="updatecontainer" data-id="' . $results->id . '">
 															<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
-																			' . __( 'Container CSS class', 'hype-animations' ) . ': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="' . $results->containerclass . '">
+																' . __( 'Container CSS class', 'hype-animations' ) . ': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="' . esc_attr($results->containerclass) . '">
 															</div>
 											</div>
 							</td>
@@ -542,23 +542,47 @@ function hypeanimations_panel() {
 }
 
 add_action('wp_ajax_hypeanimations_updatecontainer', 'hypeanimations_updatecontainer');
-function hypeanimations_updatecontainer(){
-	global $wpdb;
-	global $hypeanimations_table_name;
+function hypeanimations_updatecontainer() {
+    global $wpdb;
+    global $hypeanimations_table_name;
     $response = array();
-    if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
-			$post_dataid = sanitize_text_field( $_POST['dataid'] );
-			$post_container = sanitize_text_field($_POST['container']);
-			$post_containerclass = sanitize_text_field($_POST['containerclass']);
-			$wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
 
-		$response['response'] = "ok";
+    if (!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))) {
+        $post_dataid = sanitize_text_field($_POST['dataid']);
+        $post_container = sanitize_text_field($_POST['container']);
+        
+				function sanitize_html_classname($input) {
+					// Strip tags to remove any HTML
+					$input = wp_strip_all_tags($input);
+			
+					// Remove any unwanted characters, allow only a-z, A-Z, 0-9, hyphens, and underscores
+					$sanitized = preg_replace('/[^a-zA-Z0-9_-]/', '', $input);
+			
+					// Ensure the classname does not start with a digit, two hyphens, or a hyphen followed by a digit
+					if (preg_match('/^(\d|-\d|--)/', $sanitized)) {
+							// Prepend a letter (e.g., 'x') to ensure validity if it starts with invalid characters
+							$sanitized = 'x' . $sanitized;
+					}
+			
+					return $sanitized;
+				}
+			
+				$post_containerclass = sanitize_html_classname($_POST['containerclass']);
+
+        $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d", $post_container, $post_containerclass, $post_dataid));
+
+        $response['response'] = "ok";
+    } else {
+        $response['response'] = "error";
     }
-	else { $response['response'] = "error"; }
-    header( "Content-Type: application/json" );
-    if (isset($response)) { echo json_encode($response); }
+
+    header("Content-Type: application/json");
+    if (isset($response)) {
+        echo json_encode($response);
+    }
     exit();
 }
+
 add_action('wp_ajax_hypeanimations_getanimid', 'hypeanimations_getanimid');
 function hypeanimations_getanimid(){
 	global $wpdb;
@@ -578,7 +602,6 @@ function hypeanimations_getanimid(){
 }
 
 add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
-
 function hypeanimations_getcontent(){
 	global $wpdb;
 	global $hypeanimations_table_name;
@@ -790,7 +813,7 @@ function is_zip_clean($zipFilePath, $allowlist_tumult_hype_animations) {
 					return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestmoreinfolink");	
 			}
 
-			error_log("All files in ZIP are allowed. Cleanup complete.");
+			// error_log("All files in ZIP are allowed. Cleanup complete.");
 			// If all files are allowed, return true
 			return true;
 	}
