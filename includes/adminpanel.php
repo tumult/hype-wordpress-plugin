@@ -27,11 +27,8 @@ function hypeanimations_panel_upload() {
         }
 
         $uploadfile = $uploaded_file['file'];
-        WP_Filesystem();
-        $uploaddir = $anims_dir . 'tmp/';
-        $uploadfinaldir = $anims_dir;
 
-				// Check the zip file for disallowed files
+				// Check the zip file for disallowed files in memory
 				$zip_clean = is_zip_clean($uploadfile, apply_filters('tumult_hype_animations_whitelist', array()));
 				if (is_wp_error($zip_clean)) {
 					// show error message displaying the file extension which is not allowed
@@ -39,6 +36,10 @@ function hypeanimations_panel_upload() {
 					unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
 					exit;
 				}
+ 
+        WP_Filesystem();
+        $uploaddir = $anims_dir . 'tmp/';
+        $uploadfinaldir = $anims_dir;
         $unzipfile = unzip_file($uploadfile, $uploaddir);
         if ($unzipfile) {
             if (file_exists($uploadfile)) {
@@ -260,6 +261,7 @@ function hypeanimations_panel() {
 			   echo "<script>alert('You seem to have a space in your animation name. Please remove the space and regenerate the animation.');location.reload();</script>";
 			   die;
 			}
+
 			$actdataid=ceil($_POST['dataid']);
 			$uploaddir = $anims_dir.'tmp/';
 			$uploadfinaldir = $anims_dir;
@@ -267,15 +269,15 @@ function hypeanimations_panel() {
 			if (move_uploaded_file($_FILES['updatefile']['tmp_name'], $uploadfile)) {
 				WP_Filesystem();
 
-				// Check the zip file for disallowed files
-				$zip_clean = is_zip_clean($uploadfile, apply_filters('tumult_hype_animations_whitelist', array()));
-				if (is_wp_error($zip_clean)) {
-					// show error message displaying the file extension which is not allowed
-					echo $zip_clean->get_error_message();
-					unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
-					exit;
-				}
+			// Check the zip file for disallowed files in memory
+			$zip_clean = is_zip_clean($uploadfile, apply_filters('tumult_hype_animations_whitelist', array()));
+			if (is_wp_error($zip_clean)) {
+				// show error message displaying the file extension which is not allowed
+				echo $zip_clean->get_error_message();
+				exit;
+			}
 
+				// Unzip the file
 				$unzipfile = unzip_file( $uploadfile, $uploaddir);
 				if (file_exists($uploadfile)) {
 					unlink($uploadfile);
@@ -285,8 +287,6 @@ function hypeanimations_panel() {
 				}
 				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
 				rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
-
-				 
 
 				$files = scandir($uploaddir.'Assets/');
 				for ($i=0;isset($files[$i]);$i++) {
@@ -737,6 +737,7 @@ $allowlist_tumult_hype_animations = array(
 		'vsd',
 		'pps',
 		'ppsx',
+		'hyperesources' // Tumult Hype resources folder
 	),
 );
 
@@ -756,76 +757,42 @@ function is_zip_clean($zipFilePath, $allowlist_tumult_hype_animations) {
 	$zip = new ZipArchive;
 	$disallowedExtensions = []; // To store disallowed extensions
 
-	$upload_dir = wp_upload_dir();
-	$random_string = generate_random_string(10); // Generate a random string of length 10
-	$tmp_extract_dir = $upload_dir['basedir'] . '/hypeanimations/tmp/' . $random_string . '/';
-
-	// Ensure temporary extraction directory exists
-	wp_mkdir_p($tmp_extract_dir);
-
-	// Log opening ZIP file
-	error_log("Opening ZIP file: $zipFilePath");
-
 	if ($zip->open($zipFilePath) === TRUE) {
-			// Extract ZIP to temporary directory
-			if ($zip->extractTo($tmp_extract_dir)) {
-					error_log("Extracted ZIP to temporary directory: $tmp_extract_dir");
-			} else {
-					error_log("Failed to extract ZIP to temporary directory: $tmp_extract_dir");
-					$zip->close();
-					return new WP_Error('extraction_failed', "Failed to extract ZIP file.");
-			}
-			$zip->close();
+		$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
 
-			$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
+		// Scan the files in the ZIP archive
+		for ($i = 0; $i < $zip->numFiles; $i++) {
+			$filename = $zip->getNameIndex($i);
+			$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-			// Scan temporary directory
-			$files = new RecursiveIteratorIterator(
-					new RecursiveDirectoryIterator($tmp_extract_dir, RecursiveDirectoryIterator::SKIP_DOTS),
-					RecursiveIteratorIterator::CHILD_FIRST
-			);
-
-			foreach ($files as $fileinfo) {
-				if (!$fileinfo->isDir()) {
-						$filename = $fileinfo->getFilename();
-						// Directly extract the file extension from the filename. wp_check_filetype_and_ext only works on previously-approved files so it's not suitable for this purpose as it loads only approved get_allowed_mime_types() mime types.
-						$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-						
-						// Create log of all files discovered in error log
-						//error_log("Discovered file: $filename");
-						// Create log of $extension values too
-						//error_log("Discovered extension: $extension");
-						// Check if the file extension is in the whitelist
-						if (!empty($extension) && !in_array($extension, $flat_allowlist)) {
-							if (!in_array($extension, $disallowedExtensions)) {
-									$disallowedExtensions[] = $extension;									
-									error_log(sprintf(
-										__('Disallowed file extension detected: %s in file %s', 'hype-animations'),
-										$extension,
-										$filename
-								));
-							}
-						}
+			// Check if the file extension is in the whitelist
+			if (!empty($extension) && !in_array($extension, $flat_allowlist)) {
+				if (!in_array($extension, $disallowedExtensions)) {
+					$disallowedExtensions[] = $extension;
+					error_log(sprintf(
+						__('Disallowed file extension detected: %s in file %s', 'hype-animations'),
+						$extension,
+						$filename
+					));
 				}
 			}
+		}
 
-			// Clean up: Delete the temporary extracted files
-			delete_temp_files($tmp_extract_dir);
+		$zip->close();
 
-			// Check if there are any disallowed extensions
-			if (!empty($disallowedExtensions)) {
-					$disallowedExtensionsList = implode(', ', $disallowedExtensions);
-					//error_log("Cleaning up due to disallowed extension(s): $disallowedExtensionsList");
-					$requestmoreinfolink = sprintf(
-						__('<br>'.' More info here: %s', 'hype-animations'),
-						'https://forums.tumult.com/t/23637'
-				);				
-					return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestmoreinfolink");	
-			}
+		// Check if there are any disallowed extensions
+		if (!empty($disallowedExtensions)) {
+			$disallowedExtensionsList = implode(', ', $disallowedExtensions);
+			//error_log("Cleaning up due to disallowed extension(s): $disallowedExtensionsList");
+			$requestmoreinfolink = sprintf(
+				__('<br>'.' More info here: %s', 'hype-animations'),
+				'https://forums.tumult.com/t/23637'
+			);
+			return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestmoreinfolink");
+		}
 
-			// error_log("All files in ZIP are allowed. Cleanup complete.");
-			// If all files are allowed, return true
-			return true;
+		// If all files are allowed, return true
+		return true;
 	}
 
 	// Return an error if the zip file failed to open
@@ -845,13 +812,4 @@ function delete_temp_files($directory) {
 	}
 
 	rmdir($directory);
-}
-function generate_random_string($length = 10) {
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	$charactersLength = strlen($characters);
-	$randomString = '';
-	for ($i = 0; $i < $length; $i++) {
-			$randomString .= $characters[random_int(0, $charactersLength - 1)];
-	}
-	return $randomString;
 }
