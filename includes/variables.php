@@ -1,6 +1,6 @@
 <?php
 global $wpdb;
-$version = '1.9.12';
+$version = '1.9.13';
 $hypeanimations_db_version = $version;
 $hypeanimations_table_name = $wpdb->prefix . 'hypeanimations';
 $upload_mb = upload_mb();

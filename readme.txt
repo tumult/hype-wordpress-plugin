@@ -25,8 +25,8 @@ For detailed information and support for this plugin, please visit: https://foru
 
 == Changelog ==
 
-= 1.9.12 = 
-* Two security improvements via Patchstack. 
+= 1.9.13 = 
+* File Upload Allowlist now parsed in memory. Better wp_nonce security via recommendations from Patchstack. 
 
 = 1.9.11 = 
 * Improve security: OAMs must pass a whitelist before being uploaded. Kudos to Patchstack and the Wordpress Plugin team. 
