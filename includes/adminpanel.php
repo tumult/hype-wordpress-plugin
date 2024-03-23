@@ -367,7 +367,7 @@ function hypeanimations_panel() {
 		}
 		//print_r($_FILES);
 	}
-	echo '<p style="line-height:0px;clear:both">&nbsp;</p>
+ echo '<p style="line-height:0px;clear:both">&nbsp;</p>
 	'.($hypeupdated>0 ? '<p><span style="padding:10px;color:#FFF;background:#009933;">'.$hypeupdatetd_title.' has been updated!</style></p><p>&nbsp;</p>' : '').'
 	<h2>'.__( 'Manage animations' , 'hype-animations' ).'</h2>
 	<table cellpadding="0" cellspacing="0" id="hypeanimations">
@@ -375,44 +375,58 @@ function hypeanimations_panel() {
 			<tr>
 				<th>Animation</th>
 				<th>Shortcode</th>
+				<th>Notes</th>
 				<th>Options</th>
 				<th>'.__( 'Last file update' , 'hype-animations' ).'</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>';
-		$result = $wpdb->get_results($wpdb->prepare("SELECT id,nom,slug,updated,container,containerclass FROM $hypeanimations_table_name Where id > %d ORDER BY updated DESC", 0));
+		$result = $wpdb->get_results($wpdb->prepare("SELECT id,nom,slug,updated,container,notes,containerclass FROM $hypeanimations_table_name Where id > %d ORDER BY updated DESC", 0));
+
+		// log the $result
+		if ($result === null) {
+			error_log("Database query failed.");
+			error_log(print_r($wpdb->last_error, true));
+	} else {
+			error_log("Database query results:");
+			error_log(print_r($result, true));
+	}
 	
 		foreach ($result as $results) {
 			// Generate a unique nonce for each delete action
 			$delete_nonce = wp_create_nonce('delete-animation_'.$results->id);
-	
+			//$delete_nonce = wp_create_nonce('update-note_'.$results->id);
+
 			echo '<tr>
-							<td>' . $results->nom . '</td>
-							<td>
-											<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . $results->id . '&quot;]"></input>
-							</td>
-							<td>
-											<div class="optionleft">' . __( 'Add a container around the animation:', 'hype-animations' ) . '</div>
-											<div class="optionright">
-															<select class="hypeanimations_container" name="container">
-																			<option value="div" ' . ($results->container == 'div' ? 'selected' : '') . '>&lt;div&gt;</option>
-																			<option value="iframe" ' . ($results->container == 'iframe' ? 'selected' : '') . '>&lt;iframe&gt;</option>
-															</select>
-															<input type="button" value="' . __( 'Update', 'hype-animations' ) . '" class="updatecontainer" data-id="' . $results->id . '">
-															<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
-																' . __( 'Container CSS class', 'hype-animations' ) . ': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="' . esc_attr($results->containerclass) . '">
-															</div>
-											</div>
-							</td>
-							<td>' . ($results->updated == 0 ? '<em>' . __( 'No data', 'hype-animations' ) . '</em>' : date('Y/m/d', $results->updated) . '<br>' . date('H:i:s', $results->updated)) . '</td>
-							<td>
-									<a href="javascript:void(0)" id="' . $results->id . '" class="animcopy">' . __( 'Copy Code', 'hype-animations' ) . '</a>
-									<a href="admin.php?page=hypeanimations_panel&update=' . $results->id . '" class="animupdate" data-id="' . $results->id . '">' . __( 'Update', 'hype-animations' ) . '</a>
-									<a href="admin.php?page=hypeanimations_panel&delete=' . $results->id . '&_wpnonce=' . $delete_nonce . '" class="animdelete">' . __( 'Delete', 'hype-animations' ) . '</a>
-							</td>
+				<td>' . $results->nom . '</td>
+				<td>
+					<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . $results->id . '&quot;]"></input>
+				</td>
+				<td>
+					<textarea name="notes" spellcheck="false" style="resize: vertical; min-height: 20px;">' . $results->notes .  '</textarea>
+				</td>
+				<td>
+					<div class="optionleft">' . __( 'Add a container around the animation:', 'hype-animations' ) . '</div>
+					<div class="optionright">
+						<select class="hypeanimations_container" name="container">
+							<option value="div" ' . ($results->container == 'div' ? 'selected' : '') . '>&lt;div&gt;</option>
+							<option value="iframe" ' . ($results->container == 'iframe' ? 'selected' : '') . '>&lt;iframe&gt;</option>
+						</select>
+						<input type="button" value="' . __( 'Update', 'hype-animations' ) . '" class="updatecontainer" data-id="' . $results->id . '">
+						<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
+							' . __( 'Container CSS class', 'hype-animations' ) . ': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="' . esc_attr($results->containerclass) . '">
+						</div>
+					</div>
+				</td>
+				<td>' . ($results->updated == 0 ? '<em>' . __( 'No data', 'hype-animations' ) . '</em>' : date('Y/m/d', $results->updated) . '<br>' . date('H:i:s', $results->updated)) . '</td>
+				<td>
+					<a href="javascript:void(0)" id="' . $results->id . '" class="animcopy">' . __( 'Copy Code', 'hype-animations' ) . '</a>
+					<a href="admin.php?page=hypeanimations_panel&update=' . $results->id . '" class="animupdate" data-id="' . $results->id . '">' . __( 'Replace OAM', 'hype-animations' ) . '</a>
+					<a href="admin.php?page=hypeanimations_panel&delete=' . $results->id . '&_wpnonce=' . $delete_nonce . '" class="animdelete">' . __( 'Delete', 'hype-animations' ) . '</a>
+				</td>
 			</tr>';
-	}
+		}
 	
 	
 	echo '</tbody> 
@@ -457,6 +471,7 @@ function hypeanimations_panel() {
 			actdataid=actbutton.attr("data-id");
 			actcontainer=actbutton.parent().find("select[name=container]").val();
 			actcontainerclass=actbutton.parent().find("input[name=class]").val();
+			actnotes=actbutton.parent().find("textarea[name=notes]").val();
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
@@ -465,6 +480,7 @@ function hypeanimations_panel() {
 					"dataid": actdataid,
 					"container": actcontainer,
 					"containerclass": actcontainerclass,
+					"notes": actnotes,
 					"_wpnonce": "' . esc_js(wp_create_nonce('hypeanimations_updatecontainer')) . '"
 				}
 			}).done(function( msg ) {
@@ -497,6 +513,7 @@ function hypeanimations_panel() {
 			"columns": [
 				{"name": "Animation", "orderable": "true"},
 				{"name": "Shortcode", "orderable": "true"},
+				{"name": "Notes", "orderable": "true", "width": "200px" }, 
 				{"name": "Options", "orderable": "false", "width": "260px" },
 				{"name": "Last file Update", "orderable": "true", "width": "160px" },
 				null
@@ -518,298 +535,305 @@ function hypeanimations_panel() {
 				}
 			}
 		});
-	});
-	function preventDot(e)
+		});
+
+		function preventDot(e)
 		{
 			var key = e.charCode ? e.charCode : e.keyCode;
 			if (key == 46)
-			{
+			{				
 				return false;
 			}    
 		}
 
-	jQuery("#choosehypeanimation").click(function (e) {
-		e.preventDefault();
-		dataid = jQuery("#hypeanimationchoosen").val();
-		wp.media.editor.insert("[hypeanimations_anim id=\"" + dataid + "\"]");
-		document.location.hash = "";
-	});
-	
-	function hasWhiteSpace(s) {
-		return s.indexOf(" ") >= 0;
-	}
-	</script>'
-	;
-}
+		jQuery("#choosehypeanimation").click(function (e) {
+			e.preventDefault();
+			dataid = jQuery("#hypeanimationchoosen").val();
+			wp.media.editor.insert("[hypeanimations_anim id=\"" + dataid + "\"]");
+			document.location.hash = "";
+		});
 
-add_action('wp_ajax_hypeanimations_updatecontainer', 'hypeanimations_updatecontainer');
+		function hasWhiteSpace(s) {
+			return s.indexOf(" ") >= 0;
+		}
+		</script>'
+		;
+		}
 
-function hypeanimations_updatecontainer() {
-    global $wpdb;
-    global $hypeanimations_table_name;
-    $response = array();
+		add_action('wp_ajax_hypeanimations_updatecontainer', 'hypeanimations_updatecontainer');
 
-    // Verify the nonce
-    $nonce = isset($_POST['_wpnonce']) ? sanitize_text_field($_POST['_wpnonce']) : '';
-    if (!wp_verify_nonce($nonce, 'hypeanimations_updatecontainer')) {
-        $response['response'] = 'nonce_verification_failed';
-        wp_send_json($response);
-        exit;
-    }
+		function hypeanimations_updatecontainer() {
+			global $wpdb;
+			global $hypeanimations_table_name;
+			$response = array();
 
-    if (!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))) {
-        $post_dataid = sanitize_text_field($_POST['dataid']);
-        $post_container = sanitize_text_field($_POST['container']);
+			// Verify the nonce
+			$nonce = isset($_POST['_wpnonce']) ? sanitize_text_field($_POST['_wpnonce']) : '';
+			if (!wp_verify_nonce($nonce, 'hypeanimations_updatecontainer')) {
+				$response['response'] = 'nonce_verification_failed';
+				wp_send_json($response);
+				exit;
+			}
 
-        function sanitize_html_classname($input) {
-            // Strip tags to remove any HTML
-            $input = wp_strip_all_tags($input);
+			if (!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))) {
+				$post_dataid = sanitize_text_field($_POST['dataid']);
+				$post_container = sanitize_text_field($_POST['container']);
+				// todo this was missing
+				$post_notes = sanitize_text_field($_POST['notes']);
 
-            // Remove any unwanted characters, allow only a-z, A-Z, 0-9, hyphens, and underscores
-            $sanitized = preg_replace('/[^a-zA-Z0-9_-]/', '', $input);
+				function sanitize_html_classname($input) {
+					// Strip tags to remove any HTML
+					$input = wp_strip_all_tags($input);
 
-            // Ensure the classname does not start with a digit, two hyphens, or a hyphen followed by a digit
-            if (preg_match('/^(\d|-\d|--)/', $sanitized)) {
-                // Prepend a letter (e.g., 'x') to ensure validity if it starts with invalid characters
-                $sanitized = 'x' . $sanitized;
-            }
+					// Remove any unwanted characters, allow only a-z, A-Z, 0-9, hyphens, and underscores
+					$sanitized = preg_replace('/[^a-zA-Z0-9_-]/', '', $input);
 
-            return $sanitized;
-        }
+					// Ensure the classname does not start with a digit, two hyphens, or a hyphen followed by a digit
+					if (preg_match('/^(\d|-\d|--)/', $sanitized)) {
+						// Prepend a letter (e.g., 'x') to ensure validity if it starts with invalid characters
+						$sanitized = 'x' . $sanitized;
+					}
 
-        $post_containerclass = sanitize_html_classname($_POST['containerclass']);
+					return $sanitized;
+				}
 
-        $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d", $post_container, $post_containerclass, $post_dataid));
+				$post_containerclass = sanitize_html_classname($_POST['containerclass']);
+				$post_notes = sanitize_text_field($_POST['notes']); // Sanitize the 'notes' input
 
-        $response['response'] = "ok";
-    } else {
-        $response['response'] = "error";
-    }
+				// Update the database query to include the 'notes' field
+				$wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s, notes=%s WHERE id=%d", $post_container, $post_containerclass, $post_notes, $post_dataid));
 
-		header("Content-Type: application/json");
-    if (isset($response)) {
-        echo json_encode($response);
-    }
-    exit();
-}
+				$response['response'] = "ok";
+			} else {
+				$response['response'] = "error";
+			}
 
-add_action('wp_ajax_hypeanimations_getanimid', 'hypeanimations_getanimid');
-function hypeanimations_getanimid(){
-	global $wpdb;
-	global $hypeanimations_table_name;
-    $response = array();
-    if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
-		$post_dataid = sanitize_text_field($_POST['dataid']);
-		$post_container = sanitize_text_field($_POST['container']);
-		$post_containerclass = sanitize_text_field($_POST['containerclass']);
-		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
-		$response['response'] = "ok";
-    }
-	else { $response['response'] = "error"; }
-    header( "Content-Type: application/json" );
-    if (isset($response)) { echo json_encode($response); }
-    exit();
-}
+			header("Content-Type: application/json");
+			if (isset($response)) {
+				echo json_encode($response);
+			}
+			exit();
+		}
 
-add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
-function hypeanimations_getcontent(){
-	global $wpdb;
-	global $hypeanimations_table_name;
-    $response = array();
-    if(!empty(sanitize_text_field($_POST['dataid']))){
+		add_action('wp_ajax_hypeanimations_getanimid', 'hypeanimations_getanimid');
+		function hypeanimations_getanimid(){
+			global $wpdb;
+			global $hypeanimations_table_name;
+			$response = array();
+			if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
+				$post_dataid = sanitize_text_field($_POST['dataid']);
+				$post_container = sanitize_text_field($_POST['container']);
+				$post_containerclass = sanitize_text_field($_POST['containerclass']);
+				$post_notes = sanitize_text_field($_POST['notes']);
+				$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
+				$response['response'] = "ok";
+			}
+			else { $response['response'] = "error"; }
+			header( "Content-Type: application/json" );
+			if (isset($response)) { echo json_encode($response); }
+			exit();
+		}
 
-			$post_dataid= sanitize_text_field($_POST['dataid']);
-			$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
-			$animcode = str_replace("https://", "//", html_entity_decode($animcode));
-			$animcode = str_replace("http://", "//", html_entity_decode($animcode));
-    }
-	echo html_entity_decode($animcode);
-    exit();
-}
+		add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
+		function hypeanimations_getcontent(){
+			global $wpdb;
+			global $hypeanimations_table_name;
+			$response = array();
+			if(!empty(sanitize_text_field($_POST['dataid']))){
 
-// Define an initial allowed extensions array
-$allowlist_tumult_hype_animations = array(
-	'images' => array(
-		'jpg',
-		'jpeg',
-		'png',
-		'gif',
-		'bmp',
-		'apng',
-		'heic',
-		'heif',
-		'ico',
-		'svg',
-		'svgz',
-		'tif',
-		'tiff',
-		'webp',
-		'webm',
-		'psd',
-		'htc', // for ie compatibility
-		'pie', // for ie compatibility
-	),
-	'audio' => array(
-		'mp3',
-		'wav',
-		'aif',
-		'ogg',
-		'aac',
-		'mid',
-		'midi',
-		'oga',
-		'opus',
-		'weba',
-		'flac',
-		'aiff',
-	),
-	'video' => array(
-		'mp4',
-		'avi',
-		'mov',
-		'3g2',
-		'3gp',
-		'ogv',
-		'mpg',
-		'm4a',
-		'm4v',
-		'm4p',
-		'mpeg',
-		'hevc',
-		'm3u8',
-		'mpkg',
-		'mkv',
-		'wmv',
-		'flv',
-		'wma',
-	),
-	'fonts' => array(
-		'ttf',
-		'otf',
-		'woff',
-		'woff2',
-		'eot',
-		'ttc',
-	),
-	'documents' => array(
-		'doc',
-		'docx',
-		'pdf',
-		'txt',
-		'rtf',
-		'rtx',
-		'csv',
-		'srt',
-		'vtt',
-		'xls',
-		'xlsx',
-		'ods',
-		'odt',
-		'ppt',
-		'pptx',
-		'epub',
-		'odp',
-		'key',
-		'xhtml',
-		'usdz',
-	),
-	'scripts' => array(
-		'js',
-		'map', // source map
-		'mjs',
-		'json',
-		'jsonld',
-	),
-	'stylesheets' => array(
-		'css',
-		'sass',
-		'scss',
-		'less',
-		'stylus',
-	),
-	'other' => array(
-		'html',
-		'htm',
-		'plist', // recoverable Tumult Hype plist file
-		'xml',
-		'yaml',
-		'ics',
-		'vsd',
-		'pps',
-		'ppsx',
-		'hyperesources' // Tumult Hype resources folder
-	),
-);
+				$post_dataid= sanitize_text_field($_POST['dataid']);
+				$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
+				$animcode = str_replace("https://", "//", html_entity_decode($animcode));
+				$animcode = str_replace("http://", "//", html_entity_decode($animcode));
+			}
+			echo html_entity_decode($animcode);
+			exit();
+		}
 
-function get_flat_allowlist($allowlist_tumult_hype_animations) {
-	static $flat_allowlist = null;
-	if ($flat_allowlist === null) {
-		// Reduce the multidimensional whitelist array into a flat array
-		$flat_allowlist = array_reduce($allowlist_tumult_hype_animations, 'array_merge', array());
-	}
-	return $flat_allowlist;
-}
+		// Define an initial allowed extensions array
+		$allowlist_tumult_hype_animations = array(
+			'images' => array(
+				'jpg',
+				'jpeg',
+				'png',
+				'gif',
+				'bmp',
+				'apng',
+				'heic',
+				'heif',
+				'ico',
+				'svg',
+				'svgz',
+				'tif',
+				'tiff',
+				'webp',
+				'webm',
+				'psd',
+				'htc', // for ie compatibility
+				'pie', // for ie compatibility
+			),
+			'audio' => array(
+				'mp3',
+				'wav',
+				'aif',
+				'ogg',
+				'aac',
+				'mid',
+				'midi',
+				'oga',
+				'opus',
+				'weba',
+				'flac',
+				'aiff',
+			),
+			'video' => array(
+				'mp4',
+				'avi',
+				'mov',
+				'3g2',
+				'3gp',
+				'ogv',
+				'mpg',
+				'm4a',
+				'm4v',
+				'm4p',
+				'mpeg',
+				'hevc',
+				'm3u8',
+				'mpkg',
+				'mkv',
+				'wmv',
+				'flv',
+				'wma',
+			),
+			'fonts' => array(
+				'ttf',
+				'otf',
+				'woff',
+				'woff2',
+				'eot',
+				'ttc',
+			),
+			'documents' => array(
+				'doc',
+				'docx',
+				'pdf',
+				'txt',
+				'rtf',
+				'rtx',
+				'csv',
+				'srt',
+				'vtt',
+				'xls',
+				'xlsx',
+				'ods',
+				'odt',
+				'ppt',
+				'pptx',
+				'epub',
+				'odp',
+				'key',
+				'xhtml',
+				'usdz',
+			),
+			'scripts' => array(
+				'js',
+				'map', // source map
+				'mjs',
+				'json',
+				'jsonld',
+			),
+			'stylesheets' => array(
+				'css',
+				'sass',
+				'scss',
+				'less',
+				'stylus',
+			),
+			'other' => array(
+				'html',
+				'htm',
+				'plist', // recoverable Tumult Hype plist file
+				'xml',
+				'yaml',
+				'ics',
+				'vsd',
+				'pps',
+				'ppsx',
+				'hyperesources' // Tumult Hype resources folder
+			),
+		);
 
-// For some reason the function is not working when this isn't called first here. 
-$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
+		function get_flat_allowlist($allowlist_tumult_hype_animations) {
+			static $flat_allowlist = null;
+			if ($flat_allowlist === null) {
+				// Reduce the multidimensional whitelist array into a flat array
+				$flat_allowlist = array_reduce($allowlist_tumult_hype_animations, 'array_merge', array());
+			}
+			return $flat_allowlist;
+		}
 
-function is_zip_clean($zipFilePath, $allowlist_tumult_hype_animations) {
-	$zip = new ZipArchive;
-	$disallowedExtensions = []; // To store disallowed extensions
-
-	if ($zip->open($zipFilePath) === TRUE) {
+		// For some reason the function is not working when this isn't called first here. 
 		$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
 
-		// Scan the files in the ZIP archive
-		for ($i = 0; $i < $zip->numFiles; $i++) {
-			$filename = $zip->getNameIndex($i);
-			$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+		function is_zip_clean($zipFilePath, $allowlist_tumult_hype_animations) {
+			$zip = new ZipArchive;
+			$disallowedExtensions = []; // To store disallowed extensions
 
-			// Check if the file extension is in the whitelist
-			if (!empty($extension) && !in_array($extension, $flat_allowlist)) {
-				if (!in_array($extension, $disallowedExtensions)) {
-					$disallowedExtensions[] = $extension;
-					error_log(sprintf(
-						__('Disallowed file extension detected: %s in file %s', 'hype-animations'),
-						$extension,
-						$filename
-					));
+			if ($zip->open($zipFilePath) === TRUE) {
+				$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
+
+				// Scan the files in the ZIP archive
+				for ($i = 0; $i < $zip->numFiles; $i++) {
+					$filename = $zip->getNameIndex($i);
+					$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+					// Check if the file extension is in the whitelist
+					if (!empty($extension) && !in_array($extension, $flat_allowlist)) {
+						if (!in_array($extension, $disallowedExtensions)) {
+							$disallowedExtensions[] = $extension;
+							error_log(sprintf(
+								__('Disallowed file extension detected: %s in file %s', 'hype-animations'),
+								$extension,
+								$filename
+							));
+						}
+					}
 				}
+
+				$zip->close();
+
+				// Check if there are any disallowed extensions
+				if (!empty($disallowedExtensions)) {
+					$disallowedExtensionsList = implode(', ', $disallowedExtensions);
+					//error_log("Cleaning up due to disallowed extension(s): $disallowedExtensionsList");
+					$requestmoreinfolink = sprintf(
+						__('<br>'.' More info here: %s', 'hype-animations'),
+						'https://forums.tumult.com/t/23637'
+					);
+					return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestmoreinfolink");
+				}
+
+				// If all files are allowed, return true
+				return true;
 			}
+
+			// Return an error if the zip file failed to open
+			error_log("Failed to open the zip file: $zipFilePath");
+			return new WP_Error('zip_open_failed', "Failed to open the zip file.");
 		}
 
-		$zip->close();
-
-		// Check if there are any disallowed extensions
-		if (!empty($disallowedExtensions)) {
-			$disallowedExtensionsList = implode(', ', $disallowedExtensions);
-			//error_log("Cleaning up due to disallowed extension(s): $disallowedExtensionsList");
-			$requestmoreinfolink = sprintf(
-				__('<br>'.' More info here: %s', 'hype-animations'),
-				'https://forums.tumult.com/t/23637'
+		function delete_temp_files($directory) {
+			$files = new RecursiveIteratorIterator(
+				new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS),
+				RecursiveIteratorIterator::CHILD_FIRST
 			);
-			return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestmoreinfolink");
+
+			foreach ($files as $fileinfo) {
+				$todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
+				$todo($fileinfo->getRealPath());
+			}
+
+			rmdir($directory);
 		}
-
-		// If all files are allowed, return true
-		return true;
-	}
-
-	// Return an error if the zip file failed to open
-	error_log("Failed to open the zip file: $zipFilePath");
-	return new WP_Error('zip_open_failed', "Failed to open the zip file.");
-}
-
-function delete_temp_files($directory) {
-	$files = new RecursiveIteratorIterator(
-			new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS),
-			RecursiveIteratorIterator::CHILD_FIRST
-	);
-
-	foreach ($files as $fileinfo) {
-			$todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
-			$todo($fileinfo->getRealPath());
-	}
-
-	rmdir($directory);
-}
+		

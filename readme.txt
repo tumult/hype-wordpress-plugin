@@ -5,7 +5,7 @@ Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 5.0
 Requires PHP: 7.4
-Tested up to: 6.4.3
+Tested up to: 6.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,6 +24,9 @@ For detailed information and support for this plugin, please visit: https://foru
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
 == Changelog ==
+
+= 1.9.14 = 
+* Notes for each animation are now displayed in the admin panel.
 
 = 1.9.13 = 
 * File Upload Allowlist now parsed in memory. Better wp_nonce security via recommendations from Patchstack. 
