@@ -216,8 +216,16 @@ success: function(file, resp) {
 	});
 	</script>
 	';
-	echo $output;
+
+	// Only output modal on plugin page
+	if( !isset($_GET['page']) || $_GET['page'] != 'hypeanimations_panel' ) {
+		return; 
+	}
+
+	echo $output; 
+
 }
+	
 function hypeanimations_panel() {
 	global $wpdb;
 	global $version;

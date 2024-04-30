@@ -25,6 +25,9 @@ For detailed information and support for this plugin, please visit: https://foru
 
 == Changelog ==
 
+= 1.9.14 = 
+* Ensure upload from only appears on the Hype Animations dashboard page. 
+
 = 1.9.13 = 
 * File Upload Allowlist now parsed in memory. Better wp_nonce security via recommendations from Patchstack. 
 
