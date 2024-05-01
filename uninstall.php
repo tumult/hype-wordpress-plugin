@@ -23,7 +23,7 @@ function hypeanimations_remove_dir($dir)
             if (is_dir($file)) {
                 hypeanimations_remove_dir($file);
             } else {
-                unlink($file);
+                wp_delete_file($file);
             }
         }
         rmdir($dir);

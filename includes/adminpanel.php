@@ -33,7 +33,7 @@ function hypeanimations_panel_upload() {
 				if (is_wp_error($zip_clean)) {
 					// show error message displaying the file extension which is not allowed
 					echo $zip_clean->get_error_message();
-					unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
+					wp_delete_file($uploadfile); // Delete the uploaded ZIP file to prevent processing
 					exit;
 				}
  
@@ -43,10 +43,10 @@ function hypeanimations_panel_upload() {
         $unzipfile = unzip_file($uploadfile, $uploaddir);
         if ($unzipfile) {
             if (file_exists($uploadfile)) {
-                unlink($uploadfile);
+                wp_delete_file($uploadfile);
             }
             if (file_exists($uploaddir . '/config.xml')) {
-                unlink($uploaddir . '/config.xml');
+                wp_delete_file($uploaddir . '/config.xml');
             }
 
             $new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
@@ -86,7 +86,7 @@ function hypeanimations_panel_upload() {
                     foreach ($jsfiles as $jsfile) {
                         if ($jsfile != '.' && $jsfile != '..' && !is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile)) {
                             copy($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile, $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/' . $jsfile);
-                            unlink($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile);
+                            wp_delete_file($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile);
                         }
                     }
 
@@ -120,7 +120,7 @@ function hypeanimations_panel_upload() {
                     copy($uploaddir . 'Assets/' . $actfile[0] . '.html', $upload_dir['basedir'] . '/hypeanimations/' . $lastid . '/' . $actfile[0] . '.html');
 
                     if (file_exists($uploaddir . 'Assets/' . $actfile[0] . '.html')) {
-                        unlink($uploaddir . 'Assets/' . $actfile[0] . '.html');
+                        wp_delete_file($uploaddir . 'Assets/' . $actfile[0] . '.html');
                     }
                     if (file_exists($uploaddir . 'Assets/')) {
                         hyperrmdir($uploaddir . 'Assets/');
@@ -288,10 +288,10 @@ function hypeanimations_panel() {
 				// Unzip the file
 				$unzipfile = unzip_file( $uploadfile, $uploaddir);
 				if (file_exists($uploadfile)) {
-					unlink($uploadfile);
+					wp_delete_file($uploadfile);
 				}
 				if (file_exists($uploaddir.'/config.xml')) {
-					unlink($uploaddir.'/config.xml');
+					wp_delete_file($uploaddir.'/config.xml');
 				}
 				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
 				rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
@@ -325,7 +325,7 @@ function hypeanimations_panel() {
 							if($jsfiles[$j] != '.' && $jsfiles[$j] != '..'){
 								if(!is_dir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j])){
 									copy($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j], $uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/'.$jsfiles[$j]);
-									unlink($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j]);
+									wp_delete_file($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j]);
 								}
 							}
 						}
@@ -359,7 +359,7 @@ function hypeanimations_panel() {
 						copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$actdataid.'/'.$actfile[0].'.html');
 
 						if (file_exists($uploaddir.'Assets/'.$actfile[0].'.html')) {
-							unlink($uploaddir.'Assets/'.$actfile[0].'.html');
+							wp_delete_file($uploaddir.'Assets/'.$actfile[0].'.html');
 						}
 						if (file_exists($uploaddir.'Assets/')) {
 							hyperrmdir($uploaddir.'Assets/');
@@ -596,7 +596,7 @@ function hypeanimations_updatecontainer() {
 
 		header("Content-Type: application/json");
     if (isset($response)) {
-        echo json_encode($response);
+        echo wp_json_encode($response);
     }
     exit();
 }
@@ -615,7 +615,7 @@ function hypeanimations_getanimid(){
     }
 	else { $response['response'] = "error"; }
     header( "Content-Type: application/json" );
-    if (isset($response)) { echo json_encode($response); }
+    if (isset($response)) { echo wp_json_encode($response); }
     exit();
 }
 
