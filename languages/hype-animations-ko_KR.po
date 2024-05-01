@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 12:24-0500\n"
-"PO-Revision-Date: 2024-02-13 12:25-0500\n"
+"POT-Creation-Date: 2024-05-01 14:21-0400\n"
+"PO-Revision-Date: 2024-05-01 14:22-0400\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Language: ko_KR\n"
@@ -22,24 +22,24 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:174
+#: includes/adminpanel.php:175
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "드롭. OAM 파일 또는 업로드하려면 여기를 클릭하십시오<br>(최대 업로드 크기 "
 
-#: includes/adminpanel.php:184
+#: includes/adminpanel.php:190
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "애니메이션을 표시하려는 다음 단축코드를 삽입합니다."
 
-#: includes/adminpanel.php:196 includes/adminpanel.php:228
+#: includes/adminpanel.php:201 includes/adminpanel.php:241
 msgid "Upload new animation"
 msgstr "새 애니메이션 업로드"
 
-#: includes/adminpanel.php:225
+#: includes/adminpanel.php:238
 msgid "Add new animation"
 msgstr "새 애니메이션 추가"
 
-#: includes/adminpanel.php:227
+#: includes/adminpanel.php:240
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -52,118 +52,122 @@ msgstr ""
 "tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">도움"
 "이 필요하십니까?</a>"
 
-#: includes/adminpanel.php:362
+#: includes/adminpanel.php:256
+msgid "has been deleted."
+msgstr ""
+
+#: includes/adminpanel.php:380
 msgid "Manage animations"
 msgstr "애니메이션 관리"
 
-#: includes/adminpanel.php:369
+#: includes/adminpanel.php:387
 msgid "Last file update"
 msgstr "마지막 파일 업데이트"
 
-#: includes/adminpanel.php:382
+#: includes/adminpanel.php:404
 msgid "Add a container around the animation:"
 msgstr "애니메이션 주위에 컨테이너 추가:"
 
-#: includes/adminpanel.php:388 includes/adminpanel.php:397
+#: includes/adminpanel.php:410 includes/adminpanel.php:419
 msgid "Update"
 msgstr "업데이트"
 
-#: includes/adminpanel.php:390
+#: includes/adminpanel.php:412
 msgid "Container CSS class"
 msgstr "컨테이너 CSS 클래스"
 
-#: includes/adminpanel.php:394
+#: includes/adminpanel.php:416
 msgid "No data"
 msgstr "데이터 없음"
 
-#: includes/adminpanel.php:396
+#: includes/adminpanel.php:418
 msgid "Copy Code"
 msgstr "복사 코드"
 
-#: includes/adminpanel.php:398
+#: includes/adminpanel.php:420
 msgid "Delete"
 msgstr "삭제"
 
-#: includes/adminpanel.php:459
+#: includes/adminpanel.php:483
 msgid "Updated!"
 msgstr "업데이트!"
 
-#: includes/adminpanel.php:466
+#: includes/adminpanel.php:490
 msgid "Error, please try again!"
 msgstr "오류, 다시 시도하십시오!"
 
-#: includes/adminpanel.php:473
+#: includes/adminpanel.php:497
 msgid "Update file"
 msgstr "업데이트 파일"
 
-#: includes/adminpanel.php:489
+#: includes/adminpanel.php:513
 msgid "Processing..."
 msgstr "처리..."
 
-#: includes/adminpanel.php:490
+#: includes/adminpanel.php:514
 msgid "Search:"
 msgstr "검색:"
 
-#: includes/adminpanel.php:491
+#: includes/adminpanel.php:515
 msgid "Show"
 msgstr "표시"
 
-#: includes/adminpanel.php:491 includes/adminpanel.php:492
+#: includes/adminpanel.php:515 includes/adminpanel.php:516
 msgid "animations"
 msgstr "애니메이션"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "Showing"
 msgstr "페이지"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "to"
 msgstr "받는 사람"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "of"
 msgstr "의"
 
-#: includes/adminpanel.php:493
+#: includes/adminpanel.php:517
 msgid "No animations found."
 msgstr "애니메이션을 찾을 수 없습니다."
 
-#: includes/adminpanel.php:494
+#: includes/adminpanel.php:518
 msgid "Loading..."
 msgstr "로드..."
 
-#: includes/adminpanel.php:495
+#: includes/adminpanel.php:519
 msgid "No animation has been found"
 msgstr "애니메이션이 발견되지 않았습니다."
 
-#: includes/adminpanel.php:496
+#: includes/adminpanel.php:520
 msgid "No animation has been added"
 msgstr "애니메이션이 추가되지 않았습니다."
 
-#: includes/adminpanel.php:498
+#: includes/adminpanel.php:522
 msgid "First"
 msgstr "첫 번째"
 
-#: includes/adminpanel.php:499
+#: includes/adminpanel.php:523
 msgid "Previous"
 msgstr "이전"
 
-#: includes/adminpanel.php:500
+#: includes/adminpanel.php:524
 msgid "Next"
 msgstr "다음"
 
-#: includes/adminpanel.php:501
+#: includes/adminpanel.php:525
 msgid "Last"
 msgstr "마지막"
 
-#: includes/adminpanel.php:755
+#: includes/adminpanel.php:781
 #, php-format
 msgid "Disallowed file extension detected: %s in file %s"
 msgstr "허용되지 않는 파일 확장자가 감지되었습니다: %s (파일: %s)"
 
-#: includes/adminpanel.php:772
+#: includes/adminpanel.php:796
 #, php-format
-msgid " More info here: %s"
+msgid "<br> More info here: %s"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

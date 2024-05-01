@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 12:23-0500\n"
-"PO-Revision-Date: 2024-02-13 12:23-0500\n"
+"POT-Creation-Date: 2024-05-01 14:20-0400\n"
+"PO-Revision-Date: 2024-05-01 14:20-0400\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru_RU\n"
@@ -23,25 +23,25 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:174
+#: includes/adminpanel.php:175
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
 "Удалите файл .OAM или нажмите здесь, чтобы загрузить <br> (максимальный "
 "размер загрузки "
 
-#: includes/adminpanel.php:184
+#: includes/adminpanel.php:190
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Вставьте следующий шорткод, где вы хотите отобразить анимацию"
 
-#: includes/adminpanel.php:196 includes/adminpanel.php:228
+#: includes/adminpanel.php:201 includes/adminpanel.php:241
 msgid "Upload new animation"
 msgstr "Загрузить новую анимацию"
 
-#: includes/adminpanel.php:225
+#: includes/adminpanel.php:238
 msgid "Add new animation"
 msgstr "Добавить новую анимацию"
 
-#: includes/adminpanel.php:227
+#: includes/adminpanel.php:240
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -54,118 +54,122 @@ msgstr ""
 "t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Нужна помощь?</"
 "a>"
 
-#: includes/adminpanel.php:362
+#: includes/adminpanel.php:256
+msgid "has been deleted."
+msgstr ""
+
+#: includes/adminpanel.php:380
 msgid "Manage animations"
 msgstr "Управление анимацией"
 
-#: includes/adminpanel.php:369
+#: includes/adminpanel.php:387
 msgid "Last file update"
 msgstr "Последнее обновление файла"
 
-#: includes/adminpanel.php:382
+#: includes/adminpanel.php:404
 msgid "Add a container around the animation:"
 msgstr "Добавить контейнер вокруг анимации:"
 
-#: includes/adminpanel.php:388 includes/adminpanel.php:397
+#: includes/adminpanel.php:410 includes/adminpanel.php:419
 msgid "Update"
 msgstr "Обновить"
 
-#: includes/adminpanel.php:390
+#: includes/adminpanel.php:412
 msgid "Container CSS class"
 msgstr "Контейнерный класс CSS"
 
-#: includes/adminpanel.php:394
+#: includes/adminpanel.php:416
 msgid "No data"
 msgstr "Нет данных"
 
-#: includes/adminpanel.php:396
+#: includes/adminpanel.php:418
 msgid "Copy Code"
 msgstr "Скопировать код"
 
-#: includes/adminpanel.php:398
+#: includes/adminpanel.php:420
 msgid "Delete"
 msgstr "Удалить"
 
-#: includes/adminpanel.php:459
+#: includes/adminpanel.php:483
 msgid "Updated!"
 msgstr "Обновлено!"
 
-#: includes/adminpanel.php:466
+#: includes/adminpanel.php:490
 msgid "Error, please try again!"
 msgstr "Ошибка, пожалуйста, попробуйте еще раз!"
 
-#: includes/adminpanel.php:473
+#: includes/adminpanel.php:497
 msgid "Update file"
 msgstr "Обновить файл"
 
-#: includes/adminpanel.php:489
+#: includes/adminpanel.php:513
 msgid "Processing..."
 msgstr "Обработка ..."
 
-#: includes/adminpanel.php:490
+#: includes/adminpanel.php:514
 msgid "Search:"
 msgstr "Поиск:"
 
-#: includes/adminpanel.php:491
+#: includes/adminpanel.php:515
 msgid "Show"
 msgstr "Шоу"
 
-#: includes/adminpanel.php:491 includes/adminpanel.php:492
+#: includes/adminpanel.php:515 includes/adminpanel.php:516
 msgid "animations"
 msgstr "анимации"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "Showing"
 msgstr "показ"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "to"
 msgstr "в"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "of"
 msgstr "из"
 
-#: includes/adminpanel.php:493
+#: includes/adminpanel.php:517
 msgid "No animations found."
 msgstr "Не найдено ни одной анимации."
 
-#: includes/adminpanel.php:494
+#: includes/adminpanel.php:518
 msgid "Loading..."
 msgstr "Loading ..."
 
-#: includes/adminpanel.php:495
+#: includes/adminpanel.php:519
 msgid "No animation has been found"
 msgstr "Анимация не найдена"
 
-#: includes/adminpanel.php:496
+#: includes/adminpanel.php:520
 msgid "No animation has been added"
 msgstr "Анимация не была добавлена"
 
-#: includes/adminpanel.php:498
+#: includes/adminpanel.php:522
 msgid "First"
 msgstr "Первый"
 
-#: includes/adminpanel.php:499
+#: includes/adminpanel.php:523
 msgid "Previous"
 msgstr "предыдущий"
 
-#: includes/adminpanel.php:500
+#: includes/adminpanel.php:524
 msgid "Next"
 msgstr "следующий"
 
-#: includes/adminpanel.php:501
+#: includes/adminpanel.php:525
 msgid "Last"
 msgstr "Последний"
 
-#: includes/adminpanel.php:755
+#: includes/adminpanel.php:781
 #, php-format
 msgid "Disallowed file extension detected: %s in file %s"
 msgstr "Обнаружено недопустимое расширение файла: %s в файле %s"
 
-#: includes/adminpanel.php:772
+#: includes/adminpanel.php:796
 #, php-format
-msgid " More info here: %s"
+msgid "<br> More info here: %s"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
