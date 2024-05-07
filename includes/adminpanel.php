@@ -33,7 +33,7 @@ function hypeanimations_panel_upload() {
 				if (is_wp_error($zip_clean)) {
 					// show error message displaying the file extension which is not allowed
 					echo $zip_clean->get_error_message();
-					unlink($uploadfile); // Delete the uploaded ZIP file to prevent processing
+					wp_delete_file($uploadfile); // Delete the uploaded ZIP file to prevent processing
 					exit;
 				}
  
@@ -43,10 +43,10 @@ function hypeanimations_panel_upload() {
         $unzipfile = unzip_file($uploadfile, $uploaddir);
         if ($unzipfile) {
             if (file_exists($uploadfile)) {
-                unlink($uploadfile);
+                wp_delete_file($uploadfile);
             }
             if (file_exists($uploaddir . '/config.xml')) {
-                unlink($uploaddir . '/config.xml');
+                wp_delete_file($uploaddir . '/config.xml');
             }
 
             $new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
@@ -86,7 +86,7 @@ function hypeanimations_panel_upload() {
                     foreach ($jsfiles as $jsfile) {
                         if ($jsfile != '.' && $jsfile != '..' && !is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile)) {
                             copy($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile, $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/' . $jsfile);
-                            unlink($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile);
+                            wp_delete_file($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile);
                         }
                     }
 
@@ -120,7 +120,7 @@ function hypeanimations_panel_upload() {
                     copy($uploaddir . 'Assets/' . $actfile[0] . '.html', $upload_dir['basedir'] . '/hypeanimations/' . $lastid . '/' . $actfile[0] . '.html');
 
                     if (file_exists($uploaddir . 'Assets/' . $actfile[0] . '.html')) {
-                        unlink($uploaddir . 'Assets/' . $actfile[0] . '.html');
+                        wp_delete_file($uploaddir . 'Assets/' . $actfile[0] . '.html');
                     }
                     if (file_exists($uploaddir . 'Assets/')) {
                         hyperrmdir($uploaddir . 'Assets/');
@@ -216,8 +216,16 @@ success: function(file, resp) {
 	});
 	</script>
 	';
-	echo $output;
+
+	// Only output modal on plugin page
+	if( !isset($_GET['page']) || $_GET['page'] != 'hypeanimations_panel' ) {
+		return; 
+	}
+
+	echo $output; 
+
 }
+	
 function hypeanimations_panel() {
 	global $wpdb;
 	global $version;
@@ -280,10 +288,10 @@ function hypeanimations_panel() {
 				// Unzip the file
 				$unzipfile = unzip_file( $uploadfile, $uploaddir);
 				if (file_exists($uploadfile)) {
-					unlink($uploadfile);
+					wp_delete_file($uploadfile);
 				}
 				if (file_exists($uploaddir.'/config.xml')) {
-					unlink($uploaddir.'/config.xml');
+					wp_delete_file($uploaddir.'/config.xml');
 				}
 				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
 				rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
@@ -317,7 +325,7 @@ function hypeanimations_panel() {
 							if($jsfiles[$j] != '.' && $jsfiles[$j] != '..'){
 								if(!is_dir($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j])){
 									copy($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j], $uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$new_name.'.hyperesources/'.$jsfiles[$j]);
-									unlink($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j]);
+									wp_delete_file($uploaddir.'Assets/'.$actfile[0].'.hyperesources/'.$jsfiles[$j]);
 								}
 							}
 						}
@@ -351,7 +359,7 @@ function hypeanimations_panel() {
 						copy($uploaddir.'Assets/'.$actfile[0].'.html', $upload_dir['basedir'].'/hypeanimations/'.$actdataid.'/'.$actfile[0].'.html');
 
 						if (file_exists($uploaddir.'Assets/'.$actfile[0].'.html')) {
-							unlink($uploaddir.'Assets/'.$actfile[0].'.html');
+							wp_delete_file($uploaddir.'Assets/'.$actfile[0].'.html');
 						}
 						if (file_exists($uploaddir.'Assets/')) {
 							hyperrmdir($uploaddir.'Assets/');
@@ -609,31 +617,30 @@ function hypeanimations_panel() {
 				$response['response'] = "error";
 			}
 
-			header("Content-Type: application/json");
-			if (isset($response)) {
-				echo json_encode($response);
-			}
-			exit();
-		}
+		header("Content-Type: application/json");
+    if (isset($response)) {
+        echo wp_json_encode($response);
+    }
+    exit();
+}
 
-		add_action('wp_ajax_hypeanimations_getanimid', 'hypeanimations_getanimid');
-		function hypeanimations_getanimid(){
-			global $wpdb;
-			global $hypeanimations_table_name;
-			$response = array();
-			if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
-				$post_dataid = sanitize_text_field($_POST['dataid']);
-				$post_container = sanitize_text_field($_POST['container']);
-				$post_containerclass = sanitize_text_field($_POST['containerclass']);
-				$post_notes = sanitize_text_field($_POST['notes']);
-				$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s, notes=%s WHERE id=%d",$post_container, $post_containerclass, $post_notes, $post_dataid));
-				$response['response'] = "ok";
-			}
-			else { $response['response'] = "error"; }
-			header( "Content-Type: application/json" );
-			if (isset($response)) { echo json_encode($response); }
-			exit();
-		}
+add_action('wp_ajax_hypeanimations_getanimid', 'hypeanimations_getanimid');
+function hypeanimations_getanimid(){
+	global $wpdb;
+	global $hypeanimations_table_name;
+    $response = array();
+    if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
+		$post_dataid = sanitize_text_field($_POST['dataid']);
+		$post_container = sanitize_text_field($_POST['container']);
+		$post_containerclass = sanitize_text_field($_POST['containerclass']);
+		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
+		$response['response'] = "ok";
+    }
+	else { $response['response'] = "error"; }
+    header( "Content-Type: application/json" );
+    if (isset($response)) { echo wp_json_encode($response); }
+    exit();
+}
 
 		add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
 		function hypeanimations_getcontent(){

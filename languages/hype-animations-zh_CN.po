@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-13 12:23-0500\n"
-"PO-Revision-Date: 2024-02-13 12:23-0500\n"
+"POT-Creation-Date: 2024-05-01 14:19-0400\n"
+"PO-Revision-Date: 2024-05-01 14:20-0400\n"
 "Last-Translator: \n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
@@ -22,23 +22,23 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:174
+#: includes/adminpanel.php:175
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr "拖拽.OAM文件或单击此处上传<br>（最大上传文件大小"
 
-#: includes/adminpanel.php:184
+#: includes/adminpanel.php:190
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "在要显示动画的位置插入以下短代码"
 
-#: includes/adminpanel.php:196 includes/adminpanel.php:228
+#: includes/adminpanel.php:201 includes/adminpanel.php:241
 msgid "Upload new animation"
 msgstr "上传新动画"
 
-#: includes/adminpanel.php:225
+#: includes/adminpanel.php:238
 msgid "Add new animation"
 msgstr "添加新动画"
 
-#: includes/adminpanel.php:227
+#: includes/adminpanel.php:240
 msgid ""
 "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
 "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
@@ -50,118 +50,122 @@ msgstr ""
 "href=\"https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
 "target=\"_blank\">需要帮忙？</a>"
 
-#: includes/adminpanel.php:362
+#: includes/adminpanel.php:256
+msgid "has been deleted."
+msgstr ""
+
+#: includes/adminpanel.php:380
 msgid "Manage animations"
 msgstr "管理动画"
 
-#: includes/adminpanel.php:369
+#: includes/adminpanel.php:387
 msgid "Last file update"
 msgstr "最近文件更新"
 
-#: includes/adminpanel.php:382
+#: includes/adminpanel.php:404
 msgid "Add a container around the animation:"
 msgstr "给动画添加一个容器:"
 
-#: includes/adminpanel.php:388 includes/adminpanel.php:397
+#: includes/adminpanel.php:410 includes/adminpanel.php:419
 msgid "Update"
 msgstr "更新"
 
-#: includes/adminpanel.php:390
+#: includes/adminpanel.php:412
 msgid "Container CSS class"
 msgstr "容器CSS类"
 
-#: includes/adminpanel.php:394
+#: includes/adminpanel.php:416
 msgid "No data"
 msgstr "没有数据"
 
-#: includes/adminpanel.php:396
+#: includes/adminpanel.php:418
 msgid "Copy Code"
 msgstr "复制代码"
 
-#: includes/adminpanel.php:398
+#: includes/adminpanel.php:420
 msgid "Delete"
 msgstr "删除"
 
-#: includes/adminpanel.php:459
+#: includes/adminpanel.php:483
 msgid "Updated!"
 msgstr "更新！"
 
-#: includes/adminpanel.php:466
+#: includes/adminpanel.php:490
 msgid "Error, please try again!"
 msgstr "错误，请重试！"
 
-#: includes/adminpanel.php:473
+#: includes/adminpanel.php:497
 msgid "Update file"
 msgstr "更新文件"
 
-#: includes/adminpanel.php:489
+#: includes/adminpanel.php:513
 msgid "Processing..."
 msgstr "处理中..."
 
-#: includes/adminpanel.php:490
+#: includes/adminpanel.php:514
 msgid "Search:"
 msgstr "搜索："
 
-#: includes/adminpanel.php:491
+#: includes/adminpanel.php:515
 msgid "Show"
 msgstr "显示"
 
-#: includes/adminpanel.php:491 includes/adminpanel.php:492
+#: includes/adminpanel.php:515 includes/adminpanel.php:516
 msgid "animations"
 msgstr "动画"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "Showing"
 msgstr "显示中"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "to"
 msgstr "至"
 
-#: includes/adminpanel.php:492
+#: includes/adminpanel.php:516
 msgid "of"
 msgstr "的"
 
-#: includes/adminpanel.php:493
+#: includes/adminpanel.php:517
 msgid "No animations found."
 msgstr "找不到动画。"
 
-#: includes/adminpanel.php:494
+#: includes/adminpanel.php:518
 msgid "Loading..."
 msgstr "载入中..."
 
-#: includes/adminpanel.php:495
+#: includes/adminpanel.php:519
 msgid "No animation has been found"
 msgstr "找不到动画"
 
-#: includes/adminpanel.php:496
+#: includes/adminpanel.php:520
 msgid "No animation has been added"
 msgstr "动画未被添加"
 
-#: includes/adminpanel.php:498
+#: includes/adminpanel.php:522
 msgid "First"
 msgstr "首页"
 
-#: includes/adminpanel.php:499
+#: includes/adminpanel.php:523
 msgid "Previous"
 msgstr "上"
 
-#: includes/adminpanel.php:500
+#: includes/adminpanel.php:524
 msgid "Next"
 msgstr "下"
 
-#: includes/adminpanel.php:501
+#: includes/adminpanel.php:525
 msgid "Last"
 msgstr "末页"
 
-#: includes/adminpanel.php:755
+#: includes/adminpanel.php:781
 #, php-format
 msgid "Disallowed file extension detected: %s in file %s"
 msgstr "检测到非法文件扩展名：%s（文件：%s)"
 
-#: includes/adminpanel.php:772
+#: includes/adminpanel.php:796
 #, php-format
-msgid " More info here: %s"
+msgid "<br> More info here: %s"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
