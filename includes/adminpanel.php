@@ -404,7 +404,7 @@ function hypeanimations_panel() {
 					<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . $results->id . '&quot;]"></input>
 				</td>
 				<td>
-					<textarea name="notes" spellcheck="false" style="resize: vertical; min-height: 20px;">' . $results->notes .  '</textarea>
+					<textarea name="notes" spellcheck="false" style="resize: vertical; min-height: 20px;">' . stripslashes($results->notes) .  '</textarea>
 				</td>
 				<td>
 					<div class="optionleft">' . __( 'Add a container around the animation:', 'hype-animations' ) . '</div>
@@ -471,7 +471,9 @@ function hypeanimations_panel() {
 			actdataid=actbutton.attr("data-id");
 			actcontainer=actbutton.parent().find("select[name=container]").val();
 			actcontainerclass=actbutton.parent().find("input[name=class]").val();
-			actnotes=actbutton.parent().find("textarea[name=notes]").val();
+			actnotestextarea = actbutton.closest("tr").find("td:nth-child(3) textarea[name=notes]");
+			actnotes = actnotestextarea.val();
+
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
@@ -493,8 +495,9 @@ function hypeanimations_panel() {
 							jQuery(".hypeanimupdated[data-id="+actdataid+"]").remove();
 						}, 3000);
 					}
-				}
-				else {
+					// Show any added notes
+					actnotestextarea.val(actnotes);
+				} else {
 					alert("'.__( 'Error, please try again!' , 'hype-animations' ).'");
 				}
 			});
@@ -578,8 +581,6 @@ function hypeanimations_panel() {
 			if (!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))) {
 				$post_dataid = sanitize_text_field($_POST['dataid']);
 				$post_container = sanitize_text_field($_POST['container']);
-				// todo this was missing
-				$post_notes = sanitize_text_field($_POST['notes']);
 
 				function sanitize_html_classname($input) {
 					// Strip tags to remove any HTML
@@ -597,8 +598,8 @@ function hypeanimations_panel() {
 					return $sanitized;
 				}
 
+				$post_notes = sanitize_text_field($_POST['notes'] ?? '');
 				$post_containerclass = sanitize_html_classname($_POST['containerclass']);
-				$post_notes = sanitize_text_field($_POST['notes']); // Sanitize the 'notes' input
 
 				// Update the database query to include the 'notes' field
 				$wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s, notes=%s WHERE id=%d", $post_container, $post_containerclass, $post_notes, $post_dataid));
@@ -625,7 +626,7 @@ function hypeanimations_panel() {
 				$post_container = sanitize_text_field($_POST['container']);
 				$post_containerclass = sanitize_text_field($_POST['containerclass']);
 				$post_notes = sanitize_text_field($_POST['notes']);
-				$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
+				$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s, notes=%s WHERE id=%d",$post_container, $post_containerclass, $post_notes, $post_dataid));
 				$response['response'] = "ok";
 			}
 			else { $response['response'] = "error"; }
