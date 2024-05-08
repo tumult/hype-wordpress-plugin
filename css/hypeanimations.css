@@ -74,27 +74,6 @@ input.updatecontainer:hover {
      
 }
 
-.optionleft {
-    float: left;
-    width: 50%;
-    text-align: right;
-    clear: both;
-    margin-right: 1%;
-    vertical-align: top;
-}
-
-.optionright {
-    text-align: left;
-    width: 48%;
-    float: right;
-    vertical-align: top;
-}
-
-.hypeanimations_container,
-div.optionright>div>input[type=text] {
-    width: 120px;
-}
-
 #hypeanimations_wrapper {
     padding-right: 20px;
 }

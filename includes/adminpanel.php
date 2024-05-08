@@ -391,15 +391,6 @@ function hypeanimations_panel() {
 		</thead>
 		<tbody>';
 		$result = $wpdb->get_results($wpdb->prepare("SELECT id,nom,slug,updated,container,notes,containerclass FROM $hypeanimations_table_name Where id > %d ORDER BY updated DESC", 0));
-
-		// log the $result
-		if ($result === null) {
-			error_log("Database query failed.");
-			error_log(print_r($wpdb->last_error, true));
-	} else {
-			error_log("Database query results:");
-			error_log(print_r($result, true));
-	}
 	
 		foreach ($result as $results) {
 			// Generate a unique nonce for each delete action
@@ -414,18 +405,17 @@ function hypeanimations_panel() {
 				<td>
 					<textarea name="notes" spellcheck="false" style="resize: vertical; min-height: 20px;">' . stripslashes($results->notes) .  '</textarea>
 				</td>
-				<td>
-					<div class="optionleft">' . __( 'Add a container around the animation:', 'hype-animations' ) . '</div>
-					<div class="optionright">
-						<select class="hypeanimations_container" name="container">
+				<td align="left" style="text-align:left;">
+					 ' . __( 'Add a container around the animation:', 'hype-animations' ) . '<br>
+					<select class="hypeanimations_container" name="container">
 							<option value="div" ' . ($results->container == 'div' ? 'selected' : '') . '>&lt;div&gt;</option>
 							<option value="iframe" ' . ($results->container == 'iframe' ? 'selected' : '') . '>&lt;iframe&gt;</option>
-						</select>
-						<input type="button" value="' . __( 'Update', 'hype-animations' ) . '" class="updatecontainer" data-id="' . $results->id . '">
-						<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
-							' . __( 'Container CSS class', 'hype-animations' ) . ': <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" value="' . esc_attr($results->containerclass) . '">
-						</div>
+						</select><br>
+					' . __( 'Container CSS class', 'hype-animations' ) .': <br>
+					<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
+							 <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" style="width:130px;" value="' . esc_attr($results->containerclass) . '">
 					</div>
+					<input type="button" value="' . __( 'Update', 'hype-animations' ) . '" class="updatecontainer" data-id="' . $results->id . '">
 				</td>
 				<td>' . ($results->updated == 0 ? '<em>' . __( 'No data', 'hype-animations' ) . '</em>' : date('Y/m/d', $results->updated) . '<br>' . date('H:i:s', $results->updated)) . '</td>
 				<td>
@@ -567,8 +557,22 @@ function hypeanimations_panel() {
 		function hasWhiteSpace(s) {
 			return s.indexOf(" ") >= 0;
 		}
-		</script>'
-		;
+		function debounce(func, wait) {
+			let timeout;
+			return function(...args) {
+				const context = this;
+				clearTimeout(timeout);
+				timeout = setTimeout(() => func.apply(context, args), wait);
+			};
+		}
+
+		// Save notes after typing has concluded
+		const doneTyping = debounce(function() {
+			jQuery(".updatecontainer").click();
+		}, 500); // Delay of 500ms
+
+		jQuery("textarea[name=notes]").on("keyup", doneTyping);
+		</script>';
 		}
 
 		add_action('wp_ajax_hypeanimations_updatecontainer', 'hypeanimations_updatecontainer');

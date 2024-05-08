@@ -1,5 +1,4 @@
 <?php
-add_action( 'plugins_loaded', 'hypeanimations_init' );
 add_action('plugins_loaded', 'hypeanimations_init');
 function hypeanimations_init() {
     global $wpdb;
@@ -8,8 +7,8 @@ function hypeanimations_init() {
     $installed_ver = get_option("hypeanimations_db_version");
     $charset_collate = $wpdb->get_charset_collate();
 
-    // run this if version is less than 1.9.15. Version 1.9.15 will be the first version to include the notes column. 
-    if (version_compare($installed_ver, '1.9.15', '<')) {
+    // run this if version is less than 1.9.14. Version 1.9.14 will be the first version to include the notes column. 
+    if (version_compare($installed_ver, '1.9.14', '<')) {
     
         $sql = "CREATE TABLE $hypeanimations_table_name (
             id int(9) NOT NULL AUTO_INCREMENT,

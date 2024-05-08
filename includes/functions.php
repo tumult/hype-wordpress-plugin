@@ -24,7 +24,7 @@ function hyperrmdir($dir) {
   }
 }
 function hypeanimations_admin_style() {
-  wp_register_style('hypeanimations_admin_css', plugins_url( '../css/hypeanimations.css', __FILE__ ), false, '1.9.9' );
+  wp_register_style('hypeanimations_admin_css', plugins_url( '../css/hypeanimations.css', __FILE__ ), false, '1.9.10' );
   wp_enqueue_style('hypeanimations_admin_css');
   wp_register_style('dataTables_admin_css', plugins_url( '../css/jquery.dataTables.min.css', __FILE__ ), false, '1.0.2' );
   wp_enqueue_style('dataTables_admin_css');

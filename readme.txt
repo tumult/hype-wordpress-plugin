@@ -9,13 +9,13 @@ Tested up to: 6.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Description: Easily embed your Tumult Hype animations using a shortcode into posts and pages.
+Description: Easily embed your Tumult Hype animations into posts and pages with a shortcode.
 
 == Description ==
 
 This plugin allows you to upload your Tumult Hype animations to your Wordpress site to easily embed them using shortcodes on posts and pages. You can also copy the embed code to use your Wordpress site as a Tumult Hype animation host.
 
-For detailed information and support for this plugin, please visit: https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074
+For detailed information and support for this plugin, please visit the [support forum](https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074). If your animation doesn't show up at all, please first read the following [responsive design tips](https://forums.tumult.com/t/tumult-hype-animations-wordpress-plugin/11074#responsive-document-tips-2) on the forums. 
 
 == Usage ==
 
@@ -26,8 +26,8 @@ For detailed information and support for this plugin, please visit: https://foru
 == Changelog ==
 
 = 1.9.14 = 
-* Notes for each animation are now displayed in the admin panel.
-* Ensure upload from only appears on the Hype Animations dashboard page. 
+* Add a note to describe your uploaded animation. Notes are autosaved after half a second. 
+* Ensure upload form only appears on the Hype Animations dashboard page. 
 
 = 1.9.13 = 
 * File Upload Allowlist now parsed in memory. Better wp_nonce security via recommendations from Patchstack. 
