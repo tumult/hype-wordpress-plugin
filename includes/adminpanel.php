@@ -383,7 +383,7 @@ function hypeanimations_panel() {
 			<tr>
 				<th>Animation</th>
 				<th>Shortcode</th>
-				<th>Notes</th>
+				<th>Notes<br><small>(autosaved)</small></th>
 				<th>Options</th>
 				<th>'.__( 'Last file update' , 'hype-animations' ).'</th>
 				<th>Actions</th>
