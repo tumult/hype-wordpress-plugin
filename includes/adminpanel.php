@@ -569,7 +569,7 @@ function hypeanimations_panel() {
 		// Save notes after typing has concluded
 		const doneTyping = debounce(function() {
 			jQuery(".updatecontainer").click();
-		}, 500); // Delay of 500ms
+		}, 1000); // Delay of 1 second
 
 		jQuery("textarea[name=notes]").on("keyup", doneTyping);
 		</script>';
