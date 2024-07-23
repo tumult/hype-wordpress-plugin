@@ -745,6 +745,7 @@ function hypeanimations_getanimid(){
 				'key',
 				'xhtml',
 				'usdz',
+				'glb',
 			),
 			'scripts' => array(
 				'js',
