@@ -25,6 +25,10 @@ For detailed information and support for this plugin, please visit the [support 
 
 == Changelog ==
 
+= 1.9.15 = 
+* Ensure only authors, editors, and admins can access animation information (not subscribers). Thanks to Tieu Pham Trong Nhan for the responsible security disclosure and Wordfence for forwarding the issue. Resolves CVE-2024-10543. 
+
+
 = 1.9.14 = 
 * Add a note to describe your uploaded animation. Notes are autosaved after half a second. 
 * Ensure upload form only appears on the Hype Animations dashboard page. 

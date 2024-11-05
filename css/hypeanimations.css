@@ -365,11 +365,6 @@ input.updatecontainer:hover {
     background: rgba(0, 0, 0, 0.2);
 }
 
-
-/*.popup-overlay {
-    position: relative;
-}*/
-
 .popup {
     background: #fff;
     height: 200px;

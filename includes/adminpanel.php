@@ -433,14 +433,14 @@ function hypeanimations_panel() {
 	<script>
 	jQuery(document).ready(function(jQuery){
 		jQuery(document).on("click", ".animcopy", function(){
-			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea spellcheck=\'false\' class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%\' readonly></textarea><span class=\'close-popup\'>&#10005;</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>");
-
+			jQuery("body").append("<div class=\'popup-wrap\'> <div class=\'popup-overlay\'> <div class=\'popup\'><h3 class=\'popup-heading\'>Copy Embed Code</h3><textarea spellcheck=\'false\' class=\'copydata\' rows=\'10\' cols=\'30\' style=\'width:100%; height:250px;\' readonly></textarea><span class=\'close-popup\'>✕</span><span class=\'copied\'>Copied to clipboard.</span></div> </div>");
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
 				data: {
 					"action": "hypeanimations_getcontent",
-					"dataid": jQuery(this).attr("id")
+					"dataid": jQuery(this).attr("id"),
+					"nonce": "' . esc_js(wp_create_nonce('hypeanimations_getcontent_nonce')) . '"
 				}
 			}).done(function( content ) {
 				jQuery(".copydata").text(content);
@@ -628,37 +628,49 @@ function hypeanimations_panel() {
 
 add_action('wp_ajax_hypeanimations_getanimid', 'hypeanimations_getanimid');
 function hypeanimations_getanimid(){
-	global $wpdb;
-	global $hypeanimations_table_name;
+    if (!current_user_can('edit_posts')) {
+			wp_die('Unauthorized access');
+    }
+    
+    global $wpdb;
+    global $hypeanimations_table_name;
     $response = array();
     if(!empty(sanitize_text_field($_POST['dataid'])) && !empty(sanitize_text_field($_POST['container']))){
-		$post_dataid = sanitize_text_field($_POST['dataid']);
-		$post_container = sanitize_text_field($_POST['container']);
-		$post_containerclass = sanitize_text_field($_POST['containerclass']);
-		$update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
-		$response['response'] = "ok";
+        $post_dataid = sanitize_text_field($_POST['dataid']);
+        $post_container = sanitize_text_field($_POST['container']);
+        $post_containerclass = sanitize_text_field($_POST['containerclass']);
+        $update = $wpdb->query($wpdb->prepare("UPDATE $hypeanimations_table_name SET container=%s, containerclass=%s WHERE id=%d",$post_container, $post_containerclass, $post_dataid));
+        $response['response'] = "ok";
     }
-	else { $response['response'] = "error"; }
+    else { $response['response'] = "error"; }
     header( "Content-Type: application/json" );
     if (isset($response)) { echo wp_json_encode($response); }
     exit();
 }
 
-		add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
-		function hypeanimations_getcontent(){
-			global $wpdb;
-			global $hypeanimations_table_name;
-			$response = array();
-			if(!empty(sanitize_text_field($_POST['dataid']))){
+add_action('wp_ajax_hypeanimations_getcontent', 'hypeanimations_getcontent');
+function hypeanimations_getcontent(){
+	if (!current_user_can('edit_posts')) {
+		wp_die('Unauthorized access');
+	}
 
-				$post_dataid= sanitize_text_field($_POST['dataid']);
-				$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
-				$animcode = str_replace("https://", "//", html_entity_decode($animcode));
-				$animcode = str_replace("http://", "//", html_entity_decode($animcode));
-			}
-			echo html_entity_decode($animcode);
-			exit();
-		}
+	if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'hypeanimations_getcontent_nonce')) {
+		wp_die('Invalid nonce.');
+	}
+
+	global $wpdb;
+	global $hypeanimations_table_name;
+	$response = array();
+	if(!empty(sanitize_text_field($_POST['dataid']))){
+
+		$post_dataid= sanitize_text_field($_POST['dataid']);
+		$animcode = $wpdb->get_var($wpdb->prepare("SELECT code FROM $hypeanimations_table_name WHERE id = %d LIMIT 1", $post_dataid));
+		$animcode = str_replace("https://", "//", html_entity_decode($animcode));
+		$animcode = str_replace("http://", "//", html_entity_decode($animcode));
+	}
+	echo html_entity_decode($animcode);
+	exit();
+}
 
 		// Define an initial allowed extensions array
 		$allowlist_tumult_hype_animations = array(
