@@ -259,6 +259,29 @@ function hypeanimations_panel() {
 	$hypeupdated = 0;
 	if (is_user_logged_in() && isset($_FILES['updatefile']) && sanitize_text_field($_POST['dataid']>0)) {
 
+		
+		$allowed_types = array(
+			'oam' => 'application/octet-stream'
+		);
+		
+		$file_info = wp_check_filetype_and_ext(
+			$_FILES['updatefile']['tmp_name'],
+			$_FILES['updatefile']['name'],
+			$allowed_types
+		);
+
+		if (!$file_info['type']) {
+			wp_die(__('Only .oam files are allowed for upload.', 'hype-animations'));
+		}
+
+		$zip_clean = is_zip_clean($_FILES['updatefile']['tmp_name'], apply_filters('tumult_hype_animations_whitelist', array()));
+		if (is_wp_error($zip_clean)) {
+			// show error message displaying the file extension which is not allowed
+			echo $zip_clean->get_error_message();
+			wp_delete_file($_FILES['updatefile']['tmp_name']); // Delete the uploaded ZIP file to prevent processing
+			exit;
+		}
+
 		$nonce = $_POST['upload_check_oam'];
 		if ( ! wp_verify_nonce( $_POST['upload_check_oam'], 'protect_content' ) ) {
 		    die( 'Security check' ); 
@@ -276,14 +299,6 @@ function hypeanimations_panel() {
 			$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['updatefile']['name']));
 			if (move_uploaded_file($_FILES['updatefile']['tmp_name'], $uploadfile)) {
 				WP_Filesystem();
-
-			// Check the zip file for disallowed files in memory
-			$zip_clean = is_zip_clean($uploadfile, apply_filters('tumult_hype_animations_whitelist', array()));
-			if (is_wp_error($zip_clean)) {
-				// show error message displaying the file extension which is not allowed
-				echo $zip_clean->get_error_message();
-				exit;
-			}
 
 				// Unzip the file
 				$unzipfile = unzip_file( $uploadfile, $uploaddir);
