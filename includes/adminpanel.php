@@ -50,7 +50,20 @@ function hypeanimations_panel_upload() {
             }
 
             $new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
-            rename($uploaddir . 'Assets/' . $new_name . '.hyperesources', $uploaddir . 'Assets/index.hyperesources');
+						$source_dir = $uploaddir . 'Assets/' . $new_name . '.hyperesources';
+						$target_dir = $uploaddir . 'Assets/index.hyperesources';
+
+						// Check if the source directory exists
+						if (!is_dir($source_dir)) {
+								error_log("Source directory does not exist: $source_dir");
+								return new WP_Error('directory_missing', "The directory $source_dir does not exist.");
+						}
+
+						// Attempt to rename the directory
+						if (!rename($source_dir, $target_dir)) {
+								error_log("Failed to rename $source_dir to $target_dir");
+								return new WP_Error('rename_failed', "Failed to rename $source_dir to $target_dir.");
+						}
 
             $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($uploaddir . 'Assets/'), RecursiveIteratorIterator::SELF_FIRST);
             foreach ($files as $file) {
@@ -861,7 +874,16 @@ function hypeanimations_getcontent(){
 			return new WP_Error('zip_open_failed', "Failed to open the zip file.");
 		}
 
-		function delete_temp_files($directory) {
+		function delete_temp_files($directory = null) {
+			if ($directory === null) {
+				$upload_dir = wp_upload_dir();
+				$directory = $upload_dir['basedir'] . '/hypeanimations/tmp/';
+			}
+
+			if (!is_dir($directory)) {
+				return;
+			}
+
 			$files = new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS),
 				RecursiveIteratorIterator::CHILD_FIRST
@@ -873,5 +895,7 @@ function hypeanimations_getcontent(){
 			}
 
 			rmdir($directory);
-		}
-		
+			error_log("tmp files deleted");
+			}
+
+			register_shutdown_function('delete_temp_files');
