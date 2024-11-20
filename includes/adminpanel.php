@@ -276,6 +276,10 @@ function hypeanimations_panel() {
 	$hypeupdated = 0;
 	if (is_user_logged_in() && isset($_FILES['updatefile']) && sanitize_text_field($_POST['dataid']>0)) {
 
+		$nonce = $_POST['upload_check_oam'];
+		if ( ! wp_verify_nonce( $_POST['upload_check_oam'], 'protect_content' ) ) {
+		    die( 'Security check' ); 
+		} 
 		
 		$allowed_types = array(
 			'oam' => 'application/octet-stream'
@@ -299,10 +303,7 @@ function hypeanimations_panel() {
 			exit;
 		}
 
-		$nonce = $_POST['upload_check_oam'];
-		if ( ! wp_verify_nonce( $_POST['upload_check_oam'], 'protect_content' ) ) {
-		    die( 'Security check' ); 
-		} else {
+		else {
 		
 			if(strpos(basename(sanitize_text_field($_FILES['updatefile']['name'])), " ") !== false)
 			{
@@ -330,7 +331,7 @@ function hypeanimations_panel() {
 				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
 				if(is_dir($uploaddir.'Assets/'.$new_name.'.hyperesources')) {
 					rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
-			}			
+				}	
 
 				$files = scandir($uploaddir.'Assets/');
 				for ($i=0;isset($files[$i]);$i++) {
@@ -388,7 +389,7 @@ function hypeanimations_panel() {
 
 							fclose($handle);
 						} else {
-							//echo 'error';
+							delete_temp_files($uploaddir);
 						}
 						$update = $wpdb -> query($wpdb->prepare("UPDATE $hypeanimations_table_name SET code=%s,updated=%s WHERE `id` = %d",addslashes(htmlentities($agarder1)), time(), $actdataid));
 						//copy index.html
@@ -837,71 +838,107 @@ function hypeanimations_getcontent(){
 
 		function is_zip_clean($zipFilePath, $allowlist_tumult_hype_animations) {
 			$zip = new ZipArchive;
-			$disallowedExtensions = []; // To store disallowed extensions
-
-			if ($zip->open($zipFilePath) === TRUE) {
-				$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
-
-				// Scan the files in the ZIP archive
-				for ($i = 0; $i < $zip->numFiles; $i++) {
-					$filename = $zip->getNameIndex($i);
-					$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-
-					// Check if the file extension is in the whitelist
-					if (!empty($extension) && !in_array($extension, $flat_allowlist)) {
-						if (!in_array($extension, $disallowedExtensions)) {
-							$disallowedExtensions[] = $extension;
-							error_log(sprintf(
-								__('Disallowed file extension detected: %s in file %s', 'hype-animations'),
-								$extension,
-								$filename
-							));
-						}
-					}
-				}
-
-				$zip->close();
-
-				// Check if there are any disallowed extensions
-				if (!empty($disallowedExtensions)) {
-					$disallowedExtensionsList = implode(', ', $disallowedExtensions);
-					//error_log("Cleaning up due to disallowed extension(s): $disallowedExtensionsList");
-					$requestmoreinfolink = sprintf(
-						__('<br>'.' More info here: %s', 'hype-animations'),
-						'https://forums.tumult.com/t/23637'
-					);
-					return new WP_Error('disallowed_file_type', "The file contains disallowed extension(s): $disallowedExtensionsList. $requestmoreinfolink");
-				}
-
-				// If all files are allowed, return true
-				return true;
+			$disallowedExtensions = [];
+			
+			// Is it a zip file
+			if (!is_readable($zipFilePath) || filesize($zipFilePath) === 0) {
+					return new WP_Error('invalid_file', "Invalid or empty file provided");
 			}
-
-			// Return an error if the zip file failed to open
+	
+			// Check file signature/magic bytes for ZIP format
+			$handle = fopen($zipFilePath, 'rb');
+			$magic = fread($handle, 4);
+			fclose($handle);
+			if ($magic !== "PK\003\004") {
+					return new WP_Error('invalid_zip', "File is not a valid ZIP archive");
+			}
+	
+			if ($zip->open($zipFilePath) === TRUE) {
+					$flat_allowlist = get_flat_allowlist($allowlist_tumult_hype_animations);
+					
+					// Check total number of files
+					if ($zip->numFiles > 1000) {
+							return new WP_Error('too_many_files', "ZIP contains too many files");
+					}
+	
+					// Track required OAM structure
+					$has_required_files = false;
+	
+					for ($i = 0; $i < $zip->numFiles; $i++) {
+							$stat = $zip->statIndex($i);
+							$filename = $zip->getNameIndex($i);
+							$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+							
+							// Check for directory traversal attempts
+							if (strpos($filename, '..') !== false) {
+									return new WP_Error('path_traversal', "Invalid file path detected");
+							}
+	
+							// Verify OAM structure (should have Assets folder and HTML file)
+							if (strpos($filename, 'Assets/') === 0 && strpos($filename, '.html') !== false) {
+									$has_required_files = true;
+							}
+	
+							// Extension checks
+							if (!empty($extension)) {
+									if (!in_array($extension, $flat_allowlist)) {
+											$disallowedExtensions[] = $extension;
+											error_log(sprintf(
+													__('Disallowed file extension detected: %s in file %s', 'hype-animations'),
+													$extension,
+													$filename
+											));
+									}
+							}
+					}
+	
+					$zip->close();
+	
+					// Verify OAM structure
+					if (!$has_required_files) {
+							return new WP_Error('invalid_oam', "File does not match OAM structure");
+					}
+	
+					if (!empty($disallowedExtensions)) {
+							$disallowedExtensionsList = implode(', ', array_unique($disallowedExtensions));
+							return new WP_Error(
+									'disallowed_file_type', 
+									sprintf(
+											__("The file contains disallowed extension(s): %s. More info: %s", 'hype-animations'),
+											$disallowedExtensionsList,
+											'https://forums.tumult.com/t/23637'
+									)
+							);
+					}
+	
+					return true;
+			}
+	
 			error_log("Failed to open the zip file: $zipFilePath");
 			return new WP_Error('zip_open_failed', "Failed to open the zip file.");
-		}
+	}
+	
 
-		function delete_temp_files($directory = null) {
-			if ($directory === null) {
-				$upload_dir = wp_upload_dir();
-				$directory = $upload_dir['basedir'] . '/hypeanimations/tmp/';
-			}
+function delete_temp_files($directory = null) {
+	if ($directory === null) {
+		$upload_dir = wp_upload_dir();
+		$directory = $upload_dir['basedir'] . '/hypeanimations/tmp/';
+	}
 
-			if (!is_dir($directory)) {
-				return;
-			}
+	if (!is_dir($directory)) {
+		return;
+	}
 
-			$files = new RecursiveIteratorIterator(
-				new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS),
-				RecursiveIteratorIterator::CHILD_FIRST
-			);
+	$files = new RecursiveIteratorIterator(
+		new RecursiveDirectoryIterator($directory, RecursiveDirectoryIterator::SKIP_DOTS),
+		RecursiveIteratorIterator::CHILD_FIRST
+	);
 
-			foreach ($files as $fileinfo) {
-				$todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
-				$todo($fileinfo->getRealPath());
-			}
+	foreach ($files as $fileinfo) {
+		$todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
+		$todo($fileinfo->getRealPath());
+	}
 
-			rmdir($directory);
-			error_log("tmp files deleted");
-			}
+	rmdir($directory);
+	error_log("tmp files deleted");
+	}
