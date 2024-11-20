@@ -39,6 +39,9 @@ function hypeanimations_panel_upload() {
  
         WP_Filesystem();
         $uploaddir = $anims_dir . 'tmp/';
+        if (!file_exists($uploaddir)) {
+            wp_mkdir_p($uploaddir);
+        }
         $uploadfinaldir = $anims_dir;
         $unzipfile = unzip_file($uploadfile, $uploaddir);
         if ($unzipfile) {
@@ -48,7 +51,6 @@ function hypeanimations_panel_upload() {
             if (file_exists($uploaddir . '/config.xml')) {
                 wp_delete_file($uploaddir . '/config.xml');
             }
-
             $new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['file']['name'])));
 						$source_dir = $uploaddir . 'Assets/' . $new_name . '.hyperesources';
 						$target_dir = $uploaddir . 'Assets/index.hyperesources';
@@ -138,12 +140,14 @@ function hypeanimations_panel_upload() {
                     if (file_exists($uploaddir . 'Assets/')) {
                         hyperrmdir($uploaddir . 'Assets/');
                     }
+                    delete_temp_files($uploaddir);
                 }
             }
             echo $lastid;
             exit();
         } else {
             echo "Failed to unzip the file.";
+						delete_temp_files($uploaddir);
             exit();
         }
     }
@@ -290,7 +294,7 @@ function hypeanimations_panel() {
 		$zip_clean = is_zip_clean($_FILES['updatefile']['tmp_name'], apply_filters('tumult_hype_animations_whitelist', array()));
 		if (is_wp_error($zip_clean)) {
 			// show error message displaying the file extension which is not allowed
-			echo $zip_clean->get_error_message();
+			echo '<p style="font-weight: bold;">' . $zip_clean->get_error_message() . '</p>';
 			wp_delete_file($_FILES['updatefile']['tmp_name']); // Delete the uploaded ZIP file to prevent processing
 			exit;
 		}
@@ -305,10 +309,12 @@ function hypeanimations_panel() {
 			   echo "<script>alert('You seem to have a space in your animation name. Please remove the space and regenerate the animation.');location.reload();</script>";
 			   die;
 			}
-
-			$actdataid=ceil($_POST['dataid']);
-			$uploaddir = $anims_dir.'tmp/';
+			$actdataid = ceil($_POST['dataid']);
+			$uploaddir = $anims_dir . 'tmp/';
 			$uploadfinaldir = $anims_dir;
+				if (!file_exists($uploaddir)) {
+					wp_mkdir_p($uploaddir);
+				}
 			$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['updatefile']['name']));
 			if (move_uploaded_file($_FILES['updatefile']['tmp_name'], $uploadfile)) {
 				WP_Filesystem();
@@ -322,7 +328,9 @@ function hypeanimations_panel() {
 					wp_delete_file($uploaddir.'/config.xml');
 				}
 				$new_name = str_replace('.oam', '', basename(sanitize_file_name($_FILES['updatefile']['name'])));
-				rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
+				if(is_dir($uploaddir.'Assets/'.$new_name.'.hyperesources')) {
+					rename($uploaddir.'Assets/'.$new_name.'.hyperesources', $uploaddir.'Assets/index.hyperesources');
+			}			
 
 				$files = scandir($uploaddir.'Assets/');
 				for ($i=0;isset($files[$i]);$i++) {
@@ -392,16 +400,16 @@ function hypeanimations_panel() {
 						if (file_exists($uploaddir.'Assets/')) {
 							hyperrmdir($uploaddir.'Assets/');
 						}
+						delete_temp_files($uploaddir);
 						$hypeupdated=$actdataid;
 						$hypeupdatetd_title=$new_name;
 					}
 				}
 			}
 			else {
-				echo "Erreur";
+				wp_die( __( 'Sorry, there was an issue replacing your oam. Check the logs.', 'hype-animations' ), 401 );
 			}
 		}
-		//print_r($_FILES);
 	}
  echo '<p style="line-height:0px;clear:both">&nbsp;</p>
 	'.($hypeupdated>0 ? '<p><span style="padding:10px;color:#FFF;background:#009933;">'.$hypeupdatetd_title.' has been updated!</style></p><p>&nbsp;</p>' : '').'
@@ -897,5 +905,3 @@ function hypeanimations_getcontent(){
 			rmdir($directory);
 			error_log("tmp files deleted");
 			}
-
-			register_shutdown_function('delete_temp_files');
