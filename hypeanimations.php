@@ -11,9 +11,10 @@ License: GPL2
 License URL: https://www.gnu.org/licenses/gpl-2.0.html
 */
 #---------------------------------------------------------------------------#
-add_action( 'plugins_loaded', 'hypeanimations_init_lang' );
-function hypeanimations_init_lang() {
-	load_plugin_textdomain( 'tumult-hype-animations', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+add_action('init', 'hypeanimations_init_textdomain');
+
+function hypeanimations_init_textdomain() {
+		load_plugin_textdomain( 'tumult-hype-animations', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
 include('includes/init.php');
 include('includes/variables.php');

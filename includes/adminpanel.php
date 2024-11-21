@@ -146,7 +146,7 @@ function hypeanimations_panel_upload() {
             echo $lastid;
             exit();
         } else {
-            echo "Failed to unzip the file.";
+						echo esc_html__('Failed to unzip the file.', 'tumult-hype-animations');
 						delete_temp_files($uploaddir);
             exit();
         }
@@ -262,7 +262,7 @@ function hypeanimations_panel() {
 	$delete = isset($_GET['delete']) ? ceil($_GET['delete']) : 0;
 	if ($delete > 0) {
   if ( !wp_verify_nonce($_REQUEST['_wpnonce'], 'delete-animation_' . $delete)) {
-    wp_die('Security check failed'); 
+    wp_die(esc_html__('Security check failed', 'tumult-hype-animations')); 
   }
 			
     $animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM $hypeanimations_table_name WHERE id=%d", ceil($_GET['delete'])));

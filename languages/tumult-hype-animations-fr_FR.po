@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-20 13:47-0500\n"
-"PO-Revision-Date: 2024-11-20 13:47-0500\n"
+"POT-Creation-Date: 2024-11-21 12:00-0500\n"
+"PO-Revision-Date: 2024-11-21 12:00-0500\n"
 "Last-Translator: \n"
-"Language-Team: Afrikaans\n"
-"Language: af\n"
+"Language-Team: French (France)\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
@@ -25,19 +25,22 @@ msgstr ""
 #: includes/adminpanel.php:192
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
-"Drop. OAM lêer of klik hier om op te laai<br> (Maksimum upload grootte "
+"Déposez le fichier .OAM ou cliquez ici pour le téléverser<br>(Taille "
+"maximale de téléversement "
 
 #: includes/adminpanel.php:207
 msgid "Insert the following shortcode where you want to display the animation"
-msgstr "Voeg die volgende kortkode waar u die animasie wil laat vertoon in"
+msgstr ""
+"Insérez le shortcode suivant à l'endroit où vous souhaitez afficher "
+"l'animation"
 
 #: includes/adminpanel.php:218 includes/adminpanel.php:258
 msgid "Upload new animation"
-msgstr "Laai nuwe animasie op"
+msgstr "Téléverser une nouvelle animation"
 
 #: includes/adminpanel.php:255
 msgid "Add new animation"
-msgstr "Voeg nuwe animasie toe"
+msgstr "Ajouter une nouvelle animation"
 
 #: includes/adminpanel.php:257
 msgid ""
@@ -46,141 +49,145 @@ msgid ""
 "which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
 "t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
 msgstr ""
-"Laai ’n .OAM-lêer deur <a href=\"http://tumult.com/hype?"
-"utm_source=wpplugin\">Tumult Hype</a> uitgestuur op en ’n kortkode wat u in "
-"plasings en blaaie kan invoeg, sal geskep word. <a href=\"https://forums."
-"tumult.com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Kort "
-"hulp?</a>"
+"Téléversez un fichier .OAM exporté par <a href=\"https://tumult.com/hype?"
+"utm_source=wpplugin\">Tumult Hype</a> et un shortcode sera généré pour que "
+"vous puissiez l'insérer dans vos publications et pages. <a href=\"https://"
+"forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
+"target=\"_blank\">Besoin d'aide?</a>"
 
 #: includes/adminpanel.php:273
 msgid "has been deleted."
-msgstr ""
+msgstr "a été supprimé."
 
 #: includes/adminpanel.php:295
 msgid "Only .oam files are allowed for upload."
-msgstr ""
+msgstr "Seuls les fichiers .oam sont autorisés pour le téléversement."
 
 #: includes/adminpanel.php:411
-msgid "Jammer, daar was 'n probleem met die vervanging van jou oam. Kyk na die logs."
+msgid "Sorry, there was an issue replacing your oam. Check the logs."
 msgstr ""
+"Désolé, un problème est survenu lors du remplacement de votre OAM. Consultez "
+"les journaux."
 
 #: includes/adminpanel.php:417
 msgid "Manage animations"
-msgstr "Bestuur animasies"
+msgstr "Gérer les animations"
 
 #: includes/adminpanel.php:425
 msgid "Last file update"
-msgstr "Laaste lêerbywerking"
+msgstr "Dernière mise à jour du fichier"
 
 #: includes/adminpanel.php:446
 msgid "Add a container around the animation:"
-msgstr "Voeg ’n houer om die animasie toe"
+msgstr "Ajouter un conteneur autour de l'animation:"
 
 #: includes/adminpanel.php:451
 msgid "Container CSS class"
-msgstr "Houer-CSS-klas"
+msgstr "Classe CSS du conteneur"
 
 #: includes/adminpanel.php:455
 msgid "Update"
-msgstr "Werk by"
+msgstr "Mettre à jour"
 
 #: includes/adminpanel.php:457
 msgid "No data"
-msgstr "Geen data"
+msgstr "Aucune donnée"
 
 #: includes/adminpanel.php:459
 msgid "Copy Code"
-msgstr "Kopieer Kode"
+msgstr "Copier le code"
 
 #: includes/adminpanel.php:460
 msgid "Replace OAM"
-msgstr ""
+msgstr "Remplacer l'OAM"
 
 #: includes/adminpanel.php:461
 msgid "Delete"
-msgstr "Skrap"
+msgstr "Supprimer"
 
 #: includes/adminpanel.php:528
 msgid "Updated!"
-msgstr "Bygewerk!"
+msgstr "Mise à jour effectuée!"
 
 #: includes/adminpanel.php:536
 msgid "Error, please try again!"
-msgstr "Fout, probeer asb. weer!"
+msgstr "Erreur, veuillez réessayer!"
 
 #: includes/adminpanel.php:543
 msgid "Update file"
-msgstr "Werk lêer by"
+msgstr "Mettre à jour le fichier"
 
 #: includes/adminpanel.php:560
 msgid "Processing..."
-msgstr "Verwerk tans…"
+msgstr "Traitement en cours..."
 
 #: includes/adminpanel.php:561
 msgid "Search:"
-msgstr "Soek:"
+msgstr "Recherche:"
 
 #: includes/adminpanel.php:562
 msgid "Show"
-msgstr "Toon"
+msgstr "Afficher"
 
 #: includes/adminpanel.php:562 includes/adminpanel.php:563
 msgid "animations"
-msgstr "animasies"
+msgstr "animations"
 
 #: includes/adminpanel.php:563
 msgid "Showing"
-msgstr "Toon tans"
+msgstr "Affichage"
 
 #: includes/adminpanel.php:563
 msgid "to"
-msgstr "aan"
+msgstr "à"
 
 #: includes/adminpanel.php:563
 msgid "of"
-msgstr "van"
+msgstr "de"
 
 #: includes/adminpanel.php:564
 msgid "No animations found."
-msgstr "Geen animasies gevind."
+msgstr "Aucune animation trouvée."
 
 #: includes/adminpanel.php:565
 msgid "Loading..."
-msgstr "Laai tans…"
+msgstr "Chargement…"
 
 #: includes/adminpanel.php:566
 msgid "No animation has been found"
-msgstr "Geen animasie is gevind"
+msgstr "Aucune animation trouvée."
 
 #: includes/adminpanel.php:567
 msgid "No animation has been added"
-msgstr "Geen animasie is toegevoeg"
+msgstr "Aucune animation ajoutée."
 
 #: includes/adminpanel.php:569
 msgid "First"
-msgstr "Eerste"
+msgstr "Première"
 
 #: includes/adminpanel.php:570
 msgid "Previous"
-msgstr "Vorige"
+msgstr "Précédent"
 
 #: includes/adminpanel.php:571
 msgid "Next"
-msgstr "Volgende"
+msgstr "Suivant"
 
 #: includes/adminpanel.php:572
 msgid "Last"
-msgstr "Laaste"
+msgstr "Dernier"
 
 #: includes/adminpanel.php:887
 #, php-format
 msgid "Disallowed file extension detected: %s in file %s"
-msgstr "Onwettige lêeruitbreiding gewaarword: %s in lêer %s"
+msgstr "Extension de fichier non autorisée détectée: %s dans le fichier %s"
 
 #: includes/adminpanel.php:907
 #, php-format
 msgid "The file contains disallowed extension(s): %s. More info: %s"
 msgstr ""
+"Le fichier contient des extensions non autorisées: %s. Plus d'informations: "
+"%s"
 
 #. Plugin Name of the plugin/theme
 msgid "Tumult Hype Animations"
@@ -195,23 +202,9 @@ msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
-"Sit u Tumult Hype-animasies maklik met 'n kortkode in poste en bladsye in."
+"Intégrez facilement vos animations Tumult Hype à l'aide d'un shortcode dans "
+"vos publications et pages."
 
 #. Author URI of the plugin/theme
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"http://tumult.com\" target=\"_blank\">Tumult</a>"
-
-#, fuzzy
-#~| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-#~ msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
-#~ msgstr ""
-#~ "Drop. OAM lêer of klik hier om op te laai<br> (Maksimum upload grootte "
-
-#~ msgid "Choose an animation"
-#~ msgstr "Kies ’n animasie"
-
-#~ msgid "Insert"
-#~ msgstr "Voeg in"
-
-#~ msgid "Or upload a new one"
-#~ msgstr "Of laai ’n nuwe een op"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
