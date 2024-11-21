@@ -15,19 +15,25 @@ delete_option('hypeanimations_db_version');
  *
  * @param string $dir The directory path to delete
  */
-function hypeanimations_remove_dir($dir)
-{
-    if (is_dir($dir)) {
-        $files = glob($dir . '/*');
-        foreach ($files as $file) {
-            if (is_dir($file)) {
-                hypeanimations_remove_dir($file);
-            } else {
-                wp_delete_file($file);
-            }
-        }
-        rmdir($dir);
+function hypeanimations_remove_dir($dir) {
+    if (!is_dir($dir)) {
+        return;
     }
+
+    // Get all files including hidden ones
+    $files = array_diff(scandir($dir), array('.', '..'));
+
+    foreach ($files as $file) {
+        $path = $dir . DIRECTORY_SEPARATOR . $file;
+        
+        if (is_dir($path)) {
+            hypeanimations_remove_dir($path);
+        } else {
+            unlink($path);
+        }
+    }
+    
+    return rmdir($dir);
 }
 
 // Get the WordPress upload directory and set the hypeanimations directory path

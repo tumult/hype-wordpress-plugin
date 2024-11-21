@@ -940,5 +940,4 @@ function delete_temp_files($directory = null) {
 	}
 
 	rmdir($directory);
-	error_log("tmp files deleted");
 	}
