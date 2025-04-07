@@ -27,6 +27,9 @@ function hypeanimations_anim($args){
 		// This handles the case where auto_height is present but has no value
 		$auto_height = true;
 	}
+	
+	// Handle embedmode parameter to override the container type
+	$embed_mode = isset($args['embedmode']) ? strtolower(trim($args['embedmode'])) : null;
 
 	// Modified query to remove container_id which doesn't exist in the table
 	$result = $wpdb->get_results($wpdb->prepare("SELECT code, slug, container, containerclass FROM $hypeanimations_table_name WHERE id=%d", $actid));
@@ -110,30 +113,38 @@ function hypeanimations_anim($args){
 			$container_id = 'hype-container-' . $actid . '-' . uniqid();
 		}
 		
-		// Rest of the rendering code remains unchanged
-		if ($results->container=='div') { 
+		 // Determine container type (div or iframe) based on embedmode parameter or default setting
+		$container_type = $results->container;
+		if ($embed_mode === 'div') {
+			$container_type = 'div';
+		} else if ($embed_mode === 'iframe') {
+			$container_type = 'iframe';
+		}
+		
+		// Render with the determined container type
+		if ($container_type == 'div') { 
 			$output .= '<div' . 
 				($container_class != '' ? ' class="' . $container_class . '"' : '') . 
 				($container_id != '' ? ' id="' . $container_id . '"' : '') . 
 				'>'; 
 		}
 		
-		if ($results->container=='iframe' && file_exists(esc_url_raw($upload_dir['basedir'].'/hypeanimations/'.$actid.'/index.html'))){
+		if ($container_type == 'iframe' && file_exists(esc_url_raw($upload_dir['basedir'].'/hypeanimations/'.$actid.'/index.html'))){
 			$_src = esc_url_raw($upload_dir['baseurl']."/hypeanimations/".$actid."/index.html");
 			$output .= '<iframe style="border:none;" frameborder="0" ' . $temp . ' ' .
 				($container_class != '' ? 'class="' . $container_class . '"' : '') .
 				($container_id != '' ? ' id="' . $container_id . '"' : '') .
 				' src="' . $_src . '">';
-		} elseif ($results->container=='iframe') {
+		} elseif ($container_type == 'iframe') {
 			$output .= '<iframe ' . $temp . ' ' .
 				($container_class != '' ? 'class="' . $container_class . '"' : '') .
 				($container_id != '' ? ' id="' . $container_id . '"' : '') .
 				' src="' . esc_url_raw(site_url()) . '?just_hypeanimations=' . $actid . '">';
 		}
 		
-		if ($results->container != 'iframe') { $output .= $code; }
-		if ($results->container == 'div') { $output .= '</div>'; }
-		if ($results->container == 'iframe') { $output .= '</iframe>'; }
+		if ($container_type != 'iframe') { $output .= $code; }
+		if ($container_type == 'div') { $output .= '</div>'; }
+		if ($container_type == 'iframe') { $output .= '</iframe>'; }
 	}
 	
 	// Log output status for debugging

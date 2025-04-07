@@ -130,7 +130,7 @@ function hypeanimations_get_animations_for_gutenberg() {
         );
     }
     
-    error_log('Hype Animations Plugin: Found ' . count($animations) . ' animations');
+    // error_log('Hype Animations Plugin: Found ' . count($animations) . ' animations');
     
     return $animations;
 }
@@ -144,7 +144,7 @@ function hypeanimations_render_block($attributes) {
     }
     
     // Debug log animation rendering
-    error_log('Hype Animations Plugin: Rendering block with animation ID ' . $attributes['animationId']);
+    // error_log('Hype Animations Plugin: Rendering block with animation ID ' . $attributes['animationId']);
     
     $shortcode_atts = array(
         'id' => $attributes['animationId']
@@ -171,11 +171,11 @@ function hypeanimations_render_block($attributes) {
     $output = hypeanimations_anim($shortcode_atts);
     
     // Verify output was generated
-    if (empty($output)) {
-        error_log('Hype Animations Plugin: No output generated for animation ID ' . $attributes['animationId']);
-    } else {
-        error_log('Hype Animations Plugin: Successfully generated output for animation ID ' . $attributes['animationId']);
-    }
+    // if (empty($output)) {
+    //     error_log('Hype Animations Plugin: No output generated for animation ID ' . $attributes['animationId']);
+    // } else {
+    //     error_log('Hype Animations Plugin: Successfully generated output for animation ID ' . $attributes['animationId']);
+    // }
     
     return $output;
 }

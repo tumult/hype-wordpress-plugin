@@ -50,16 +50,22 @@ You can also use the following optional attributes:
   * `auto_height` (no value needed)
   * `auto_height="1"` 
   * `auto_height="true"`
+* `embedmode` - Controls how the animation is embedded. Options:
+  * `embedmode="div"` - Embeds the animation directly in a div element
+  * `embedmode="iframe"` - Embeds the animation in an iframe
+  * If omitted, uses the container type set in the admin panel
 
 Examples:
 
 ```
-[hypeanimations_anim id="10"]
+[hypeanimations_anim id="10"] // this uses the values present in the Hype embed. 
 [hypeanimations_anim id="10" width="100%" height="300px"]
 [hypeanimations_anim id="10" responsive="1"]
 [hypeanimations_anim id="10" auto_height]
 [hypeanimations_anim id="10" width="100%" auto_height]
 [hypeanimations_anim id="10" width="100%" responsive="1" auto_height]
+[hypeanimations_anim id="10" embedmode="iframe"]
+[hypeanimations_anim id="10" embedmode="div" width="100%" auto_height]
 ```
 
 === Gutenberg Block Usage ===
