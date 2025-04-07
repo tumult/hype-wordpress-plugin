@@ -1,0 +1,16 @@
+{
+  "name": "tumult-hype-animations",
+  "version": "1.0.0",
+  "description": "Tumult Hype Animations for WordPress",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "plugin-zip": "wp-scripts plugin-zip"
+  },
+  "author": "Tumult",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.14.1"
+  }
+}

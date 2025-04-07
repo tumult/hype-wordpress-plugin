@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "tumult-hype-animations/animation",
+  "version": "1.0.0",
+  "title": "Tumult Hype Animation",
+  "category": "embed",
+  "icon": "format-video",
+  "description": "Embed a Tumult Hype animation",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "textdomain": "tumult-hype-animations",
+  "editorScript": "file:../../build/index.js",
+  "editorStyle": "file:../../build/editor.css",
+  "attributes": {
+    "animationId": {
+      "type": "number",
+      "default": 0
+    },
+    "width": {
+      "type": "string",
+      "default": "100%"
+    },
+    "height": {
+      "type": "string",
+      "default": "auto"
+    },
+    "isResponsive": {
+      "type": "boolean",
+      "default": true
+    },
+    "autoHeight": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

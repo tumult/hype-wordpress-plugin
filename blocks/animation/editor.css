@@ -1,0 +1,91 @@
+.wp-block-tumult-hype-animations-animation {
+    position: relative;
+    border: 1px dashed #ccc;
+}
+
+.hype-animation-selector {
+    display: flex;
+    flex-direction: column;
+}
+
+.hype-animation-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.hype-animation-thumbnail {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 5px;
+    text-align: center;
+    width: 100px;
+    transition: all 0.2s ease;
+}
+
+.hype-animation-thumbnail.selected {
+    border-color: #007cba;
+    background-color: #f0f0f0;
+}
+
+.hype-animation-thumbnail img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.hype-animation-controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.hype-animation-preview {
+    padding: 20px;
+    border: 1px dashed #ccc;
+    background: #f7f7f7;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.hype-animation-preview-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.hype-animation-preview-header .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: #555;
+}
+
+.hype-animation-preview-header h3 {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.hype-animation-title {
+    margin: 0;
+    font-size: 18px;
+    color: #1e1e1e;
+}
+
+.hype-animation-dimensions {
+    margin: 8px 0 0;
+    color: #555;
+    font-size: 13px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+    .hype-animation-thumbnails {
+        justify-content: center;
+    }
+}
