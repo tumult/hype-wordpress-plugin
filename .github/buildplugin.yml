@@ -1,0 +1,59 @@
+name: Build and Package Plugin
+
+on:
+  push:
+    branches:
+      - gutenberg
+  workflow_dispatch:
+
+jobs:
+  build-and-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Build the plugin (if using webpack/build process)
+      - name: Build plugin
+        run: npm run build
+
+      # Create plugin zip
+      - name: Create plugin zip
+        run: npm run plugin-zip
+        
+      # Find the generated zip file
+      - name: Find generated zip
+        id: find_zip
+        run: |
+          ZIP_FILE=$(find . -maxdepth 1 -name "*.zip" -type f -printf "%f\n" | head -1)
+          echo "zip_file=${ZIP_FILE}" >> $GITHUB_OUTPUT
+          mkdir -p dist
+          cp ${ZIP_FILE} dist/tumult-hype-animations.zip
+
+      # Upload the zip file as an artifact
+      - name: Upload plugin zip
+        uses: actions/upload-artifact@v3
+        with:
+          name: tumult-hype-animations
+          path: dist/tumult-hype-animations.zip
+          
+      # Retain only 5 recent artifacts
+      - name: Retain only 5 recent artifacts
+        run: |
+          artifacts_dir=".github/artifacts"
+          mkdir -p $artifacts_dir
+          mv dist/tumult-hype-animations.zip $artifacts_dir/
+          ls -t $artifacts_dir | tail -n +6 | xargs -I {} rm -f $artifacts_dir/{}
