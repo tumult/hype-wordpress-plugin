@@ -93,19 +93,59 @@ function hypeanimations_panel_upload() {
                     );
                     $lastid = $wpdb->insert_id;
 
-                    if (!is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/')) {
-                        mkdir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/', 0755, true);
-                    }
-
                     $jsfiles = scandir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/');
+                    
+                    // Create the destination directory for hyperesources first
+                    if (!is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/')) {
+                        @mkdir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/', 0755, true);
+                    }
+                    
+                    // Log the directories for debugging
+                    error_log('Source hyperesources dir: ' . $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/');
+                    error_log('Target hyperesources dir: ' . $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/');
+                    
                     foreach ($jsfiles as $jsfile) {
                         if ($jsfile != '.' && $jsfile != '..' && !is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile)) {
-                            copy($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile, $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/' . $jsfile);
-                            wp_delete_file($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile);
+                            $source_file = $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $jsfile;
+                            $target_file = $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/' . $new_name . '.hyperesources/' . $jsfile;
+                            
+                            error_log('Copying: ' . $source_file . ' to ' . $target_file);
+                            
+                            if (file_exists($source_file)) {
+                                if (!copy($source_file, $target_file)) {
+                                    error_log('Failed to copy: ' . $source_file);
+                                }
+                                wp_delete_file($source_file);
+                            } else {
+                                error_log('Source file does not exist: ' . $source_file);
+                            }
                         }
                     }
 
-                    rename($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/', $uploadfinaldir . $lastid . '/');
+                    // Make sure destination directory exists before moving .hyperesources
+                    if (!is_dir($uploadfinaldir . $lastid . '/')) {
+                        wp_mkdir_p($uploadfinaldir . $lastid . '/');
+                    }
+                    
+                    // Move the hyperesources folder to the final destination FIRST
+                    if (is_dir($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/')) {
+                        rename($uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/', $uploadfinaldir . $lastid . '/');
+                    } else {
+                        error_log('Hyperesources folder not found at: ' . $uploaddir . 'Assets/' . $actfile[0] . '.hyperesources/');
+                    }
+
+                    // THEN handle the Default.png thumbnail after the hyperesources folder is moved
+                    if (file_exists($uploaddir . 'Assets/Default.png')) {
+                        // Destination folder should already exist from previous step
+                        if (!is_dir($uploadfinaldir . $lastid . '/')) {
+                            wp_mkdir_p($uploadfinaldir . $lastid . '/');
+                        }
+                        // Copy the Default.png to the animation folder with ID in filename
+                        copy($uploaddir . 'Assets/Default.png', $uploadfinaldir . $lastid . '/Default_' . $lastid . '.png');
+                        error_log('Saved thumbnail at ' . $uploadfinaldir . $lastid . '/Default_' . $lastid . '.png');
+                        // Clean up the original file
+                        wp_delete_file($uploaddir . 'Assets/Default.png');
+                    }
 
                     $agarder1 = '';
                     $recordlines = 0;
@@ -345,10 +385,6 @@ function hypeanimations_panel() {
 							$maxid=1;
 						}
 
-						$data_updt = array(
-							'nom' => $new_name
-						);
-
 						$update_name = $wpdb->query( $wpdb->prepare( "UPDATE $hypeanimations_table_name SET `nom` = %s WHERE `id` = %d",$new_name,  $actdataid ) );
 
 						if (file_exists($uploadfinaldir.$actdataid.'/')) {
@@ -366,6 +402,20 @@ function hypeanimations_panel() {
 								}
 							}
 						}
+
+						// Check if Default.png thumbnail exists in the Assets folder and save it with animation ID when replacing
+						if (file_exists($uploaddir . 'Assets/Default.png')) {
+							// Ensure the destination folder exists
+							if (!is_dir($uploadfinaldir . $actdataid . '/')) {
+								wp_mkdir_p($uploadfinaldir . $actdataid . '/');
+							}
+							// Copy the Default.png to the animation folder with ID in filename
+							copy($uploaddir . 'Assets/Default.png', $uploadfinaldir . $actdataid . '/Default_' . $actdataid . '.png');
+							error_log('Replace OAM: Saved thumbnail at ' . $uploadfinaldir . $actdataid . '/Default_' . $actdataid . '.png');
+							// Clean up the original file
+							wp_delete_file($uploaddir . 'Assets/Default.png');
+						}
+
 						if (file_exists($uploaddir.'Assets/'.$actfile[0].'.hyperesources/')) {
 							rename($uploaddir.'Assets/'.$actfile[0].'.hyperesources/', $uploadfinaldir.$actdataid.'/');
 						}

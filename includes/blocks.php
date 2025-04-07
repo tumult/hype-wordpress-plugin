@@ -109,28 +109,57 @@ function hypeanimations_get_animations_for_gutenberg() {
         return $animations;
     }
     
+    error_log('Hype Animations Plugin: Found ' . count($results) . ' animations');
+    
     // Build the animations array
     foreach ($results as $animation) {
+        // Default placeholder image
         $thumbnail_url = plugins_url('../images/hype-placeholder.png', __FILE__);
         
-        // Only try to get thumbnail if container_id exists
-        if ($has_container_id && !empty($animation->container_id)) {
-            $upload_dir = wp_upload_dir();
-            $potential_thumbnail = $upload_dir['basedir'] . '/hypeanimations/' . $animation->container_id . '/thumbnail.jpg';
+        $animation_id = (int)$animation->id;
+        $upload_dir = wp_upload_dir();
+        
+        // Check for our new Default_[ID].png thumbnail first
+        $default_thumbnail = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/Default_' . $animation_id . '.png';
+        error_log('Checking for thumbnail at: ' . $default_thumbnail);
+        
+        if (file_exists($default_thumbnail)) {
+            $thumbnail_url = $upload_dir['baseurl'] . '/hypeanimations/' . $animation_id . '/Default_' . $animation_id . '.png';
+            error_log('Found thumbnail: ' . $thumbnail_url);
+        }
+        // If not found, fall back to older methods
+        else {
+            error_log('Thumbnail not found at: ' . $default_thumbnail);
             
-            if (file_exists($potential_thumbnail)) {
-                $thumbnail_url = $upload_dir['baseurl'] . '/hypeanimations/' . $animation->container_id . '/thumbnail.jpg';
+            // Check for container_id based thumbnail (from older versions)
+            if ($has_container_id && !empty($animation->container_id)) {
+                $potential_thumbnail = $upload_dir['basedir'] . '/hypeanimations/' . $animation->container_id . '/thumbnail.jpg';
+                error_log('Checking for legacy thumbnail at: ' . $potential_thumbnail);
+                
+                if (file_exists($potential_thumbnail)) {
+                    $thumbnail_url = $upload_dir['baseurl'] . '/hypeanimations/' . $animation->container_id . '/thumbnail.jpg';
+                    error_log('Found legacy thumbnail: ' . $thumbnail_url);
+                }
+            }
+            
+            // Check for a generic thumbnail.jpg in animation folder
+            $generic_thumbnail = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/thumbnail.jpg';
+            error_log('Checking for generic thumbnail at: ' . $generic_thumbnail);
+            
+            if (file_exists($generic_thumbnail)) {
+                $thumbnail_url = $upload_dir['baseurl'] . '/hypeanimations/' . $animation_id . '/thumbnail.jpg';
+                error_log('Found generic thumbnail: ' . $thumbnail_url);
             }
         }
         
         $animations[] = array(
-            'id' => (int)$animation->id,
+            'id' => $animation_id,
             'name' => $animation->nom,
             'thumbnail' => $thumbnail_url
         );
+        
+        error_log('Animation ' . $animation_id . ' using thumbnail: ' . $thumbnail_url);
     }
-    
-    // error_log('Hype Animations Plugin: Found ' . count($animations) . ' animations');
     
     return $animations;
 }

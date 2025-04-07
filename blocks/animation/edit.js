@@ -71,7 +71,7 @@ export default function Edit({ attributes, setAttributes }) {
         }
     };
     
-    // Enhanced animation selector with thumbnails
+    // Enhanced animation selector
     const AnimationSelector = () => {
         if (animations.length === 0) {
             return (
@@ -88,20 +88,6 @@ export default function Edit({ attributes, setAttributes }) {
                     options={animationOptions}
                     onChange={onChangeAnimation}
                 />
-                <div className="hype-animation-thumbnails">
-                    {animations.map(animation => (
-                        <div 
-                            key={animation.id}
-                            className={`hype-animation-thumbnail ${animationId == animation.id ? 'selected' : ''}`}
-                            onClick={() => onChangeAnimation(animation.id.toString())}
-                        >
-                            {animation.thumbnail && (
-                                <img src={animation.thumbnail} alt={animation.name} />
-                            )}
-                            <span>{animation.name}</span>
-                        </div>
-                    ))}
-                </div>
             </div>
         );
     };
@@ -158,6 +144,14 @@ export default function Edit({ attributes, setAttributes }) {
                                 {isResponsive ? ` (${__('Responsive', 'tumult-hype-animations')})` : ''}
                                 {autoHeight ? ` (${__('Auto Height', 'tumult-hype-animations')})` : ''}
                             </p>
+                        </div>
+                        {/* Add the thumbnail preview */}
+                        <div className="hype-animation-thumbnail-preview">
+                            <img 
+                                src={animations.find(a => a.id === animationId)?.thumbnail || defaultImage}
+                                alt={animations.find(a => a.id === animationId)?.name || __('Animation Preview', 'tumult-hype-animations')}
+                                className="hype-animation-thumbnail"
+                            />
                         </div>
                     </div>
                 ) : (
