@@ -35,6 +35,10 @@
       "type": "boolean",
       "default": false
     },
+    "embedMode": {
+      "type": "string",
+      "default": "div"
+    },
     "originalWidth": {
       "type": "string",
       "default": ""

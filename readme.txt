@@ -55,6 +55,18 @@ You can also use the following optional attributes:
   * `embedmode="iframe"` - Embeds the animation in an iframe
   * If omitted, uses the container type set in the admin panel
 
+  Complete example using all options:
+
+  [hypeanimations_anim id="15" width="100%" height="400px" responsive="1" auto_height="true" embedmode="iframe"]
+
+  Explanation of the options used:
+  - `id="15"`: Specifies the ID of the animation to embed.
+  - `width="100%"`: Sets the width of the animation to 100% of its container.
+  - `height="400px"`: Sets the height of the animation to 400 pixels.
+  - `responsive="1"`: Enables responsive scaling of the animation to fit its container.
+  - `auto_height="true"`: Automatically adjusts the height based on the content's aspect ratio.
+  - `embedmode="iframe"`: Embeds the animation in an iframe element.
+
 Examples:
 
 ```

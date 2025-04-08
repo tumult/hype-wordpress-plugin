@@ -64,6 +64,12 @@ function addHypeAnimationTransforms(settings, name) {
                             shortcode: ({ named: { auto_height } }) => {
                                 return auto_height === '1';
                             }
+                        },
+                        embedMode: {
+                            type: 'string',
+                            shortcode: ({ named: { embedmode } }) => {
+                                return embedmode || 'div';
+                            }
                         }
                     }
                 },
@@ -83,13 +89,15 @@ function addHypeAnimationTransforms(settings, name) {
                         const heightMatch = text.match(/height=["']?([^"'\s]+)["']?/);
                         const responsiveMatch = text.match(/responsive=["']?1["']?/);
                         const autoHeightMatch = text.match(/auto_height=["']?1["']?/);
+                        const embedModeMatch = text.match(/embedmode=["']?([^"'\s]+)["']?/);
                         
                         return createBlock('tumult-hype-animations/animation', {
                             animationId: idMatch ? parseInt(idMatch[1]) : 0,
                             width: widthMatch ? widthMatch[1] : '100%',
                             height: heightMatch ? heightMatch[1] : 'auto',
                             isResponsive: !!responsiveMatch,
-                            autoHeight: !!autoHeightMatch
+                            autoHeight: !!autoHeightMatch,
+                            embedMode: embedModeMatch ? embedModeMatch[1] : 'div'
                         });
                     }
                 }
@@ -99,7 +107,7 @@ function addHypeAnimationTransforms(settings, name) {
                 {
                     type: 'block',
                     blocks: ['core/shortcode'],
-                    transform: ({ animationId, width, height, isResponsive, autoHeight }) => {
+                    transform: ({ animationId, width, height, isResponsive, autoHeight, embedMode }) => {
                         let shortcodeAttrs = `id="${animationId}"`;
                         
                         if (width) {
@@ -116,6 +124,11 @@ function addHypeAnimationTransforms(settings, name) {
                         
                         if (autoHeight) {
                             shortcodeAttrs += ` auto_height="1"`;
+                        }
+                        
+                        // Add embedMode attribute if it's not the default 'div'
+                        if (embedMode && embedMode !== 'div') {
+                            shortcodeAttrs += ` embedmode="${embedMode}"`;
                         }
                         
                         const shortcode = `[hypeanimations_anim ${shortcodeAttrs}]`;

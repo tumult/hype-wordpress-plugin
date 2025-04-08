@@ -218,6 +218,11 @@ function hypeanimations_render_block($attributes) {
         $shortcode_atts['auto_height'] = '1';
     }
     
+    // If embedMode is specified, pass it to the shortcode
+    if (isset($attributes['embedMode'])) {
+        $shortcode_atts['embedmode'] = $attributes['embedMode'];
+    }
+    
     // Generate the output using the existing shortcode function
     $output = hypeanimations_anim($shortcode_atts);
     

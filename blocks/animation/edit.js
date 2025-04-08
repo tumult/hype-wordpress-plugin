@@ -26,7 +26,7 @@ import ServerSideRender from '@wordpress/server-side-render';
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-    const { animationId, width, height, isResponsive, autoHeight } = attributes;
+    const { animationId, width, height, isResponsive, autoHeight, embedMode } = attributes;
     const blockProps = useBlockProps();
     const frameRef = useRef(null);
     
@@ -140,6 +140,17 @@ export default function Edit({ attributes, setAttributes }) {
                         value={height}
                         onChange={(value) => setAttributes({ height: value })}
                         help={__('Enter a value in px or %', 'tumult-hype-animations')}
+                    />
+                    
+                    <SelectControl
+                        label={__('Embed Mode', 'tumult-hype-animations')}
+                        value={embedMode || 'div'}
+                        options={[
+                            { value: 'div', label: __('Div (Default)', 'tumult-hype-animations') },
+                            { value: 'iframe', label: __('Iframe', 'tumult-hype-animations') }
+                        ]}
+                        onChange={(value) => setAttributes({ embedMode: value })}
+                        help={__('Choose how to embed the animation', 'tumult-hype-animations')}
                     />
                     
                     <ToggleControl

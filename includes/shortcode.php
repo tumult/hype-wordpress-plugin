@@ -122,40 +122,16 @@ function hypeanimations_anim($args){
 			}
 		}
 		
-		if($type == 'fixed'){
-			$temp = ($width != "" ? 'width="'.$width.'"' : '').' '.($height != "" && !$auto_height ? 'height="'.$height.'"' : '');
-		} else {
-			$style_explode_width = explode('width', $results->code);
-			$style_explode_height = explode('height', $results->code);
-			
-			if (count($style_explode_width) > 1) {
-				$style_explode_width = explode(';', $style_explode_width[1]);
-				$width = str_replace(":", "", $style_explode_width[0]);
-			}
-			
-			if (count($style_explode_height) > 1) {
-				$style_explode_height = explode(';', $style_explode_height[1]);
-				$height = str_replace(":", "", $style_explode_height[0]);
-			}
-			
-			// Use custom width/height if provided, overriding extracted values
-			if ($custom_width !== null) {
-				$width = $custom_width;
-			}
-			if ($custom_height !== null && !$auto_height) {
-				$height = $custom_height;
-			}
-			
-			$temp = ($width != "" ? 'width="'.$width.'"' : '').' '.($height != "" && !$auto_height ? 'height="'.$height.'"' : '');
+		 // Get numeric values for width/height calculations
+		$numeric_width = intval(preg_replace('/[^0-9]/', '', $original_width));
+		$numeric_height = intval(preg_replace('/[^0-9]/', '', $original_height));
+		// Calculate aspect ratio if we have valid dimensions
+		$aspect_ratio = 0;
+		if ($numeric_width > 0 && $numeric_height > 0) {
+			$aspect_ratio = $numeric_height / $numeric_width;
 		}
 		
-		// Generate a unique ID for this animation instance if using auto height
-		$container_id = '';
-		if ($auto_height) {
-			$container_id = 'hype-container-' . $actid . '-' . uniqid();
-		}
-		
-		 // Determine container type (div or iframe) based on embedmode parameter or default setting
+		// Determine container type (div or iframe) based on embedmode parameter or default setting
 		$container_type = $results->container;
 		if ($embed_mode === 'div') {
 			$container_type = 'div';
@@ -163,8 +139,135 @@ function hypeanimations_anim($args){
 			$container_type = 'iframe';
 		}
 		
-		// Render with the determined container type
-		if ($container_type == 'div') { 
+		// Setup dimensions and styles differently based on container type
+		if ($container_type == 'iframe') {
+			// For iframes, handle responsive and auto-height directly on the iframe element
+			$iframe_attrs = '';
+			$iframe_style = 'border:none;';
+			
+			// Width handling for iframe
+			if ($width) {
+				if ($is_responsive) {
+					// For responsive iframes, use inline style with 100% width
+					$iframe_style .= 'width:100%;';
+				} else {
+					// For non-responsive, use width attribute
+					$iframe_attrs .= ' width="'.esc_attr($width).'"';
+				}
+			}
+			
+			 // Calculate default height
+			$default_height = '300px'; // Fallback if no height info available
+			
+			// Calculate default height based on aspect ratio if available
+			if ($aspect_ratio > 0 && $is_responsive) {
+				// For responsive iframes, we'll add a wrapper with padding-bottom technique
+				$padding_percent = round($aspect_ratio * 100, 2);
+				
+				// We'll wrap the iframe in a responsive container
+				$wrapper_style = 'position:relative;width:100%;padding-bottom:' . $padding_percent . '%;';
+				$iframe_style .= 'position:absolute;top:0;left:0;width:100%;height:100%;';
+			}
+			
+			// Height handling for iframe
+			if ($height && !$auto_height) {
+				// For explicit height, use the provided height
+				$iframe_attrs .= ' height="'.esc_attr($height).'"';
+			} else if ($auto_height) {
+				// For auto-height with no explicit height, set a reasonable default height
+				// that will be adjusted by the script
+				if ($numeric_height > 0) {
+					$iframe_style .= 'height:' . $numeric_height . 'px;';
+				} else {
+					$iframe_style .= 'height:' . $default_height . ';';
+				}
+			} else if (!$height && $numeric_height > 0) {
+				// If no height specified but we have original dimensions, use them
+				$iframe_style .= 'height:' . $numeric_height . 'px;';
+			} else {
+				// Last resort default
+				$iframe_style .= 'height:' . $default_height . ';';
+			}
+			
+			// Build the complete style attribute
+			$iframe_style_attr = ' style="' . $iframe_style . '"';
+			
+			// Generate a unique ID for this animation instance if using auto height or responsive
+			$container_id = '';
+			if ($auto_height || $is_responsive) {
+				$container_id = 'hype-container-' . $actid . '-' . uniqid();
+			}
+			
+			// Build iframe HTML with all attributes properly applied
+			if (file_exists($upload_dir['basedir'].'/hypeanimations/'.$actid.'/index.html')) {
+				$_src = esc_url_raw($upload_dir['baseurl']."/hypeanimations/".$actid."/index.html");
+				
+				// If we're using responsive with known aspect ratio, wrap in container
+				if ($is_responsive && $aspect_ratio > 0) {
+					$output .= '<div style="' . $wrapper_style . '">';
+					$output .= '<iframe frameborder="0"' . $iframe_attrs . $iframe_style_attr . ' ' .
+						($container_class != '' ? 'class="' . $container_class . '"' : '') .
+						($container_id != '' ? ' id="' . $container_id . '"' : '') .
+						' src="' . $_src . '"></iframe>';
+					$output .= '</div>';
+				} else {
+					// Standard iframe without wrapper
+					$output .= '<iframe frameborder="0"' . $iframe_attrs . $iframe_style_attr . ' ' .
+						($container_class != '' ? 'class="' . $container_class . '"' : '') .
+						($container_id != '' ? ' id="' . $container_id . '"' : '') .
+						' src="' . $_src . '"></iframe>';
+				}
+			} else {
+				// Similar handling for alternative source URL
+				if ($is_responsive && $aspect_ratio > 0) {
+					$output .= '<div style="' . $wrapper_style . '">';
+					$output .= '<iframe frameborder="0"' . $iframe_attrs . $iframe_style_attr . ' ' .
+						($container_class != '' ? 'class="' . $container_class . '"' : '') .
+						($container_id != '' ? ' id="' . $container_id . '"' : '') .
+						' src="' . esc_url_raw(site_url()) . '?just_hypeanimations=' . $actid . '"></iframe>';
+					$output .= '</div>';
+				} else {
+					$output .= '<iframe frameborder="0"' . $iframe_attrs . $iframe_style_attr . ' ' .
+						($container_class != '' ? 'class="' . $container_class . '"' : '') .
+						($container_id != '' ? ' id="' . $container_id . '"' : '') .
+						' src="' . esc_url_raw(site_url()) . '?just_hypeanimations=' . $actid . '"></iframe>';
+				}
+			}
+		} else {
+			// For div containers, use the traditional approach
+			if ($type == 'fixed') {
+				$temp = ($width != "" ? 'width="'.$width.'"' : '').' '.($height != "" && !$auto_height ? 'height="'.$height.'"' : '');
+			} else {
+				$style_explode_width = explode('width', $results->code);
+				$style_explode_height = explode('height', $results->code);
+				
+				if (count($style_explode_width) > 1) {
+					$style_explode_width = explode(';', $style_explode_width[1]);
+					$width = str_replace(":", "", $style_explode_width[0]);
+				}
+				
+				if (count($style_explode_height) > 1) {
+					$style_explode_height = explode(';', $style_explode_height[1]);
+					$height = str_replace(":", "", $style_explode_height[0]);
+				}
+				
+				// Use custom width/height if provided, overriding extracted values
+				if ($custom_width !== null) {
+					$width = $custom_width;
+				}
+				if ($custom_height !== null && !$auto_height) {
+					$height = $custom_height;
+				}
+				
+				$temp = ($width != "" ? 'width="'.$width.'"' : '').' '.($height != "" && !$auto_height ? 'height="'.$height.'"' : '');
+			}
+			
+			// Generate a unique ID for this animation instance if using auto height
+			$container_id = '';
+			if ($auto_height) {
+				$container_id = 'hype-container-' . $actid . '-' . uniqid();
+			}
+			
 			// Apply width to the container div if specified and responsive/auto-height is enabled
 			$container_style = '';
 			if ($custom_width !== null) {
@@ -175,25 +278,8 @@ function hypeanimations_anim($args){
 				($container_class != '' ? ' class="' . $container_class . '"' : '') . 
 				($container_id != '' ? ' id="' . $container_id . '"' : '') .
 				$container_style . 
-				'>'; 
+				'>' . $code . '</div>'; 
 		}
-		
-		if ($container_type == 'iframe' && file_exists(esc_url_raw($upload_dir['basedir'].'/hypeanimations/'.$actid.'/index.html'))){
-			$_src = esc_url_raw($upload_dir['baseurl']."/hypeanimations/".$actid."/index.html");
-			$output .= '<iframe style="border:none;" frameborder="0" ' . $temp . ' ' .
-				($container_class != '' ? 'class="' . $container_class . '"' : '') .
-				($container_id != '' ? ' id="' . $container_id . '"' : '') .
-				' src="' . $_src . '">';
-		} elseif ($container_type == 'iframe') {
-			$output .= '<iframe ' . $temp . ' ' .
-				($container_class != '' ? 'class="' . $container_class . '"' : '') .
-				($container_id != '' ? ' id="' . $container_id . '"' : '') .
-				' src="' . esc_url_raw(site_url()) . '?just_hypeanimations=' . $actid . '">';
-		}
-		
-		if ($container_type != 'iframe') { $output .= $code; }
-		if ($container_type == 'div') { $output .= '</div>'; }
-		if ($container_type == 'iframe') { $output .= '</iframe>'; }
 	}
 	
 	// Log output status for debugging
