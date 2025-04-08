@@ -51,14 +51,33 @@ function hypeanimations_anim($args){
 		if ($auto_height) {
 			$container_class .= ' hype-auto-height';
 			
-			// Enqueue the auto height script
+			// Enqueue the auto height script in the head (false = in header, not footer)
 			wp_enqueue_script(
 				'hypeanimations-auto-height',
 				plugins_url('/js/hype-auto-height.js', dirname(__FILE__)),
 				array(),
 				filemtime(plugin_dir_path(dirname(__FILE__)) . '/js/hype-auto-height.js'),
-				true
+				false
 			);
+			
+			// Add inline style for better responsive behavior
+			$inline_style = '
+			.hype-auto-height {
+				overflow: hidden;
+				position: relative;
+			}
+			.hype-auto-height .HYPE_document {
+				margin: 0 !important;
+				position: relative !important;
+				width: 100% !important;
+			}';
+			
+			// Register a base style if needed, then add our inline style
+			if (!wp_style_is('hypeanimations-base-style', 'registered')) {
+				wp_register_style('hypeanimations-base-style', false);
+				wp_enqueue_style('hypeanimations-base-style');
+			}
+			wp_add_inline_style('hypeanimations-base-style', $inline_style);
 		}
 		
 		$code = str_replace("https://", "//", html_entity_decode($results->code));
@@ -78,6 +97,29 @@ function hypeanimations_anim($args){
 		}
 		if ($custom_height !== null && !$auto_height) {
 			$height = $custom_height;
+		}
+		
+		// Enhanced dimension extraction from the Hype document
+		$original_width = "";
+		$original_height = "";
+		
+		// Search for HYPE_document div in the code to extract dimensions
+		if (preg_match('/<div id="[^"]*_hype_container" class="HYPE_document" style="[^"]*width:(\d+)px;height:(\d+)px;[^"]*">/i', $code, $matches)) {
+			$original_width = $matches[1] . 'px';
+			$original_height = $matches[2] . 'px';
+			
+			// Only use the original dimensions if custom values weren't provided
+			if ($custom_width === null) {
+				$width = $original_width;
+			}
+			if ($custom_height === null && !$auto_height) {
+				$height = $original_height;
+				
+				// Enable auto height if height is set to 100%
+				if ($height === "100%") {
+					$auto_height = true;
+				}
+			}
 		}
 		
 		if($type == 'fixed'){
@@ -123,9 +165,16 @@ function hypeanimations_anim($args){
 		
 		// Render with the determined container type
 		if ($container_type == 'div') { 
+			// Apply width to the container div if specified and responsive/auto-height is enabled
+			$container_style = '';
+			if ($custom_width !== null) {
+				$container_style = ' style="width:' . esc_attr($custom_width) . ';"';
+			}
+			
 			$output .= '<div' . 
 				($container_class != '' ? ' class="' . $container_class . '"' : '') . 
-				($container_id != '' ? ' id="' . $container_id . '"' : '') . 
+				($container_id != '' ? ' id="' . $container_id . '"' : '') .
+				$container_style . 
 				'>'; 
 		}
 		

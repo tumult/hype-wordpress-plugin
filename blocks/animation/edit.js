@@ -38,6 +38,11 @@ export default function Edit({ attributes, setAttributes }) {
     useEffect(() => {
         console.log("Hype Animations Data:", window.hypeAnimationsData);
         console.log("Available animations:", animations);
+        
+        // Check if animations are properly loaded
+        if (!window.hypeAnimationsData || !window.hypeAnimationsData.animations || animations.length === 0) {
+            console.error("No animations available or data failed to load. Check WordPress admin for uploaded animations.");
+        }
     }, []);
     
     // Create options for SelectControl
@@ -53,9 +58,34 @@ export default function Edit({ attributes, setAttributes }) {
     // Function to update selected animation
     const onChangeAnimation = (newAnimationId) => {
         console.log("Animation selected:", newAnimationId);
-        setAttributes({ 
-            animationId: parseInt(newAnimationId) 
-        });
+        
+        // Find the selected animation
+        const selectedAnimation = animations.find(anim => anim.id === parseInt(newAnimationId));
+        
+        // Update animation attributes
+        const attributes = { animationId: parseInt(newAnimationId) };
+        
+        // If we have original dimensions and width/height aren't already set, use the original values
+        if (selectedAnimation) {
+            if (selectedAnimation.originalWidth && !width) {
+                attributes.width = selectedAnimation.originalWidth;
+            }
+            
+            if (selectedAnimation.originalHeight && !height) {
+                attributes.height = selectedAnimation.originalHeight;
+                
+                // Auto-enable auto height if height is 100%
+                if (selectedAnimation.originalHeight === '100%') {
+                    attributes.autoHeight = true;
+                }
+            }
+            
+            // Store original dimensions for reference
+            attributes.originalWidth = selectedAnimation.originalWidth;
+            attributes.originalHeight = selectedAnimation.originalHeight;
+        }
+        
+        setAttributes(attributes);
     };
     
     // Animation control functions
@@ -91,8 +121,6 @@ export default function Edit({ attributes, setAttributes }) {
             </div>
         );
     };
-    
-    // No controls for the animation
     
     return (
         <>
@@ -144,6 +172,13 @@ export default function Edit({ attributes, setAttributes }) {
                                 {isResponsive ? ` (${__('Responsive', 'tumult-hype-animations')})` : ''}
                                 {autoHeight ? ` (${__('Auto Height', 'tumult-hype-animations')})` : ''}
                             </p>
+                            {/* Display the original dimensions if available */}
+                            {animations.find(a => a.id === animationId)?.originalWidth && (
+                                <p className="hype-animation-original-dimensions">
+                                    {__('Original Size: ', 'tumult-hype-animations')}
+                                    {animations.find(a => a.id === animationId)?.originalWidth} × {animations.find(a => a.id === animationId)?.originalHeight}
+                                </p>
+                            )}
                         </div>
                         {/* Add the thumbnail preview */}
                         <div className="hype-animation-thumbnail-preview">

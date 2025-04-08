@@ -12,8 +12,8 @@
     "align": ["wide", "full"]
   },
   "textdomain": "tumult-hype-animations",
-  "editorScript": "file:../../build/index.js",
-  "editorStyle": "file:../../build/editor.css",
+  "editorScript": "tumult-hype-animations-editor",
+  "editorStyle": "tumult-hype-animations-editor",
   "attributes": {
     "animationId": {
       "type": "number",
@@ -21,19 +21,33 @@
     },
     "width": {
       "type": "string",
-      "default": "100%"
+      "default": ""
     },
     "height": {
       "type": "string",
-      "default": "auto"
+      "default": ""
     },
     "isResponsive": {
       "type": "boolean",
-      "default": true
+      "default": false
     },
     "autoHeight": {
       "type": "boolean",
       "default": false
+    },
+    "originalWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "originalHeight": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "example": {
+    "attributes": {
+      "animationId": 1,
+      "isResponsive": true
     }
   }
 }

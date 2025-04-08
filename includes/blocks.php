@@ -23,39 +23,47 @@ function hypeanimations_register_blocks() {
     // Log the actual data that will be passed to JavaScript
     error_log('Hype Animations Data for Block Editor: ' . json_encode($animations_data));
 
-    // Localize script with animation data
+    // Check if build files exist
+    $index_js_path = plugin_dir_path(__FILE__) . '../build/index.js';
+    $index_css_path = plugin_dir_path(__FILE__) . '../build/index.css';
+    
+    if (!file_exists($index_js_path)) {
+        error_log('Hype Animations Plugin: index.js build file not found at ' . $index_js_path);
+    }
+    
+    if (!file_exists($index_css_path)) {
+        error_log('Hype Animations Plugin: index.css build file not found at ' . $index_css_path);
+    }
+    
+    // Register block script
     wp_register_script(
-        'hypeanimations-block-editor-script',
+        'tumult-hype-animations-editor',
         plugins_url('../build/index.js', __FILE__),
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-server-side-render'),
-        filemtime(plugin_dir_path(__FILE__) . '../build/index.js')
+        array('wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n', 'wp-data', 'wp-server-side-render'),
+        filemtime($index_js_path)
     );
 
-    // Register block styles
+    // Register block styles - use index.css which includes the editor styles
     wp_register_style(
-        'hypeanimations-block-editor-style',
-        plugins_url('../build/editor.css', __FILE__),
+        'tumult-hype-animations-editor',
+        plugins_url('../build/index.css', __FILE__),
         array('wp-edit-blocks'),
-        filemtime(plugin_dir_path(__FILE__) . '../build/editor.css')
+        filemtime($index_css_path)
     );
 
     // Localize script with animation data - IMPORTANT: this is what passes data to the block editor
-    wp_localize_script('hypeanimations-block-editor-script', 'hypeAnimationsData', array(
+    wp_localize_script('tumult-hype-animations-editor', 'hypeAnimationsData', array(
         'animations' => $animations_data,
         'defaultImage' => plugins_url('../images/hype-placeholder.png', __FILE__),
     ));
 
-    // Make sure the script is enqueued in the editor
-    wp_enqueue_script('hypeanimations-block-editor-script');
-    wp_enqueue_style('hypeanimations-block-editor-style');
-
-    // Register the block with block.json
+    // Register the block with block.json - this is the recommended method per WP guidelines
     register_block_type(
         plugin_dir_path(dirname(__FILE__)) . 'blocks/animation',
         array(
             'render_callback' => 'hypeanimations_render_block',
-            'editor_script' => 'hypeanimations-block-editor-script',
-            'editor_style' => 'hypeanimations-block-editor-style',
+            'editor_script' => 'tumult-hype-animations-editor',
+            'editor_style' => 'tumult-hype-animations-editor',
         )
     );
 }
@@ -152,10 +160,26 @@ function hypeanimations_get_animations_for_gutenberg() {
             }
         }
         
+        // Get original dimensions from the index.html file
+        $original_width = '';
+        $original_height = '';
+        $index_html_path = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/index.html';
+        
+        if (file_exists($index_html_path)) {
+            $index_html_content = file_get_contents($index_html_path);
+            if (preg_match('/<div id="[^"]*_hype_container" class="HYPE_document" style="[^"]*width:(\d+)px;height:(\d+)px;[^"]*">/i', $index_html_content, $matches)) {
+                $original_width = $matches[1] . 'px';
+                $original_height = $matches[2] . 'px';
+                error_log('Found original dimensions for animation ' . $animation_id . ': ' . $original_width . ' x ' . $original_height);
+            }
+        }
+        
         $animations[] = array(
             'id' => $animation_id,
             'name' => $animation->nom,
-            'thumbnail' => $thumbnail_url
+            'thumbnail' => $thumbnail_url,
+            'originalWidth' => $original_width,
+            'originalHeight' => $original_height
         );
         
         error_log('Animation ' . $animation_id . ' using thumbnail: ' . $thumbnail_url);
@@ -172,9 +196,7 @@ function hypeanimations_render_block($attributes) {
         return '';
     }
     
-    // Debug log animation rendering
-    // error_log('Hype Animations Plugin: Rendering block with animation ID ' . $attributes['animationId']);
-    
+    // Create shortcode attributes from block attributes
     $shortcode_atts = array(
         'id' => $attributes['animationId']
     );
@@ -199,13 +221,6 @@ function hypeanimations_render_block($attributes) {
     // Generate the output using the existing shortcode function
     $output = hypeanimations_anim($shortcode_atts);
     
-    // Verify output was generated
-    // if (empty($output)) {
-    //     error_log('Hype Animations Plugin: No output generated for animation ID ' . $attributes['animationId']);
-    // } else {
-    //     error_log('Hype Animations Plugin: Successfully generated output for animation ID ' . $attributes['animationId']);
-    // }
-    
     return $output;
 }
 
@@ -217,51 +232,94 @@ function hypeanimations_block_transform_support() {
         return;
     }
 
+    // Check if transform file exists
+    $transform_js_path = plugin_dir_path(__FILE__) . '../build/transform.js';
+    if (!file_exists($transform_js_path)) {
+        error_log('Hype Animations Plugin: transform.js build file not found at ' . $transform_js_path);
+        return;
+    }
+
     // Register the shortcode transform script
     wp_enqueue_script(
-        'hypeanimations-shortcode-transform',
+        'tumult-hype-animations-transform',
         plugins_url('../build/transform.js', __FILE__),
-        array('wp-blocks', 'wp-element', 'wp-editor'),
-        filemtime(plugin_dir_path(__FILE__) . '../build/transform.js'),
+        array('wp-blocks', 'wp-element', 'wp-block-editor'),
+        filemtime($transform_js_path),
         true
     );
 }
 add_action('enqueue_block_editor_assets', 'hypeanimations_block_transform_support');
 
 /**
- * Register block pattern - COMMENTED OUT FOR VERSION 2.0
- * Will be added back in future versions
+ * Register block patterns
  */
-/* 
 function hypeanimations_register_block_patterns() {
+    // Block patterns require WP 5.5+
     if (!function_exists('register_block_pattern')) {
         return;
     }
     
+    // Register the patterns category first
+    if (function_exists('register_block_pattern_category')) {
+        register_block_pattern_category(
+            'tumult-hype-animations',
+            array('label' => __('Tumult Hype Animations', 'tumult-hype-animations'))
+        );
+    }
+    
+    // Register a featured animation pattern
     register_block_pattern(
         'tumult-hype-animations/featured-animation',
         array(
             'title' => __('Featured Hype Animation', 'tumult-hype-animations'),
             'description' => __('A Tumult Hype animation with a heading and description', 'tumult-hype-animations'),
-            'content' => '<!-- wp:group {"className":"featured-hype-animation"} -->
-                <div class="wp-block-group featured-hype-animation">
-                    <!-- wp:heading {"textAlign":"center"} -->
-                    <h2 class="has-text-align-center">' . __('Animation Title', 'tumult-hype-animations') . '</h2>
-                    <!-- /wp:heading -->
-                    
-                    <!-- wp:tumult-hype-animations/animation {"animationId":1} /-->
-                    
-                    <!-- wp:paragraph {"align":"center"} -->
-                    <p class="has-text-align-center">' . __('Add your animation description here', 'tumult-hype-animations') . '</p>
-                    <!-- /wp:paragraph -->
-                </div>
-                <!-- /wp:group -->',
-            'categories' => array('text'),
+            'categories' => array('tumult-hype-animations'),
+            'keywords' => array('animation', 'hype', 'tumult'),
+            'content' => '<!-- wp:group {"className":"featured-hype-animation","layout":{"type":"constrained"}} -->
+<div class="wp-block-group featured-hype-animation">
+    <!-- wp:heading {"textAlign":"center"} -->
+    <h2 class="has-text-align-center">' . __('Animation Title', 'tumult-hype-animations') . '</h2>
+    <!-- /wp:heading -->
+    
+    <!-- wp:tumult-hype-animations/animation {"animationId":1,"width":"100%"} /-->
+    
+    <!-- wp:paragraph {"align":"center"} -->
+    <p class="has-text-align-center">' . __('Add your animation description here', 'tumult-hype-animations') . '</p>
+    <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->',
+        )
+    );
+    
+    // Register a sidebar animation pattern
+    register_block_pattern(
+        'tumult-hype-animations/sidebar-animation',
+        array(
+            'title' => __('Sidebar Hype Animation', 'tumult-hype-animations'),
+            'description' => __('A Tumult Hype animation designed for sidebars', 'tumult-hype-animations'),
+            'categories' => array('tumult-hype-animations'),
+            'keywords' => array('animation', 'hype', 'sidebar', 'widget'),
+            'content' => '<!-- wp:group {"className":"sidebar-hype-animation","layout":{"type":"constrained"}} -->
+<div class="wp-block-group sidebar-hype-animation">
+    <!-- wp:heading {"level":3,"textAlign":"center"} -->
+    <h3 class="has-text-align-center">' . __('Sidebar Animation', 'tumult-hype-animations') . '</h3>
+    <!-- /wp:heading -->
+    
+    <!-- wp:tumult-hype-animations/animation {"animationId":1,"width":"100%","autoHeight":true} /-->
+    
+    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+    <div class="wp-block-buttons">
+        <!-- wp:button -->
+        <div class="wp-block-button"><a class="wp-block-button__link">' . __('Learn More', 'tumult-hype-animations') . '</a></div>
+        <!-- /wp:button -->
+    </div>
+    <!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->'
         )
     );
 }
 add_action('init', 'hypeanimations_register_block_patterns');
-*/
 
 /**
  * Register block collection
