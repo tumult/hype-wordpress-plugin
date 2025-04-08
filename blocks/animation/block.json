@@ -27,13 +27,9 @@
       "type": "string",
       "default": ""
     },
-    "isResponsive": {
-      "type": "boolean",
-      "default": false
-    },
-    "autoHeight": {
-      "type": "boolean",
-      "default": false
+    "embedMode": {
+      "type": "string",
+      "default": "div"
     },
     "embedMode": {
       "type": "string",

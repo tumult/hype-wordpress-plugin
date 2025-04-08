@@ -13,13 +13,11 @@ Description: Easily embed your Tumult Hype animations using a shortcode or Guten
 
 == Description ==
 
-Tumult Hype Animations plugin allows you to embed animations created with Tumult Hype into your WordPress site. With version 2.0, the plugin introduces full Gutenberg block support, making it easier than ever to add animations with advanced features like responsive scaling, auto height, and block patterns.
+Tumult Hype Animations plugin allows you to embed animations created with Tumult Hype into your WordPress site. Version 2.0 introduces full Gutenberg block support, making it easier than ever to add animations to your posts and pages. 
 
 **Features:**
 
 * Embed animations using a shortcode or Gutenberg block.
-* Responsive scaling to fit container dimensions.
-* Auto height feature to maintain aspect ratio dynamically.
 * Animation selector with thumbnails for better usability.
 * Block patterns for common layouts.
 * Transform support for converting shortcodes into blocks.
@@ -45,11 +43,6 @@ You can also use the following optional attributes:
 
 * `width` - Sets the width of the animation. Accepts values in pixels or percentages (e.g., "400px" or "100%"). Default is the animation's original width.
 * `height` - Sets the height of the animation. Accepts values in pixels or percentages (e.g., "300px" or "50%"). Default is the animation's original height.
-* `responsive` - Enables responsive scaling of the animation to fit its container. Use `responsive="1"` to enable. Default is disabled.
-* `auto_height` - Automatically adjusts the height based on the content's aspect ratio. Can be used in several formats:
-  * `auto_height` (no value needed)
-  * `auto_height="1"` 
-  * `auto_height="true"`
 * `embedmode` - Controls how the animation is embedded. Options:
   * `embedmode="div"` - Embeds the animation directly in a div element
   * `embedmode="iframe"` - Embeds the animation in an iframe
@@ -57,7 +50,7 @@ You can also use the following optional attributes:
 
   Complete example using all options:
 
-  [hypeanimations_anim id="15" width="100%" height="400px" responsive="1" auto_height="true" embedmode="iframe"]
+  [hypeanimations_anim id="15" width="100%" height="400px" embedmode="iframe"]
 
   Explanation of the options used:
   - `id="15"`: Specifies the ID of the animation to embed.
@@ -72,12 +65,7 @@ Examples:
 ```
 [hypeanimations_anim id="10"] // this uses the values present in the Hype embed. 
 [hypeanimations_anim id="10" width="100%" height="300px"]
-[hypeanimations_anim id="10" responsive="1"]
-[hypeanimations_anim id="10" auto_height]
-[hypeanimations_anim id="10" width="100%" auto_height]
-[hypeanimations_anim id="10" width="100%" responsive="1" auto_height]
-[hypeanimations_anim id="10" embedmode="iframe"]
-[hypeanimations_anim id="10" embedmode="div" width="100%" auto_height]
+[hypeanimations_anim id="10" embedmode="iframe"] // wraps the entire document and all HTML in an iframe. Useful if you require code in the 'head' html. 
 ```
 
 === Gutenberg Block Usage ===
@@ -96,9 +84,8 @@ After activating the plugin, go to the block editor and search for "Tumult Hype 
 
 = 2.0.0 =
 * Added full Gutenberg block support with advanced features.
-* Introduced auto height functionality for responsive animations.
 * Added block patterns and transform support for shortcodes.
-* Improved compatibility with WordPress 6.2.
+* Improved compatibility with WordPress 6.8.
 * Enhanced animation selector with thumbnails.
 * Added block collection for better organization.
 

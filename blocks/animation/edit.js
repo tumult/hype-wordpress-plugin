@@ -132,7 +132,7 @@ export default function Edit({ attributes, setAttributes }) {
                         label={__('Width', 'tumult-hype-animations')}
                         value={width}
                         onChange={(value) => setAttributes({ width: value })}
-                        help={__('Enter a value in px or %', 'tumult-hype-animations')}
+                        help={__('Enter a value like 300px or 100%', 'tumult-hype-animations')}
                     />
                     
                     <TextControl
@@ -153,6 +153,7 @@ export default function Edit({ attributes, setAttributes }) {
                         help={__('Choose how to embed the animation', 'tumult-hype-animations')}
                     />
                     
+                    {/* Responsive and Auto Height toggles commented out - may be enabled in the future 
                     <ToggleControl
                         label={__('Responsive', 'tumult-hype-animations')}
                         checked={isResponsive}
@@ -166,6 +167,29 @@ export default function Edit({ attributes, setAttributes }) {
                         onChange={(value) => setAttributes({ autoHeight: value })}
                         help={__('Automatically adjust height based on content aspect ratio', 'tumult-hype-animations')}
                     />
+                    */}
+                    
+                    {/* Information panel with original dimensions */}
+                    {animationId > 0 && animations.find(a => a.id === animationId)?.originalWidth && (
+                        <div className="hype-animation-info-panel">
+                            <h4>{__('Animation Information', 'tumult-hype-animations')}</h4>
+                            <p>
+                                <strong>{__('Original Width: ', 'tumult-hype-animations')}</strong>
+                                {animations.find(a => a.id === animationId)?.originalWidth}
+                            </p>
+                            <p>
+                                <strong>{__('Original Height: ', 'tumult-hype-animations')}</strong>
+                                {animations.find(a => a.id === animationId)?.originalHeight}
+                            </p>
+                            {animations.find(a => a.id === animationId)?.originalHeight === '100%' && (
+                                <p className="hype-animation-help-link">
+                                    <a href="https://forums.tumult.com/t/tumult-hype-animations-wordpress-plugin/11074" target="_blank">
+                                        {__('Need help with 100% height animations?', 'tumult-hype-animations')}
+                                    </a>
+                                </p>
+                            )}
+                        </div>
+                    )}
                 </PanelBody>
             </InspectorControls>
             
@@ -178,11 +202,6 @@ export default function Edit({ attributes, setAttributes }) {
                             <h2 className="hype-animation-title">
                                 {animations.find(a => a.id === animationId)?.name || __('Animation ID: ', 'tumult-hype-animations') + animationId}
                             </h2>
-                            <p className="hype-animation-dimensions">
-                                {width || '100%'} × {height || 'auto'}
-                                {isResponsive ? ` (${__('Responsive', 'tumult-hype-animations')})` : ''}
-                                {autoHeight ? ` (${__('Auto Height', 'tumult-hype-animations')})` : ''}
-                            </p>
                             {/* Display the original dimensions if available */}
                             {animations.find(a => a.id === animationId)?.originalWidth && (
                                 <p className="hype-animation-original-dimensions">
