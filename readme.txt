@@ -10,6 +10,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Description: Easily embed your Tumult Hype animations into posts and pages with a shortcode.
+Update URI: https://wordpress.org/plugins/tumult-hype-animations/
 
 == Description ==
 
