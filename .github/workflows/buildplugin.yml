@@ -13,14 +13,15 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.3.0
         with:
-          node-version: '18'
+          node-version: '23'
           cache: 'npm'
+          architecture: 'x64'
 
       # Install dependencies
       - name: Install dependencies
@@ -45,7 +46,7 @@ jobs:
 
       # Upload the zip file as an artifact
       - name: Upload plugin zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact
         with:
           name: tumult-hype-animations
           path: dist/tumult-hype-animations.zip
