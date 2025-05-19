@@ -5,11 +5,12 @@ Contributors: Tumult
 Tags: animations, Gutenberg, block editor, shortcode, responsive
 Requires at least: 5.8
 Requires PHP: 7.4
-Tested up to: 6.2
-Stable tag: 2.0.0
+Tested up to: 6.8
+Stable tag: trunk
 License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Description: Easily embed your Tumult Hype animations using a shortcode or Gutenberg block into posts and pages.
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Easily embed your Tumult Hype animations into posts and pages with a shortcode.
+Update URI: https://wordpress.org/plugins/tumult-hype-animations/
 
 == Description ==
 
