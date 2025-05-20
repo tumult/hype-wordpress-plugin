@@ -441,6 +441,7 @@ function hypeanimations_panel() {
 				</td>
 				<td>
 					<textarea name="notes" spellcheck="false" style="resize: vertical; min-height: 20px;">' . stripslashes($results->notes) .  '</textarea>
+					<div class="hypeanimupdated-notes" data-id="' . $results->id . '" style="min-height:20px;display:block;"></div>
 				</td>
 				<td align="left" style="text-align:left;">
 					 ' . __( 'Add a container around the animation:', 'tumult-hype-animations' ) . '<br>
@@ -523,12 +524,21 @@ function hypeanimations_panel() {
 			}).done(function( msg ) {
 				resp=msg.response;
 				if (resp=="ok") {
-					if (jQuery(".hypeanimupdated[data-id="+actdataid+"]").length ) { }
-					else {
-						actbutton.after(\'<div class="hypeanimupdated" data-id="\'+actdataid+\'">'.__( 'Updated!' , 'tumult-hype-animations' ).'</div>\');
+					// notes update
+					if (actbutton.closest("tr").find("textarea[name=notes]").val() !== null) {
+						var updated_message = actbutton.closest("tr").find(".hypeanimupdated-notes");
+						updated_message.css("display", "block").text("'.__( 'Updated!' , 'tumult-hype-animations' ).'");
 						setTimeout(function(){
-							jQuery(".hypeanimupdated[data-id="+actdataid+"]").remove();
+							updated_message.css("display", "none");
 						}, 3000);
+					} else { // options update
+						if (jQuery(".hypeanimupdated[data-id="+actdataid+"]").length ) { }
+						else {
+							actbutton.after(\'<div class="hypeanimupdated" data-id="\'+actdataid+\'">'.__( 'Updated!' , 'tumult-hype-animations' ).'</div>\');
+							setTimeout(function(){
+								jQuery(".hypeanimupdated[data-id="+actdataid+"]").remove();
+							}, 3000);
+						}
 					}
 					// Show any added notes
 					actnotestextarea.val(actnotes);
