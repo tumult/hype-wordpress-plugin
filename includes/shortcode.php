@@ -8,8 +8,7 @@ function hypeanimations_anim($args){
 	$uploadfinaldir = $upload_dir['baseurl'].'/hypeanimations/';
 	$output = '';
 	
-	// For debugging
-	error_log('Hype Animations Plugin: Rendering animation with ID ' . $actid . ' using table ' . $hypeanimations_table_name);
+	 
 	
 	// Handle optional parameters with defaults
 	$custom_width = isset($args['width']) ? $args['width'] : null;
@@ -36,7 +35,7 @@ function hypeanimations_anim($args){
 
 	// If no results, log and return empty
 	if (empty($result)) {
-		error_log('Hype Animations Plugin: No animation found with ID ' . $actid);
+		 
 		return '';
 	}
 
@@ -282,10 +281,7 @@ function hypeanimations_anim($args){
 		}
 	}
 	
-	// Log output status for debugging
-	if (!empty($output)) {
-		error_log('Hype Animations Plugin: Successfully generated output for animation ID ' . $actid);
-	}
+	 
 	
 	return $output;
 }

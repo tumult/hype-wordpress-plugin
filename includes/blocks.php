@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
  * Register the Tumult Hype Animation block
  */
 function hypeanimations_register_blocks() {
-    // Skip block registration if Gutenberg is not available
+     
     if (!function_exists('register_block_type')) {
         return;
     }
@@ -117,7 +117,7 @@ function hypeanimations_get_animations_for_gutenberg() {
         return $animations;
     }
     
-    error_log('Hype Animations Plugin: Found ' . count($results) . ' animations');
+     
     
     // Build the animations array
     foreach ($results as $animation) {
@@ -129,11 +129,11 @@ function hypeanimations_get_animations_for_gutenberg() {
         
         // Check for our new Default_[ID].png thumbnail first
         $default_thumbnail = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/Default_' . $animation_id . '.png';
-        error_log('Checking for thumbnail at: ' . $default_thumbnail);
+         
         
         if (file_exists($default_thumbnail)) {
             $thumbnail_url = $upload_dir['baseurl'] . '/hypeanimations/' . $animation_id . '/Default_' . $animation_id . '.png';
-            error_log('Found thumbnail: ' . $thumbnail_url);
+             
         }
         // If not found, fall back to older methods
         else {
@@ -170,7 +170,7 @@ function hypeanimations_get_animations_for_gutenberg() {
             if (preg_match('/<div id="[^"]*_hype_container" class="HYPE_document" style="[^"]*width:(\d+)px;height:(\d+)px;[^"]*">/i', $index_html_content, $matches)) {
                 $original_width = $matches[1] . 'px';
                 $original_height = $matches[2] . 'px';
-                error_log('Found original dimensions for animation ' . $animation_id . ': ' . $original_width . ' x ' . $original_height);
+                 
             }
         }
         
@@ -182,7 +182,7 @@ function hypeanimations_get_animations_for_gutenberg() {
             'originalHeight' => $original_height
         );
         
-        error_log('Animation ' . $animation_id . ' using thumbnail: ' . $thumbnail_url);
+         
     }
     
     return $animations;
