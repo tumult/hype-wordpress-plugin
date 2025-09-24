@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-21 12:00-0500\n"
-"PO-Revision-Date: 2024-11-21 12:00-0500\n"
+"POT-Creation-Date: 2025-09-24 14:10-0400\n"
+"PO-Revision-Date: 2025-09-24 18:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: Spanish (Mexico)\n"
 "Language: es_MX\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -22,196 +22,230 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:192
-msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr "Soltar. OAM o haga clic aquí para cargar<br> (Tamaño máximo de carga "
+#. Author URI of the plugin/theme
+msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 
-#: includes/adminpanel.php:207
-msgid "Insert the following shortcode where you want to display the animation"
-msgstr "Inserte el siguiente shortcode donde desee mostrar la animación"
+#: includes/adminpanel.php:562
+msgid "Add a container around the animation:"
+msgstr "Añade un contenedor alrededor de la animación:"
 
-#: includes/adminpanel.php:218 includes/adminpanel.php:258
-msgid "Upload new animation"
-msgstr "Cargar nueva animación"
-
-#: includes/adminpanel.php:255
+#: includes/adminpanel.php:320
 msgid "Add new animation"
 msgstr "Añadir nueva animación"
 
-#: includes/adminpanel.php:257
-msgid ""
-"Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
-"utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
-"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
-"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
-msgstr ""
-"Cargue un archivo .OAM archivo exportado por <a href=\"http://tumult.com/"
-"hype?utm_source=wpplugin\">Tumult Hype</a> y se generará un shortcode que se "
-"puede insertar en publicaciones y páginas. <a href=\"https://forums.tumult."
-"com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">¿Necesitas "
-"ayuda?</a>"
+#: includes/adminpanel.php:703 includes/adminpanel.php:704
+msgid "animations"
+msgstr "animaciones"
 
-#: includes/adminpanel.php:273
-msgid "has been deleted."
-msgstr "ha sido eliminado."
-
-#: includes/adminpanel.php:295
-msgid "Only .oam files are allowed for upload."
-msgstr "Solo se permiten archivos .oam para cargar."
-#: includes/adminpanel.php:411
-msgid "Sorry, there was an issue replacing your oam. Check the logs."
-msgstr ""
-"Lo siento, hubo un problema al reemplazar tu oam. Revisa los registros."
-
-#: includes/adminpanel.php:417
-msgid "Manage animations"
-msgstr "Administrar animaciones"
-
-#: includes/adminpanel.php:425
-msgid "Last file update"
-msgstr "Ultima actualización de archivos"
-
-#: includes/adminpanel.php:446
-msgid "Add a container around the animation:"
-msgstr "Agregue un contenedor alrededor de la animación:"
-
-#: includes/adminpanel.php:451
+#: includes/adminpanel.php:567
 msgid "Container CSS class"
 msgstr "Clase CSS de contenedor"
 
-#: includes/adminpanel.php:455
-msgid "Update"
-msgstr "actualizar"
-
-#: includes/adminpanel.php:457
-msgid "No data"
-msgstr "Sin datos"
-
-#: includes/adminpanel.php:459
+#: includes/adminpanel.php:575
 msgid "Copy Code"
-msgstr "Código de copia"
+msgstr "Copiar código"
 
-#: includes/adminpanel.php:460
-msgid "Replace OAM"
-msgstr "Reemplazar OAM"
-
-#: includes/adminpanel.php:461
+#: includes/adminpanel.php:577
 msgid "Delete"
-msgstr "Eliminar"
+msgstr "Borrar"
 
-#: includes/adminpanel.php:528
-msgid "Updated!"
-msgstr "¡Actualizado!"
+#: includes/adminpanel.php:672
+#, php-format
+msgid "Delete \"%s\"? Are you sure you want to continue?"
+msgstr "¿Eliminar \"%s\"? ¿Seguro que quieres continuar?"
 
-#: includes/adminpanel.php:536
-msgid "Error, please try again!"
-msgstr "Error, por favor inténtelo de nuevo!"
+#: includes/adminpanel.php:673
+msgid "Delete this animation? This action is irreversible. Are you sure?"
+msgstr "¿Eliminar esta animación? Esta acción es irreversible. ¿Estás seguro?"
 
-#: includes/adminpanel.php:543
-msgid "Update file"
-msgstr "Actualizar archivo"
-
-#: includes/adminpanel.php:560
-msgid "Processing..."
-msgstr "Tratamiento..."
-
-#: includes/adminpanel.php:561
-msgid "Search:"
-msgstr "Búsqueda:"
-
-#: includes/adminpanel.php:562
-msgid "Show"
-msgstr "Mostrar"
-
-#: includes/adminpanel.php:562 includes/adminpanel.php:563
-msgid "animations"
-msgstr "Animaciones"
-
-#: includes/adminpanel.php:563
-msgid "Showing"
-msgstr "Mostrando"
-
-#: includes/adminpanel.php:563
-msgid "to"
-msgstr "para"
-
-#: includes/adminpanel.php:563
-msgid "of"
-msgstr "de"
-
-#: includes/adminpanel.php:564
-msgid "No animations found."
-msgstr "No se han encontrado animaciones."
-
-#: includes/adminpanel.php:565
-msgid "Loading..."
-msgstr "Carga..."
-
-#: includes/adminpanel.php:566
-msgid "No animation has been found"
-msgstr "No se ha encontrado ninguna animación"
-
-#: includes/adminpanel.php:567
-msgid "No animation has been added"
-msgstr "No se ha añadido ninguna animación"
-
-#: includes/adminpanel.php:569
-msgid "First"
-msgstr "Primero"
-
-#: includes/adminpanel.php:570
-msgid "Previous"
-msgstr "Anterior"
-
-#: includes/adminpanel.php:571
-msgid "Next"
-msgstr "Próximo"
-
-#: includes/adminpanel.php:572
-msgid "Last"
-msgstr "Última"
-
-#: includes/adminpanel.php:887
+#: includes/adminpanel.php:1050
 #, php-format
 msgid "Disallowed file extension detected: %s in file %s"
-msgstr "Se detectó una extensión de archivo no permitida: %s en el archivo %s"
+msgstr "Extensión de archivo no permitida detectada: %s en el archivo %s"
 
-#: includes/adminpanel.php:907
-#, php-format
-msgid "The file contains disallowed extension(s): %s. More info: %s"
+#: includes/adminpanel.php:255
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Tumult Hype Animations"
-msgstr "Tumult Hype Animations"
-
-#. Plugin URI of the plugin/theme
-msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
-msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+"Suelte el archivo .OAM o haga clic aquí para cargarlo<br>(Tamaño máximo de "
+"carga"
 
 #. Description of the plugin/theme
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
-"Inserta fácilmente tus animaciones Tumult Hype usando un shortcode en "
-"publicaciones y páginas."
+"Incorpore fácilmente sus animaciones de Tumult Hype usando un código corto "
+"en publicaciones y páginas."
 
-#. Author URI of the plugin/theme
-msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+#: includes/adminpanel.php:661
+msgid "Error, please try again!"
+msgstr "Error, ¡inténtalo de nuevo!"
 
-#~ msgid "Choose an animation"
-#~ msgstr "Elija una animación"
+#: includes/adminpanel.php:30
+msgid "Error: "
+msgstr "Error: "
 
-#~ msgid "Insert"
-#~ msgstr "insertar"
+#: includes/adminpanel.php:120 includes/adminpanel.php:442
+msgid "Failed to move resource files."
+msgstr "No se pudieron mover los archivos de recursos."
 
-#~ msgid "Or upload a new one"
-#~ msgstr "O subir uno nuevo"
+#: includes/adminpanel.php:192
+msgid "Failed to unzip the file."
+msgstr "No se pudo descomprimir el archivo."
 
+#: includes/adminpanel.php:710
+msgid "First"
+msgstr "Primero"
+
+#: includes/adminpanel.php:347
+msgid "has been deleted."
+msgstr "Ha sido eliminado."
+
+#: includes/adminpanel.php:529
 #, fuzzy
-#~| msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-#~ msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
-#~ msgstr ""
-#~ "Soltar. OAM o haga clic aquí para cargar<br> (Tamaño máximo de carga "
+#| msgid "has been deleted."
+msgid "has been updated!"
+msgstr "¡Se ha actualizado!"
+
+#. Plugin URI of the plugin/theme
+msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+
+#: includes/adminpanel.php:267
+msgid "Insert the following shortcode where you want to display the animation"
+msgstr "Inserta el siguiente código corto donde quieras mostrar la animación"
+
+#: includes/adminpanel.php:823
+msgid "Invalid nonce."
+msgstr "Nonce inválido."
+
+#: includes/adminpanel.php:713
+msgid "Last"
+msgstr "Último"
+
+#: includes/adminpanel.php:540
+msgid "Last file update"
+msgstr "Última actualización de archivo"
+
+#: includes/adminpanel.php:706
+msgid "Loading..."
+msgstr "Cargando..."
+
+#: includes/adminpanel.php:532
+msgid "Manage animations"
+msgstr "Administrar animaciones"
+
+#: includes/adminpanel.php:712
+msgid "Next"
+msgstr "Próximo"
+
+#: includes/adminpanel.php:708
+msgid "No animation has been added"
+msgstr "No se ha añadido ninguna animación"
+
+#: includes/adminpanel.php:707
+msgid "No animation has been found"
+msgstr "No se ha encontrado ninguna animación"
+
+#: includes/adminpanel.php:705
+msgid "No animations found."
+msgstr "No se encontraron animaciones."
+
+#: includes/adminpanel.php:573
+msgid "No data"
+msgstr "No hay datos"
+
+#: includes/adminpanel.php:704
+msgid "of"
+msgstr "de"
+
+#: includes/adminpanel.php:369
+msgid "Only .oam files are allowed for upload."
+msgstr "Sólo se permite cargar archivos .oam."
+
+#: includes/adminpanel.php:711
+msgid "Previous"
+msgstr "Anterior"
+
+#: includes/adminpanel.php:701
+msgid "Processing..."
+msgstr "Tratamiento..."
+
+#: includes/adminpanel.php:576
+msgid "Replace OAM"
+msgstr "Reemplazar OAM"
+
+#: includes/adminpanel.php:702
+msgid "Search:"
+msgstr "Buscar:"
+
+#: includes/adminpanel.php:16 includes/adminpanel.php:339
+#: includes/adminpanel.php:355
+msgid "Security check failed"
+msgstr "Comprobación de seguridad fallida"
+
+#: includes/adminpanel.php:703
+msgid "Show"
+msgstr "Espectáculo"
+
+#: includes/adminpanel.php:704
+msgid "Showing"
+msgstr "Demostración"
+
+#: includes/adminpanel.php:522
+msgid "Sorry, there was an issue replacing your oam. Check the logs."
+msgstr ""
+"Lo sentimos, hubo un problema al reemplazar tu oam. Revisa los registros."
+
+#: includes/adminpanel.php:1070
+#, php-format
+msgid "The file contains disallowed extension(s): %s. More info: %s"
+msgstr "El archivo contiene extensiones no permitidas: %s. Más información: %s"
+
+#: includes/adminpanel.php:704
+msgid "to"
+msgstr "a"
+
+#. Plugin Name of the plugin/theme
+#: includes/adminpanel.php:317
+msgid "Tumult Hype Animations"
+msgstr "Animaciones de tumulto"
+
+#: includes/adminpanel.php:11 includes/adminpanel.php:335
+#: includes/adminpanel.php:797 includes/adminpanel.php:819
+msgid "Unauthorized access"
+msgstr "Acceso no autorizado"
+
+#: includes/adminpanel.php:571
+msgid "Update"
+msgstr "Actualizar"
+
+#: includes/adminpanel.php:668
+msgid "Update file"
+msgstr "Actualizar archivo"
+
+#: includes/adminpanel.php:645 includes/adminpanel.php:652
+msgid "Updated!"
+msgstr "¡Actualizado!"
+
+#: includes/adminpanel.php:323
+#, fuzzy, php-format
+#| msgid ""
+#| "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
+#| "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+#| "which you can insert in posts and pages. <a href=\"https://forums.tumult."
+#| "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need "
+#| "help?</a>"
+msgid ""
+"Upload an .OAM file exported by <a href=\"%1$s\">Tumult Hype</a> and a "
+"shortcode will be generated which you can insert in posts and pages. <a "
+"href=\"%2$s\" target=\"_blank\">Need help?</a>"
+msgstr ""
+"Sube un archivo .OAM exportado por <a href=\"%1$s\">Tumult Hype</a> y se "
+"generará un código corto que podrás insertar en publicaciones y páginas. <a "
+"href=\"%2$s\" target=\"_blank\">¿Necesitas ayuda?</a>"
+
+#: includes/adminpanel.php:278 includes/adminpanel.php:327
+msgid "Upload new animation"
+msgstr "Subir nueva animación"

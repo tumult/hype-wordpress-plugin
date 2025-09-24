@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
-"POT-Creation-Date: 2024-11-21 11:59-0500\n"
-"PO-Revision-Date: 2024-11-21 11:59-0500\n"
+"POT-Creation-Date: 2025-09-24 14:11-0400\n"
+"PO-Revision-Date: 2025-09-24 18:33+0000\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: ro\n"
+"Language-Team: Romanian\n"
+"Language: ro_RO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && "
 "n%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -21,197 +21,232 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: includes/adminpanel.php:192
-msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
-msgstr ""
-"Trage un fișier .OAM aici sau încarcă unul nou<br>(Dimensiunea maximă a "
-"fișierului "
+#. Author URI of the plugin/theme
+msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
+msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 
-#: includes/adminpanel.php:207
-msgid "Insert the following shortcode where you want to display the animation"
-msgstr "Introduceți următorul shortcode unde doriți să afișați animația"
-
-#: includes/adminpanel.php:218 includes/adminpanel.php:258
-msgid "Upload new animation"
-msgstr "Încarcă o animație nouă"
-
-#: includes/adminpanel.php:255
-msgid "Add new animation"
-msgstr "Adăugare o animație nouă"
-
-#: includes/adminpanel.php:257
-msgid ""
-"Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
-"utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
-"which you can insert in posts and pages. <a href=\"https://forums.tumult.com/"
-"t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need help?</a>"
-msgstr ""
-"Încărcați un . OAM fișier exportat de <a href=\"https://tumult.com/hype?"
-"utm_source=wpplugin\">Tumult Hype</a> și un shortcode vor fi generat, pe "
-"care ulterior îl puteți insera în articole și pagini. <a href=\"https://"
-"forums.tumult.com/t/hype-animations-wordpress-plugin/11074\" "
-"target=\"_blank\">Ai nevoie de ajutor?</a>"
-
-#: includes/adminpanel.php:273
-msgid "has been deleted."
-msgstr ""
-
-#: includes/adminpanel.php:295
-msgid "Only .oam files are allowed for upload."
-msgstr ""
-
-#: includes/adminpanel.php:411
-msgid "Sorry, there was an issue replacing your oam. Check the logs."
-msgstr ""
-
-#: includes/adminpanel.php:417
-msgid "Manage animations"
-msgstr "Gestionează animațiile"
-
-#: includes/adminpanel.php:425
-msgid "Last file update"
-msgstr "Ultima actualizare a fișierului"
-
-#: includes/adminpanel.php:446
+#: includes/adminpanel.php:562
 msgid "Add a container around the animation:"
 msgstr "Adăugați un container în jurul animației:"
 
-#: includes/adminpanel.php:451
-msgid "Container CSS class"
-msgstr "Container Clasă  CSS"
+#: includes/adminpanel.php:320
+msgid "Add new animation"
+msgstr "Adăugați o animație nouă"
 
-#: includes/adminpanel.php:455
-msgid "Update"
-msgstr "Actualizează"
-
-#: includes/adminpanel.php:457
-msgid "No data"
-msgstr "Nu există date"
-
-#: includes/adminpanel.php:459
-msgid "Copy Code"
-msgstr "Copiază Cod"
-
-#: includes/adminpanel.php:460
-msgid "Replace OAM"
-msgstr ""
-
-#: includes/adminpanel.php:461
-msgid "Delete"
-msgstr "Șterge"
-
-#: includes/adminpanel.php:528
-msgid "Updated!"
-msgstr "Actualizat!"
-
-#: includes/adminpanel.php:536
-msgid "Error, please try again!"
-msgstr "Eroare, te rugăm să încerci din nou!"
-
-#: includes/adminpanel.php:543
-msgid "Update file"
-msgstr "Actualizează fișierul"
-
-#: includes/adminpanel.php:560
-msgid "Processing..."
-msgstr "Se procesează…"
-
-#: includes/adminpanel.php:561
-msgid "Search:"
-msgstr "Caută:"
-
-#: includes/adminpanel.php:562
-msgid "Show"
-msgstr "Arată"
-
-#: includes/adminpanel.php:562 includes/adminpanel.php:563
+#: includes/adminpanel.php:703 includes/adminpanel.php:704
 msgid "animations"
 msgstr "animații"
 
-#: includes/adminpanel.php:563
-msgid "Showing"
-msgstr "Arată"
-
-#: includes/adminpanel.php:563
-msgid "to"
-msgstr "la"
-
-#: includes/adminpanel.php:563
-msgid "of"
-msgstr "din"
-
-#: includes/adminpanel.php:564
-msgid "No animations found."
-msgstr "Nu a fost găsită nicio animație."
-
-#: includes/adminpanel.php:565
-msgid "Loading..."
-msgstr "Se încarcă…"
-
-#: includes/adminpanel.php:566
-msgid "No animation has been found"
-msgstr "Nu a fost găsită nicio animație"
-
 #: includes/adminpanel.php:567
-msgid "No animation has been added"
-msgstr "Nu a fost adăugată nicio animație"
+msgid "Container CSS class"
+msgstr "Clasa CSS pentru containere"
 
-#: includes/adminpanel.php:569
-msgid "First"
-msgstr "Primele"
+#: includes/adminpanel.php:575
+msgid "Copy Code"
+msgstr "Copiați codul"
 
-#: includes/adminpanel.php:570
-msgid "Previous"
-msgstr "Anterior"
+#: includes/adminpanel.php:577
+msgid "Delete"
+msgstr "Şterge"
 
-#: includes/adminpanel.php:571
-msgid "Next"
-msgstr "Următor"
+#: includes/adminpanel.php:672
+#, php-format
+msgid "Delete \"%s\"? Are you sure you want to continue?"
+msgstr "Ștergeți „%s”? Sigur doriți să continuați?"
 
-#: includes/adminpanel.php:572
-msgid "Last"
-msgstr "Ultimele"
+#: includes/adminpanel.php:673
+msgid "Delete this animation? This action is irreversible. Are you sure?"
+msgstr ""
+"Ștergeți această animație? Această acțiune este ireversibilă. Sunteți sigur?"
 
-#: includes/adminpanel.php:887
+#: includes/adminpanel.php:1050
 #, php-format
 msgid "Disallowed file extension detected: %s in file %s"
 msgstr "Extensie de fișier nepermisă detectată: %s în fișierul %s"
 
-#: includes/adminpanel.php:907
-#, php-format
-msgid "The file contains disallowed extension(s): %s. More info: %s"
+#: includes/adminpanel.php:255
+msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "Tumult Hype Animations"
-msgstr "Animații Tumult Hype"
-
-#. Plugin URI of the plugin/theme
-msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
-msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+"Aruncați fișierul .OAM sau faceți clic aici pentru a încărca<br>(Dimensiunea "
+"maximă de încărcare"
 
 #. Description of the plugin/theme
 msgid ""
 "Easily embed your Tumult Hype animations using a shortcode into posts and "
 "pages."
 msgstr ""
-"Încorporați cu ușurință animațiile dvs. Tumult Hype folosind un shortcode în "
-"postări și pagini."
+"Integrați cu ușurință animațiile Tumult Hype în postări și pagini folosind "
+"un shortcode."
 
-#. Author URI of the plugin/theme
-msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
-msgstr "<a href=“https://tumult.com” target=“_blank”>Tumult</a>"
+#: includes/adminpanel.php:661
+msgid "Error, please try again!"
+msgstr "Eroare, vă rugăm să încercați din nou!"
 
-#~ msgid "Drop an .OAM file or click here to upload<br>(Maximum upload size "
-#~ msgstr ""
-#~ "Trage un fișier .OAM aici sau încarcă unul nou<br>(Dimensiunea maximă a "
-#~ "fișierului "
+#: includes/adminpanel.php:30
+msgid "Error: "
+msgstr "Eroare:"
 
-#~ msgid "Choose an animation"
-#~ msgstr "Alege o animație"
+#: includes/adminpanel.php:120 includes/adminpanel.php:442
+msgid "Failed to move resource files."
+msgstr "Nu s-au putut muta fișierele de resurse."
 
-#~ msgid "Insert"
-#~ msgstr "Introdu"
+#: includes/adminpanel.php:192
+msgid "Failed to unzip the file."
+msgstr "Nu s-a putut dezarhiva fișierul."
 
-#~ msgid "Or upload a new one"
-#~ msgstr "Sau încarcă una nouă"
+#: includes/adminpanel.php:710
+msgid "First"
+msgstr "Primul"
+
+#: includes/adminpanel.php:347
+msgid "has been deleted."
+msgstr "a fost șters."
+
+#: includes/adminpanel.php:529
+#, fuzzy
+#| msgid "Last file update"
+msgid "has been updated!"
+msgstr "a fost actualizat!"
+
+#. Plugin URI of the plugin/theme
+msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
+
+#: includes/adminpanel.php:267
+msgid "Insert the following shortcode where you want to display the animation"
+msgstr "Introduceți următorul shortcode unde doriți să afișați animația"
+
+#: includes/adminpanel.php:823
+msgid "Invalid nonce."
+msgstr "Nonce invalid."
+
+#: includes/adminpanel.php:713
+msgid "Last"
+msgstr "Dura"
+
+#: includes/adminpanel.php:540
+msgid "Last file update"
+msgstr "Ultima actualizare a fișierului"
+
+#: includes/adminpanel.php:706
+msgid "Loading..."
+msgstr "Încărcare..."
+
+#: includes/adminpanel.php:532
+msgid "Manage animations"
+msgstr "Gestionați animațiile"
+
+#: includes/adminpanel.php:712
+msgid "Next"
+msgstr "Următorul"
+
+#: includes/adminpanel.php:708
+msgid "No animation has been added"
+msgstr "Nu a fost adăugată nicio animație"
+
+#: includes/adminpanel.php:707
+msgid "No animation has been found"
+msgstr "Nu a fost găsită nicio animație"
+
+#: includes/adminpanel.php:705
+msgid "No animations found."
+msgstr "Nu s-au găsit animații."
+
+#: includes/adminpanel.php:573
+msgid "No data"
+msgstr "Fără date"
+
+#: includes/adminpanel.php:704
+msgid "of"
+msgstr "de"
+
+#: includes/adminpanel.php:369
+msgid "Only .oam files are allowed for upload."
+msgstr "Doar fișierele .oam sunt permise pentru încărcare."
+
+#: includes/adminpanel.php:711
+msgid "Previous"
+msgstr "Anterior"
+
+#: includes/adminpanel.php:701
+msgid "Processing..."
+msgstr "Prelucrare..."
+
+#: includes/adminpanel.php:576
+msgid "Replace OAM"
+msgstr "Înlocuiți OAM"
+
+#: includes/adminpanel.php:702
+msgid "Search:"
+msgstr "Căutare:"
+
+#: includes/adminpanel.php:16 includes/adminpanel.php:339
+#: includes/adminpanel.php:355
+msgid "Security check failed"
+msgstr "Verificarea de securitate a eșuat"
+
+#: includes/adminpanel.php:703
+msgid "Show"
+msgstr "Spectacol"
+
+#: includes/adminpanel.php:704
+msgid "Showing"
+msgstr "Se afișează"
+
+#: includes/adminpanel.php:522
+msgid "Sorry, there was an issue replacing your oam. Check the logs."
+msgstr ""
+"Ne pare rău, a apărut o problemă la înlocuirea fișierului OAM. Verificați "
+"jurnalele."
+
+#: includes/adminpanel.php:1070
+#, php-format
+msgid "The file contains disallowed extension(s): %s. More info: %s"
+msgstr "Fișierul conține extensii nepermise: %s. Mai multe informații: %s"
+
+#: includes/adminpanel.php:704
+msgid "to"
+msgstr "la"
+
+#. Plugin Name of the plugin/theme
+#: includes/adminpanel.php:317
+msgid "Tumult Hype Animations"
+msgstr "Animații Tumult Hype"
+
+#: includes/adminpanel.php:11 includes/adminpanel.php:335
+#: includes/adminpanel.php:797 includes/adminpanel.php:819
+msgid "Unauthorized access"
+msgstr "Acces neautorizat"
+
+#: includes/adminpanel.php:571
+msgid "Update"
+msgstr "Actualizare"
+
+#: includes/adminpanel.php:668
+msgid "Update file"
+msgstr "Actualizați fișierul"
+
+#: includes/adminpanel.php:645 includes/adminpanel.php:652
+msgid "Updated!"
+msgstr "Actualizat!"
+
+#: includes/adminpanel.php:323
+#, fuzzy, php-format
+#| msgid ""
+#| "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
+#| "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
+#| "which you can insert in posts and pages. <a href=\"https://forums.tumult."
+#| "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need "
+#| "help?</a>"
+msgid ""
+"Upload an .OAM file exported by <a href=\"%1$s\">Tumult Hype</a> and a "
+"shortcode will be generated which you can insert in posts and pages. <a "
+"href=\"%2$s\" target=\"_blank\">Need help?</a>"
+msgstr ""
+"Încarcă un fișier .OAM exportat de <a href=\"%1$s\">Tumult Hype</a> și va fi "
+"generat un shortcode pe care îl poți insera în postări și pagini. <a "
+"href=\"%2$s\" target=\"_blank\">Ai nevoie de ajutor?</a>"
+
+#: includes/adminpanel.php:278 includes/adminpanel.php:327
+msgid "Upload new animation"
+msgstr "Încărcați o animație nouă"
