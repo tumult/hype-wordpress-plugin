@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ github.ref_type == 'tag' && github.ref_name matches '^[0-9]+\\.[0-9]+\\.[0-9]+$' }}
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
     name: Deploy to WordPress.org SVN
     runs-on: ubuntu-latest
     permissions:
