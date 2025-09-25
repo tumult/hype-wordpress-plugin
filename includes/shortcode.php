@@ -83,12 +83,32 @@ function hypeanimations_anim($args){
 			// Use public upload URL for iframe src
 			$upload_baseurl = rtrim($upload_dir['baseurl'], '/') . '/hypeanimations/' . $actid . '/index.html';
 			$_src = esc_url_raw($upload_baseurl);
-			$output .= '<iframe style="border:none;" frameborder="0" ' . $temp . ' ' . ($results->containerclass != '' ? 'class="' . $results->containerclass . '"' : '') . '\n'
-				. '            src="' . $_src . '">';
+			$iframe_attr_parts = array();
+			if ('' !== trim($temp)) {
+				$iframe_attr_parts[] = trim($temp);
+			}
+			if ($results->containerclass != '') {
+				$iframe_attr_parts[] = 'class="' . $results->containerclass . '"';
+			}
+			$iframe_attrs = '';
+			if (!empty($iframe_attr_parts)) {
+				$iframe_attrs = ' ' . implode(' ', $iframe_attr_parts);
+			}
+			$output .= '<iframe style="border:none;" frameborder="0"' . $iframe_attrs . ' src="' . $_src . '">';
 		} elseif ($results->container == 'iframe') {
 			// Fallback to the site URL handler which serves the index when requested
-			$output .= '<iframe ' . $temp . ' ' . ($results->containerclass != '' ? 'class="' . $results->containerclass . '"' : '') . '\n'
-				. '                src="' . esc_url_raw(site_url()) . '?just_hypeanimations=' . $actid . '">';
+			$iframe_attr_parts = array();
+			if ('' !== trim($temp)) {
+				$iframe_attr_parts[] = trim($temp);
+			}
+			if ($results->containerclass != '') {
+				$iframe_attr_parts[] = 'class="' . $results->containerclass . '"';
+			}
+			$iframe_attrs = '';
+			if (!empty($iframe_attr_parts)) {
+				$iframe_attrs = ' ' . implode(' ', $iframe_attr_parts);
+			}
+			$output .= '<iframe' . ($iframe_attrs !== '' ? $iframe_attrs : '') . ' src="' . esc_url_raw(site_url()) . '?just_hypeanimations=' . $actid . '">';
 		}
 		if ($results->container!='iframe') { $output.=$code; }
 		if ($results->container=='div') { $output.='</div>'; }

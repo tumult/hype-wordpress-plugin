@@ -8,3 +8,4 @@
 /.trunk
 /vendor
 .DS_Store
+/tests
