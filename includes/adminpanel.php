@@ -313,17 +313,32 @@ function hypeanimations_panel() {
 	// Define URLs as variables for better maintainability
 	$hype_product_url = 'https://tumult.com/hype?utm_source=wpplugin';
 	$help_forum_url = 'https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074';
-	
+
+	$upload_instruction_html = sprintf(
+		/* translators: 1: URL to the Tumult Hype product page, 2: URL to the Tumult support forum article. */
+		__( 'Upload an .OAM file exported by <a href="%1$s">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="%2$s" target="_blank">Need help?</a>', 'tumult-hype-animations' ),
+		esc_url($hype_product_url),
+		esc_url($help_forum_url)
+	);
+
+	// Localized confirmation templates for deleting an animation
+	$delete_confirm_with_title_json = wp_json_encode(
+		sprintf(
+			/* translators: %s: animation title. */
+			__( 'Delete "%s"? Are you sure you want to continue?', 'tumult-hype-animations' ),
+			'%s'
+		)
+	);
+	$delete_confirm_without_title_json = wp_json_encode(
+		__( 'Delete this animation? This action is irreversible. Are you sure?', 'tumult-hype-animations' )
+	);
+
 	echo '<br><h1>' . esc_html__('Tumult Hype Animations', 'tumult-hype-animations') . ' (v' . esc_html($version) . ')</h1>
 	<p>&nbsp;</p>
 	</div>
 	<h2>'.__( 'Add new animation' , 'tumult-hype-animations' ).'</h2>
-	<div class="hypeanimbloc">
-	' . sprintf(
-		__( 'Upload an .OAM file exported by <a href="%1$s">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href="%2$s" target="_blank">Need help?</a>', 'tumult-hype-animations' ),
-		esc_url($hype_product_url),
-		esc_url($help_forum_url)
-	) . '<br><br>
+	<div class="hypeanimbloc">'
+	. $upload_instruction_html . '<br><br>
 	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'tumult-hype-animations' ).'</a>
 	</div>';
 
@@ -669,8 +684,8 @@ function hypeanimations_panel() {
 		});
 
 		// Localized confirmation templates for deleting an animation
-		var hypeConfirmTemplateWithTitle = ' . wp_json_encode( sprintf( __( 'Delete "%s"? Are you sure you want to continue?', 'tumult-hype-animations' ), '%s' ) ) . ';
-		var hypeConfirmTemplateWithoutTitle = ' . wp_json_encode( __( 'Delete this animation? This action is irreversible. Are you sure?', 'tumult-hype-animations' ) ) . ';
+		var hypeConfirmTemplateWithTitle = ' . $delete_confirm_with_title_json . ';
+		var hypeConfirmTemplateWithoutTitle = ' . $delete_confirm_without_title_json . ';
 
 		jQuery(document).on("click", ".animdelete", function(e){
 			var el = jQuery(this);
@@ -1045,35 +1060,37 @@ function hypeanimations_getcontent(){
 							// Extension checks
 							if (!empty($extension)) {
 									if (!in_array($extension, $flat_allowlist)) {
-											$disallowedExtensions[] = $extension;
-											error_log(sprintf(
-													__('Disallowed file extension detected: %s in file %s', 'tumult-hype-animations'),
-													$extension,
-													$filename
-											));
+										$disallowedExtensions[] = $extension;
+										error_log(sprintf(
+											/* translators: 1: disallowed extension, 2: file name containing the extension. */
+											__( 'Disallowed file extension detected: %1$s in file %2$s', 'tumult-hype-animations' ),
+											$extension,
+											$filename
+										));
 									}
 							}
 					}
 	
 					$zip->close();
-	
+
 					// Verify OAM structure
 					if (!$has_required_files) {
 							return new WP_Error('invalid_oam', "File does not match OAM structure");
 					}
 	
 					if (!empty($disallowedExtensions)) {
-							$disallowedExtensionsList = implode(', ', array_unique($disallowedExtensions));
-							return new WP_Error(
-									'disallowed_file_type', 
-									sprintf(
-											__("The file contains disallowed extension(s): %s. More info: %s", 'tumult-hype-animations'),
-											$disallowedExtensionsList,
-											'https://forums.tumult.com/t/23637'
-									)
-							);
+						$disallowedExtensionsList = implode(', ', array_unique($disallowedExtensions));
+						return new WP_Error(
+							'disallowed_file_type', 
+							sprintf(
+								/* translators: 1: list of blocked file extensions, 2: URL to learn more. */
+								__( 'The file contains disallowed extension(s): %1$s. More info: %2$s', 'tumult-hype-animations' ),
+								$disallowedExtensionsList,
+								'https://forums.tumult.com/t/23637'
+							)
+						);
 					}
-	
+
 					return true;
 			}
 	

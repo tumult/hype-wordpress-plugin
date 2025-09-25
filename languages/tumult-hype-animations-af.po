@@ -2,81 +2,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Hype Animations\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-24 14:10-0400\n"
-"PO-Revision-Date: 2025-09-24 18:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: Afrikaans\n"
-"Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-09-24 14:10-0400\n"
+"PO-Revision-Date: 2025-09-24 18:33+0000\n"
+"Language: af\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: hypeanimations.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Loco-Version: 2.4.0; wp-5.4.2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
+#: hypeanimations.php
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 
-#: includes/adminpanel.php:562
+#: includes/adminpanel.php:577
 msgid "Add a container around the animation:"
 msgstr "Voeg 'n houer rondom die animasie by:"
 
-#: includes/adminpanel.php:320
+#: includes/adminpanel.php:339
 msgid "Add new animation"
 msgstr "Voeg nuwe animasie by"
 
-#: includes/adminpanel.php:703 includes/adminpanel.php:704
+#: includes/adminpanel.php:718
+#: includes/adminpanel.php:719
 msgid "animations"
 msgstr "animasies"
 
-#: includes/adminpanel.php:567
+#: includes/adminpanel.php:582
 msgid "Container CSS class"
 msgstr "Houer CSS-klas"
 
-#: includes/adminpanel.php:575
+#: includes/adminpanel.php:590
 msgid "Copy Code"
 msgstr "Kopieer Kode"
 
-#: includes/adminpanel.php:577
+#: includes/adminpanel.php:592
 msgid "Delete"
 msgstr "Vee uit"
 
-#: includes/adminpanel.php:672
+#. translators: %s: animation title.
+#: includes/adminpanel.php:328
 #, php-format
 msgid "Delete \"%s\"? Are you sure you want to continue?"
 msgstr "Vee \"%s\" uit? Is jy seker jy wil voortgaan?"
 
-#: includes/adminpanel.php:673
+#: includes/adminpanel.php:333
 msgid "Delete this animation? This action is irreversible. Are you sure?"
 msgstr "Vee hierdie animasie uit? Hierdie aksie is onomkeerbaar. Is jy seker?"
-
-#: includes/adminpanel.php:1050
-#, php-format
-msgid "Disallowed file extension detected: %s in file %s"
-msgstr "Ongeldige lêeruitbreiding opgespoor: %s in lêer %s"
 
 #: includes/adminpanel.php:255
 msgid "Drop .OAM file or click here to upload<br>(Maximum upload size "
 msgstr "Los .OAM-lêer of klik hier om op te laai<br>(Maksimum oplaaigrootte"
 
-#. Description of the plugin/theme
-msgid ""
-"Easily embed your Tumult Hype animations using a shortcode into posts and "
-"pages."
-msgstr ""
-"Integreer jou Tumult Hype-animasies maklik met behulp van 'n kortkode in "
-"plasings en bladsye."
+#. Description of the plugin
+#: hypeanimations.php
+msgid "Easily embed your Tumult Hype animations using a shortcode into posts and pages."
+msgstr "Integreer jou Tumult Hype-animasies maklik met behulp van 'n kortkode in plasings en bladsye."
 
-#: includes/adminpanel.php:661
+#: includes/adminpanel.php:676
 msgid "Error, please try again!"
 msgstr "Fout, probeer asseblief weer!"
 
@@ -84,7 +77,8 @@ msgstr "Fout, probeer asseblief weer!"
 msgid "Error: "
 msgstr "Fout:"
 
-#: includes/adminpanel.php:120 includes/adminpanel.php:442
+#: includes/adminpanel.php:120
+#: includes/adminpanel.php:457
 msgid "Failed to move resource files."
 msgstr "Kon nie hulpbronlêers skuif nie."
 
@@ -92,21 +86,21 @@ msgstr "Kon nie hulpbronlêers skuif nie."
 msgid "Failed to unzip the file."
 msgstr "Kon nie die lêer uitpak nie."
 
-#: includes/adminpanel.php:710
+#: includes/adminpanel.php:725
 msgid "First"
 msgstr "Eerste"
 
-#: includes/adminpanel.php:347
+#: includes/adminpanel.php:362
 msgid "has been deleted."
 msgstr "is verwyder."
 
-#: includes/adminpanel.php:529
+#: includes/adminpanel.php:544
 #, fuzzy
-#| msgid "Last file update"
 msgid "has been updated!"
 msgstr "is opgedateer!"
 
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
+#: hypeanimations.php
 msgid "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 
@@ -114,139 +108,147 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Voeg die volgende kortkode in waar jy die animasie wil vertoon"
 
-#: includes/adminpanel.php:823
+#: includes/adminpanel.php:838
 msgid "Invalid nonce."
 msgstr "Ongeldige nonce."
 
-#: includes/adminpanel.php:713
+#: includes/adminpanel.php:728
 msgid "Last"
 msgstr "Laaste"
 
-#: includes/adminpanel.php:540
+#: includes/adminpanel.php:555
 msgid "Last file update"
 msgstr "Laaste lêeropdatering"
 
-#: includes/adminpanel.php:706
+#: includes/adminpanel.php:721
 msgid "Loading..."
 msgstr "Laai tans..."
 
-#: includes/adminpanel.php:532
+#: includes/adminpanel.php:547
 msgid "Manage animations"
 msgstr "Bestuur animasies"
 
-#: includes/adminpanel.php:712
+#: includes/adminpanel.php:727
 msgid "Next"
 msgstr "Volgende"
 
-#: includes/adminpanel.php:708
+#: includes/adminpanel.php:723
 msgid "No animation has been added"
 msgstr "Geen animasie is bygevoeg nie"
 
-#: includes/adminpanel.php:707
+#: includes/adminpanel.php:722
 msgid "No animation has been found"
 msgstr "Geen animasie is gevind nie"
 
-#: includes/adminpanel.php:705
+#: includes/adminpanel.php:720
 msgid "No animations found."
 msgstr "Geen animasies gevind nie."
 
-#: includes/adminpanel.php:573
+#: includes/adminpanel.php:588
 msgid "No data"
 msgstr "Geen data nie"
 
-#: includes/adminpanel.php:704
+#: includes/adminpanel.php:719
 msgid "of"
 msgstr "van"
 
-#: includes/adminpanel.php:369
+#: includes/adminpanel.php:384
 msgid "Only .oam files are allowed for upload."
 msgstr "Slegs .oam-lêers word toegelaat vir oplaai."
 
-#: includes/adminpanel.php:711
+#: includes/adminpanel.php:726
 msgid "Previous"
 msgstr "Vorige"
 
-#: includes/adminpanel.php:701
+#: includes/adminpanel.php:716
 msgid "Processing..."
 msgstr "Verwerk..."
 
-#: includes/adminpanel.php:576
+#: includes/adminpanel.php:591
 msgid "Replace OAM"
 msgstr "Vervang OAM"
 
-#: includes/adminpanel.php:702
+#: includes/adminpanel.php:717
 msgid "Search:"
 msgstr "Soek:"
 
-#: includes/adminpanel.php:16 includes/adminpanel.php:339
-#: includes/adminpanel.php:355
+#: includes/adminpanel.php:16
+#: includes/adminpanel.php:354
+#: includes/adminpanel.php:370
 msgid "Security check failed"
 msgstr "Sekuriteitskontrole het misluk"
 
-#: includes/adminpanel.php:703
+#: includes/adminpanel.php:718
 msgid "Show"
 msgstr "Wys"
 
-#: includes/adminpanel.php:704
+#: includes/adminpanel.php:719
 msgid "Showing"
 msgstr "Wys"
 
-#: includes/adminpanel.php:522
+#: includes/adminpanel.php:537
 msgid "Sorry, there was an issue replacing your oam. Check the logs."
-msgstr ""
-"Jammer, daar was 'n probleem met die vervanging van jou oam. Gaan die "
-"logboeke na."
+msgstr "Jammer, daar was 'n probleem met die vervanging van jou oam. Gaan die logboeke na."
 
-#: includes/adminpanel.php:1070
-#, php-format
-msgid "The file contains disallowed extension(s): %s. More info: %s"
-msgstr ""
-"Die lêer bevat die volgende ontoegelate uitbreiding(e): %s. Meer inligting: "
-"%s"
-
-#: includes/adminpanel.php:704
+#: includes/adminpanel.php:719
 msgid "to"
 msgstr "om"
 
-#. Plugin Name of the plugin/theme
-#: includes/adminpanel.php:317
+#. Plugin Name of the plugin
+#: hypeanimations.php
+#: includes/adminpanel.php:336
 msgid "Tumult Hype Animations"
-msgstr "Tumult Hype Animasies"
+msgstr "Tumult Hype Animations"
 
-#: includes/adminpanel.php:11 includes/adminpanel.php:335
-#: includes/adminpanel.php:797 includes/adminpanel.php:819
+#: includes/adminpanel.php:11
+#: includes/adminpanel.php:350
+#: includes/adminpanel.php:812
+#: includes/adminpanel.php:834
 msgid "Unauthorized access"
 msgstr "Ongemagtigde toegang"
 
-#: includes/adminpanel.php:571
+#: includes/adminpanel.php:586
 msgid "Update"
 msgstr "Opdatering"
 
-#: includes/adminpanel.php:668
+#: includes/adminpanel.php:683
 msgid "Update file"
 msgstr "Opdateer lêer"
 
-#: includes/adminpanel.php:645 includes/adminpanel.php:652
+#: includes/adminpanel.php:660
+#: includes/adminpanel.php:667
 msgid "Updated!"
 msgstr "Opgedateer!"
 
-#: includes/adminpanel.php:323
-#, fuzzy, php-format
-#| msgid ""
-#| "Upload an .OAM file exported by <a href=\"https://tumult.com/hype?"
-#| "utm_source=wpplugin\">Tumult Hype</a> and a shortcode will be generated "
-#| "which you can insert in posts and pages. <a href=\"https://forums.tumult."
-#| "com/t/hype-animations-wordpress-plugin/11074\" target=\"_blank\">Need "
-#| "help?</a>"
-msgid ""
-"Upload an .OAM file exported by <a href=\"%1$s\">Tumult Hype</a> and a "
-"shortcode will be generated which you can insert in posts and pages. <a "
-"href=\"%2$s\" target=\"_blank\">Need help?</a>"
-msgstr ""
-"Laai &#39;n .OAM-lêer op wat deur <a href=\"%1$s\">Tumult Hype</a> uitgevoer "
-"is en &#39;n kortkode sal gegenereer word wat jy in plasings en bladsye kan "
-"invoeg. <a href=\"%2$s\" target=\"_blank\">Het jy hulp nodig?</a>"
+#. translators: 1: URL to the Tumult Hype product page, 2: URL to the Tumult support forum article.
+#: includes/adminpanel.php:319
+#, fuzzy,php-format
+msgid "Upload an .OAM file exported by <a href=\"%1$s\">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href=\"%2$s\" target=\"_blank\">Need help?</a>"
+msgstr "Laai &#39;n .OAM-lêer op wat deur <a href=\"%1$s\">Tumult Hype</a> uitgevoer is en &#39;n kortkode sal gegenereer word wat jy in plasings en bladsye kan invoeg. <a href=\"%2$s\" target=\"_blank\">Het jy hulp nodig?</a>"
 
-#: includes/adminpanel.php:278 includes/adminpanel.php:327
+#: includes/adminpanel.php:278
+#: includes/adminpanel.php:342
 msgid "Upload new animation"
 msgstr "Laai nuwe animasie op"
+
+#. translators: %s: file path
+#: includes/reload-translations.php:53
+#, php-format
+msgid "Translations reloaded from: %s"
+msgstr ""
+
+#: includes/reload-translations.php:55
+msgid "Translations reload attempted but failed (no .mo found)"
+msgstr ""
+
+#. translators: 1: disallowed extension, 2: file name containing the extension.
+#: includes/adminpanel.php:1066
+#, php-format
+msgid "Disallowed file extension detected: %1$s in file %2$s"
+msgstr ""
+
+#. translators: 1: list of blocked file extensions, 2: URL to learn more.
+#: includes/adminpanel.php:1087
+#, php-format
+msgid "The file contains disallowed extension(s): %1$s. More info: %2$s"
+msgstr ""

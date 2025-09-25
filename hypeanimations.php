@@ -16,7 +16,8 @@ add_action('init', 'hypeanimations_init_textdomain');
 function hypeanimations_init_textdomain() {
 		load_plugin_textdomain( 'tumult-hype-animations', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
-// Development helper: allow forcing a translations reload when visiting plugin admin pages
+
+// Development helper: allow forcing a translations reload when visiting plugin admin pages. To use, uncomment the line below and add &reload_translations=1 to the URL
 // include('includes/reload-translations.php');
 include('includes/init.php');
 include('includes/variables.php');
