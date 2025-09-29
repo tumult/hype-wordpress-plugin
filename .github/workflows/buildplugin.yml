@@ -17,7 +17,7 @@ jobs:
 
       # Install Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v4.3.0
+        uses: actions/setup-node@v5.0.0
         with:
           node-version: '23'
           cache: 'npm'
@@ -46,11 +46,11 @@ jobs:
 
       # Upload the zip file as an artifact
       - name: Upload plugin zip
-        uses: actions/upload-artifact
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: tumult-hype-animations
           path: dist/tumult-hype-animations.zip
-          
+
       # Retain only 5 recent artifacts
       - name: Retain only 5 recent artifacts
         run: |

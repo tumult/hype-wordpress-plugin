@@ -11,6 +11,6 @@
   "author": "Tumult",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
-    "@wordpress/scripts": "^30.14.1"
+    "@wordpress/scripts": "^30.24.0"
   }
 }
