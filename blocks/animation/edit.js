@@ -14,8 +14,8 @@ import {
     Placeholder,
     Button,
 } from '@wordpress/components';
-import { useRef, useEffect } from '@wordpress/element';
-import ServerSideRender from '@wordpress/server-side-render';
+import { useRef, useEffect, useState, RawHTML } from '@wordpress/element';
+import { escapeHTML, escapeAttribute } from '@wordpress/escape-html';
 
 /**
  * The edit function for the Tumult Hype Animation block.
@@ -33,17 +33,36 @@ export default function Edit({ attributes, setAttributes }) {
     // Get animations from localized data
     const animations = window.hypeAnimationsData?.animations || [];
     const defaultImage = window.hypeAnimationsData?.defaultImage || '';
+    const getAnimationById = (id) => animations.find((anim) => Number(anim.id) === Number(id));
+    const getSafeAnimationHTML = (animation) => escapeHTML(animation?.name || '');
+    const getSafeAnimationAttr = (animation, fallback) => escapeAttribute(animation?.name || fallback);
+    const selectedAnimation = animationId ? getAnimationById(animationId) : undefined;
+    const debugEnabled = Boolean(window.hypeAnimationsData?.debug);
+    const debugLog = (...args) => {
+        if (debugEnabled && typeof console !== 'undefined') {
+            // eslint-disable-next-line no-console
+            console.log(...args);
+        }
+    };
+    const debugWarn = (...args) => {
+        if (debugEnabled && typeof console !== 'undefined') {
+            // eslint-disable-next-line no-console
+            console.warn(...args);
+        }
+    };
+    const resolvedTitleHTML = selectedAnimation
+        ? getSafeAnimationHTML(selectedAnimation)
+        : escapeHTML(__('Animation ID: ', 'tumult-hype-animations') + animationId);
     
     // Debug log to check animations data
     useEffect(() => {
-        console.log("Hype Animations Data:", window.hypeAnimationsData);
-        console.log("Available animations:", animations);
-        
-        // Check if animations are properly loaded
+        debugLog('Hype Animations Data:', window.hypeAnimationsData);
+        debugLog('Available animations:', animations);
+
         if (!window.hypeAnimationsData || !window.hypeAnimationsData.animations || animations.length === 0) {
-            console.error("No animations available or data failed to load. Check WordPress admin for uploaded animations.");
+            debugWarn('No animations available or data failed to load. Check WordPress admin for uploaded animations.');
         }
-    }, []);
+    }, [debugEnabled, animations.length]);
     
     // Create options for SelectControl
     const animationOptions = [
@@ -57,10 +76,10 @@ export default function Edit({ attributes, setAttributes }) {
     
     // Function to update selected animation
     const onChangeAnimation = (newAnimationId) => {
-        console.log("Animation selected:", newAnimationId);
+    debugLog('Animation selected:', newAnimationId);
         
         // Find the selected animation
-        const selectedAnimation = animations.find(anim => anim.id === parseInt(newAnimationId));
+    const selectedAnimation = getAnimationById(newAnimationId);
         
         // Update animation attributes
         const attributes = { animationId: parseInt(newAnimationId) };
@@ -101,8 +120,9 @@ export default function Edit({ attributes, setAttributes }) {
         }
     };
     
-    // Enhanced animation selector
+    // Enhanced animation selector with search/filter
     const AnimationSelector = () => {
+        const [search, setSearch] = useState('');
         if (animations.length === 0) {
             return (
                 <div className="hype-animation-selector">
@@ -110,12 +130,25 @@ export default function Edit({ attributes, setAttributes }) {
                 </div>
             );
         }
-        
+        // Filter animations by search
+        const normalizedSearch = search.toLowerCase();
+        const filteredOptions = [
+            { value: 0, label: __('Select an animation', 'tumult-hype-animations') },
+            ...animations
+                .filter(anim => (anim.name || '').toLowerCase().includes(normalizedSearch))
+                .map(animation => ({ value: animation.id, label: animation.name }))
+        ];
         return (
             <div className="hype-animation-selector">
+                <TextControl
+                    value={search}
+                    onChange={setSearch}
+                    placeholder={__('Search animations...', 'tumult-hype-animations')}
+                    style={{ marginBottom: 8 }}
+                />
                 <SelectControl
                     value={animationId}
-                    options={animationOptions}
+                    options={filteredOptions}
                     onChange={onChangeAnimation}
                 />
             </div>
@@ -127,21 +160,18 @@ export default function Edit({ attributes, setAttributes }) {
             <InspectorControls>
                 <PanelBody title={__('Animation Settings', 'tumult-hype-animations')}>
                     <AnimationSelector />
-                    
                     <TextControl
                         label={__('Width', 'tumult-hype-animations')}
                         value={width}
                         onChange={(value) => setAttributes({ width: value })}
                         help={__('Enter a value like 300px or 100%', 'tumult-hype-animations')}
                     />
-                    
                     <TextControl
                         label={__('Height', 'tumult-hype-animations')}
                         value={height}
                         onChange={(value) => setAttributes({ height: value })}
                         help={__('Enter a value in px or %', 'tumult-hype-animations')}
                     />
-                    
                     <SelectControl
                         label={__('Embed Mode', 'tumult-hype-animations')}
                         value={embedMode || 'div'}
@@ -152,36 +182,30 @@ export default function Edit({ attributes, setAttributes }) {
                         onChange={(value) => setAttributes({ embedMode: value })}
                         help={__('Choose how to embed the animation', 'tumult-hype-animations')}
                     />
-                    
-                    {/* Responsive and Auto Height toggles commented out - may be enabled in the future 
-                    <ToggleControl
-                        label={__('Responsive', 'tumult-hype-animations')}
-                        checked={isResponsive}
-                        onChange={(value) => setAttributes({ isResponsive: value })}
-                        help={__('Scale animation to fit container', 'tumult-hype-animations')}
-                    />
-
-                    <ToggleControl
-                        label={__('Auto Height', 'tumult-hype-animations')}
-                        checked={autoHeight}
-                        onChange={(value) => setAttributes({ autoHeight: value })}
-                        help={__('Automatically adjust height based on content aspect ratio', 'tumult-hype-animations')}
-                    />
-                    */}
-                    
+                    {/* Deep link to dashboard animation management */}
+                    <div style={{ margin: '16px 0' }}>
+                        <Button
+                            href={window?.hypeAnimationsData?.dashboardUrl || '/wp-admin/admin.php?page=hypeanimations_panel'}
+                            target="_blank"
+                            variant="secondary"
+                            icon="admin-generic"
+                        >
+                            {__('Manage Animations in Dashboard', 'tumult-hype-animations')}
+                        </Button>
+                    </div>
                     {/* Information panel with original dimensions */}
-                    {animationId > 0 && animations.find(a => a.id === animationId)?.originalWidth && (
+                    {animationId > 0 && selectedAnimation?.originalWidth && (
                         <div className="hype-animation-info-panel">
                             <h4>{__('Animation Information', 'tumult-hype-animations')}</h4>
                             <p>
                                 <strong>{__('Original Width: ', 'tumult-hype-animations')}</strong>
-                                {animations.find(a => a.id === animationId)?.originalWidth}
+                                {selectedAnimation?.originalWidth}
                             </p>
                             <p>
                                 <strong>{__('Original Height: ', 'tumult-hype-animations')}</strong>
-                                {animations.find(a => a.id === animationId)?.originalHeight}
+                                {selectedAnimation?.originalHeight}
                             </p>
-                            {animations.find(a => a.id === animationId)?.originalHeight === '100%' && (
+                            {selectedAnimation?.originalHeight === '100%' && (
                                 <p className="hype-animation-help-link">
                                     <a href="https://forums.tumult.com/t/tumult-hype-animations-wordpress-plugin/11074" target="_blank">
                                         {__('Need help with 100% height animations?', 'tumult-hype-animations')}
@@ -200,21 +224,21 @@ export default function Edit({ attributes, setAttributes }) {
                             <span className="dashicons dashicons-format-video"></span>
                             <h3>{__('Tumult Hype Animation', 'tumult-hype-animations')}</h3>
                             <h2 className="hype-animation-title">
-                                {animations.find(a => a.id === animationId)?.name || __('Animation ID: ', 'tumult-hype-animations') + animationId}
+                                <RawHTML>{resolvedTitleHTML}</RawHTML>
                             </h2>
                             {/* Display the original dimensions if available */}
-                            {animations.find(a => a.id === animationId)?.originalWidth && (
+                            {selectedAnimation?.originalWidth && (
                                 <p className="hype-animation-original-dimensions">
                                     {__('Original Size: ', 'tumult-hype-animations')}
-                                    {animations.find(a => a.id === animationId)?.originalWidth} × {animations.find(a => a.id === animationId)?.originalHeight}
+                                    {selectedAnimation?.originalWidth} × {selectedAnimation?.originalHeight}
                                 </p>
                             )}
                         </div>
                         {/* Add the thumbnail preview */}
                         <div className="hype-animation-thumbnail-preview">
                             <img 
-                                src={animations.find(a => a.id === animationId)?.thumbnail || defaultImage}
-                                alt={animations.find(a => a.id === animationId)?.name || __('Animation Preview', 'tumult-hype-animations')}
+                                src={selectedAnimation?.thumbnail || defaultImage}
+                                alt={getSafeAnimationAttr(selectedAnimation, __('Animation Preview', 'tumult-hype-animations'))}
                                 className="hype-animation-thumbnail"
                             />
                         </div>

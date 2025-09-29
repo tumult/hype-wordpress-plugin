@@ -11,6 +11,50 @@ function hypeanimations_menu() {
 }
 add_action("admin_menu", "hypeanimations_menu");
 
+/**
+ * Determine whether plugin logging should be enabled.
+ *
+ * @return bool
+ */
+function hypeanimations_should_log() {
+  $should_log = defined('WP_DEBUG') && WP_DEBUG;
+
+  return (bool) apply_filters('hypeanimations_should_log', $should_log);
+}
+
+/**
+ * Trigger an observable log event with optional context.
+ *
+ * @param string $message Human readable message.
+ * @param array  $context Structured context data.
+ * @param string $level   Log severity (info, warning, error).
+ *
+ * @return void
+ */
+function hypeanimations_log_event($message, $context = array(), $level = 'info') {
+  /**
+   * Fires whenever the plugin records a log event.
+   *
+   * @param string $message
+   * @param array  $context
+   * @param string $level
+   */
+  do_action('hypeanimations_log_event', $message, $context, $level);
+
+  if (!hypeanimations_should_log()) {
+    return;
+  }
+
+  $prefix = sprintf('[hypeanimations][%s] ', strtoupper($level));
+  $payload = $message;
+
+  if (!empty($context)) {
+    $payload .= ' ' . wp_json_encode($context);
+  }
+
+  error_log($prefix . $payload);
+}
+
 function hyperrmdir($dir) {
   if (is_dir($dir)) {
     $objects = scandir($dir);

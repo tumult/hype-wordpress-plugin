@@ -53,3 +53,19 @@ function hypeanimations_install() {
 }
 
 register_activation_hook(__FILE__, 'hypeanimations_install');
+
+function hypeanimations_update_db_check() {
+    global $wpdb;
+    global $hypeanimations_table_name;
+
+    $table_columns = $wpdb->get_col("DESC $hypeanimations_table_name", 0);
+
+    if (!in_array('container_id', $table_columns)) {
+        $wpdb->query("ALTER TABLE $hypeanimations_table_name ADD container_id VARCHAR(255) NOT NULL DEFAULT ''");
+    }
+
+    if (!in_array('updated', $table_columns)) {
+        $wpdb->query("ALTER TABLE $hypeanimations_table_name ADD updated INT(11) NOT NULL DEFAULT 0");
+    }
+}
+add_action('plugins_loaded', 'hypeanimations_update_db_check');

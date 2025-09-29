@@ -193,6 +193,14 @@ After activating the plugin, go to the block editor and search for "Tumult Hype 
 = 1.0 =
 * First public distribution version.
 
+== Upgrade Notice ==
+
+= 1.9.14 =
+This version introduces a new `notes` column to the database table. The plugin will automatically update the table schema when it is updated.
+
+= 1.9.0 =
+This version introduces `container_id` and `updated` columns to the database table. The plugin will automatically update the table schema when it is updated.
+
 == Frequently Asked Questions ==
 
 = How do I use the Gutenberg block? =
