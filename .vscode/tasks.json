@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile translation .po -> .mo",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-lc",
+        "for f in \"languages\"/*.po; do msgfmt -o \"${f%.po}.mo\" \"$f\" && echo \"Compiled: ${f##*/}\" || echo \"Failed: ${f##*/}\"; done"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Generate pot file for translations (Developer)",
+      "type": "shell",
+      "command": "wp i18n make-pot . languages/tumult-hype-animations.pot --domain=tumult-hype-animations && wp i18n update-po languages/tumult-hype-animations.pot languages/",
+      "problemMatcher": []
+    }
+  ]
+}

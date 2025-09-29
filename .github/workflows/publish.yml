@@ -1,0 +1,52 @@
+name: Deploy plugin to WordPress.org
+
+on:
+  push:
+    tags:
+      - "[0-9]*.[0-9]*.[0-9]*"
+
+concurrency:
+  group: wordpress-plugin-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    name: Deploy to WordPress.org SVN
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Validate tag name format
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          if [[ ! "$TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Tag '$TAG' is not a numeric version (x.y.z)."
+            exit 1
+          fi
+
+      - name: Verify tag matches plugin version
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          FILE_VERSION=$(php -r "if(!preg_match('/\\$version\\s*=\\s*[\\'\\\"]([^\\'\\\"]+)/', file_get_contents('includes/variables.php'), \$m)){fwrite(STDERR, 'Unable to parse version from includes/variables.php'); exit(1);} echo \$m[1];")
+          if [[ "$FILE_VERSION" != "$TAG" ]]; then
+            echo "::error::Version in includes/variables.php ($FILE_VERSION) does not match tag $TAG."
+            exit 1
+          fi
+
+      - name: Deploy to WordPress.org plugin repository
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          dry-run: true
+
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: tumult-hype-animations
+          ASSETS_DIR: assets

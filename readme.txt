@@ -90,8 +90,13 @@ After activating the plugin, go to the block editor and search for "Tumult Hype 
 * Enhanced animation selector with thumbnails.
 * Added block collection for better organization.
 
+= 1.9.17 =
+* Animation names can now contain spaces. Avoid foreign characters or symbols.
+* Improve input validation
+* Improvements to translation strings
+
 = 1.9.16 =
-* Resolves CVE-2024-11082: Authors+ can upload executable files during OAM replacement. Thanks to Wordfence and vgo0 for responsible disclosure. 
+* Resolves CVE-2024-11082: Authors+ can upload executable files during OAM replacement. Thanks to Wordfence and vgo0 for responsible disclosure.
 
 = 1.9.15 = 
 * Ensure only authors, editors, and admins can access animation information (not subscribers). Thanks to Tieu Pham Trong Nhan for the responsible security disclosure and Wordfence for forwarding the issue. Resolves CVE-2024-10543. 

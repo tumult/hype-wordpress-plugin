@@ -1,0 +1,11 @@
+/assets
+/.git
+/.github
+/.vscode
+/node_modules
+.distignore
+.gitignore
+/.trunk
+/vendor
+.DS_Store
+/tests

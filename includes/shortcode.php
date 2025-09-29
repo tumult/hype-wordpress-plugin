@@ -44,43 +44,48 @@ function hypeanimations_anim($args){
 		$height = "";
 		$type = "";
 		$results->containerclass = sanitize_html_class( $results->containerclass );
-		
-		// Add auto-height class if enabled
-		$container_class = $results->containerclass;
-		if ($auto_height) {
-			$container_class .= ' hype-auto-height';
-			
-			// Enqueue the auto height script in the head (false = in header, not footer)
-			wp_enqueue_script(
-				'hypeanimations-auto-height',
-				plugins_url('/js/hype-auto-height.js', dirname(__FILE__)),
-				array(),
-				filemtime(plugin_dir_path(dirname(__FILE__)) . '/js/hype-auto-height.js'),
-				false
-			);
-			
-			// Add inline style for better responsive behavior
-			$inline_style = '
-			.hype-auto-height {
-				overflow: hidden;
-				position: relative;
+		$decoded = html_entity_decode($results->code);
+
+		// Determine actual .hyperesources folder on disk for this animation ID (prefer exact filesystem name)
+		$final_basedir = $upload_dir['basedir'] . '/hypeanimations/' . $actid . '/';
+		$fs_folder_name = null;
+		if (is_dir($final_basedir)) {
+			$items = scandir($final_basedir);
+			foreach ($items as $it) {
+				if ($it === '.' || $it === '..') continue;
+				if (is_dir($final_basedir . $it) && preg_match('/\.hyperesources$/', $it)) {
+					$fs_folder_name = $it;
+					break;
+				}
 			}
-			.hype-auto-height .HYPE_document {
-				margin: 0 !important;
-				position: relative !important;
-				width: 100% !important;
-			}';
-			
-			// Register a base style if needed, then add our inline style
-			if (!wp_style_is('hypeanimations-base-style', 'registered')) {
-				wp_register_style('hypeanimations-base-style', false);
-				wp_enqueue_style('hypeanimations-base-style');
-			}
-			wp_add_inline_style('hypeanimations-base-style', $inline_style);
 		}
-		
-		$code = str_replace("https://", "//", html_entity_decode($results->code));
-		$code = str_replace("http://", "//", html_entity_decode($results->code));
+
+		$decoded = preg_replace_callback(
+			'#(src=(?:"|\\\'))([^"\\\']+?\.hyperesources/[^"\\\']*)#i',
+			function ( $m ) use ( $upload_dir, $actid, $fs_folder_name ) {
+				$attr = $m[1];
+				$url = $m[2];
+				// Leave absolute or protocol-relative or root paths alone
+				if ( preg_match('#^(?:https?:)?//#i', $url) || strpos( $url, '/' ) === 0 ) {
+					return $attr . $url;
+				}
+				// Split folder from remainder
+				$parts = explode('/', $url, 2);
+				$folderRef = rawurldecode($parts[0]);
+				$rest = isset($parts[1]) ? $parts[1] : '';
+				// Choose filesystem folder if detected, otherwise use the folderRef from HTML
+				$folderToUse = $fs_folder_name !== null ? $fs_folder_name : $folderRef;
+				$upload_base = rtrim( $upload_dir['baseurl'], '/' ) . '/hypeanimations/' . $actid . '/';
+				$full = $upload_base . rawurlencode($folderToUse) . '/' . $rest;
+				return $attr . $full;
+			},
+			$decoded
+		);
+
+		// Normalize to protocol-relative URLs
+		$decoded = str_replace( array( 'https://', 'http://' ), array( '//', '//' ), $decoded );
+
+		$code = $decoded;
 		list($before, $after) = array_pad(explode('x', $results->slug, 2), -2, null);
 		if($before != ""){
 			$width = preg_replace('/\D/', '', $before);
@@ -128,6 +133,40 @@ function hypeanimations_anim($args){
 		$aspect_ratio = 0;
 		if ($numeric_width > 0 && $numeric_height > 0) {
 			$aspect_ratio = $numeric_height / $numeric_width;
+		}
+		
+		// Add auto-height class if enabled
+		$container_class = $results->containerclass;
+		if ($auto_height) {
+			$container_class .= ' hype-auto-height';
+			
+			// Enqueue the auto height script in the head (false = in header, not footer)
+			wp_enqueue_script(
+				'hypeanimations-auto-height',
+				plugins_url('/js/hype-auto-height.js', dirname(__FILE__)),
+				array(),
+				filemtime(plugin_dir_path(dirname(__FILE__)) . '/js/hype-auto-height.js'),
+				false
+			);
+			
+			// Add inline style for better responsive behavior
+			$inline_style = '
+			.hype-auto-height {
+				overflow: hidden;
+				position: relative;
+			}
+			.hype-auto-height .HYPE_document {
+				margin: 0 !important;
+				position: relative !important;
+				width: 100% !important;
+			}';
+			
+			// Register a base style if needed, then add our inline style
+			if (!wp_style_is('hypeanimations-base-style', 'registered')) {
+				wp_register_style('hypeanimations-base-style', false);
+				wp_enqueue_style('hypeanimations-base-style');
+			}
+			wp_add_inline_style('hypeanimations-base-style', $inline_style);
 		}
 		
 		// Determine container type (div or iframe) based on embedmode parameter or default setting
@@ -273,11 +312,11 @@ function hypeanimations_anim($args){
 				$container_style = ' style="width:' . esc_attr($custom_width) . ';"';
 			}
 			
-			$output .= '<div' . 
-				($container_class != '' ? ' class="' . $container_class . '"' : '') . 
+			$output .= '<div' .
+				($container_class != '' ? ' class="' . $container_class . '"' : '') .
 				($container_id != '' ? ' id="' . $container_id . '"' : '') .
-				$container_style . 
-				'>' . $code . '</div>'; 
+				$container_style .
+				'>' . $code . '</div>';
 		}
 	}
 	
