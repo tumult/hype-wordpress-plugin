@@ -36,4 +36,33 @@ function hypeanimations_admin_style() {
   wp_enqueue_script( 'dropzone_hype', plugins_url( '../js/dropzone.js', __FILE__ ), false, '1.0.0' );
 }
 
+function hypeanimations_generate_thumbnail($animation_id) {
+    $upload_dir = wp_upload_dir();
+    $animation_dir_path = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/';
+    $index_html_path = $animation_dir_path . 'index.html';
+    $thumbnail_path = $animation_dir_path . 'thumbnail.png';
+
+    if (!file_exists($index_html_path)) {
+        return new WP_Error('file_not_found', __('index.html not found.', 'tumult-hype-animations'));
+    }
+
+    // Check for wkhtmltoimage
+    $command = 'wkhtmltoimage -V';
+    $output = shell_exec($command);
+
+    if (strpos($output, 'wkhtmltoimage') !== false) {
+        // wkhtmltoimage is available
+        $command = sprintf('wkhtmltoimage --quality 50 --width 200 -f png %s %s', escapeshellarg($index_html_path), escapeshellarg($thumbnail_path));
+        shell_exec($command);
+
+        if (file_exists($thumbnail_path)) {
+            return true;
+        } else {
+            return new WP_Error('thumbnail_generation_failed', __('Thumbnail generation failed using wkhtmltoimage.', 'tumult-hype-animations'));
+        }
+    } else {
+        return new WP_Error('wkhtmltoimage_not_found', __('wkhtmltoimage not found. Please install it to generate thumbnails.', 'tumult-hype-animations'));
+    }
+}
+
 add_action( 'admin_enqueue_scripts', 'hypeanimations_admin_style' );

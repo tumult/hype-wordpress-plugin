@@ -180,6 +180,9 @@ function hypeanimations_panel_upload() {
             // Save processed HTML file
             file_put_contents($final_dir . 'index.html', $html_content);
 
+            // Generate thumbnail
+            hypeanimations_generate_thumbnail($lastid);
+
             // Cleanup temporary files
             delete_temp_files($uploaddir);
             if (is_dir($uploaddir . 'Assets/')) {
@@ -544,6 +547,7 @@ function hypeanimations_panel() {
 	<table cellpadding="0" cellspacing="0" id="hypeanimations">
 		<thead>
 			<tr>
+				<th>Thumbnail</th>
 				<th>Animation</th>
 				<th>Shortcode</th>
 				<th>Notes<br><small>(autosaved)</small></th>
@@ -558,9 +562,12 @@ function hypeanimations_panel() {
 		foreach ($result as $results) {
 			// Generate a unique nonce for each delete action
 			$delete_nonce = wp_create_nonce('delete-animation_'.$results->id);
-			//$delete_nonce = wp_create_nonce('update-note_'.$results->id);
+			$regenerate_nonce = wp_create_nonce('regenerate-thumbnail_'.$results->id);
+
+			$thumbnail_url = hypeanimations_get_thumbnail_url($results->id);
 
 			echo '<tr>
+				<td><img src="' . esc_url($thumbnail_url) . '" style="width: 100px; height: auto;" /></td>
 				<td>' . esc_html($results->nom) . '</td>
 				<td>
 					<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . intval($results->id) . '&quot;]"></input>
@@ -585,9 +592,10 @@ function hypeanimations_panel() {
 				<td>
 					<a href="javascript:void(0)" id="' . esc_attr(intval($results->id)) . '" class="animcopy">' . __( 'Copy Code', 'tumult-hype-animations' ) . '</a>
 					<a href="admin.php?page=hypeanimations_panel&update=' . intval($results->id) . '" class="animupdate" data-id="' . esc_attr(intval($results->id)) . '">' . __( 'Replace OAM', 'tumult-hype-animations' ) . '</a>
+					<a href="javascript:void(0)" class="regenerate-thumbnail" data-id="' . esc_attr(intval($results->id)) . '" data-nonce="' . esc_attr($regenerate_nonce) . '">' . __( 'Regenerate Thumbnail', 'tumult-hype-animations' ) . '</a>
 					<a href="admin.php?page=hypeanimations_panel&delete=' . intval($results->id) . '&_wpnonce=' . esc_attr($delete_nonce) . '" class="animdelete" data-title="' . esc_attr($results->nom) . '">' . __( 'Delete', 'tumult-hype-animations' ) . '</a>
 				</td>
-			</tr>';
+			</tr>';;
 		}
 	
 	
@@ -677,6 +685,32 @@ function hypeanimations_panel() {
 			e.preventDefault();
 			dataid=jQuery(this).attr("data-id");
 			jQuery(this).parent().html(\'<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"><input type="hidden" name="dataid" value="\'+dataid+\'">'.wp_nonce_field( "protect_content", "upload_check_oam" ).'<input type="file" name="updatefile"> <input type="submit" name="btn_submit_update" value="'.__( 'Update file' , 'tumult-hype-animations' ).'" /></form>\');
+		});
+
+		jQuery(document).on("click", ".regenerate-thumbnail", function(e){
+			e.preventDefault();
+			var button = jQuery(this);
+			var dataid = button.attr("data-id");
+			var nonce = button.attr("data-nonce");
+			button.text("'.__( 'Regenerating...', 'tumult-hype-animations' ).'");
+			jQuery.ajax({
+				type: "POST",
+				url: ajaxurl,
+				data: {
+					"action": "hypeanimations_regenerate_thumbnail",
+					"dataid": dataid,
+					"_wpnonce": nonce
+				}
+			}).done(function( msg ) {
+				if (msg.success) {
+					button.text("'.__( 'Regenerate Thumbnail', 'tumult-hype-animations' ).'");
+					var newImageUrl = msg.data.thumbnail_url + '?t=' + new Date().getTime();
+					button.closest("tr").find("td:first-child img").attr("src", newImageUrl);
+				} else {
+					alert(msg.data.message);
+					button.text("'.__( 'Regeneration Failed', 'tumult-hype-animations' ).'");
+				}
+			});
 		});
 
 		// Localized confirmation templates for deleting an animation
@@ -1116,6 +1150,46 @@ function delete_temp_files($directory = null) {
 	}
 
 	rmdir($directory);
+}
+
+add_action('wp_ajax_hypeanimations_regenerate_thumbnail', 'hypeanimations_regenerate_thumbnail_action');
+function hypeanimations_regenerate_thumbnail_action() {
+    if (!current_user_can('edit_posts')) {
+        wp_send_json_error(array('message' => esc_html__('Unauthorized access', 'tumult-hype-animations')));
+    }
+
+    $dataid = intval($_POST['dataid']);
+    if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'regenerate-thumbnail_' . $dataid)) {
+        wp_send_json_error(array('message' => esc_html__('Security check failed', 'tumult-hype-animations')));
+    }
+
+    $result = hypeanimations_generate_thumbnail($dataid);
+
+    if (is_wp_error($result)) {
+        wp_send_json_error(array('message' => $result->get_error_message()));
+    } else {
+        wp_send_json_success(array('thumbnail_url' => hypeanimations_get_thumbnail_url($dataid)));
+    }
+}
+
+function hypeanimations_get_thumbnail_url($animation_id) {
+    $upload_dir = wp_upload_dir();
+    $animation_dir_path = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/';
+    $animation_dir_url = $upload_dir['baseurl'] . '/hypeanimations/' . $animation_id . '/';
+
+    if (file_exists($animation_dir_path . 'thumbnail.png')) {
+        return $animation_dir_url . 'thumbnail.png';
+    }
+
+    if (file_exists($animation_dir_path . 'Default_' . $animation_id . '.png')) {
+        return $animation_dir_url . 'Default_' . $animation_id . '.png';
+    }
+
+    if (file_exists($animation_dir_path . 'thumbnail.jpg')) {
+        return $animation_dir_url . 'thumbnail.jpg';
+    }
+
+    return plugins_url('../images/hype-placeholder.png', __FILE__);
 }
 
 /**

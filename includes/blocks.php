@@ -19,7 +19,7 @@ function hypeanimations_register_blocks() {
 
     // Get animations data for debugging
     $animations_data = hypeanimations_get_animations_for_gutenberg();
-    
+
     // Log the actual data that will be passed to JavaScript
     error_log('Hype Animations Data for Block Editor: ' . json_encode($animations_data));
 
@@ -289,7 +289,7 @@ function hypeanimations_register_block_patterns() {
     <!-- wp:tumult-hype-animations/animation {"animationId":1,"width":"100%"} /-->
     
     <!-- wp:paragraph {"align":"center"} -->
-    <p class="has-text-align-center">' . __('Add your animation description here', 'tumult-hype-animations') . '</p>
+    <p class="has-text-align-center">' . __('Animation description', 'tumult-hype-animations') . '</p>
     <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->',
@@ -309,7 +309,7 @@ function hypeanimations_register_block_patterns() {
     <!-- wp:heading {"level":3,"textAlign":"center"} -->
     <h3 class="has-text-align-center">' . __('Sidebar Animation', 'tumult-hype-animations') . '</h3>
     <!-- /wp:heading -->
-    
+
     <!-- wp:tumult-hype-animations/animation {"animationId":1,"width":"100%","autoHeight":true} /-->
     
     <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
