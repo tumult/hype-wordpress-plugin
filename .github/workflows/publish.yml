@@ -43,7 +43,7 @@ jobs:
       - name: Deploy to WordPress.org plugin repository
         uses: 10up/action-wordpress-plugin-deploy@stable
         with:
-          dry-run: true
+          dry-run: false
 
         env:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
