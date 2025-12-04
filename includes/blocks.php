@@ -10,27 +10,44 @@ if (!defined('ABSPATH')) {
 
 /**
  * Register the Tumult Hype Animation block
+ * 
+ * This function registers the block and ensures it has the proper metadata
+ * and render callback. It follows WordPress block best practices.
  */
 function hypeanimations_register_blocks() {
     if (!function_exists('register_block_type')) {
         return;
     }
 
+    $block_json_path = plugin_dir_path(dirname(__FILE__)) . 'blocks/animation/block.json';
+    
+    // Verify block.json exists
+    if (!file_exists($block_json_path)) {
+        error_log('Hype Animations: block.json not found at ' . $block_json_path);
+        return;
+    }
+
     register_block_type(
-        plugin_dir_path(dirname(__FILE__)) . 'blocks/animation',
+        $block_json_path,
         array(
             'render_callback' => 'hypeanimations_render_block',
-            'editor_script' => 'tumult-hype-animations-editor',
-            'editor_style' => 'tumult-hype-animations-editor',
         )
     );
 }
 add_action('init', 'hypeanimations_register_blocks');
 
 /**
- * Enqueue block editor assets when available and permitted.
+ * Enqueue block editor assets
+ * 
+ * Registers and enqueues the editor script, styles, and block data.
+ * This follows WordPress best practices by:
+ * - Checking for user capabilities
+ * - Using proper asset versioning
+ * - Localizing block data
+ * - Providing fallback messages for missing build files
  */
 function hypeanimations_enqueue_block_editor_assets() {
+    // Check user capability
     if (!current_user_can('edit_posts')) {
         return;
     }
@@ -38,6 +55,7 @@ function hypeanimations_enqueue_block_editor_assets() {
     $index_js_path = plugin_dir_path(__FILE__) . '../build/index.js';
     $index_css_path = plugin_dir_path(__FILE__) . '../build/index.css';
 
+    // Check for required build files
     if (!file_exists($index_js_path) || !file_exists($index_css_path)) {
         hypeanimations_log_event('block_editor_assets_missing', array(
             'index_js' => $index_js_path,
@@ -53,26 +71,28 @@ function hypeanimations_enqueue_block_editor_assets() {
         return;
     }
 
-    $dependencies = array(
+    // Define script dependencies
+    $script_dependencies = array(
         'wp-blocks',
         'wp-element',
         'wp-block-editor',
         'wp-components',
         'wp-i18n',
         'wp-data',
-        'wp-server-side-render',
     );
 
+    // Register editor script
     if (!wp_script_is('tumult-hype-animations-editor', 'registered')) {
         wp_register_script(
             'tumult-hype-animations-editor',
             plugins_url('../build/index.js', __FILE__),
-            $dependencies,
+            $script_dependencies,
             filemtime($index_js_path),
             true
         );
     }
 
+    // Register editor style
     if (!wp_style_is('tumult-hype-animations-editor', 'registered')) {
         wp_register_style(
             'tumult-hype-animations-editor',
@@ -82,12 +102,14 @@ function hypeanimations_enqueue_block_editor_assets() {
         );
     }
 
+    // Get animation data for the editor
     $animations_data = hypeanimations_get_animations_for_gutenberg();
 
     hypeanimations_log_event('block_editor_data_loaded', array(
         'count' => count($animations_data),
     ));
 
+    // Localize script with animation data
     wp_localize_script(
         'tumult-hype-animations-editor',
         'hypeAnimationsData',
@@ -96,9 +118,12 @@ function hypeanimations_enqueue_block_editor_assets() {
             'defaultImage' => plugins_url('../images/hype-placeholder.png', __FILE__),
             'dashboardUrl' => admin_url('admin.php?page=hypeanimations_panel'),
             'debug' => hypeanimations_should_log(),
+            'version' => '2.0.0',
+            'apiVersion' => 3,
         )
     );
 
+    // Enqueue the script and style
     wp_enqueue_script('tumult-hype-animations-editor');
     wp_enqueue_style('tumult-hype-animations-editor');
 }
@@ -265,14 +290,33 @@ function hypeanimations_get_animations_for_gutenberg() {
         // Get original dimensions from the index.html file
         $original_width = '';
         $original_height = '';
+        $original_width_unit = '';
+        $original_height_unit = '';
+        $original_width_value = 0;
+        $original_height_value = 0;
+        $default_min_height = '';
         $index_html_path = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/index.html';
         
         if (file_exists($index_html_path)) {
             $index_html_content = file_get_contents($index_html_path);
-            if (preg_match('/<div id="[^"]*_hype_container" class="HYPE_document" style="[^"]*width:(\d+)px;height:(\d+)px;[^"]*">/i', $index_html_content, $matches)) {
-                $original_width = $matches[1] . 'px';
-                $original_height = $matches[2] . 'px';
-                 
+            if (preg_match('/<div id="[^"]*_hype_container" class="HYPE_document" style="([^"]+)">/i', $index_html_content, $style_match)) {
+                $style_block = $style_match[1];
+
+                if (preg_match('/width:\s*([0-9.]+)\s*(px|%)/i', $style_block, $width_match)) {
+                    $original_width_value = (float) $width_match[1];
+                    $original_width_unit = strtolower($width_match[2]);
+                    $original_width = $original_width_value . $original_width_unit;
+                }
+
+                if (preg_match('/height:\s*([0-9.]+)\s*(px|%)/i', $style_block, $height_match)) {
+                    $original_height_value = (float) $height_match[1];
+                    $original_height_unit = strtolower($height_match[2]);
+                    $original_height = $original_height_value . $original_height_unit;
+                }
+
+                if ($original_height_unit === 'px' && $original_height_value > 0) {
+                    $default_min_height = $original_height_value . 'px';
+                }
             }
         }
         
@@ -281,7 +325,12 @@ function hypeanimations_get_animations_for_gutenberg() {
             'name' => sanitize_text_field($animation->nom),
             'thumbnail' => $thumbnail_url,
             'originalWidth' => $original_width,
-            'originalHeight' => $original_height
+            'originalHeight' => $original_height,
+            'originalWidthUnit' => $original_width_unit,
+            'originalHeightUnit' => $original_height_unit,
+            'originalWidthValue' => $original_width_value,
+            'originalHeightValue' => $original_height_value,
+            'defaultMinHeight' => $default_min_height,
         );
         
          
@@ -292,44 +341,60 @@ function hypeanimations_get_animations_for_gutenberg() {
 
 /**
  * Render the Hype Animation block on the frontend
+ * 
+ * This function converts block attributes to shortcode attributes and renders
+ * the animation using the existing shortcode handler. This follows WordPress
+ * best practices by leveraging existing rendering logic.
+ * 
+ * @param array $attributes The block attributes.
+ * @return string The rendered HTML output, or empty string if invalid.
  */
 function hypeanimations_render_block($attributes) {
-    if (empty($attributes['animationId'])) {
+    // Validate the animation ID
+    $animation_id = isset($attributes['animationId']) ? absint($attributes['animationId']) : 0;
+    if (empty($animation_id)) {
         return '';
     }
     
-    // Create shortcode attributes from block attributes
+    // Build shortcode attributes from block attributes
     $shortcode_atts = array(
-        'id' => $attributes['animationId']
+        'id' => $animation_id
     );
     
+    // Optional: width
     if (!empty($attributes['width'])) {
-        $shortcode_atts['width'] = $attributes['width'];
+        $shortcode_atts['width'] = sanitize_text_field($attributes['width']);
     }
     
+    // Optional: height (unless autoHeight is enabled)
     if (!empty($attributes['height']) && !(isset($attributes['autoHeight']) && $attributes['autoHeight'])) {
-        $shortcode_atts['height'] = $attributes['height'];
+        $shortcode_atts['height'] = sanitize_text_field($attributes['height']);
     }
     
-    if (isset($attributes['isResponsive'])) {
-        $shortcode_atts['responsive'] = $attributes['isResponsive'] ? '1' : '0';
-    }
-    
-    // If auto height is enabled, add the auto_height attribute
+    // Optional: auto height
     if (isset($attributes['autoHeight']) && $attributes['autoHeight']) {
         $shortcode_atts['auto_height'] = '1';
     }
     
-    // If embedMode is specified, pass it to the shortcode
+    // Optional: minimum height
+    if (!empty($attributes['minHeight'])) {
+        $shortcode_atts['min_height'] = sanitize_text_field($attributes['minHeight']);
+    }
+    
+    // Optional: embed mode (div or iframe)
     if (isset($attributes['embedMode'])) {
-        $shortcode_atts['embedmode'] = $attributes['embedMode'];
+        $valid_modes = array('div', 'iframe');
+        $embed_mode = sanitize_text_field($attributes['embedMode']);
+        if (in_array($embed_mode, $valid_modes, true)) {
+            $shortcode_atts['embedmode'] = $embed_mode;
+        }
     }
     
     /**
-     * Filter the shortcode attributes generated from the block attributes before rendering.
+     * Filter the shortcode attributes generated from the block attributes.
      *
-     * @param array $shortcode_atts The shortcode attributes that will be passed to the shortcode handler.
-     * @param array $attributes     Original block attributes supplied by Gutenberg.
+     * @param array $shortcode_atts The shortcode attributes.
+     * @param array $attributes     Original block attributes.
      */
     $shortcode_atts = apply_filters(
         'hypeanimations_render_block_shortcode_atts',
@@ -340,8 +405,8 @@ function hypeanimations_render_block($attributes) {
     /**
      * Filter the shortcode handler used to render the block output.
      *
-     * @param callable|string $handler        The shortcode handler callable. Defaults to 'hypeanimations_anim'.
-     * @param array            $shortcode_atts The shortcode attributes prepared for rendering.
+     * @param callable|string $handler        The shortcode handler callable.
+     * @param array            $shortcode_atts The shortcode attributes.
      * @param array            $attributes     Original block attributes.
      */
     $shortcode_handler = apply_filters(
@@ -351,18 +416,19 @@ function hypeanimations_render_block($attributes) {
         $attributes
     );
 
+    // Verify the handler is callable
     if (!is_callable($shortcode_handler)) {
         return '';
     }
 
-    // Generate the output using the resolved shortcode handler.
+    // Generate the output using the shortcode handler
     $output = call_user_func($shortcode_handler, $shortcode_atts);
 
     /**
      * Filter the rendered block output before it is returned.
      *
-     * @param string $output         Rendered markup returned by the shortcode handler.
-     * @param array  $shortcode_atts Shortcode attributes passed to the handler.
+     * @param string $output         Rendered markup.
+     * @param array  $shortcode_atts Shortcode attributes.
      * @param array  $attributes     Original block attributes.
      */
     $output = apply_filters(

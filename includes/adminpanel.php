@@ -562,12 +562,15 @@ function hypeanimations_panel() {
 		foreach ($result as $results) {
 			// Generate a unique nonce for each delete action
 			$delete_nonce = wp_create_nonce('delete-animation_'.$results->id);
-			$regenerate_nonce = wp_create_nonce('regenerate-thumbnail_'.$results->id);
 
 			$thumbnail_url = hypeanimations_get_thumbnail_url($results->id);
+			
+			// Check if animation needs autoheight
+			$needs_autoheight = hypeanimations_needs_autoheight($results->id);
+			$has_autoheight_class = strpos($results->containerclass, 'hype-auto-height') !== false;
 
 			echo '<tr>
-				<td><img src="' . esc_url($thumbnail_url) . '" style="width: 100px; height: auto;" /></td>
+				<td><img class="hype-lazy-thumbnail" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22sans-serif%22 font-size=%2212%22 fill=%22%23999%22%3ELoading...%3C/text%3E%3C/svg%3E" data-src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr($results->nom) . '" style="width: 100px; height: auto;" /></td>
 				<td>' . esc_html($results->nom) . '</td>
 				<td>
 					<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . intval($results->id) . '&quot;]"></input>
@@ -584,15 +587,15 @@ function hypeanimations_panel() {
 						</select><br>
 					' . __( 'Container CSS class', 'tumult-hype-animations' ) .': <br>
 					<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
-							 <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" style="width:130px;" value="' . esc_attr($results->containerclass) . '">
+							 <input onkeypress="return preventDot(event);" type="text" class="hype-class-input" name="class" spellcheck="false" placeholder="Myclass" style="width:130px;" value="' . esc_attr($results->containerclass) . '" data-id="' . esc_attr(intval($results->id)) . '">
 					</div>
-					<input type="button" value="' . __( 'Update', 'tumult-hype-animations' ) . '" class="updatecontainer" data-id="' . esc_attr(intval($results->id)) . '">
-				</td>
+					<input type="button" value="' . __( 'Update', 'tumult-hype-animations' ) . '" class="updatecontainer" data-id="' . esc_attr(intval($results->id)) . '">'
+					. ($needs_autoheight && !$has_autoheight_class ? ' <button type="button" class="set-autoheight-btn" data-id="' . esc_attr(intval($results->id)) . '" style="background-color: #ffc107; padding: 5px 8px; border: 1px solid #e0aa00; border-radius: 3px; cursor: pointer; font-weight: bold;" title="' . esc_attr(__('This animation has 100% height and could benefit from automatic height adjustment', 'tumult-hype-animations')) . '">' . __( 'Set Autoheight?', 'tumult-hype-animations' ) . '</button>' : '')
+					. '</td>
 				<td>' . ($results->updated == 0 ? '<em>' . __( 'No data', 'tumult-hype-animations' ) . '</em>' : date('Y/m/d', $results->updated) . '<br>' . date('H:i:s', $results->updated)) . '</td>
 				<td>
 					<a href="javascript:void(0)" id="' . esc_attr(intval($results->id)) . '" class="animcopy">' . __( 'Copy Code', 'tumult-hype-animations' ) . '</a>
 					<a href="admin.php?page=hypeanimations_panel&update=' . intval($results->id) . '" class="animupdate" data-id="' . esc_attr(intval($results->id)) . '">' . __( 'Replace OAM', 'tumult-hype-animations' ) . '</a>
-					<a href="javascript:void(0)" class="regenerate-thumbnail" data-id="' . esc_attr(intval($results->id)) . '" data-nonce="' . esc_attr($regenerate_nonce) . '">' . __( 'Regenerate Thumbnail', 'tumult-hype-animations' ) . '</a>
 					<a href="admin.php?page=hypeanimations_panel&delete=' . intval($results->id) . '&_wpnonce=' . esc_attr($delete_nonce) . '" class="animdelete" data-title="' . esc_attr($results->nom) . '">' . __( 'Delete', 'tumult-hype-animations' ) . '</a>
 				</td>
 			</tr>';;
@@ -661,14 +664,14 @@ function hypeanimations_panel() {
 					// notes update
 					if (actbutton.closest("tr").find("textarea[name=notes]").val() !== null) {
 						var updated_message = actbutton.closest("tr").find(".hypeanimupdated-notes");
-						updated_message.css("display", "block").text("'.__( 'Updated!' , 'tumult-hype-animations' ).'");
+						updated_message.css("display", "block").text("' . __( 'Updated!' , 'tumult-hype-animations' ) . '");
 						setTimeout(function(){
 							updated_message.css("display", "none");
 						}, 3000);
 					} else { // options update
 						if (jQuery(".hypeanimupdated[data-id="+actdataid+"]").length ) { }
 						else {
-							actbutton.after(\'<div class="hypeanimupdated" data-id="\'+actdataid+\'">'.__( 'Updated!' , 'tumult-hype-animations' ).'</div>\');
+							actbutton.after(\'<div class="hypeanimupdated" data-id="\'+actdataid+\'">' . __( 'Updated!' , 'tumult-hype-animations' ) . '</div>\');
 							setTimeout(function(){
 								jQuery(".hypeanimupdated[data-id="+actdataid+"]").remove();
 							}, 3000);
@@ -677,40 +680,43 @@ function hypeanimations_panel() {
 					// Show any added notes
 					actnotestextarea.val(actnotes);
 				} else {
-					alert("'.__( 'Error, please try again!' , 'tumult-hype-animations' ).'");
+					alert("' . __( 'Error, please try again!' , 'tumult-hype-animations' ) . '");
 				}
 			});
 		});
 		jQuery(".animupdate").click(function(e){
 			e.preventDefault();
 			dataid=jQuery(this).attr("data-id");
-			jQuery(this).parent().html(\'<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"><input type="hidden" name="dataid" value="\'+dataid+\'">'.wp_nonce_field( "protect_content", "upload_check_oam" ).'<input type="file" name="updatefile"> <input type="submit" name="btn_submit_update" value="'.__( 'Update file' , 'tumult-hype-animations' ).'" /></form>\');
+			jQuery(this).parent().html(\'<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"><input type="hidden" name="dataid" value="\'+dataid+\'">'.wp_nonce_field( "protect_content", "upload_check_oam" ).'<input type="file" name="updatefile"> <input type="submit" name="btn_submit_update" value="' . __( 'Update file' , 'tumult-hype-animations' ) . '" /></form>\');
 		});
 
-		jQuery(document).on("click", ".regenerate-thumbnail", function(e){
+		// Handle "Set Autoheight?" button click
+		jQuery(document).on("click", ".set-autoheight-btn", function(e){
 			e.preventDefault();
 			var button = jQuery(this);
-			var dataid = button.attr("data-id");
-			var nonce = button.attr("data-nonce");
-			button.text("'.__( 'Regenerating...', 'tumult-hype-animations' ).'");
-			jQuery.ajax({
-				type: "POST",
-				url: ajaxurl,
-				data: {
-					"action": "hypeanimations_regenerate_thumbnail",
-					"dataid": dataid,
-					"_wpnonce": nonce
-				}
-			}).done(function( msg ) {
-				if (msg.success) {
-					button.text("'.__( 'Regenerate Thumbnail', 'tumult-hype-animations' ).'");
-					var newImageUrl = msg.data.thumbnail_url + '?t=' + new Date().getTime();
-					button.closest("tr").find("td:first-child img").attr("src", newImageUrl);
-				} else {
-					alert(msg.data.message);
-					button.text("'.__( 'Regeneration Failed', 'tumult-hype-animations' ).'");
-				}
-			});
+			var animationId = button.attr("data-id");
+			var classInput = button.closest("td").find("input[name=class]");
+			var currentClass = classInput.val().trim();
+			
+			// Add hype-auto-height class if not already present
+			if (currentClass.indexOf("hype-auto-height") === -1) {
+				var newClass = currentClass ? currentClass + " hype-auto-height" : "hype-auto-height";
+				classInput.val(newClass);
+				
+				// Visually confirm the addition
+				button.css("background-color", "#4caf50").text("' . __( 'Added!', 'tumult-hype-animations' ) . '");
+				button.prop("disabled", true);
+				
+				// Reset after 2 seconds
+				setTimeout(function(){
+					button.css("background-color", "#ffc107").text("' . __( 'Set Autoheight?', 'tumult-hype-animations' ) . '").prop("disabled", false);
+					button.remove(); // Remove button since autoheight is now set
+				}, 2000);
+				
+				// Trigger update
+				var updateButton = button.closest("td").find(".updatecontainer");
+				updateButton.click();
+			}
 		});
 
 		// Localized confirmation templates for deleting an animation
@@ -759,6 +765,52 @@ function hypeanimations_panel() {
 				}
 			}
 		});
+		});
+
+		// Lazy load thumbnail images using Intersection Observer
+		function initLazyLoadThumbnails() {
+			var lazyImages = document.querySelectorAll(".hype-lazy-thumbnail");
+			if (lazyImages.length === 0) return;
+
+			// Check if Intersection Observer is supported
+			if ("IntersectionObserver" in window) {
+				var imageObserver = new IntersectionObserver(function(entries, observer) {
+					entries.forEach(function(entry) {
+						if (entry.isIntersecting) {
+							var img = entry.target;
+							if (img.dataset.src) {
+								img.src = img.dataset.src;
+								img.classList.remove("hype-lazy-thumbnail");
+								img.classList.add("hype-thumbnail-loaded");
+								observer.unobserve(img);
+							}
+						}
+					});
+				}, {
+					rootMargin: "50px"
+				});
+
+				lazyImages.forEach(function(img) {
+					imageObserver.observe(img);
+				});
+			} else {
+				// Fallback for browsers without Intersection Observer support
+				lazyImages.forEach(function(img) {
+					if (img.dataset.src) {
+						img.src = img.dataset.src;
+					}
+				});
+			}
+		}
+
+		// Initialize lazy loading on document ready
+		jQuery(document).ready(function() {
+			initLazyLoadThumbnails();
+		});
+
+		// Re-initialize lazy loading after DataTable updates (e.g., pagination, sorting)
+		jQuery("#hypeanimations").on("draw.dt", function() {
+			initLazyLoadThumbnails();
 		});
 
 		function preventDot(e)

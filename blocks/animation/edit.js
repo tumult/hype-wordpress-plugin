@@ -18,6 +18,53 @@ import { useRef, useEffect, useState, RawHTML } from '@wordpress/element';
 import { escapeHTML, escapeAttribute } from '@wordpress/escape-html';
 
 /**
+ * Validates a dimension value (width, height, minHeight).
+ * Accepts: px, %, vh, vw, em, rem, cm, mm, in, pt, pc
+ *
+ * @param {string} value The dimension value to validate.
+ * @return {Object} Object with isValid and error message.
+ */
+const validateDimension = (value) => {
+    if (!value) {
+        return { isValid: true, error: '' };
+    }
+    
+    // Check if it matches valid dimension patterns
+    const validPattern = /^(\d+(\.\d+)?)(px|%|vh|vw|em|rem|cm|mm|in|pt|pc)$/i;
+    if (!validPattern.test(value.trim())) {
+        return {
+            isValid: false,
+            error: __('Invalid format. Use number + unit (e.g., 300px, 100%, 50vh)', 'tumult-hype-animations')
+        };
+    }
+    
+    const numericValue = parseFloat(value);
+    if (isNaN(numericValue)) {
+        return {
+            isValid: false,
+            error: __('Numeric value must be a valid number', 'tumult-hype-animations')
+        };
+    }
+    
+    if (numericValue <= 0) {
+        return {
+            isValid: false,
+            error: __('Value must be greater than 0', 'tumult-hype-animations')
+        };
+    }
+    
+    // Warn about excessively large values
+    if (numericValue > 5000) {
+        return {
+            isValid: true,
+            error: __('⚠️ Very large value (>5000). Consider using smaller dimensions.', 'tumult-hype-animations')
+        };
+    }
+    
+    return { isValid: true, error: '' };
+};
+
+/**
  * The edit function for the Tumult Hype Animation block.
  *
  * @param {Object} props               Block props.
@@ -26,7 +73,7 @@ import { escapeHTML, escapeAttribute } from '@wordpress/escape-html';
  * @return {WPElement} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-    const { animationId, width, height, isResponsive, autoHeight, embedMode } = attributes;
+    const { animationId, width, height, autoHeight, embedMode, minHeight } = attributes;
     const blockProps = useBlockProps();
     const frameRef = useRef(null);
     
@@ -34,6 +81,21 @@ export default function Edit({ attributes, setAttributes }) {
     const animations = window.hypeAnimationsData?.animations || [];
     const defaultImage = window.hypeAnimationsData?.defaultImage || '';
     const getAnimationById = (id) => animations.find((anim) => Number(anim.id) === Number(id));
+    const [widthError, setWidthError] = useState('');
+    const [heightError, setHeightError] = useState('');
+    const [minHeightError, setMinHeightError] = useState('');
+    const getDefaultMinHeight = (animation) => {
+        if (!animation) {
+            return '';
+        }
+        if (animation.defaultMinHeight) {
+            return animation.defaultMinHeight;
+        }
+        if (animation.originalHeight && /px$/i.test(animation.originalHeight)) {
+            return animation.originalHeight;
+        }
+        return '';
+    };
     const getSafeAnimationHTML = (animation) => escapeHTML(animation?.name || '');
     const getSafeAnimationAttr = (animation, fallback) => escapeAttribute(animation?.name || fallback);
     const selectedAnimation = animationId ? getAnimationById(animationId) : undefined;
@@ -76,35 +138,38 @@ export default function Edit({ attributes, setAttributes }) {
     
     // Function to update selected animation
     const onChangeAnimation = (newAnimationId) => {
-    debugLog('Animation selected:', newAnimationId);
-        
-        // Find the selected animation
-    const selectedAnimation = getAnimationById(newAnimationId);
-        
-        // Update animation attributes
-        const attributes = { animationId: parseInt(newAnimationId) };
-        
-        // If we have original dimensions and width/height aren't already set, use the original values
-        if (selectedAnimation) {
-            if (selectedAnimation.originalWidth && !width) {
-                attributes.width = selectedAnimation.originalWidth;
+        debugLog('Animation selected:', newAnimationId);
+
+        const selected = getAnimationById(newAnimationId);
+        const parsedId = parseInt(newAnimationId, 10) || 0;
+        const nextAttributes = { animationId: parsedId };
+
+        if (selected) {
+            if (selected.originalWidth && !width) {
+                nextAttributes.width = selected.originalWidth;
             }
-            
-            if (selectedAnimation.originalHeight && !height) {
-                attributes.height = selectedAnimation.originalHeight;
-                
-                // Auto-enable auto height if height is 100%
-                if (selectedAnimation.originalHeight === '100%') {
-                    attributes.autoHeight = true;
+
+            if (selected.originalHeight && !height) {
+                nextAttributes.height = selected.originalHeight;
+            }
+
+            const shouldEnableAutoHeight = Boolean(
+                selected.originalHeight === '100%' || selected.originalHeightUnit === '%' || (selected.originalHeight && selected.originalHeight.indexOf('%') !== -1)
+            );
+
+            if (shouldEnableAutoHeight) {
+                nextAttributes.autoHeight = true;
+            }
+
+            if (!minHeight) {
+                const suggestedMinHeight = getDefaultMinHeight(selected);
+                if (suggestedMinHeight) {
+                    nextAttributes.minHeight = suggestedMinHeight;
                 }
             }
-            
-            // Store original dimensions for reference
-            attributes.originalWidth = selectedAnimation.originalWidth;
-            attributes.originalHeight = selectedAnimation.originalHeight;
         }
-        
-        setAttributes(attributes);
+
+        setAttributes(nextAttributes);
     };
     
     // Animation control functions
@@ -163,14 +228,39 @@ export default function Edit({ attributes, setAttributes }) {
                     <TextControl
                         label={__('Width', 'tumult-hype-animations')}
                         value={width}
-                        onChange={(value) => setAttributes({ width: value })}
-                        help={__('Enter a value like 300px or 100%', 'tumult-hype-animations')}
+                        onChange={(value) => {
+                            const validation = validateDimension(value);
+                            setWidthError(validation.error);
+                            setAttributes({ width: value });
+                        }}
+                        help={widthError || __('Enter a value like 300px or 100%', 'tumult-hype-animations')}
+                        className={widthError && !validateDimension(width).isValid ? 'has-error' : ''}
+                        status={widthError && !validateDimension(width).isValid ? 'error' : 'info'}
                     />
                     <TextControl
                         label={__('Height', 'tumult-hype-animations')}
                         value={height}
-                        onChange={(value) => setAttributes({ height: value })}
-                        help={__('Enter a value in px or %', 'tumult-hype-animations')}
+                        onChange={(value) => {
+                            const validation = validateDimension(value);
+                            setHeightError(validation.error);
+                            setAttributes({ height: value });
+                        }}
+                        help={heightError || __('Enter a value in px or %', 'tumult-hype-animations')}
+                        className={heightError && !validateDimension(height).isValid ? 'has-error' : ''}
+                        status={heightError && !validateDimension(height).isValid ? 'error' : 'info'}
+                    />
+                    <TextControl
+                        label={__('Minimum Height', 'tumult-hype-animations')}
+                        value={minHeight || ''}
+                        onChange={(value) => {
+                            const validation = validateDimension(value);
+                            setMinHeightError(validation.error);
+                            setAttributes({ minHeight: value });
+                        }}
+                        placeholder={selectedAnimation?.defaultMinHeight || selectedAnimation?.originalHeight || '480px'}
+                        help={minHeightError || __('Optional fallback height for responsive layouts. Accepts values like 400px, 60vh, or 75%. Leave empty to let the animation calculate automatically.', 'tumult-hype-animations')}
+                        className={minHeightError && !validateDimension(minHeight).isValid ? 'has-error' : ''}
+                        status={minHeightError && !validateDimension(minHeight).isValid ? 'error' : 'info'}
                     />
                     <SelectControl
                         label={__('Embed Mode', 'tumult-hype-animations')}
@@ -205,6 +295,12 @@ export default function Edit({ attributes, setAttributes }) {
                                 <strong>{__('Original Height: ', 'tumult-hype-animations')}</strong>
                                 {selectedAnimation?.originalHeight}
                             </p>
+                            {(minHeight || selectedAnimation?.defaultMinHeight) && (
+                                <p>
+                                    <strong>{__('Minimum Height:', 'tumult-hype-animations')}</strong>{' '}
+                                    {escapeHTML(minHeight || selectedAnimation?.defaultMinHeight)}
+                                </p>
+                            )}
                             {selectedAnimation?.originalHeight === '100%' && (
                                 <p className="hype-animation-help-link">
                                     <a href="https://forums.tumult.com/t/tumult-hype-animations-wordpress-plugin/11074" target="_blank">

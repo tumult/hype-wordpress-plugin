@@ -6,7 +6,7 @@ Tags: animations, Gutenberg, block editor, shortcode, responsive
 Requires at least: 5.8
 Requires PHP: 7.4
 Tested up to: 6.8
-Stable tag: trunk
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Description: Easily embed your Tumult Hype animations into posts and pages with a shortcode.
@@ -22,6 +22,7 @@ Tumult Hype Animations plugin allows you to embed animations created with Tumult
 * Animation selector with thumbnails for better usability.
 * Block patterns for common layouts.
 * Transform support for converting shortcodes into blocks.
+* Responsive auto-height helper with configurable minimum heights. Thanks Max Ziebell! 
 * Compatible with WordPress 5.8 and above.
 
 == Installation ==
@@ -29,10 +30,11 @@ Tumult Hype Animations plugin allows you to embed animations created with Tumult
 1. Upload the plugin files to the `/wp-content/plugins/tumult-hype-animations` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the Gutenberg block editor or the `[hypeanimations_anim]` shortcode to embed animations.
+4. Configure responsive behaviour in the block inspector or shortcode using the options documented below.
 
 == Usage ==
 
-1. In Tumult Hype Professional, Select File > Export as HTML5 > OAM Widget. Note: Do not export with any spaces in your filename or foreign characters or rename your .oam file after export.
+1. In Tumult Hype Professional, Select File > Export as HTML5 > OAM Widget.
 2. In the Hype Animations section in the Admin dashboard, click Upload New Animation and select your .oam file.
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
@@ -44,6 +46,9 @@ You can also use the following optional attributes:
 
 * `width` - Sets the width of the animation. Accepts values in pixels or percentages (e.g., "400px" or "100%"). Default is the animation's original width.
 * `height` - Sets the height of the animation. Accepts values in pixels or percentages (e.g., "300px" or "50%"). Default is the animation's original height.
+* `responsive` - Set to `1` or `true` to scale the animation to the width of its container.
+* `auto_height` - Set to `1`, `true`, or include the attribute without a value to calculate height automatically using the bundled HypeAutoHeight helper.
+* `min_height` - Provides a fallback height (e.g., `480px`, `60vh`, or `75%`) when using responsive or percentage-based layouts. The helper will not shrink the container below this value.
 * `embedmode` - Controls how the animation is embedded. Options:
   * `embedmode="div"` - Embeds the animation directly in a div element
   * `embedmode="iframe"` - Embeds the animation in an iframe
@@ -59,12 +64,13 @@ You can also use the following optional attributes:
   - `height="400px"`: Sets the height of the animation to 400 pixels.
   - `responsive="1"`: Enables responsive scaling of the animation to fit its container.
   - `auto_height="true"`: Automatically adjusts the height based on the content's aspect ratio.
+  - `min_height="480px"`: Ensures the container keeps at least the specified minimum height when using responsive layouts.
   - `embedmode="iframe"`: Embeds the animation in an iframe element.
 
 Examples:
 
 ```
-[hypeanimations_anim id="10"] // this uses the values present in the Hype embed. 
+[hypeanimations_anim id="10"] // uses the defaults captured from the Hype export and admin dashboard settings.
 [hypeanimations_anim id="10" width="100%" height="300px"]
 [hypeanimations_anim id="10" embedmode="iframe"] // wraps the entire document and all HTML in an iframe. Useful if you require code in the 'head' html. 
 ```
@@ -78,16 +84,30 @@ After activating the plugin, go to the block editor and search for "Tumult Hype 
 * **Animation** - Select from your uploaded Tumult Hype animations
 * **Width** - Specify the width (pixels or percentages)
 * **Height** - Specify the height (pixels or percentages)
+* **Minimum Height** - Optional fallback height mirroring the shortcode's `min_height` attribute. Accepts values like `480px`, `60vh`, or `80%`.
 * **Responsive** - Toggle to enable/disable responsive scaling
 * **Auto Height** - Toggle to enable/disable automatic height adjustment
+* **Embed Mode** - Choose between rendering the animation inline (`div`) or within an `iframe`
+
+When Auto Height is enabled, the plugin automatically enqueues the bundled [HypeAutoHeight](https://github.com/worldoptimizer/HypeAutoHeight) script by Max Ziebell (MIT) and applies it to your animation. The helper reads Tumult Hype layout metadata, forces the animation to 100% width, and calculates a proportional height based on the rendered width. Configure **Minimum Height** whenever your Hype export reports a percentage-based height so the embed never collapses.
+
+The inspector also displays detected source dimensions and, when available, a suggested minimum height. A "Manage Animations" button links directly to the dashboard for quick replacement or metadata edits.
+
+=== Responsive Layout Tips ===
+
+* Prefer Tumult Hype exports that include layout metadata—the plugin uses that information to seed width, height, and min-height defaults automatically.
+* If your document height is set to `100%`, enable **Auto Height**. The helper will calculate a proportional height and honor the configured `min_height` fallback.
+* Use viewport-based units (`vh`, `vw`) in Minimum Height when you need the embed to span the screen; use percentages when the parent container controls the vertical space.
+* For iframe embeds, the block wraps the output in a responsive padding container when both Responsive and Auto Height are enabled.
 
 == Changelog ==
 
 = 2.0.0 =
 * Added full Gutenberg block support with advanced features.
+* Introduced responsive auto-height handling with configurable minimum height controls in both the block and shortcode.
 * Added block patterns and transform support for shortcodes.
 * Improved compatibility with WordPress 6.8.
-* Enhanced animation selector with thumbnails.
+* Enhanced animation selector with thumbnails and quick dashboard links.
 * Added block collection for better organization.
 
 = 1.9.17 =
@@ -195,6 +215,9 @@ After activating the plugin, go to the block editor and search for "Tumult Hype 
 
 == Upgrade Notice ==
 
+= 2.0.0 =
+No database changes are required for this release. The new Gutenberg block and responsive helper script are available immediately after updating.
+
 = 1.9.14 =
 This version introduces a new `notes` column to the database table. The plugin will automatically update the table schema when it is updated.
 
@@ -206,18 +229,26 @@ This version introduces `container_id` and `updated` columns to the database tab
 = How do I use the Gutenberg block? =
 
 After activating the plugin, go to the block editor and search for "Tumult Hype Animation" in the block library. Configure the block settings to select an animation and customize its dimensions.
-/**
- * Options for configuring the block editor:
- * 
- * - **Width**: Specifies the width of the block. Accepts values in pixels (e.g., `400px`) or percentages (e.g., `75%`).
- * - **Height**: Specifies the height of the block. Accepts values in pixels (e.g., `px`) or percentages (e.g., `%`).
- * - **Responsive**: Enables scaling of the animation to fit the container dimensions, ensuring responsiveness.
- * - **Auto Height**: Automatically adjusts the height of the block based on the content's aspect ratio.
- */
+
+Key settings available in the inspector:
+
+* **Animation** – Choose the animation to embed. The picker displays generated thumbnails where available.
+* **Width / Height** – Override the exported dimensions using pixel or percentage values.
+* **Minimum Height** – Provide a fallback (e.g., `480px`, `60vh`, `80%`) to prevent responsive documents from collapsing.
+* **Responsive** – Scale the animation to fill the container width.
+* **Auto Height** – Enable the bundled HypeAutoHeight helper to calculate proportional height at runtime.
+* **Embed Mode** – Switch between inline (`div`) and `iframe` containers.
  
 = Can I still use shortcodes? =
 
 Yes, the plugin fully supports the `[hypeanimations_anim]` shortcode for embedding animations. You can also transform shortcodes into blocks using the block editor. Additionally, to use the Gutenberg block, simply search for "Tumult Hype Animation" in the block library, select it, and configure its settings to choose an animation and customize its dimensions. This provides a more visual and user-friendly way to embed animations.
+
+== Known Limitations ==
+
+* Shortcode-to-block conversion is manual for now. Use the Gutenberg transform or insert the block to migrate existing content.
+* Live preview inside the block editor displays the export thumbnail rather than a full runtime render.
+* Width and height inputs currently accept free-form strings; validation guidance is planned for a future update.
+* Large animation catalogs may load more slowly in the selector—pagination and lazy loading are on the roadmap.
 
 == Screenshots ==
 

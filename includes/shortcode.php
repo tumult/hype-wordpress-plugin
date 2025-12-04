@@ -13,6 +13,7 @@ function hypeanimations_anim($args){
 	// Handle optional parameters with defaults
 	$custom_width = isset($args['width']) ? $args['width'] : null;
 	$custom_height = isset($args['height']) ? $args['height'] : null;
+	$min_height = isset($args['min_height']) ? $args['min_height'] : null;
 	$is_responsive = isset($args['responsive']) ? filter_var($args['responsive'], FILTER_VALIDATE_BOOLEAN) : false;
 	
 	// Handle auto_height parameter - it can be used with or without a value
@@ -25,6 +26,16 @@ function hypeanimations_anim($args){
 	} else if (array_key_exists('auto_height', $args)) {
 		// This handles the case where auto_height is present but has no value
 		$auto_height = true;
+	}
+
+	// Sanitize the provided min height value, allowing common CSS units
+	if ($min_height !== null) {
+		$min_height = trim($min_height);
+		if ($min_height === '') {
+			$min_height = null;
+		} else if (!preg_match('/^\d+(?:\.\d+)?(px|em|rem|vh|vw|vmin|vmax|%)?$/i', $min_height)) {
+			$min_height = null;
+		}
 	}
 	
 	// Handle embedmode parameter to override the container type
@@ -45,6 +56,17 @@ function hypeanimations_anim($args){
 		$type = "";
 		$results->containerclass = sanitize_html_class( $results->containerclass );
 		$decoded = html_entity_decode($results->code);
+		
+		// Check if containerclass already has hype-auto-height - if so, enqueue the script immediately
+		if (strpos($results->containerclass, 'hype-auto-height') !== false) {
+			wp_enqueue_script(
+				'hypeanimations-auto-height',
+				plugins_url('/js/hype-auto-height.js', dirname(__FILE__)),
+				array(),
+				filemtime(plugin_dir_path(dirname(__FILE__)) . '/js/hype-auto-height.js'),
+				false
+			);
+		}
 
 		// Determine actual .hyperesources folder on disk for this animation ID (prefer exact filesystem name)
 		$final_basedir = $upload_dir['basedir'] . '/hypeanimations/' . $actid . '/';
@@ -102,6 +124,9 @@ function hypeanimations_anim($args){
 		if ($custom_height !== null && !$auto_height) {
 			$height = $custom_height;
 		}
+		if ($min_height === null && $custom_height !== null) {
+			$min_height = $custom_height;
+		}
 		
 		// Enhanced dimension extraction from the Hype document
 		$original_width = "";
@@ -135,6 +160,25 @@ function hypeanimations_anim($args){
 			$aspect_ratio = $numeric_height / $numeric_width;
 		}
 		
+		if ($min_height === null) {
+			// Default min-height for proportional layouts
+			if ($auto_height && $numeric_height > 0) {
+				$min_height = $numeric_height . 'px';
+			} elseif ($custom_height === null && $numeric_height > 0 && (strpos((string) $height, '%') !== false || $height === '' || $height === null)) {
+				$min_height = $numeric_height . 'px';
+			}
+		}
+
+		// Ensure auto-height is enabled when no explicit height is provided but we have original dimensions
+		if ($auto_height === false && $custom_height === null && $numeric_height > 0 && strpos((string) $original_height, '%') !== false) {
+			$auto_height = true;
+			if ($min_height === null) {
+				$min_height = $numeric_height . 'px';
+			}
+		}
+
+		$min_height_attr = $min_height !== null ? esc_attr($min_height) : '';
+
 		// Add auto-height class if enabled
 		$container_class = $results->containerclass;
 		if ($auto_height) {
@@ -204,6 +248,9 @@ function hypeanimations_anim($args){
 				
 				// We'll wrap the iframe in a responsive container
 				$wrapper_style = 'position:relative;width:100%;padding-bottom:' . $padding_percent . '%;';
+				if ($min_height_attr !== '') {
+					$wrapper_style .= 'min-height:' . $min_height_attr . ';';
+				}
 				$iframe_style .= 'position:absolute;top:0;left:0;width:100%;height:100%;';
 			}
 			
@@ -225,6 +272,10 @@ function hypeanimations_anim($args){
 			} else {
 				// Last resort default
 				$iframe_style .= 'height:' . $default_height . ';';
+			}
+
+			if ($min_height_attr !== '' && strpos($iframe_style, 'min-height') === false) {
+				$iframe_style .= 'min-height:' . $min_height_attr . ';';
 			}
 			
 			// Build the complete style attribute
@@ -307,9 +358,16 @@ function hypeanimations_anim($args){
 			}
 			
 			// Apply width to the container div if specified and responsive/auto-height is enabled
-			$container_style = '';
+			$container_styles = array();
 			if ($custom_width !== null) {
-				$container_style = ' style="width:' . esc_attr($custom_width) . ';"';
+				$container_styles[] = 'width:' . esc_attr($custom_width);
+			}
+			if ($min_height_attr !== '') {
+				$container_styles[] = 'min-height:' . $min_height_attr;
+			}
+			$container_style = '';
+			if (!empty($container_styles)) {
+				$container_style = ' style="' . implode(';', $container_styles) . ';"';
 			}
 			
 			$output .= '<div' .

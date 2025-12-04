@@ -1,3 +1,60 @@
+/* Lazy Loading Thumbnails */
+.hype-lazy-thumbnail {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.hype-thumbnail-loaded {
+    animation: fadeIn 0.3s ease-in;
+    opacity: 1;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hype Auto-Height Container */
+.hype-auto-height {
+    display: block;
+    width: 100%;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Prevent height collapse on inner Hype containers */
+.hype-auto-height > [id*="hype_container"],
+.hype-auto-height .HYPE_document {
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* Ensure scene divs don't cause overflow issues */
+.hype-auto-height .HYPE_scene {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
 table.dataTable tbody td {
     border-bottom: 1px solid #e7e7e7;
     text-align: center;
@@ -72,6 +129,31 @@ input.updatecontainer:hover {
     transform: scale(0.98);
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
      
+}
+
+/* Set Autoheight Button */
+.set-autoheight-btn {
+    background-color: #ffc107;
+    color: #333;
+    border: 1px solid #e0aa00;
+    padding: 5px 8px;
+    margin-left: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.set-autoheight-btn:hover {
+    background-color: #ffb300;
+    border-color: #d99900;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.4);
+}
+
+.set-autoheight-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 #hypeanimations_wrapper {

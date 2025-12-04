@@ -1,49 +1,78 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "tumult-hype-animations/animation",
   "version": "1.0.0",
   "title": "Tumult Hype Animation",
   "category": "embed",
   "icon": "format-video",
-  "description": "Embed a Tumult Hype animation",
+  "description": "Embed a Tumult Hype animation in your posts and pages",
+  "keywords": ["animation", "hype", "tumult", "embed", "video"],
+  "textdomain": "tumult-hype-animations",
   "supports": {
     "html": false,
-    "align": ["wide", "full"]
+    "align": ["wide", "full"],
+    "anchor": true,
+    "className": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "customClassName": true
   },
-  "textdomain": "tumult-hype-animations",
   "editorScript": "tumult-hype-animations-editor",
   "editorStyle": "tumult-hype-animations-editor",
+  "script": "tumult-hype-animations-view",
+  "style": "tumult-hype-animations-view",
   "attributes": {
     "animationId": {
       "type": "number",
-      "default": 0
+      "default": 0,
+      "description": "The ID of the animation to display"
     },
     "width": {
       "type": "string",
-      "default": ""
+      "default": "",
+      "description": "Custom width for the animation (e.g., 800px, 100%)"
     },
     "height": {
       "type": "string",
-      "default": ""
+      "default": "",
+      "description": "Custom height for the animation (e.g., 600px, 100%)"
+    },
+    "autoHeight": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enable automatic height scaling for responsive animations"
     },
     "embedMode": {
       "type": "string",
-      "default": "div"
+      "default": "div",
+      "enum": ["div", "iframe"],
+      "description": "How to embed the animation (div or iframe)"
+    },
+    "minHeight": {
+      "type": "string",
+      "default": "",
+      "description": "Minimum height for responsive layouts (e.g., 400px, 60vh)"
     },
     "originalWidth": {
       "type": "string",
-      "default": ""
+      "default": "",
+      "description": "Original width from the exported animation"
     },
     "originalHeight": {
       "type": "string",
-      "default": ""
+      "default": "",
+      "description": "Original height from the exported animation"
     }
   },
   "example": {
     "attributes": {
       "animationId": 1,
-      "isResponsive": true
+      "width": "800px",
+      "height": "600px",
+      "embedMode": "div"
     }
   }
 }

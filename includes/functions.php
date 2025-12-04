@@ -109,4 +109,75 @@ function hypeanimations_generate_thumbnail($animation_id) {
     }
 }
 
+/**
+ * Detect if an animation needs autoheight based on its layout dimensions
+ * Returns true if height is 100% or not explicitly set
+ *
+ * @param int $animation_id The animation ID to check
+ * @return bool True if animation would benefit from autoheight, false otherwise
+ */
+function hypeanimations_needs_autoheight($animation_id) {
+    $upload_dir = wp_upload_dir();
+    $index_html_path = $upload_dir['basedir'] . '/hypeanimations/' . $animation_id . '/index.html';
+    
+    if (!file_exists($index_html_path)) {
+        return false;
+    }
+    
+    $index_html_content = file_get_contents($index_html_path);
+    
+    // Look for the Hype container style attribute (multiple possible patterns)
+    // Pattern 1: _hype_container with HYPE_document class
+    if (preg_match('/<div[^>]*id="[^"]*_hype_container"[^>]*class="HYPE_document"[^>]*style="([^"]+)">/i', $index_html_content, $style_match)) {
+        $style_block = $style_match[1];
+        
+        // Check if height is set to 100% (responsive)
+        if (preg_match('/height:\s*100%/i', $style_block)) {
+            return true;
+        }
+        
+        // Check if height attribute is missing entirely (also responsive)
+        if (!preg_match('/height:/i', $style_block)) {
+            return true;
+        }
+    }
+    
+    // Pattern 2: Alternative pattern - HYPE_document first
+    if (preg_match('/<div[^>]*class="HYPE_document"[^>]*id="[^"]*_hype_container"[^>]*style="([^"]+)">/i', $index_html_content, $style_match)) {
+        $style_block = $style_match[1];
+        
+        if (preg_match('/height:\s*100%/i', $style_block)) {
+            return true;
+        }
+        
+        if (!preg_match('/height:/i', $style_block)) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 add_action( 'admin_enqueue_scripts', 'hypeanimations_admin_style' );
+
+/**
+ * Enqueue auto-height script on frontend
+ * This ensures the script is available for any animations with the hype-auto-height class
+ */
+function hypeanimations_enqueue_frontend_assets() {
+    // Only enqueue on frontend, not admin
+    if (is_admin()) {
+        return;
+    }
+    
+    // Check if any posts/pages contain animations with hype-auto-height class
+    // For now, we'll always enqueue it since it's lightweight and doesn't interfere
+    wp_enqueue_script(
+        'hypeanimations-auto-height',
+        plugins_url('/js/hype-auto-height.js', dirname(__FILE__)),
+        array(),
+        filemtime(plugin_dir_path(__FILE__) . '/hype-auto-height.js'),
+        false // Load in header to ensure it's available early
+    );
+}
+add_action('wp_enqueue_scripts', 'hypeanimations_enqueue_frontend_assets');
