@@ -11,9 +11,9 @@ $upload_mb = upload_mb();
  * @return string Formatted size string
  */
 function upload_mb() {
-    $max_upload = parse_size(ini_get('upload_max_filesize'));
-    $max_post = parse_size(ini_get('post_max_size'));
-    $memory_limit = parse_size(ini_get('memory_limit'));
+    $max_upload = parse_size_hypeanimplugin(ini_get('upload_max_filesize'));
+    $max_post = parse_size_hypeanimplugin(ini_get('post_max_size'));
+    $memory_limit = parse_size_hypeanimplugin(ini_get('memory_limit'));
 
     // Check for null values and handle gracefully
     if ($max_upload === null || $max_post === null || $memory_limit === null) {
@@ -38,7 +38,7 @@ function upload_mb() {
  * @param string $size Size string with a unit like '2M' or '512K'
  * @return float Size in bytes
  */
-function parse_size($size) {
+function parse_size_hypeanimplugin($size) {
     $unit = preg_match('/(k|m|g)$/i', $size, $matches) ? strtolower($matches[1]) : '';
     $size = (float) $size;
 
