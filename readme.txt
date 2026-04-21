@@ -26,6 +26,9 @@ For detailed information and support for this plugin, please visit the [support 
 
 == Changelog ==
 
+= 1.9.18 =
+* Avoid function name collision for parse_size 
+
 = 1.9.17 =
 * Animation names can now contain spaces. Avoid foreign characters or symbols.
 * Improve input validation
