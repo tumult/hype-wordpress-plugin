@@ -339,7 +339,7 @@ function hypeanimations_panel() {
 	<h2>'.__( 'Add new animation' , 'tumult-hype-animations' ).'</h2>
 	<div class="hypeanimbloc">'
 	. $upload_instruction_html . '<br><br>
-	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><i class="dashicons-before dashicons-plus-alt"></i> '.__( 'Upload new animation' , 'tumult-hype-animations' ).'</a>
+	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><span class="dashicons dashicons-plus-alt" aria-hidden="true"></span> '.__( 'Upload new animation' , 'tumult-hype-animations' ).'</a>
 	</div>';
 
 	// Verify nonce before delete

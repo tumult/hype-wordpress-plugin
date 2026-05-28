@@ -185,12 +185,17 @@ input.updatecontainer:hover {
     display: inline-block;
 }
 
-#add_hypeanimations_shortcode_button i::before {
-    margin-top: 3px;
+#add_hypeanimations_shortcode_newbutton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
-#add_hypeanimations_shortcode_newbutton i::before {
-    margin-top: 3px;
+#add_hypeanimations_shortcode_newbutton .dashicons {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 1;
 }
 
 #choosehypeanimation {
@@ -240,14 +245,6 @@ input.updatecontainer:hover {
     color: #009933;
     font-weight: bold;
     display: inline-block;
-}
-
-#add_hypeanimations_shortcode_button i::before {
-    margin-top: 3px;
-}
-
-#add_hypeanimations_shortcode_newbutton i::before {
-    margin-top: 3px;
 }
 
 #choosehypeanimation {

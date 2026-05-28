@@ -5,7 +5,7 @@ Contributors: tumultinc, freeben
 Tags: Hype, Animation
 Requires at least: 5.0
 Requires PHP: 7.4
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +24,10 @@ For detailed information and support for this plugin, please visit the [support 
 2. In the Hype Animations section in the Admin dashboard, click Upload New Animation and select your .oam file.
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
-== Changelog ==
+== Changelog ==c
+
+= 1.9.19 = 
+* Improve 'Upload new animation' button icon placement
 
 = 1.9.18 =
 * Avoid function name collision for parse_size 

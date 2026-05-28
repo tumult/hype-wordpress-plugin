@@ -252,3 +252,123 @@ msgstr ""
 #, php-format
 msgid "The file contains disallowed extension(s): %1$s. More info: %2$s"
 msgstr ""
+
+#: build/index.js:1
+msgid "Invalid format. Use number + unit (e.g., 300px, 100%, 50vh)"
+msgstr ""
+
+#: build/index.js:1
+msgid "Numeric value must be a valid number"
+msgstr ""
+
+#: build/index.js:1
+msgid "Value must be greater than 0"
+msgstr ""
+
+#: build/index.js:1
+msgid "⚠️ Very large value (>5000). Consider using smaller dimensions."
+msgstr ""
+
+#: build/index.js:1
+msgid "Animation ID: "
+msgstr ""
+
+#: build/index.js:1
+msgid "Select an animation"
+msgstr ""
+
+#: build/index.js:1
+msgid "No animations found. Please upload animations first."
+msgstr ""
+
+#: build/index.js:1
+msgid "Search animations..."
+msgstr ""
+
+#: build/index.js:1
+msgid "Animation Settings"
+msgstr ""
+
+#: build/index.js:1
+msgid "Width"
+msgstr ""
+
+#: build/index.js:1
+msgid "Enter a value like 300px or 100%"
+msgstr ""
+
+#: build/index.js:1
+msgid "Height"
+msgstr ""
+
+#: build/index.js:1
+msgid "Enter a value in px or %"
+msgstr ""
+
+#: build/index.js:1
+msgid "Minimum Height"
+msgstr ""
+
+#: build/index.js:1
+msgid "Optional fallback height for responsive layouts. Accepts values like 400px, 60vh, or 75%. Leave empty to let the animation calculate automatically."
+msgstr ""
+
+#: build/index.js:1
+msgid "Embed Mode"
+msgstr ""
+
+#: build/index.js:1
+msgid "Div (Default)"
+msgstr ""
+
+#: build/index.js:1
+msgid "Iframe"
+msgstr ""
+
+#: build/index.js:1
+msgid "Choose how to embed the animation"
+msgstr ""
+
+#: build/index.js:1
+msgid "Manage Animations in Dashboard"
+msgstr ""
+
+#: build/index.js:1
+msgid "Animation Information"
+msgstr ""
+
+#: build/index.js:1
+msgid "Original Width: "
+msgstr ""
+
+#: build/index.js:1
+msgid "Original Height: "
+msgstr ""
+
+#: build/index.js:1
+msgid "Minimum Height:"
+msgstr ""
+
+#: build/index.js:1
+msgid "Need help with 100% height animations?"
+msgstr ""
+
+#: build/index.js:1
+msgid "Tumult Hype Animation"
+msgstr ""
+
+#: build/index.js:1
+msgid "Original Size: "
+msgstr ""
+
+#: build/index.js:1
+msgid "Animation Preview"
+msgstr ""
+
+#: build/index.js:1
+msgid "Select a Tumult Hype animation to insert"
+msgstr ""
+
+#: build/index.js:1
+msgid "Click on an animation above to insert it"
+msgstr ""

@@ -1,4 +1,17 @@
 name: Deploy plugin to WordPress.org
+# This workflow deploys the plugin to the WordPress.org plugin repository when a new tag is pushed.
+# The tag must be in the format x.y.z and must match the version specified in includes/variables.php.
+# Release flow:
+# 1. Update version files, readme.txt, and plugin code.
+# 2. Commit those changes.
+# 3. Create an annotated tag on that release commit.
+# 4. Push the commit and tag.
+#
+# Example:
+# git commit -m "Release version 1.9.19 Tested to 7.0"
+# git tag -a 1.9.19 -m "Release version 1.9.19. Tested to 7.0"
+# git push origin master
+# git push origin 1.9.19
 
 on:
   push:
