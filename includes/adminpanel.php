@@ -333,13 +333,12 @@ function hypeanimations_panel() {
 		__( 'Delete this animation? This action is irreversible. Are you sure?', 'tumult-hype-animations' )
 	);
 
-	echo '<br><h1>' . esc_html__('Tumult Hype Animations', 'tumult-hype-animations') . ' (v' . esc_html($version) . ')</h1>
-	<p>&nbsp;</p>
-	</div>
+	echo '<div class="wrap hypeanimations-admin">
+	<h1>' . esc_html__('Tumult Hype Animations', 'tumult-hype-animations') . ' <span class="hypeanimations-version">v' . esc_html($version) . '</span></h1>
 	<h2>'.__( 'Add new animation' , 'tumult-hype-animations' ).'</h2>
 	<div class="hypeanimbloc">'
 	. $upload_instruction_html . '<br><br>
-	<a href="#openModal1" class="button" id="add_hypeanimations_shortcode_newbutton" style="outline: medium none !important; cursor: pointer;" ><span class="dashicons dashicons-plus-alt" aria-hidden="true"></span> '.__( 'Upload new animation' , 'tumult-hype-animations' ).'</a>
+	<a href="#openModal1" class="button button-primary" id="add_hypeanimations_shortcode_newbutton"><span class="dashicons dashicons-plus-alt" aria-hidden="true"></span> '.__( 'Upload new animation' , 'tumult-hype-animations' ).'</a>
 	</div>';
 
 	// Verify nonce before delete
@@ -359,7 +358,7 @@ function hypeanimations_panel() {
 		hyperrmdir($anims_dir . $delete . '/');
 
 		if (!empty($animtitle)) {
-			echo '<p>&nbsp;</p><p><span style="padding:10px;color:#FFF;background:#cc0000;">' . esc_html($animtitle) . ' ' . esc_html__( 'has been deleted.', 'tumult-hype-animations' ) . '</span></p>';
+			echo '<div class="notice notice-warning is-dismissible"><p>' . esc_html($animtitle) . ' ' . esc_html__( 'has been deleted.', 'tumult-hype-animations' ) . '</p></div>';
 		}
 	}
 	$hypeupdated = 0;
@@ -538,14 +537,14 @@ function hypeanimations_panel() {
 			}
 		}
 	}
- echo '<p style="line-height:0px;clear:both">&nbsp;</p>
+ echo '<hr class="wp-header-end">
 	'. ( $hypeupdated > 0
-		? '<p><span style="padding:10px;color:#FFF;background:#009933;">'
+		? '<div class="notice notice-success is-dismissible"><p>'
 			. esc_html( $hypeupdatetd_title ) . ' ' . esc_html__( 'has been updated!', 'tumult-hype-animations' )
-			. '</span></p><p>&nbsp;</p>'
+			. '</p></div>'
 		: '' ) .'
 	<h2>'.__( 'Manage animations' , 'tumult-hype-animations' ).'</h2>
-	<table cellpadding="0" cellspacing="0" id="hypeanimations">
+	<table cellpadding="0" cellspacing="0" id="hypeanimations" class="wp-list-table widefat fixed striped">
 		<thead>
 			<tr>
 				<th>Animation</th>
@@ -583,13 +582,13 @@ function hypeanimations_panel() {
 					<div ' . ($results->container == 'none' ? 'style="display:none;"' : '') . '>
 							 <input onkeypress="return preventDot(event);" type="text" name="class" spellcheck="false" placeholder="Myclass" style="width:130px;" value="' . esc_attr($results->containerclass) . '">
 					</div>
-					<input type="button" value="' . __( 'Update', 'tumult-hype-animations' ) . '" class="updatecontainer" data-id="' . esc_attr(intval($results->id)) . '">
+					<input type="button" value="' . __( 'Update', 'tumult-hype-animations' ) . '" class="button button-secondary updatecontainer" data-id="' . esc_attr(intval($results->id)) . '">
 				</td>
 				<td>' . ($results->updated == 0 ? '<em>' . __( 'No data', 'tumult-hype-animations' ) . '</em>' : date('Y/m/d', $results->updated) . '<br>' . date('H:i:s', $results->updated)) . '</td>
 				<td>
-					<a href="javascript:void(0)" id="' . esc_attr(intval($results->id)) . '" class="animcopy">' . __( 'Copy Code', 'tumult-hype-animations' ) . '</a>
-					<a href="admin.php?page=hypeanimations_panel&update=' . intval($results->id) . '" class="animupdate" data-id="' . esc_attr(intval($results->id)) . '">' . __( 'Replace OAM', 'tumult-hype-animations' ) . '</a>
-					<a href="admin.php?page=hypeanimations_panel&delete=' . intval($results->id) . '&_wpnonce=' . esc_attr($delete_nonce) . '" class="animdelete" data-title="' . esc_attr($results->nom) . '">' . __( 'Delete', 'tumult-hype-animations' ) . '</a>
+					<a href="javascript:void(0)" id="' . esc_attr(intval($results->id)) . '" class="button button-small animcopy">' . __( 'Copy Code', 'tumult-hype-animations' ) . '</a>
+					<a href="admin.php?page=hypeanimations_panel&update=' . intval($results->id) . '" class="button button-small animupdate" data-id="' . esc_attr(intval($results->id)) . '">' . __( 'Replace OAM', 'tumult-hype-animations' ) . '</a>
+					<a href="admin.php?page=hypeanimations_panel&delete=' . intval($results->id) . '&_wpnonce=' . esc_attr($delete_nonce) . '" class="button button-small button-link-delete animdelete" data-title="' . esc_attr($results->nom) . '">' . __( 'Delete', 'tumult-hype-animations' ) . '</a>
 				</td>
 			</tr>';
 		}
@@ -680,7 +679,7 @@ function hypeanimations_panel() {
 		jQuery(".animupdate").click(function(e){
 			e.preventDefault();
 			dataid=jQuery(this).attr("data-id");
-			jQuery(this).parent().html(\'<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"><input type="hidden" name="dataid" value="\'+dataid+\'">'.wp_nonce_field( "protect_content", "upload_check_oam" ).'<input type="file" name="updatefile"> <input type="submit" name="btn_submit_update" value="'.__( 'Update file' , 'tumult-hype-animations' ).'" /></form>\');
+			jQuery(this).parent().html(\'<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"><input type="hidden" name="dataid" value="\'+dataid+\'">'.wp_nonce_field( "protect_content", "upload_check_oam" ).'<input type="file" name="updatefile"> <input type="submit" class="button button-secondary" name="btn_submit_update" value="'.__( 'Update file' , 'tumult-hype-animations' ).'" /></form>\');
 		});
 
 		// Localized confirmation templates for deleting an animation
@@ -703,7 +702,7 @@ function hypeanimations_panel() {
 		});
 		jQuery("#hypeanimations").DataTable({
 			responsive: true,
-			"order": [[ 3, "desc" ]],
+			"order": [[ 4, "desc" ]],
 			"columns": [
 				{"name": "Animation", "orderable": "true"},
 				{"name": "Shortcode", "orderable": "true"},
@@ -760,7 +759,8 @@ function hypeanimations_panel() {
 			textarea.closest("tr").find(".updatecontainer").click(); 
 		}, 1000);
 		jQuery("textarea[name=notes]").on("keyup", doneTyping);
-		</script>';
+		</script>
+		</div>';
 		}
 
 		add_action('wp_ajax_hypeanimations_updatecontainer', 'hypeanimations_updatecontainer');

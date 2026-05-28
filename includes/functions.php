@@ -23,17 +23,24 @@ function hyperrmdir($dir) {
     rmdir($dir);
   }
 }
-function hypeanimations_admin_style() {
-  wp_register_style('hypeanimations_admin_css', plugins_url( '../css/hypeanimations.css', __FILE__ ), false, '1.9.11' );
-  wp_enqueue_style('hypeanimations_admin_css');
-  wp_register_style('dataTables_admin_css', plugins_url( '../css/jquery.dataTables.min.css', __FILE__ ), false, '1.0.2' );
+function hypeanimations_admin_style($hook_suffix) {
+  if ('toplevel_page_hypeanimations_panel' !== $hook_suffix) {
+    return;
+  }
+
+  global $version;
+  $asset_version = isset($version) ? $version : '1.9.19';
+
+  wp_register_style('dataTables_admin_css', plugins_url( '../css/jquery.dataTables.min.css', __FILE__ ), array(), '1.0.2' );
   wp_enqueue_style('dataTables_admin_css');
-  wp_register_style('custom.modified,jquery-ui_admin_css', plugins_url( '../css/jquery-ui.css', __FILE__ ), false, '1.0.1' );
+  wp_register_style('custom.modified,jquery-ui_admin_css', plugins_url( '../css/jquery-ui.css', __FILE__ ), array(), '1.0.1' );
   wp_enqueue_style('custom.modified,jquery-ui_admin_css');
-  wp_register_style('custom.modified,dropzone_css', plugins_url( '../css/dropzone.css', __FILE__ ), false, '1.0.3' );
+  wp_register_style('custom.modified,dropzone_css', plugins_url( '../css/dropzone.css', __FILE__ ), array(), '1.0.3' );
   wp_enqueue_style('custom.modified,dropzone_css');
-  wp_enqueue_script( 'jquery_datatable_hype', plugins_url( '../js/jquery.dataTables.min.js', __FILE__ ), false, '1.0' );
-  wp_enqueue_script( 'dropzone_hype', plugins_url( '../js/dropzone.js', __FILE__ ), false, '1.0.0' );
+  wp_register_style('hypeanimations_admin_css', plugins_url( '../css/hypeanimations.css', __FILE__ ), array( 'dataTables_admin_css', 'custom.modified,jquery-ui_admin_css', 'custom.modified,dropzone_css' ), $asset_version );
+  wp_enqueue_style('hypeanimations_admin_css');
+  wp_enqueue_script( 'jquery_datatable_hype', plugins_url( '../js/jquery.dataTables.min.js', __FILE__ ), array( 'jquery' ), '1.0' );
+  wp_enqueue_script( 'dropzone_hype', plugins_url( '../js/dropzone.js', __FILE__ ), array(), '1.0.0' );
 }
 
 add_action( 'admin_enqueue_scripts', 'hypeanimations_admin_style' );

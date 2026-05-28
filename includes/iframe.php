@@ -12,6 +12,10 @@ function check_hypeanimation_iframe() {
 
 		if ($just_hypeanimations > 0) {
 			$animationdata = $wpdb->get_row($wpdb->prepare("SELECT code, nom FROM " . $hypeanimations_table_name . " WHERE id=%d LIMIT 1", ceil($just_hypeanimations)), OBJECT);
+			if (!$animationdata) {
+				status_header(404);
+				exit();
+			}
 			$animcode = $animationdata->code;
 			$animcode = str_replace("https://", "//", html_entity_decode($animcode));
 			$animcode = str_replace("http://", "//", html_entity_decode($animcode));
@@ -22,7 +26,7 @@ function check_hypeanimation_iframe() {
 					  <head>
 						<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 						<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
-						<title>' . sanitize_text_field($animationname) . '</title>
+						<title>' . esc_html(sanitize_text_field($animationname)) . '</title>
 						<style>
 							html {
 								height:100%;

@@ -24,9 +24,10 @@ For detailed information and support for this plugin, please visit the [support 
 2. In the Hype Animations section in the Admin dashboard, click Upload New Animation and select your .oam file.
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
-== Changelog ==c
+== Changelog ==
 
 = 1.9.19 = 
+* WordPress 7.0 compatibility updates for the Modern admin theme, iframe output, and PHP 7.4 metadata.
 * Improve 'Upload new animation' button icon placement
 
 = 1.9.18 =

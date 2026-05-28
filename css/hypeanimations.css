@@ -48,7 +48,7 @@ input.updatecontainer {
     font-family: 'Montserrat', sans-serif;
     padding: 5px 12px;
     font-size: 14px;
-    color: #black;
+    color: #1d2327;
     border-radius: 5px;
     box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.0001);
     cursor: pointer;
@@ -60,7 +60,7 @@ input.updatecontainer:hover {
     border: 1px solid #434343;
     background-color:#ffffff;
     text-decoration: none;
-    color: #white;
+    color: #1d2327;
     border-radius: 5px;
     box-shadow: 0px 0px 28px 1px rgba(0, 0, 0, 0.0001);
     cursor: pointer;
@@ -392,7 +392,7 @@ textarea.copydata {
 .shortcodeval {
     font-family: 'Courier New', Courier, monospace;
     font-size: 12px;
-    font-style: bold;
+    font-weight: bold;
 }
 
 span.copied {
@@ -431,4 +431,139 @@ h3.popup-heading {
     color: black;
     margin-top: 10px;
     padding-top: 10px;
+}
+
+.hypeanimations-admin {
+    max-width: 1600px;
+}
+
+.hypeanimations-admin .hypeanimations-version {
+    color: #646970;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.hypeanimations-admin .hypeanimbloc {
+    display: block;
+    box-sizing: border-box;
+    width: min(100%, 720px);
+    margin: 8px 0 24px;
+    padding: 16px;
+    color: #1d2327;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+}
+
+.hypeanimations-admin table.dataTable {
+    margin-top: 12px;
+}
+
+.hypeanimations-admin #hypeanimations>thead>tr {
+    color: #1d2327;
+    background: #f6f7f7;
+}
+
+.hypeanimations-admin #hypeanimations th,
+.hypeanimations-admin #hypeanimations td {
+    vertical-align: middle;
+}
+
+.hypeanimations-admin #hypeanimations tbody td {
+    text-align: left;
+}
+
+.hypeanimations-admin #hypeanimations .shortcodeval {
+    width: 100%;
+    max-width: 260px;
+    text-align: left;
+}
+
+.hypeanimations-admin .animcopy,
+.hypeanimations-admin .animupdate,
+.hypeanimations-admin .animdelete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    margin: 2px 3px 2px 0;
+    padding: 0 10px;
+    letter-spacing: 0;
+    text-transform: none;
+    transform: none;
+}
+
+.hypeanimations-admin input.updatecontainer.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    min-height: 30px;
+    margin: 3px 0 0;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 1.1em;
+}
+
+.hypeanimations-admin .animcopy,
+.hypeanimations-admin .animupdate {
+    color: #fff;
+}
+
+.hypeanimations-admin .animcopy {
+    background: #009976;
+    border-color: #009976;
+}
+
+.hypeanimations-admin .animcopy:hover,
+.hypeanimations-admin .animcopy:focus {
+    color: #34363a;
+    background: #eee;
+    border-color: #009976;
+}
+
+.hypeanimations-admin .animupdate {
+    background: #0099cc;
+    border-color: #0099cc;
+}
+
+.hypeanimations-admin .animupdate:hover,
+.hypeanimations-admin .animupdate:focus {
+    color: #0099cc;
+    background: #fff;
+    border-color: #0099cc;
+}
+
+.hypeanimations-admin .animdelete {
+    color: #f00;
+    background: transparent;
+    border-color: #f00;
+}
+
+.hypeanimations-admin .animdelete:hover,
+.hypeanimations-admin .animdelete:focus {
+    color: #fff;
+    background: #f00;
+    border-color: #f00;
+}
+
+.toplevel_page_hypeanimations_panel #wpbody-content {
+    padding: 20px;
+}
+
+@media screen and (max-width: 782px) {
+    .toplevel_page_hypeanimations_panel #wpbody-content {
+        padding: 10px;
+    }
+
+    .hypeanimations-admin .hypeanimbloc {
+        padding: 12px;
+    }
+
+    .hypeanimations-admin .animcopy,
+    .hypeanimations-admin .animupdate,
+    .hypeanimations-admin .animdelete {
+        width: 100%;
+        margin-right: 0;
+    }
 }

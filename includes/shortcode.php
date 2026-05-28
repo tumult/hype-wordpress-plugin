@@ -8,13 +8,18 @@ function hypeanimations_anim($args){
 	$uploadfinaldir = $upload_dir['baseurl'].'/hypeanimations/';
 	$output='';
 
-	$result = $wpdb->get_results($wpdb->prepare("SELECT code,slug,container,containerclass FROM $hypeanimations_table_name WHERE id=%d",$actid));
+	$result = $wpdb->get_results($wpdb->prepare("SELECT code,nom,slug,container,containerclass FROM $hypeanimations_table_name WHERE id=%d",$actid));
 
 	foreach( $result as $results ) {
 		$width = "";
 		$height = "";
 		$type = "";
 		$results->containerclass = sanitize_html_class( $results->containerclass );
+		$iframe_title = sprintf(
+			/* translators: %s: animation title. */
+			__( 'Tumult Hype animation: %s', 'tumult-hype-animations' ),
+			$results->nom
+		);
 		$decoded = html_entity_decode($results->code);
 
 		// Determine actual .hyperesources folder on disk for this animation ID (prefer exact filesystem name)
@@ -82,7 +87,7 @@ function hypeanimations_anim($args){
 		if ($results->container == 'iframe' && file_exists($index_fs_path)) {
 			// Use public upload URL for iframe src
 			$upload_baseurl = rtrim($upload_dir['baseurl'], '/') . '/hypeanimations/' . $actid . '/index.html';
-			$_src = esc_url_raw($upload_baseurl);
+			$_src = esc_url($upload_baseurl);
 			$iframe_attr_parts = array();
 			if ('' !== trim($temp)) {
 				$iframe_attr_parts[] = trim($temp);
@@ -90,6 +95,8 @@ function hypeanimations_anim($args){
 			if ($results->containerclass != '') {
 				$iframe_attr_parts[] = 'class="' . $results->containerclass . '"';
 			}
+			$iframe_attr_parts[] = 'title="' . esc_attr($iframe_title) . '"';
+			$iframe_attr_parts[] = 'loading="lazy"';
 			$iframe_attrs = '';
 			if (!empty($iframe_attr_parts)) {
 				$iframe_attrs = ' ' . implode(' ', $iframe_attr_parts);
@@ -104,11 +111,13 @@ function hypeanimations_anim($args){
 			if ($results->containerclass != '') {
 				$iframe_attr_parts[] = 'class="' . $results->containerclass . '"';
 			}
+			$iframe_attr_parts[] = 'title="' . esc_attr($iframe_title) . '"';
+			$iframe_attr_parts[] = 'loading="lazy"';
 			$iframe_attrs = '';
 			if (!empty($iframe_attr_parts)) {
 				$iframe_attrs = ' ' . implode(' ', $iframe_attr_parts);
 			}
-			$output .= '<iframe' . ($iframe_attrs !== '' ? $iframe_attrs : '') . ' src="' . esc_url_raw(site_url()) . '?just_hypeanimations=' . $actid . '">';
+			$output .= '<iframe' . ($iframe_attrs !== '' ? $iframe_attrs : '') . ' src="' . esc_url(site_url('?just_hypeanimations=' . $actid)) . '">';
 		}
 		if ($results->container!='iframe') { $output.=$code; }
 		if ($results->container=='div') { $output.='</div>'; }
