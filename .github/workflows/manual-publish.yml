@@ -1,0 +1,52 @@
+name: Manual WordPress.org SVN Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version to publish, for example 1.9.19. Must match includes/variables.php and hypeanimations.php."
+        required: true
+        type: string
+      replace_existing_tag:
+        description: "Delete and recreate the existing WordPress.org SVN tag for this version."
+        required: true
+        default: false
+        type: boolean
+      dry_run:
+        description: "Prepare and show SVN changes without committing them."
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: wordpress-plugin-manual-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Manual publish to WordPress.org SVN
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Install SVN tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync subversion
+
+      - name: Publish to WordPress.org SVN
+        env:
+          VERSION: ${{ inputs.version }}
+          REPLACE_EXISTING_TAG: ${{ inputs.replace_existing_tag }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: tumult-hype-animations
+          ASSETS_DIR: assets
+        run: .github/scripts/manual-wordpress-org-publish.sh
