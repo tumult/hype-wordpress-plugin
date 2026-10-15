@@ -221,7 +221,7 @@ function add_hypeanimations_shortcode_newbutton_footer() {
 	global $hypeanimations_table_name;
 	global $wpdb;
 	global $upload_mb;
-	$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam' );
+	$nonce_files = wp_nonce_field( 'protect_content', 'upload_check_oam', true, false );
 	// Getting ini configuration for 'upload_max_filesize'
 	$upload_max_filesize = ini_get('upload_max_filesize');
 	//echo 'upload_max_filesize: ' . $upload_max_filesize . "<br/>";
@@ -724,7 +724,7 @@ function hypeanimations_panel() {
 		jQuery(".animupdate").click(function(e){
 			e.preventDefault();
 			dataid=jQuery(this).attr("data-id");
-			jQuery(this).parent().html(\'<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"><input type="hidden" name="dataid" value="\'+dataid+\'">'.wp_nonce_field( "protect_content", "upload_check_oam" ).'<input type="file" name="updatefile"> <input type="submit" class="button button-secondary" name="btn_submit_update" value="'.__( 'Update file' , 'tumult-hype-animations' ).'" /></form>\');
+			jQuery(this).parent().html(\'<form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data"><input type="hidden" name="dataid" value="\'+dataid+\'">'.wp_nonce_field( "protect_content", "upload_check_oam", true, false ).'<input type="file" name="updatefile"> <input type="submit" class="button button-secondary" name="btn_submit_update" value="'.__( 'Update file' , 'tumult-hype-animations' ).'" /></form>\');
 		});
 
 		// Localized confirmation templates for deleting an animation
@@ -848,28 +848,6 @@ function hypeanimations_panel() {
     if (isset($response)) {
         echo wp_json_encode($response);
     }
-    exit();
-}
-
-add_action('wp_ajax_hypeanimations_getanimid', 'hypeanimations_getanimid');
-function hypeanimations_getanimid(){
-    if (!current_user_can('edit_posts')) {
-	    wp_die(esc_html__('Unauthorized access', 'tumult-hype-animations'));
-    }
-    
-    global $wpdb;
-    global $hypeanimations_table_name;
-    $response = array();
-	if(!empty($_POST['dataid']) && !empty($_POST['container'])){
-		$post_dataid = intval($_POST['dataid']);
-		$post_container = sanitize_text_field($_POST['container']);
-		$post_containerclass = sanitize_text_field($_POST['containerclass']);
-		$update = $wpdb->query($wpdb->prepare("UPDATE {$hypeanimations_table_name} SET container=%s, containerclass=%s WHERE id=%d", $post_container, $post_containerclass, $post_dataid));
-        $response['response'] = "ok";
-    }
-    else { $response['response'] = "error"; }
-    header( "Content-Type: application/json" );
-    if (isset($response)) { echo wp_json_encode($response); }
     exit();
 }
 
