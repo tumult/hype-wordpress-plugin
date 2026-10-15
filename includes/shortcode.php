@@ -4,8 +4,8 @@ function hypeanimations_anim($args){
 	global $wpdb;
 	global $hypeanimations_table_name;
 	$args = shortcode_atts(array('id' => 0), $args, 'hypeanimations_anim');
-	$actid = absint($args['id']);
-	if (!$actid) {
+	$actid = intval($args['id']);
+	if ($actid <= 0) {
 		return '';
 	}
 	$upload_dir = wp_upload_dir();

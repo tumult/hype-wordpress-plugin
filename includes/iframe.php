@@ -1,11 +1,11 @@
 <?php
-add_action('template_redirect','check_hypeanimation_iframe');
+add_action('template_redirect','check_hypeanimation_iframe', 1);
 function check_hypeanimation_iframe() {
 	global $wpdb;
 	global $hypeanimations_table_name;
 	// Arrays (?just_hypeanimations[]=1) are ignored instead of cast to 1.
-	$just_hypeanimations = (isset($_GET['just_hypeanimations']) && !is_array($_GET['just_hypeanimations'])) ? absint($_GET['just_hypeanimations']) : 0;
-	if (!$just_hypeanimations) {
+	$just_hypeanimations = (isset($_GET['just_hypeanimations']) && !is_array($_GET['just_hypeanimations'])) ? intval($_GET['just_hypeanimations']) : 0;
+	if ($just_hypeanimations <= 0) {
 		return;
 	}
 
@@ -19,6 +19,7 @@ function check_hypeanimation_iframe() {
 	$animcode = str_replace("http://", "//", html_entity_decode($animcode));
 	$animationname = $animationdata->nom;
 
+	status_header(200);
 	header('Content-Type: text/html; charset=utf-8');
 	header('X-Robots-Tag: noindex');
 	echo '<!DOCTYPE html>
