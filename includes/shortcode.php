@@ -3,7 +3,11 @@ add_shortcode( 'hypeanimations_anim', 'hypeanimations_anim');
 function hypeanimations_anim($args){
 	global $wpdb;
 	global $hypeanimations_table_name;
-	$actid = intval($args['id']);
+	$args = shortcode_atts(array('id' => 0), $args, 'hypeanimations_anim');
+	$actid = absint($args['id']);
+	if (!$actid) {
+		return '';
+	}
 	$upload_dir = wp_upload_dir();
 	$uploadfinaldir = $upload_dir['baseurl'].'/hypeanimations/';
 	$output='';

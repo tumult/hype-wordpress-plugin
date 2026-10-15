@@ -1,27 +1,27 @@
 <?php
-add_action('wp_loaded','check_hypeanimation_iframe');
+add_action('template_redirect','check_hypeanimation_iframe');
 function check_hypeanimation_iframe() {
 	global $wpdb;
 	global $hypeanimations_table_name;
-	$arr_params = array();
-	$queryURL = parse_url(html_entity_decode(esc_url(add_query_arg($arr_params))));
+	// Arrays (?just_hypeanimations[]=1) are ignored instead of cast to 1.
+	$just_hypeanimations = (isset($_GET['just_hypeanimations']) && !is_array($_GET['just_hypeanimations'])) ? absint($_GET['just_hypeanimations']) : 0;
+	if (!$just_hypeanimations) {
+		return;
+	}
 
-	if (isset($queryURL['query'])) {
-		parse_str($queryURL['query'], $getVar);
-		$just_hypeanimations = isset($getVar['just_hypeanimations']) ? $getVar['just_hypeanimations'] : 0;
+	$animationdata = $wpdb->get_row($wpdb->prepare("SELECT code, nom FROM " . $hypeanimations_table_name . " WHERE id=%d LIMIT 1", $just_hypeanimations), OBJECT);
+	if (!$animationdata) {
+		status_header(404);
+		exit();
+	}
+	$animcode = $animationdata->code;
+	$animcode = str_replace("https://", "//", html_entity_decode($animcode));
+	$animcode = str_replace("http://", "//", html_entity_decode($animcode));
+	$animationname = $animationdata->nom;
 
-		if ($just_hypeanimations > 0) {
-			$animationdata = $wpdb->get_row($wpdb->prepare("SELECT code, nom FROM " . $hypeanimations_table_name . " WHERE id=%d LIMIT 1", ceil($just_hypeanimations)), OBJECT);
-			if (!$animationdata) {
-				status_header(404);
-				exit();
-			}
-			$animcode = $animationdata->code;
-			$animcode = str_replace("https://", "//", html_entity_decode($animcode));
-			$animcode = str_replace("http://", "//", html_entity_decode($animcode));
-			$animationname = $animationdata->nom;
-
-			echo '<!DOCTYPE html>
+	header('Content-Type: text/html; charset=utf-8');
+	header('X-Robots-Tag: noindex');
+	echo '<!DOCTYPE html>
 					<html>
 					  <head>
 						<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,7 +44,5 @@ function check_hypeanimation_iframe() {
 					  </body>
 					</html>
 				';
-			exit();
-		}
-	}
+	exit();
 }
