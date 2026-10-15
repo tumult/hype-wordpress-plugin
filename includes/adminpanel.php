@@ -354,8 +354,11 @@ function hypeanimations_panel() {
 		}
 
 		$animtitle = $wpdb->get_var($wpdb->prepare("SELECT nom FROM {$hypeanimations_table_name} WHERE id=%d", $delete));
-		$delete = $wpdb->query($wpdb->prepare("DELETE FROM {$hypeanimations_table_name} WHERE id=%d", $delete));
-		hyperrmdir($anims_dir . $delete . '/');
+		$deleted_rows = $wpdb->query($wpdb->prepare("DELETE FROM {$hypeanimations_table_name} WHERE id=%d", $delete));
+		// Only remove the folder of the row that was actually deleted
+		if (1 === $deleted_rows) {
+			hyperrmdir($anims_dir . $delete . '/');
+		}
 
 		if (!empty($animtitle)) {
 			echo '<div class="notice notice-warning is-dismissible"><p>' . esc_html($animtitle) . ' ' . esc_html__( 'has been deleted.', 'tumult-hype-animations' ) . '</p></div>';
@@ -562,9 +565,12 @@ function hypeanimations_panel() {
 			// Generate a unique nonce for each delete action
 			$delete_nonce = wp_create_nonce('delete-animation_'.$results->id);
 			//$delete_nonce = wp_create_nonce('update-note_'.$results->id);
+			// Report-only: flag animations whose upload folder is missing or empty
+			$anim_files = glob($anims_dir . intval($results->id) . '/*');
+			$files_missing = empty($anim_files) ? '<br><span class="description" style="color:#b32d2e;">' . esc_html__( 'Files missing: please replace the OAM.', 'tumult-hype-animations' ) . '</span>' : '';
 
 			echo '<tr>
-				<td>' . esc_html($results->nom) . '</td>
+				<td>' . esc_html($results->nom) . $files_missing . '</td>
 				<td>
 					<input class="shortcodeval" type="text" spellcheck="false" value="[hypeanimations_anim id=&quot;' . intval($results->id) . '&quot;]"></input>
 				</td>
