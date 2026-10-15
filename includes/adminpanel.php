@@ -5,6 +5,12 @@ function hypeanimations_panel_upload() {
     $upload_dir = wp_upload_dir();
     $anims_dir = $upload_dir['basedir'] . '/hypeanimations/';
 
+	// Only handle uploads posted to this plugin's admin page; ignore other plugins' file fields
+	$page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+	if ('hypeanimations_panel' !== $page || !isset($_SERVER['REQUEST_METHOD']) || 'POST' !== $_SERVER['REQUEST_METHOD']) {
+		return;
+	}
+
 	if (isset($_FILES['file'])) {
 		// Require a logged-in user with upload capability for uploads
 		if (!is_user_logged_in() || !current_user_can('upload_files')) {
@@ -50,7 +56,8 @@ function hypeanimations_panel_upload() {
         }
         $uploadfinaldir = $anims_dir;
         $unzipfile = unzip_file($uploadfile, $uploaddir);
-        if ($unzipfile) {
+        // unzip_file() returns a WP_Error (truthy) on failure
+        if ($unzipfile && !is_wp_error($unzipfile)) {
             if (file_exists($uploadfile)) {
                 wp_delete_file($uploadfile);
             }
@@ -67,7 +74,9 @@ function hypeanimations_panel_upload() {
             
             if (is_wp_error($discovered)) {
                 error_log("Failed to discover OAM structure: " . $discovered->get_error_message());
-                return $discovered;
+                delete_temp_files($uploaddir);
+                echo esc_html($discovered->get_error_message());
+                exit();
             }
 
 			// Ensure folder name is just a basename (defend in-depth against unexpected path chars)
@@ -118,6 +127,7 @@ function hypeanimations_panel_upload() {
 					if (!@mkdir($target_hyperesources, 0755, true)) {
 						error_log('[hypeanimations] Failed to move hyperesources from ' . $source_hyperesources . ' to ' . $target_hyperesources);
 						echo esc_html__('Failed to move resource files.', 'tumult-hype-animations');
+						delete_temp_files($uploaddir);
 						exit();
 					}
 					$items = scandir($source_hyperesources);
@@ -190,6 +200,7 @@ function hypeanimations_panel_upload() {
             exit();
         } else {
             echo esc_html__('Failed to unzip the file.', 'tumult-hype-animations');
+            wp_delete_file($uploadfile);
             delete_temp_files($uploaddir);
             exit();
         }
@@ -371,7 +382,19 @@ function hypeanimations_panel() {
 		if ( ! wp_verify_nonce( $nonce, 'protect_content' ) ) {
 			wp_die(esc_html__('Security check failed', 'tumult-hype-animations'));
 		}
-		
+
+		// Same capability as the initial upload
+		if (!current_user_can('upload_files')) {
+			wp_die(esc_html__('Unauthorized access', 'tumult-hype-animations'));
+		}
+
+		// Only replace an animation that exists, before touching the filesystem
+		$actdataid = absint($_POST['dataid']);
+		$anim_exists = $wpdb->get_var($wpdb->prepare("SELECT id FROM {$hypeanimations_table_name} WHERE id=%d", $actdataid));
+		if (empty($anim_exists)) {
+			wp_die(esc_html__('Animation not found.', 'tumult-hype-animations'));
+		}
+
 		$allowed_types = array(
 			'oam' => 'application/octet-stream'
 		);
@@ -397,7 +420,6 @@ function hypeanimations_panel() {
 		else {
 		
 			// Allow update uploads with spaces. Server-side sanitization and ZIP checks will validate contents.
-			$actdataid = ceil($_POST['dataid']);
 			$uploaddir = $anims_dir . 'tmp/';
 			$uploadfinaldir = $anims_dir;
 				if (!file_exists($uploaddir)) {
