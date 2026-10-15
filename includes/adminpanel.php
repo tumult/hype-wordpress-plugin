@@ -50,10 +50,9 @@ function hypeanimations_panel_upload() {
 			}
  
         WP_Filesystem();
-        $uploaddir = $anims_dir . 'tmp/';
-        if (!file_exists($uploaddir)) {
-            wp_mkdir_p($uploaddir);
-        }
+        // Unique per-request temp dir so concurrent uploads don't collide or pick up leftovers
+        $uploaddir = $anims_dir . 'tmp/' . wp_generate_uuid4() . '/';
+        wp_mkdir_p($uploaddir);
         $uploadfinaldir = $anims_dir;
         $unzipfile = unzip_file($uploadfile, $uploaddir);
         // unzip_file() returns a WP_Error (truthy) on failure
@@ -102,8 +101,11 @@ function hypeanimations_panel_upload() {
 
             // Create final storage directory
             $final_dir = $uploadfinaldir . $lastid . '/';
-            if (!is_dir($final_dir)) {
-                wp_mkdir_p($final_dir);
+            if (!wp_mkdir_p($final_dir)) {
+                error_log('[hypeanimations] Failed to create directory: ' . $final_dir);
+                echo esc_html__('Failed to move resource files.', 'tumult-hype-animations');
+                delete_temp_files($uploaddir);
+                exit();
             }
 
             // Set file permissions
@@ -118,36 +120,18 @@ function hypeanimations_panel_upload() {
 			$source_hyperesources = $assets_path . $hyperesources_folder;
 			$target_hyperesources = $final_dir . $hyperesources_folder . '/';
 
-			// Attempt a single rename; if that fails, fall back to a simple recursive copy
+			// Attempt a single rename; if that fails, fall back to a recursive copy
 			if (!@rename($source_hyperesources, $target_hyperesources)) {
 				// If target already exists (unlikely), remove the source. Otherwise attempt recursive copy
 				if (is_dir($target_hyperesources)) {
 					hyperrmdir($source_hyperesources);
 				} else {
-					if (!@mkdir($target_hyperesources, 0755, true)) {
+					// Only remove the source once the copy has fully succeeded
+					if (!wp_mkdir_p($target_hyperesources) || true !== copy_dir($source_hyperesources, $target_hyperesources)) {
 						error_log('[hypeanimations] Failed to move hyperesources from ' . $source_hyperesources . ' to ' . $target_hyperesources);
 						echo esc_html__('Failed to move resource files.', 'tumult-hype-animations');
 						delete_temp_files($uploaddir);
 						exit();
-					}
-					$items = scandir($source_hyperesources);
-					foreach ($items as $it) {
-						if ($it === '.' || $it === '..') continue;
-						if (is_dir($source_hyperesources . $it)) {
-							$srcDir = $source_hyperesources . $it . '/';
-							$dstDir = $target_hyperesources . $it . '/';
-							$itFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::SELF_FIRST);
-							foreach ($itFiles as $f) {
-								$destPath = $dstDir . substr($f->getPathname(), strlen($srcDir));
-								if ($f->isDir()) {
-									@mkdir($destPath, 0755, true);
-								} else {
-									copy($f->getPathname(), $destPath);
-								}
-							}
-						} else {
-							copy($source_hyperesources . $it, $target_hyperesources . $it);
-						}
 					}
 					hyperrmdir($source_hyperesources);
 				}
@@ -188,7 +172,12 @@ function hypeanimations_panel_upload() {
             );
 
             // Save processed HTML file
-            file_put_contents($final_dir . 'index.html', $html_content);
+            if (false === file_put_contents($final_dir . 'index.html', $html_content)) {
+                error_log('[hypeanimations] Failed to write ' . $final_dir . 'index.html');
+                echo esc_html__('Failed to save the animation HTML file.', 'tumult-hype-animations');
+                delete_temp_files($uploaddir);
+                exit();
+            }
 
             // Cleanup temporary files
             delete_temp_files($uploaddir);
@@ -420,11 +409,11 @@ function hypeanimations_panel() {
 		else {
 		
 			// Allow update uploads with spaces. Server-side sanitization and ZIP checks will validate contents.
-			$uploaddir = $anims_dir . 'tmp/';
+			// Unique per-request temp dir so concurrent uploads don't collide or pick up leftovers
+			$tmp_id = wp_generate_uuid4();
+			$uploaddir = $anims_dir . 'tmp/' . $tmp_id . '/';
 			$uploadfinaldir = $anims_dir;
-				if (!file_exists($uploaddir)) {
-					wp_mkdir_p($uploaddir);
-				}
+				wp_mkdir_p($uploaddir);
 			$uploadfile = $uploaddir . basename(sanitize_file_name($_FILES['updatefile']['name']));
 			if (move_uploaded_file($_FILES['updatefile']['tmp_name'], $uploadfile)) {
 				WP_Filesystem();
@@ -433,6 +422,12 @@ function hypeanimations_panel() {
 				$unzipfile = unzip_file($uploadfile, $uploaddir);
 				if (file_exists($uploadfile)) {
 					wp_delete_file($uploadfile);
+				}
+				// unzip_file() returns a WP_Error (truthy) on failure; stop before touching the live animation
+				if (!$unzipfile || is_wp_error($unzipfile)) {
+					delete_temp_files($uploaddir);
+					echo esc_html__('Failed to unzip the file.', 'tumult-hype-animations');
+					exit();
 				}
 				if (file_exists($uploaddir . '/config.xml')) {
 					wp_delete_file($uploaddir . '/config.xml');
@@ -457,64 +452,22 @@ function hypeanimations_panel() {
 				$html_base_upd = $discovered_upd['html_base'];
 
 				// Ensure final directory exists
-				if (!is_dir($uploadfinaldir . $actdataid . '/')) {
-					wp_mkdir_p($uploadfinaldir . $actdataid . '/');
+				$anim_dir_upd = $uploadfinaldir . $actdataid . '/';
+				if (!wp_mkdir_p($anim_dir_upd)) {
+					error_log('[hypeanimations] Failed to create directory: ' . $anim_dir_upd);
+					echo esc_html__('Failed to move resource files.', 'tumult-hype-animations');
+					delete_temp_files($uploaddir);
+					exit();
 				}
-
-				// Move the discovered hyperesources folder to the final location using the discovered folder name
-				$source = $assets_path_upd . $hyperesources_folder_upd;
-				$target = $uploadfinaldir . $actdataid . '/' . $hyperesources_folder_upd . '/';
-
-				// Move the discovered hyperesources folder to the final location using the discovered folder name
-				$source = $assets_path_upd . $hyperesources_folder_upd;
-				$target = $uploadfinaldir . $actdataid . '/' . $hyperesources_folder_upd . '/';
-
-				// If target exists, remove it first to ensure a clean replace
-				if (file_exists($target)) {
-					hyperrmdir($target);
-				}
-
-				// Attempt a single rename; if that fails, fall back to a simple recursive copy
-				if (!@rename($source, $target)) {
-					if (!@mkdir($target, 0755, true)) {
-						error_log('[hypeanimations] Failed to create target directory: ' . $target);
-						echo esc_html__('Failed to move resource files.', 'tumult-hype-animations');
-						delete_temp_files($uploaddir);
-						exit();
-					}
-					$items = scandir($source);
-					foreach ($items as $it) {
-						if ($it === '.' || $it === '..') continue;
-						if (is_dir($source . $it)) {
-							// Recursively copy directories (simple recursive copy)
-							$srcDir = $source . $it . '/';
-							$dstDir = $target . $it . '/';
-							$itFiles = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($srcDir, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::SELF_FIRST);
-							foreach ($itFiles as $f) {
-								$destPath = $dstDir . substr($f->getPathname(), strlen($srcDir));
-								if ($f->isDir()) {
-									@mkdir($destPath, 0755, true);
-								} else {
-									copy($f->getPathname(), $destPath);
-								}
-							}
-						} else {
-							copy($source . $it, $target . $it);
-						}
-					}
-					// Remove source after copying
-					hyperrmdir($source);
-				}
-
-				// Update database record name
-				$wpdb->update(
-					$hypeanimations_table_name,
-					array('nom' => $original_name, 'updated' => time()),
-					array('id' => $actdataid)
-				);
 
 				// Replace resource references in HTML with the discovered folder name (URL-encoded)
 				$html_content = file_get_contents($assets_path_upd . $html_file_upd);
+				if (false === $html_content) {
+					error_log('[hypeanimations] Failed to read ' . $assets_path_upd . $html_file_upd);
+					echo esc_html__('Failed to save the animation HTML file.', 'tumult-hype-animations');
+					delete_temp_files($uploaddir);
+					exit();
+				}
 				$original_resource_ref = $html_base_upd . '.hyperesources';
 				$web_resource_url = $upload_dir['baseurl'] . '/hypeanimations/' . $actdataid . '/' . rawurlencode($hyperesources_folder_upd);
 				$html_content = str_replace($original_resource_ref, $web_resource_url, $html_content);
@@ -536,14 +489,77 @@ function hypeanimations_panel() {
 					}
 				}
 
+				// Build the new files next to the live ones, then swap, so a failure never leaves the animation broken
+				$source = $assets_path_upd . $hyperesources_folder_upd;
+				$target = $anim_dir_upd . $hyperesources_folder_upd;
+				$staging = $target . '.new-' . $tmp_id;
+				$backup = $target . '.old-' . $tmp_id;
+				$index_file = $anim_dir_upd . 'index.html';
+				$index_new = $index_file . '.new-' . $tmp_id;
+
+				// Attempt a single rename; if that fails, fall back to a recursive copy (source is only removed with the temp dir)
+				if (!@rename($source, $staging)) {
+					if (!wp_mkdir_p($staging) || true !== copy_dir($source, $staging)) {
+						error_log('[hypeanimations] Failed to move hyperesources from ' . $source . ' to ' . $staging);
+						echo esc_html__('Failed to move resource files.', 'tumult-hype-animations');
+						hyperrmdir($staging);
+						delete_temp_files($uploaddir);
+						exit();
+					}
+				}
+
+				// Iframe embeds serve index.html, so write the processed HTML there (any existing <Name>.html is left in place)
+				if (false === file_put_contents($index_new, $html_content)) {
+					error_log('[hypeanimations] Failed to write ' . $index_new);
+					echo esc_html__('Failed to save the animation HTML file.', 'tumult-hype-animations');
+					hyperrmdir($staging);
+					delete_temp_files($uploaddir);
+					exit();
+				}
+
+				// Swap: move the live folder aside, put the new one in place, restore the old one on failure
+				$has_old = is_dir($target);
+				if (($has_old && !@rename($target, $backup)) || !@rename($staging, $target)) {
+					if ($has_old && is_dir($backup)) {
+						@rename($backup, $target);
+					}
+					error_log('[hypeanimations] Failed to swap in new hyperesources at ' . $target);
+					echo esc_html__('Failed to move resource files.', 'tumult-hype-animations');
+					hyperrmdir($staging);
+					wp_delete_file($index_new);
+					delete_temp_files($uploaddir);
+					exit();
+				}
+				if (!@rename($index_new, $index_file)) {
+					// Put the old resources back so index.html and the folder stay in sync
+					hyperrmdir($target);
+					if ($has_old) {
+						@rename($backup, $target);
+					}
+					error_log('[hypeanimations] Failed to write ' . $index_file);
+					echo esc_html__('Failed to save the animation HTML file.', 'tumult-hype-animations');
+					wp_delete_file($index_new);
+					delete_temp_files($uploaddir);
+					exit();
+				}
+
+				// The new files are in place; only now remove the old folder
+				if ($has_old) {
+					hyperrmdir($backup);
+				}
+
+				// Update database record name
+				$wpdb->update(
+					$hypeanimations_table_name,
+					array('nom' => $original_name, 'updated' => time()),
+					array('id' => $actdataid)
+				);
+
 				$wpdb->update(
 					$hypeanimations_table_name,
 					array('code' => addslashes(htmlentities($animation_container)), 'updated' => time()),
 					array('id' => $actdataid)
 				);
-
-				// Save processed HTML to final directory
-				file_put_contents($uploadfinaldir . $actdataid . '/' . $html_file_upd, $html_content);
 
 				// Cleanup temporary files
 				if (file_exists($uploaddir . 'Assets/' . $html_file_upd)) {
@@ -558,6 +574,7 @@ function hypeanimations_panel() {
 				$hypeupdatetd_title = $original_name;
 			}
 			else {
+				delete_temp_files($uploaddir);
 				wp_die( __( 'Sorry, there was an issue replacing your oam. Check the logs.', 'tumult-hype-animations' ), 401 );
 			}
 		}
