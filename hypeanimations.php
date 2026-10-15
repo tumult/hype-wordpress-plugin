@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Tumult Hype Animations
-Version: 1.9.19
+Version: 1.9.20
 Requires at least: 5.0
 Requires PHP: 7.4
 Tested up to: 7.0

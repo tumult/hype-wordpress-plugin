@@ -26,6 +26,16 @@ For detailed information and support for this plugin, please visit the [support 
 
 == Changelog ==
 
+= 1.9.20 =
+* Fixes a bug where deleting an animation could remove the files of a different animation.
+* Replacing an animation now also updates embeds that use the iframe option.
+* Replacing an animation no longer risks losing the live animation if the upload fails.
+* Fixes PHP 8 errors for empty shortcodes and malformed iframe URLs.
+* Upload handling no longer interferes with other forms in the WordPress admin.
+* Hidden upload form fields are no longer printed on every admin page.
+* Removes an unused AJAX handler.
+* The animations table now flags animations whose files are missing.
+
 = 1.9.19 = 
 * WordPress 7.0 compatibility updates for the Modern admin theme, iframe output, and PHP 7.4 metadata.
 * Improve 'Upload new animation' button icon placement
@@ -136,6 +146,11 @@ For detailed information and support for this plugin, please visit the [support 
 
 = 1.0 =
 * First public distribution version.
+
+== Upgrade Notice ==
+
+= 1.9.20 =
+Recommended for all users: fixes a bug where deleting an animation could remove another animation's files.
 
 == Screenshots ==
 
