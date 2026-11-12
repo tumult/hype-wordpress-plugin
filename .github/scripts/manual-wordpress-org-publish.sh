@@ -63,7 +63,7 @@ fi
 rsync -rc --delete "${rsync_excludes[@]}" ./ "$export_dir/"
 
 svn checkout --depth immediates "$SVN_URL" "$svn_dir" "${svn_auth[@]}"
-svn update "$svn_dir/trunk" "$svn_dir/assets" --depth infinity "${svn_auth[@]}"
+svn update "$svn_dir/trunk" "$svn_dir/assets" --set-depth infinity "${svn_auth[@]}"
 svn update "$svn_dir/tags" --depth immediates "${svn_auth[@]}"
 
 rsync -rc --delete --exclude='.svn/' "$export_dir/" "$svn_dir/trunk/"
