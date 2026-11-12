@@ -156,3 +156,8 @@ Recommended for all users: fixes a bug where deleting an animation could remove 
 
 1. The plugin displays a list of recently-uploaded animations with controls to update, delete, or copy the embed code to embed elsewhere.
 2. Clicking 'Copy Code' in the actions list displays the full embed code to your uploaded Tumult Hype document for usage outside of the Wordpress loop or your Wordpress site.
+
+== Frequently Asked Questions ==
+= Where do I report security bugs found in this plugin? =
+
+Please report security bugs found in the source code of the Tumult Hype Animations plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/9e5fbeb7-1fa9-499b-a648-a7db808ba30b). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
