@@ -7,7 +7,7 @@
       "command": "bash",
       "args": [
         "-lc",
-        "for f in \"languages\"/*.po; do msgfmt -o \"${f%.po}.mo\" \"$f\" && echo \"Compiled: ${f##*/}\" || echo \"Failed: ${f##*/}\"; done"
+        "fail=0; for f in \"languages\"/*.po; do if msgfmt -c -o \"${f%.po}.mo\" \"$f\"; then echo \"Compiled: ${f##*/}\"; else echo \"Failed: ${f##*/}\"; fail=1; fi; done; exit $fail"
       ],
       "group": {
         "kind": "build",
