@@ -25,28 +25,28 @@ msgstr ""
 msgid "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 msgstr "<a href=\"https://tumult.com\" target=\"_blank\">Tumult</a>"
 
-#: includes/adminpanel.php:577
+#: includes/adminpanel.php:621
 msgid "Add a container around the animation:"
 msgstr "Aggiungi un contenitore attorno all'animazione:"
 
-#: includes/adminpanel.php:339
+#: includes/adminpanel.php:338
 msgid "Add new animation"
 msgstr "Aggiungi nuova animazione"
 
-#: includes/adminpanel.php:718
-#: includes/adminpanel.php:719
+#: includes/adminpanel.php:762
+#: includes/adminpanel.php:763
 msgid "animations"
 msgstr "animazioni"
 
-#: includes/adminpanel.php:582
+#: includes/adminpanel.php:626
 msgid "Container CSS class"
 msgstr "Classe CSS contenitore"
 
-#: includes/adminpanel.php:590
+#: includes/adminpanel.php:634
 msgid "Copy Code"
 msgstr "Copia il codice"
 
-#: includes/adminpanel.php:592
+#: includes/adminpanel.php:636
 msgid "Delete"
 msgstr "Eliminare"
 
@@ -69,33 +69,36 @@ msgstr "Rilascia il file .OAM o clicca qui per caricarlo<br>(Dimensione massima 
 msgid "Easily embed your Tumult Hype animations using a shortcode into posts and pages."
 msgstr "Incorpora facilmente le tue animazioni Tumult Hype nei post e nelle pagine utilizzando uno shortcode."
 
-#: includes/adminpanel.php:676
+#: includes/adminpanel.php:720
 msgid "Error, please try again!"
 msgstr "Errore, riprova!"
 
-#: includes/adminpanel.php:30
+#: includes/adminpanel.php:36
 msgid "Error: "
 msgstr "Errore:"
 
-#: includes/adminpanel.php:120
-#: includes/adminpanel.php:457
+#: includes/adminpanel.php:106
+#: includes/adminpanel.php:132
+#: includes/adminpanel.php:458
+#: includes/adminpanel.php:504
+#: includes/adminpanel.php:527
 msgid "Failed to move resource files."
 msgstr "Impossibile spostare i file di risorse."
 
-#: includes/adminpanel.php:192
+#: includes/adminpanel.php:191
+#: includes/adminpanel.php:429
 msgid "Failed to unzip the file."
 msgstr "Impossibile decomprimere il file."
 
-#: includes/adminpanel.php:725
+#: includes/adminpanel.php:769
 msgid "First"
 msgstr "Primo"
 
-#: includes/adminpanel.php:362
+#: includes/adminpanel.php:364
 msgid "has been deleted."
 msgstr "è stato eliminato."
 
-#: includes/adminpanel.php:544
-#, fuzzy
+#: includes/adminpanel.php:585
 msgid "has been updated!"
 msgstr "è stato aggiornato!"
 
@@ -108,126 +111,126 @@ msgstr "https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074"
 msgid "Insert the following shortcode where you want to display the animation"
 msgstr "Inserisci il seguente shortcode nel punto in cui vuoi visualizzare l'animazione"
 
-#: includes/adminpanel.php:838
+#: includes/adminpanel.php:861
 msgid "Invalid nonce."
 msgstr "Nonce non valido."
 
-#: includes/adminpanel.php:728
+#: includes/adminpanel.php:772
 msgid "Last"
 msgstr "Scorso"
 
-#: includes/adminpanel.php:555
+#: includes/adminpanel.php:596
 msgid "Last file update"
 msgstr "Ultimo aggiornamento del file"
 
-#: includes/adminpanel.php:721
+#: includes/adminpanel.php:765
 msgid "Loading..."
 msgstr "Caricamento..."
 
-#: includes/adminpanel.php:547
+#: includes/adminpanel.php:588
 msgid "Manage animations"
 msgstr "Gestisci le animazioni"
 
-#: includes/adminpanel.php:727
+#: includes/adminpanel.php:771
 msgid "Next"
 msgstr "Prossimo"
 
-#: includes/adminpanel.php:723
+#: includes/adminpanel.php:767
 msgid "No animation has been added"
 msgstr "Nessuna animazione è stata aggiunta"
 
-#: includes/adminpanel.php:722
+#: includes/adminpanel.php:766
 msgid "No animation has been found"
 msgstr "Nessuna animazione trovata"
 
-#: includes/adminpanel.php:720
+#: includes/adminpanel.php:764
 msgid "No animations found."
 msgstr "Nessuna animazione trovata."
 
-#: includes/adminpanel.php:588
+#: includes/adminpanel.php:632
 msgid "No data"
 msgstr "Nessun dato"
 
-#: includes/adminpanel.php:719
+#: includes/adminpanel.php:763
 msgid "of"
 msgstr "Di"
 
-#: includes/adminpanel.php:384
+#: includes/adminpanel.php:398
 msgid "Only .oam files are allowed for upload."
 msgstr "È consentito caricare solo file .oam."
 
-#: includes/adminpanel.php:726
+#: includes/adminpanel.php:770
 msgid "Previous"
 msgstr "Precedente"
 
-#: includes/adminpanel.php:716
+#: includes/adminpanel.php:760
 msgid "Processing..."
 msgstr "Elaborazione in corso..."
 
-#: includes/adminpanel.php:591
+#: includes/adminpanel.php:635
 msgid "Replace OAM"
 msgstr "Sostituisci OAM"
 
-#: includes/adminpanel.php:717
+#: includes/adminpanel.php:761
 msgid "Search:"
 msgstr "Ricerca:"
 
-#: includes/adminpanel.php:16
-#: includes/adminpanel.php:354
-#: includes/adminpanel.php:370
+#: includes/adminpanel.php:22
+#: includes/adminpanel.php:353
+#: includes/adminpanel.php:372
 msgid "Security check failed"
 msgstr "Controllo di sicurezza fallito"
 
-#: includes/adminpanel.php:718
+#: includes/adminpanel.php:762
 msgid "Show"
 msgstr "Spettacolo"
 
-#: includes/adminpanel.php:719
+#: includes/adminpanel.php:763
 msgid "Showing"
 msgstr "Mostrando"
 
-#: includes/adminpanel.php:537
+#: includes/adminpanel.php:578
 msgid "Sorry, there was an issue replacing your oam. Check the logs."
 msgstr "Spiacenti, si è verificato un problema durante la sostituzione dell'OAM. Controlla i log."
 
-#: includes/adminpanel.php:719
+#: includes/adminpanel.php:763
 msgid "to"
 msgstr "A"
 
 #. Plugin Name of the plugin
 #: hypeanimations.php
-#: includes/adminpanel.php:336
+#: includes/adminpanel.php:337
 msgid "Tumult Hype Animations"
 msgstr "Tumult Hype Animations"
 
-#: includes/adminpanel.php:11
-#: includes/adminpanel.php:350
-#: includes/adminpanel.php:812
-#: includes/adminpanel.php:834
+#: includes/adminpanel.php:17
+#: includes/adminpanel.php:349
+#: includes/adminpanel.php:377
+#: includes/adminpanel.php:857
 msgid "Unauthorized access"
 msgstr "Accesso non autorizzato"
 
-#: includes/adminpanel.php:586
+#: includes/adminpanel.php:630
 msgid "Update"
 msgstr "Aggiornamento"
 
-#: includes/adminpanel.php:683
+#: includes/adminpanel.php:727
 msgid "Update file"
 msgstr "Aggiorna file"
 
-#: includes/adminpanel.php:660
-#: includes/adminpanel.php:667
+#: includes/adminpanel.php:704
+#: includes/adminpanel.php:711
 msgid "Updated!"
 msgstr "Aggiornato!"
 
 #. translators: 1: URL to the Tumult Hype product page, 2: URL to the Tumult support forum article.
 #: includes/adminpanel.php:319
-#, fuzzy,php-format
+#, php-format
 msgid "Upload an .OAM file exported by <a href=\"%1$s\">Tumult Hype</a> and a shortcode will be generated which you can insert in posts and pages. <a href=\"%2$s\" target=\"_blank\">Need help?</a>"
 msgstr "Carica un file .OAM esportato da <a href=\"%1$s\">Tumult Hype</a> e verrà generato uno shortcode che potrai inserire nei post e nelle pagine. <a href=\"%2$s\" target=\"_blank\">Hai bisogno di aiuto?</a>"
 
 #: includes/adminpanel.php:278
-#: includes/adminpanel.php:342
+#: includes/adminpanel.php:341
 msgid "Upload new animation"
 msgstr "Carica una nuova animazione"
 
@@ -235,140 +238,53 @@ msgstr "Carica una nuova animazione"
 #: includes/reload-translations.php:53
 #, php-format
 msgid "Translations reloaded from: %s"
-msgstr ""
+msgstr "Traduzioni ricaricate da: %s"
 
 #: includes/reload-translations.php:55
 msgid "Translations reload attempted but failed (no .mo found)"
-msgstr ""
+msgstr "Tentativo di ricaricare le traduzioni non riuscito (nessun file .mo trovato)"
 
 #. translators: 1: disallowed extension, 2: file name containing the extension.
-#: includes/adminpanel.php:1066
+#: includes/adminpanel.php:1109
 #, php-format
 msgid "Disallowed file extension detected: %1$s in file %2$s"
-msgstr ""
+msgstr "Rilevata estensione di file non consentita: %1$s nel file %2$s"
 
 #. translators: 1: list of blocked file extensions, 2: URL to learn more.
-#: includes/adminpanel.php:1087
+#: includes/adminpanel.php:1141
 #, php-format
 msgid "The file contains disallowed extension(s): %1$s. More info: %2$s"
-msgstr ""
+msgstr "Il file contiene estensioni non consentite: %1$s. Maggiori informazioni: %2$s"
 
-#: build/index.js:1
-msgid "Invalid format. Use number + unit (e.g., 300px, 100%, 50vh)"
-msgstr ""
+#: includes/adminpanel.php:177
+#: includes/adminpanel.php:467
+#: includes/adminpanel.php:514
+#: includes/adminpanel.php:540
+msgid "Failed to save the animation HTML file."
+msgstr "Impossibile salvare il file HTML dell’animazione."
 
-#: build/index.js:1
-msgid "Numeric value must be a valid number"
-msgstr ""
+#: includes/adminpanel.php:384
+msgid "Animation not found."
+msgstr "Animazione non trovata."
 
-#: build/index.js:1
-msgid "Value must be greater than 0"
-msgstr ""
+#: includes/adminpanel.php:609
+msgid "Files missing: please replace the OAM."
+msgstr "File mancanti: sostituisci il file OAM."
 
-#: build/index.js:1
-msgid "⚠️ Very large value (>5000). Consider using smaller dimensions."
-msgstr ""
+#. translators: 1: file name inside the OAM, 2: uncompressed size of that file.
+#: includes/adminpanel.php:1081
+#, php-format
+msgid "%1$s is too large to extract (%2$s uncompressed). Make the file smaller or raise the PHP memory limit."
+msgstr "%1$s è troppo grande per essere estratto (%2$s non compresso). Riduci le dimensioni del file o aumenta il limite di memoria di PHP."
 
-#: build/index.js:1
-msgid "Animation ID: "
-msgstr ""
+#. translators: %s: total uncompressed size of the OAM file.
+#: includes/adminpanel.php:1124
+#, php-format
+msgid "The file is too large when uncompressed (%s)."
+msgstr "Il file è troppo grande una volta decompresso (%s)."
 
-#: build/index.js:1
-msgid "Select an animation"
-msgstr ""
-
-#: build/index.js:1
-msgid "No animations found. Please upload animations first."
-msgstr ""
-
-#: build/index.js:1
-msgid "Search animations..."
-msgstr ""
-
-#: build/index.js:1
-msgid "Animation Settings"
-msgstr ""
-
-#: build/index.js:1
-msgid "Width"
-msgstr ""
-
-#: build/index.js:1
-msgid "Enter a value like 300px or 100%"
-msgstr ""
-
-#: build/index.js:1
-msgid "Height"
-msgstr ""
-
-#: build/index.js:1
-msgid "Enter a value in px or %"
-msgstr ""
-
-#: build/index.js:1
-msgid "Minimum Height"
-msgstr ""
-
-#: build/index.js:1
-msgid "Optional fallback height for responsive layouts. Accepts values like 400px, 60vh, or 75%. Leave empty to let the animation calculate automatically."
-msgstr ""
-
-#: build/index.js:1
-msgid "Embed Mode"
-msgstr ""
-
-#: build/index.js:1
-msgid "Div (Default)"
-msgstr ""
-
-#: build/index.js:1
-msgid "Iframe"
-msgstr ""
-
-#: build/index.js:1
-msgid "Choose how to embed the animation"
-msgstr ""
-
-#: build/index.js:1
-msgid "Manage Animations in Dashboard"
-msgstr ""
-
-#: build/index.js:1
-msgid "Animation Information"
-msgstr ""
-
-#: build/index.js:1
-msgid "Original Width: "
-msgstr ""
-
-#: build/index.js:1
-msgid "Original Height: "
-msgstr ""
-
-#: build/index.js:1
-msgid "Minimum Height:"
-msgstr ""
-
-#: build/index.js:1
-msgid "Need help with 100% height animations?"
-msgstr ""
-
-#: build/index.js:1
-msgid "Tumult Hype Animation"
-msgstr ""
-
-#: build/index.js:1
-msgid "Original Size: "
-msgstr ""
-
-#: build/index.js:1
-msgid "Animation Preview"
-msgstr ""
-
-#: build/index.js:1
-msgid "Select a Tumult Hype animation to insert"
-msgstr ""
-
-#: build/index.js:1
-msgid "Click on an animation above to insert it"
-msgstr ""
+#. translators: %s: animation title.
+#: includes/shortcode.php:24
+#, php-format
+msgid "Tumult Hype animation: %s"
+msgstr "Animazione Tumult Hype: %s"

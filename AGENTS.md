@@ -50,7 +50,7 @@ When you render through WP-CLI (`wp eval`), watch for two traps:
 | `hypeanimations.php` | Plugin header, loads the text domain, then `include`s every file in `includes/` |
 | `includes/variables.php` | Globals: `$version`, `$hypeanimations_db_version`, `$hypeanimations_table_name` (`{prefix}hypeanimations`), upload-size helpers |
 | `includes/init.php` | Table schema via `dbDelta()`. Runs on `plugins_loaded` when the stored DB version is < 1.9.14 |
-| `includes/functions.php` | Admin menu (`publish_posts` capability), `hyperrmdir()`, admin asset enqueue (scoped to `toplevel_page_hypeanimations_panel`) |
+| `includes/functions.php` | Admin menu (`unfiltered_html` capability), `hyperrmdir()`, admin asset enqueue (scoped to `toplevel_page_hypeanimations_panel`) |
 | `includes/adminpanel.php` | Most of the logic: new upload, replace, delete, admin page markup + inline JS, AJAX handlers, ZIP validation, OAM structure discovery |
 | `includes/shortcode.php` | `[hypeanimations_anim id="N"]` front-end rendering. Ids `<= 0` or missing return `''` |
 | `includes/iframe.php` | Public `?just_hypeanimations=N` endpoint on `template_redirect` (priority 1) that serves a full HTML page (iframe fallback) |
@@ -80,12 +80,14 @@ and the iframe endpoint. If you change the encoding, update all three readers.
 1. Dropzone posts `file` to `admin.php?page=hypeanimations_panel`. It accepts `.oam`,
    `maxFilesize` 2000 MB, timeout 180 s. The `accept` callback allows any name. The handler
    returns immediately unless `page=hypeanimations_panel` and the request is a POST.
-2. The handler requires `is_user_logged_in()`, `current_user_can('upload_files')`, and nonce
+2. The handler requires `is_user_logged_in()`, `upload_files`, `unfiltered_html`, and nonce
    field `upload_check_oam` for action `protect_content`.
 3. `wp_handle_upload()` with an `oam => application/octet-stream` mime override.
 4. `is_zip_clean()` runs next. It checks that the file is readable and non-empty and that it
    starts with the `PK\003\004` magic bytes. It also checks that `ZipArchive` opens it and that
-   it holds 1000 files or fewer. Each entry must have no `..` and no absolute or drive path. The
+   it holds 1000 files or fewer. The declared uncompressed sizes must total no more than
+   100x the archive size and 2000 MB, and no entry may exceed half the free PHP memory, because
+   `unzip_file()` reads each entry whole into memory. Each entry must have no `..` and no absolute or drive path. The
    archive needs an `Assets/*.html` file, and every extension must be on the allowlist. On a
    `WP_Error`, the handler echoes the message, deletes the upload, and exits.
 5. `unzip_file()` extracts to `tmp/<uuid>/`. The handler then deletes the zip and any root `config.xml`.
@@ -103,7 +105,7 @@ and the iframe endpoint. If you change the encoding, update all three readers.
     Exception: a failure after step 7 leaves the new DB row in place.
 
 The replace flow lives inside `hypeanimations_panel()`. It is triggered by `$_FILES['updatefile']`
-plus `dataid`. Before touching any files it checks the nonce, `upload_files`, and that the row
+plus `dataid`. Before touching any files it checks the nonce, `upload_files`, `unfiltered_html`, and that the row
 exists. It uses `move_uploaded_file()` instead of `wp_handle_upload()`. The replacement is
 non-destructive:
 - It builds the new `.hyperesources` as `<name>.hyperesources.new-<uuid>` and the new HTML as
@@ -117,7 +119,9 @@ non-destructive:
 Keep these patterns. Add them to anything new.
 
 - Check capability and nonce before any mutation:
-  - Upload and replace: `upload_files` plus `protect_content` / `upload_check_oam`.
+  - Upload and replace: `upload_files` and `unfiltered_html`, plus `protect_content` / `upload_check_oam`.
+    OAMs contain JavaScript that runs on the site origin, so never let a role without
+    `unfiltered_html` add or replace one.
   - Delete (`?delete=N`): `edit_posts` plus `delete-animation_<id>`.
   - `wp_ajax_hypeanimations_updatecontainer`: `edit_posts` plus `hypeanimations_updatecontainer` (`_wpnonce`).
   - `wp_ajax_hypeanimations_getcontent`: `edit_posts` plus `hypeanimations_getcontent_nonce` (`nonce`).
@@ -139,8 +143,9 @@ Keep these patterns. Add them to anything new.
   `plugins_loaded` version check.
 - `get_flat_allowlist()` caches its result in a `static`. The first call happens at include
   time with the built-in list, so the `tumult_hype_animations_whitelist` filter has no effect.
-- Capabilities are inconsistent: the menu uses `publish_posts`, upload and replace use
-  `upload_files`, delete and AJAX use `edit_posts`.
+- Capabilities are inconsistent: the menu (so the whole admin page) uses `unfiltered_html`,
+  upload and replace also check `upload_files`, delete and AJAX use `edit_posts`. On multisite
+  only Super Admins have `unfiltered_html`, and `DISALLOW_UNFILTERED_HTML` locks everyone out.
 - `uninstall.php` deletes every animation (table, option, files) and cleans only the current
   site on multisite.
 - Snippet extraction stops at the first line containing `</div>`.

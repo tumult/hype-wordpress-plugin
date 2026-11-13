@@ -3,7 +3,7 @@ function hypeanimations_menu() {
     add_menu_page(
       'Hype Animations',
       'Hype Animations',
-      'publish_posts',
+      'unfiltered_html',
       'hypeanimations_panel',
       'hypeanimations_panel',
       'dashicons-format-video'
@@ -29,7 +29,7 @@ function hypeanimations_admin_style($hook_suffix) {
   }
 
   global $version;
-  $asset_version = isset($version) ? $version : '1.9.20';
+  $asset_version = isset($version) ? $version : '1.9.21';
 
   wp_register_style('dataTables_admin_css', plugins_url( '../css/jquery.dataTables.min.css', __FILE__ ), array(), '1.0.2' );
   wp_enqueue_style('dataTables_admin_css');

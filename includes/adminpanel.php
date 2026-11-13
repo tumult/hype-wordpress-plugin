@@ -12,8 +12,8 @@ function hypeanimations_panel_upload() {
 	}
 
 	if (isset($_FILES['file'])) {
-		// Require a logged-in user with upload capability for uploads
-		if (!is_user_logged_in() || !current_user_can('upload_files')) {
+		// OAM exports contain JavaScript, so uploads also need unfiltered_html (Editors and Admins; Super Admins on multisite)
+		if (!is_user_logged_in() || !current_user_can('upload_files') || !current_user_can('unfiltered_html')) {
 			wp_die(esc_html__('Unauthorized access', 'tumult-hype-animations'));
 		}
 
@@ -372,8 +372,8 @@ function hypeanimations_panel() {
 			wp_die(esc_html__('Security check failed', 'tumult-hype-animations'));
 		}
 
-		// Same capability as the initial upload
-		if (!current_user_can('upload_files')) {
+		// Same capabilities as the initial upload
+		if (!current_user_can('upload_files') || !current_user_can('unfiltered_html')) {
 			wp_die(esc_html__('Unauthorized access', 'tumult-hype-animations'));
 		}
 
@@ -1058,6 +1058,13 @@ function hypeanimations_getcontent(){
 							return new WP_Error('too_many_files', "ZIP contains too many files");
 					}
 	
+					// Zip-bomb guard: unzip_file() reads each entry whole into memory (at most its declared size) and writes it to disk
+					$expanded_size = 0;
+					$max_expanded_size = min(2000 * MB_IN_BYTES, 100 * filesize($zipFilePath));
+					$memory_limit = wp_convert_hr_to_bytes(ini_get('memory_limit'));
+					// Halved because unzip_file() holds two entries in memory while it moves to the next one
+					$max_entry_size = $memory_limit > 0 ? ($memory_limit - memory_get_usage()) / 2 : $max_expanded_size;
+
 					// Track required OAM structure
 					$has_required_files = false;
 	
@@ -1066,6 +1073,19 @@ function hypeanimations_getcontent(){
 							$filename = $zip->getNameIndex($i);
 							$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 							
+							if ($stat['size'] > $max_entry_size) {
+								return new WP_Error(
+									'entry_too_large',
+									sprintf(
+										/* translators: 1: file name inside the OAM, 2: uncompressed size of that file. */
+										__( '%1$s is too large to extract (%2$s uncompressed). Make the file smaller or raise the PHP memory limit.', 'tumult-hype-animations' ),
+										$filename,
+										size_format($stat['size'])
+									)
+								);
+							}
+							$expanded_size += $stat['size'];
+
 			    // Check for directory traversal attempts and absolute paths
 			    if (strpos($filename, '..') !== false) {
 				    return new WP_Error('path_traversal', "Invalid file path detected");
@@ -1095,6 +1115,17 @@ function hypeanimations_getcontent(){
 					}
 	
 					$zip->close();
+
+					if ($expanded_size > $max_expanded_size) {
+						return new WP_Error(
+							'too_large_uncompressed',
+							sprintf(
+								/* translators: %s: total uncompressed size of the OAM file. */
+								__( 'The file is too large when uncompressed (%s).', 'tumult-hype-animations' ),
+								size_format($expanded_size)
+							)
+						);
+					}
 
 					// Verify OAM structure
 					if (!$has_required_files) {

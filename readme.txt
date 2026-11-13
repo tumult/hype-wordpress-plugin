@@ -16,15 +16,22 @@ Update URI: https://wordpress.org/plugins/tumult-hype-animations/
 
 This plugin allows you to upload your Tumult Hype animations to your Wordpress site to easily embed them using shortcodes on posts and pages. You can also copy the embed code to use your Wordpress site as a Tumult Hype animation host.
 
+Only Editors and Administrators can upload and manage animations, because Tumult Hype animations contain JavaScript. On multisite networks, only Super Admins can. Authors and Contributors can still embed an existing animation by adding its shortcode to a post.
+
 For detailed information and support for this plugin, please visit the [support forum](https://forums.tumult.com/t/hype-animations-wordpress-plugin/11074). If your animation doesn't show up at all, please first read the following [responsive design tips](https://forums.tumult.com/t/tumult-hype-animations-wordpress-plugin/11074#responsive-document-tips-2) on the forums. 
 
 == Usage ==
 
 1. In Tumult Hype Professional, Select File > Export as HTML5 > OAM Widget. Note: Do not export with any spaces in your filename or foreign characters or rename your .oam file after export.
-2. In the Hype Animations section in the Admin dashboard, click Upload New Animation and select your .oam file.
+2. In the Hype Animations section in the Admin dashboard, click Upload New Animation and select your .oam file. You must be an Editor or Administrator (a Super Admin on multisite) to see this section.
 3. After successful upload, the plugin will generate a shortcode you can use in posts and pages.
 
 == Changelog ==
+
+= 1.9.21 =
+* Security update from WP Plugin Crew: Only Editors and Administrators can now open the Hype Animations page and upload, replace, or delete animations. On multisite, only Super Admins can.  
+* Security: Uploaded .oam files are now checked for their uncompressed size before they are extracted. Files that expand to an unreasonable size are rejected, and a file too large for the PHP memory limit now shows an error instead of failing partway.
+* Existing animations and shortcodes keep working. Authors and Contributors can still embed existing animations with their shortcode.
 
 = 1.9.20 =
 * Fixes a bug where deleting an animation could remove the files of a different animation.
@@ -149,6 +156,9 @@ For detailed information and support for this plugin, please visit the [support 
 
 == Upgrade Notice ==
 
+= 1.9.21 =
+Security update. Only Editors and Administrators (Super Admins on multisite) can now upload or manage animations; Authors lose access. Existing animations and shortcodes keep working. Review any animations that Authors uploaded before.
+
 = 1.9.20 =
 Recommended for all users: fixes a bug where deleting an animation could remove another animation's files.
 
@@ -158,6 +168,10 @@ Recommended for all users: fixes a bug where deleting an animation could remove 
 2. Clicking 'Copy Code' in the actions list displays the full embed code to your uploaded Tumult Hype document for usage outside of the Wordpress loop or your Wordpress site.
 
 == Frequently Asked Questions ==
+= Why can't I see the Hype Animations menu? =
+
+The Hype Animations page needs the `unfiltered_html` capability, because animations contain JavaScript that runs on your site. On a single site, Editors and Administrators have it. On multisite, only Super Admins have it. If your site defines `DISALLOW_UNFILTERED_HTML` as `true`, nobody can upload or manage animations. Shortcodes for existing animations still display.
+
 = Where do I report security bugs found in this plugin? =
 
 Please report security bugs found in the source code of the Tumult Hype Animations plugin through the [Patchstack Vulnerability Disclosure  Program](https://patchstack.com/database/vdp/9e5fbeb7-1fa9-499b-a648-a7db808ba30b). The Patchstack team will assist you with verification, CVE assignment, and notify the developers of this plugin.
